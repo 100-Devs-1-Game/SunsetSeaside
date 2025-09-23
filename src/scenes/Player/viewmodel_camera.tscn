@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://w8yk25b2couh"]
+
+[ext_resource type="Script" uid="uid://djlu56q6npdxd" path="res://scenes/Player/viewmodel_camera.gd" id="1_6gbjy"]
+[ext_resource type="Script" uid="uid://duswyloxdw522" path="res://scenes/Player/shotgun.gd" id="2_5k7ty"]
+[ext_resource type="Script" uid="uid://e42v4wci1flq" path="res://scenes/Player/mesh_mover.gd" id="3_ela8s"]
+[ext_resource type="Script" uid="uid://3eolpr5dyick" path="res://scenes/Player/muzzle.gd" id="3_j6l1b"]
+[ext_resource type="Texture2D" uid="uid://xejdredppl2p" path="res://assets/textures/muzzle-flash.png" id="4_u0xi3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5k7ty"]
+albedo_color = Color(0.259294, 0.259294, 0.259294, 1)
+metallic = 0.48
+metallic_specular = 1.0
+roughness = 0.33
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5k7ty"]
+material = SubResource("StandardMaterial3D_5k7ty")
+top_radius = 0.018
+bottom_radius = 0.026
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0xi3"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("4_u0xi3")
+
+[node name="viewmodel_camera" type="Camera3D"]
+cull_mask = 2
+fov = 30.0
+script = ExtResource("1_6gbjy")
+
+[node name="fps_rig" type="Node3D" parent="."]
+
+[node name="shotgun" type="Node3D" parent="fps_rig"]
+script = ExtResource("2_5k7ty")
+
+[node name="mesh_mover" type="Node3D" parent="fps_rig/shotgun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.130205, -0.539491)
+script = ExtResource("3_ela8s")
+instant_recoil = Vector3(0, 0, 0.12)
+delta_multiplier_pos = 3.0
+delta_multiplier_rot = 20.0
+delta_multiplier_velocity_decrease = 20.0
+delta_multiplier_torque_decrease = 20.0
+
+[node name="mesh" type="Node3D" parent="fps_rig/shotgun/mesh_mover"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="fps_rig/shotgun/mesh_mover/mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0342131, 0.22721)
+layers = 2
+gi_mode = 2
+mesh = SubResource("CylinderMesh_5k7ty")
+
+[node name="muzzle" type="Node3D" parent="fps_rig/shotgun/mesh_mover/mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0328234, 0.0229698)
+script = ExtResource("3_j6l1b")
+scale_variance = 0.04
+flash_lifespan = 0.04
+
+[node name="flash_sprite" type="Sprite3D" parent="fps_rig/shotgun/mesh_mover/mesh/muzzle"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+layers = 2
+material_override = SubResource("StandardMaterial3D_u0xi3")
+texture = ExtResource("4_u0xi3")
+
+[node name="flash_light" type="OmniLight3D" parent="fps_rig/shotgun/mesh_mover/mesh/muzzle"]
+light_color = Color(1, 0.807843, 0.109804, 1)
+omni_range = 8.0
+
+[node name="emitter_position" type="Node3D" parent="fps_rig/shotgun/mesh_mover/mesh/muzzle"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.135539, 0)
+
+[node name="trail_timer" type="Timer" parent="fps_rig/shotgun/mesh_mover/mesh/muzzle"]
+wait_time = 0.08
+one_shot = true
+
+[connection signal="timeout" from="fps_rig/shotgun/mesh_mover/mesh/muzzle/trail_timer" to="fps_rig/shotgun/mesh_mover/mesh/muzzle" method="_on_trail_timer_timeout"]

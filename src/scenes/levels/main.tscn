@@ -1,0 +1,156 @@
+[gd_scene load_steps=13 format=3 uid="uid://7tdi3vhymmce"]
+
+[ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/Player/player.tscn" id="1_h3htm"]
+[ext_resource type="Script" uid="uid://c6f1ph0y5ej5s" path="res://scenes/levels/lightbulb.gd" id="2_npckm"]
+[ext_resource type="Texture2D" uid="uid://bc1l3yxle0b8x" path="res://assets/devblocks/textures/light/texture_09.png" id="2_y0acb"]
+[ext_resource type="PackedScene" uid="uid://b70bf2aqxvx47" path="res://scenes/Player/shotgun/blast_decal.tscn" id="4_j4d2a"]
+[ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/barrel.tscn" id="5_u81e1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2vj2h"]
+sky_horizon_color = Color(0.92778, 0.552728, 3.85046e-07, 1)
+
+[sub_resource type="Sky" id="Sky_y0acb"]
+sky_material = SubResource("ProceduralSkyMaterial_2vj2h")
+
+[sub_resource type="Environment" id="Environment_2sq1o"]
+background_mode = 2
+background_energy_multiplier = 0.72
+sky = SubResource("Sky_y0acb")
+ambient_light_source = 3
+ambient_light_color = Color(0.726588, 0.554418, 3.85046e-07, 1)
+reflected_light_source = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_saq0o"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4d2a"]
+albedo_color = Color(0.621524, 0.621524, 0.621524, 1)
+albedo_texture = ExtResource("2_y0acb")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wbxk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ks3a"]
+albedo_color = Color(0.741176, 1, 1, 1)
+
+[node name="main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2sq1o")
+
+[node name="Player" parent="." instance=ExtResource("1_h3htm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75716, 2.24028, 23.0933)
+
+[node name="areas" type="Node" parent="."]
+
+[node name="Area3D" type="Area3D" parent="areas"]
+
+[node name="area_hidden1" type="CollisionShape3D" parent="areas/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 1.25, -3.75)
+shape = SubResource("BoxShape3D_saq0o")
+
+[node name="geometry" type="Node" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="geometry"]
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_j4d2a")
+
+[node name="test_wall1" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3.008, 0.236328)
+use_collision = true
+size = Vector3(1, 5, 9.52734)
+material = SubResource("StandardMaterial3D_2wbxk")
+
+[node name="test_wall2" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.248047, 3.008, -5)
+use_collision = true
+size = Vector3(1, 5, 10.4961)
+material = SubResource("StandardMaterial3D_2wbxk")
+
+[node name="test_wall3" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0107365, 6.87372, -13.2193)
+use_collision = true
+size = Vector3(4.32996, 1.17773, 6.05322)
+material = SubResource("StandardMaterial3D_2wbxk")
+
+[node name="test_wall4" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.0084, 11.8891, -19.4587)
+use_collision = true
+size = Vector3(10.6209, 1.17773, 6.05322)
+material = SubResource("StandardMaterial3D_2wbxk")
+
+[node name="test_wall5" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.3032, 16.5447, -12.6278)
+use_collision = true
+size = Vector3(8.42374, 1.71729, 6.05322)
+material = SubResource("StandardMaterial3D_2wbxk")
+
+[node name="test_wall7" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.3032, 16.5447, 1.34819)
+use_collision = true
+size = Vector3(8.42374, 1.71729, 6.05322)
+material = SubResource("StandardMaterial3D_2wbxk")
+
+[node name="test_wall8" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.2664, 26.5951, 1.34819)
+use_collision = true
+size = Vector3(8.42374, 1.71729, 6.05322)
+material = SubResource("StandardMaterial3D_2wbxk")
+
+[node name="test_wall6" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24.3032, 19.412, -5.8295)
+use_collision = true
+size = Vector3(1.72924, 15.3884, 6.05322)
+material = SubResource("StandardMaterial3D_2wbxk")
+
+[node name="test_crate" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1.504, -2)
+use_collision = true
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_1ks3a")
+
+[node name="Node3D" parent="geometry" instance=ExtResource("4_j4d2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88685, 1.48849, 3.7996)
+
+[node name="lights" type="Node" parent="."]
+
+[node name="lightbulb" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.10913, 0)
+shadow_enabled = true
+omni_range = 14.524
+script = ExtResource("2_npckm")
+
+[node name="lightbulb2" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4988, 14.6218, -20.0332)
+shadow_enabled = true
+omni_range = 14.524
+script = ExtResource("2_npckm")
+
+[node name="lightbulb5" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.301085, 9.20159, -12.9998)
+shadow_enabled = true
+omni_range = 14.524
+script = ExtResource("2_npckm")
+
+[node name="lightbulb3" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4679, 19.0652, -12.8997)
+shadow_enabled = true
+omni_range = 14.524
+script = ExtResource("2_npckm")
+
+[node name="lightbulb6" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4679, 19.0652, 1.42754)
+shadow_enabled = true
+omni_range = 14.524
+script = ExtResource("2_npckm")
+
+[node name="lightbulb4" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1759, 29.7998, 1.53179)
+light_color = Color(0.586423, 0.761659, 0, 1)
+shadow_enabled = true
+omni_range = 14.524
+script = ExtResource("2_npckm")
+
+[node name="barrel" parent="." instance=ExtResource("5_u81e1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17541, 1.5, -3.22119)

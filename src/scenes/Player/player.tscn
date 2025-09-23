@@ -1,0 +1,243 @@
+[gd_scene load_steps=24 format=3 uid="uid://7gv6q50fuutj"]
+
+[ext_resource type="Script" uid="uid://f76fggl2uyob" path="res://scenes/Player/player.gd" id="1_twte0"]
+[ext_resource type="Script" uid="uid://bw1c3unoeydxt" path="res://scenes/Player/head.gd" id="2_c4h5g"]
+[ext_resource type="Script" uid="uid://bwyvdfclwdvt8" path="res://scenes/Player/console_ui.gd" id="3_uiqp4"]
+[ext_resource type="AudioStream" uid="uid://dhcbr0641oraf" path="res://assets/sounds/player/footstep_3.wav" id="3_umd5a"]
+[ext_resource type="Script" uid="uid://cw30x4wy5quuw" path="res://scenes/Player/headbob_pivot.gd" id="3_uxo23"]
+[ext_resource type="Script" uid="uid://r46iblp0dqej" path="res://scenes/Player/ui.gd" id="4_jxtnq"]
+[ext_resource type="Script" uid="uid://djlu56q6npdxd" path="res://scenes/Player/viewmodel_camera.gd" id="4_wwtew"]
+[ext_resource type="Script" uid="uid://duswyloxdw522" path="res://scenes/Player/shotgun.gd" id="5_uxo23"]
+[ext_resource type="Script" uid="uid://e42v4wci1flq" path="res://scenes/Player/mesh_mover.gd" id="6_n7rn1"]
+[ext_resource type="Script" uid="uid://3eolpr5dyick" path="res://scenes/Player/muzzle.gd" id="7_7tfl1"]
+[ext_resource type="Texture2D" uid="uid://xejdredppl2p" path="res://assets/textures/muzzle-flash.png" id="8_jxtnq"]
+[ext_resource type="Script" uid="uid://dktl25jrxiqs6" path="res://scenes/Player/cannon_ray.gd" id="10_n7rn1"]
+[ext_resource type="Script" uid="uid://wj1osu2cl05y" path="res://scenes/Player/cannon_damage_area.gd" id="11_7tfl1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
+radius = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dks2g"]
+radius = 0.2
+height = 1.2
+
+[sub_resource type="LabelSettings" id="LabelSettings_7tfl1"]
+font_size = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_uiqp4"]
+font_size = 9
+font_color = Color(0.958314, 0.615091, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vaad7"]
+font_size = 9
+font_color = Color(1, 0.560784, 0.470588, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tjdps"]
+font_size = 9
+font_color = Color(0.282353, 0.941176, 0.443137, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5k7ty"]
+albedo_color = Color(0.259294, 0.259294, 0.259294, 1)
+metallic = 0.48
+metallic_specular = 1.0
+roughness = 0.33
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5k7ty"]
+material = SubResource("StandardMaterial3D_5k7ty")
+top_radius = 0.018
+bottom_radius = 0.026
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0xi3"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("8_jxtnq")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_n7rn1"]
+height = 4.80884
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_twte0")
+
+[node name="player_collision" type="Area3D" parent="."]
+
+[node name="standing_collision_shape" type="CollisionShape3D" parent="player_collision"]
+shape = SubResource("CapsuleShape3D_emkox")
+
+[node name="standing_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_emkox")
+
+[node name="crouching_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.399706, 0)
+shape = SubResource("CapsuleShape3D_dks2g")
+disabled = true
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.577648, 0)
+script = ExtResource("2_c4h5g")
+
+[node name="headbob_pivot" type="Node3D" parent="Head"]
+script = ExtResource("3_uxo23")
+
+[node name="Camera3D" type="Camera3D" parent="Head/headbob_pivot"]
+cull_mask = 1048573
+fov = 85.0
+
+[node name="ui" type="Control" parent="Head/headbob_pivot/Camera3D"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("4_jxtnq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Head/headbob_pivot/Camera3D/ui"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -81.0
+offset_top = -175.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 32
+
+[node name="ammo_label" type="Label" parent="Head/headbob_pivot/Camera3D/ui/MarginContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_7tfl1")
+
+[node name="console_ui" type="Control" parent="Head/headbob_pivot/Camera3D"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+script = ExtResource("3_uiqp4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Head/headbob_pivot/Camera3D/console_ui"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -39.0
+offset_right = 86.0
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="debug_label_bounce_mod" type="Label" parent="Head/headbob_pivot/Camera3D/console_ui/VBoxContainer"]
+layout_mode = 2
+text = "last bounce mod: ---"
+label_settings = SubResource("LabelSettings_uiqp4")
+
+[node name="debug_label_speed" type="Label" parent="Head/headbob_pivot/Camera3D/console_ui/VBoxContainer"]
+layout_mode = 2
+text = "speed: "
+label_settings = SubResource("LabelSettings_vaad7")
+
+[node name="debug_label_velocity" type="Label" parent="Head/headbob_pivot/Camera3D/console_ui/VBoxContainer"]
+layout_mode = 2
+text = "velocity: x, y"
+label_settings = SubResource("LabelSettings_tjdps")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Head/headbob_pivot/Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Head/headbob_pivot/Camera3D/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="viewmodel_camera" type="Camera3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport"]
+cull_mask = 1047554
+fov = 32.0
+script = ExtResource("4_wwtew")
+
+[node name="fps_rig" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera"]
+
+[node name="shotgun" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig"]
+script = ExtResource("5_uxo23")
+
+[node name="cannon_ray" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0954311, 0)
+exclude_parent = false
+target_position = Vector3(0, 0, -7)
+script = ExtResource("10_n7rn1")
+
+[node name="mesh_mover" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.130205, -0.539491)
+script = ExtResource("6_n7rn1")
+instant_recoil = Vector3(0, 0, 0.12)
+delta_multiplier_pos = 3.0
+delta_multiplier_rot = 20.0
+delta_multiplier_velocity_decrease = 20.0
+delta_multiplier_torque_decrease = 20.0
+
+[node name="mesh" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/mesh_mover"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/mesh_mover/mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0342131, 0.22721)
+layers = 2
+gi_mode = 2
+mesh = SubResource("CylinderMesh_5k7ty")
+
+[node name="muzzle" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/mesh_mover/mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0328234, 0.0229698)
+script = ExtResource("7_7tfl1")
+scale_variance = 0.04
+flash_lifespan = 0.04
+
+[node name="flash_sprite" type="Sprite3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/mesh_mover/mesh/muzzle"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+layers = 2
+material_override = SubResource("StandardMaterial3D_u0xi3")
+texture = ExtResource("8_jxtnq")
+
+[node name="flash_light" type="OmniLight3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/mesh_mover/mesh/muzzle"]
+light_color = Color(1, 0.807843, 0.109804, 1)
+omni_range = 8.0
+
+[node name="emitter_position" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/mesh_mover/mesh/muzzle"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.135539, 0)
+
+[node name="trail_timer" type="Timer" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/mesh_mover/mesh/muzzle"]
+wait_time = 0.08
+one_shot = true
+
+[node name="shot_delay_timer" type="Timer" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun"]
+wait_time = 0.2
+one_shot = true
+
+[node name="cannon_damage_area" type="Area3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun"]
+monitoring = false
+monitorable = false
+script = ExtResource("11_7tfl1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damage_area"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, -2.60292)
+shape = SubResource("CylinderShape3D_n7rn1")
+
+[node name="EdgeDetectorUp" type="RayCast3D" parent="."]
+target_position = Vector3(0, 1.2, 0)
+
+[node name="AudioStreamPlayer_footstps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_umd5a")
+volume_db = 14.0
+max_polyphony = 2
+
+[connection signal="timeout" from="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/mesh_mover/mesh/muzzle/trail_timer" to="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/mesh_mover/mesh/muzzle" method="_on_trail_timer_timeout"]
+[connection signal="timeout" from="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/shot_delay_timer" to="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun" method="_on_shot_delay_timer_timeout"]
+[connection signal="body_entered" from="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damage_area" to="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damage_area" method="_on_body_entered"]

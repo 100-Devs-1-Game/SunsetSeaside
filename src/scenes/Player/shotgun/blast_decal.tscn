@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b70bf2aqxvx47"]
+
+[ext_resource type="Texture2D" uid="uid://pnw73wnxsl0m" path="res://assets/textures/pngkey.com-cloud-texture-png-961839.png" id="1_a1yhm"]
+
+[node name="Node3D" type="Decal"]
+texture_albedo = ExtResource("1_a1yhm")
+upper_fade = 0.707107
+lower_fade = 0.466517

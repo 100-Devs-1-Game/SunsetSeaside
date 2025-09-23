@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfx1xndky4suc"]
+
+[ext_resource type="Script" uid="uid://lu3n13lafbmp" path="res://scenes/Player/shotgun/smoke_spread.gd" id="1_hlvf7"]
+
+[sub_resource type="Curve" id="Curve_kp11c"]
+_data = [Vector2(0, 0.775281), 0.0, -0.667915, 0, 0, Vector2(0.135514, 0.764045), 0.0, 0.0, 0, 0, Vector2(0.53271, 0), -3.41973, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hwvil"]
+curve = SubResource("Curve_kp11c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0gbwp"]
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_hwvil")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cda7s"]
+albedo_color = Color(0.838897, 0.838897, 0.838897, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_uxewx"]
+material = SubResource("StandardMaterial3D_cda7s")
+radius = 0.08
+height = 0.16
+
+[node name="Node3D" type="GPUParticles3D"]
+emitting = false
+amount = 1
+lifetime = 2.0
+one_shot = true
+fixed_fps = 60
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_0gbwp")
+draw_pass_1 = SubResource("SphereMesh_uxewx")
+script = ExtResource("1_hlvf7")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

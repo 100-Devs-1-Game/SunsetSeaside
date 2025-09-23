@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://7gv6q50fuutj"]
+
+[ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_twte0"]
+[ext_resource type="PackedScene" uid="uid://c3jxat6vxv4gn" path="res://scenes/Player/viewmodel_camera.tscn" id="2_xxoja"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dks2g"]
+height = 1.2
+
+[sub_resource type="LabelSettings" id="LabelSettings_vaad7"]
+font_size = 9
+font_color = Color(1, 0.560784, 0.470588, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tjdps"]
+font_size = 9
+font_color = Color(0.282353, 0.941176, 0.443137, 1)
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_twte0")
+
+[node name="player_collision" type="Area3D" parent="."]
+
+[node name="standing_collision_shape" type="CollisionShape3D" parent="player_collision"]
+shape = SubResource("CapsuleShape3D_emkox")
+
+[node name="standing_collision_shape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_emkox")
+
+[node name="crouching_collision_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.399706, 0)
+shape = SubResource("CapsuleShape3D_dks2g")
+disabled = true
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="headbob_pivot" type="Node3D" parent="Head"]
+
+[node name="Camera3D" type="Camera3D" parent="Head/headbob_pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468, 0)
+cull_mask = 1048573
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Head/headbob_pivot/Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="debug_labels" type="Control" parent="Head/headbob_pivot/Camera3D/SubViewportContainer"]
+layout_mode = 2
+
+[node name="debug_label_speed" type="Label" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/debug_labels"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 614.0
+offset_right = 55.0
+offset_bottom = 637.0
+text = "speed: "
+label_settings = SubResource("LabelSettings_vaad7")
+
+[node name="debug_label_velocity" type="Label" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/debug_labels"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 625.0
+offset_right = 55.0
+offset_bottom = 648.0
+text = "velocity: x, y"
+label_settings = SubResource("LabelSettings_tjdps")
+
+[node name="SubViewport" type="SubViewport" parent="Head/headbob_pivot/Camera3D/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="viewmodel_camera" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport" instance=ExtResource("2_xxoja")]
+cull_mask = 1047554
+
+[node name="EdgeDetectorUp" type="RayCast3D" parent="."]
+target_position = Vector3(0, 1.2, 0)

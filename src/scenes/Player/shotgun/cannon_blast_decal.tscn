@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb7hrivgf84ve"]
+
+[ext_resource type="Script" uid="uid://c1j266d5d0v6n" path="res://scenes/Player/shotgun/cannon_blast_decal.gd" id="1_68jss"]
+[ext_resource type="Texture2D" uid="uid://pnw73wnxsl0m" path="res://assets/textures/pngkey.com-cloud-texture-png-961839.png" id="1_xg757"]
+
+[sub_resource type="Animation" id="Animation_p0wgl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Decal3D:albedo_mix")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_68jss"]
+resource_name = "on_spawn"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Decal3D:albedo_mix")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6, 10),
+"transitions": PackedFloat32Array(1, 2.82843, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p0wgl"]
+_data = {
+&"RESET": SubResource("Animation_p0wgl"),
+&"on_spawn": SubResource("Animation_68jss")
+}
+
+[node name="cannon_blast_decal" type="Node3D"]
+script = ExtResource("1_68jss")
+
+[node name="Decal3D" type="Decal" parent="."]
+texture_albedo = ExtResource("1_xg757")
+upper_fade = 0.707107
+lower_fade = 0.707107
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p0wgl")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
