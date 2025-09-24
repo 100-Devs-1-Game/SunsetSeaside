@@ -7,3 +7,4 @@ func _ready():
 	
 func _update_ammo_label(ammo):
 	ammo_label.text = str(ammo)
+	

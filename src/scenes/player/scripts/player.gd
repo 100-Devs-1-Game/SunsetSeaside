@@ -12,6 +12,7 @@ extends CharacterBody3D
 @onready var crouching_collision_shape = $crouching_collision_shape
 
 @onready var edge_detector_up = $EdgeDetectorUp
+@onready var explosion_trail_spawner: Node3D = $explosion_trail_spawner
 
 #@onready var animation_player = $Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/katana/AnimationPlayer
 @onready var original_pos = global_position
@@ -38,6 +39,8 @@ const sprint_speed = 11.0
 const ACCEL_DEFAULT = 4.0
 const DECCEL_DEFAULT = 5.0
 const DECCEL_BACKPEDAL_DEFAULT = 3.0
+const ACCEL_MIDAIR = 0.6
+const DECCEL_BACKPEDAL_MIDAIR = 0.6
 
 # crouch vars
 var crouch_speed = 10.0 # how fast a crouch is completed
@@ -71,6 +74,7 @@ var gravity = 16.0
 
 func _ready():
 	Events.shotgun_bounce.connect(_shotgun_bounce)
+	Events.explosion_bounce.connect(_explosion_bounce)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	# setting viewmodel viewport to be the same size as the window
 	$Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
@@ -92,8 +96,8 @@ func _physics_process(delta):
 			verticalForce = velocity.y  		# force is based on the distance of the fall
 		verticalForceStorage = verticalForce
 
-		accel = 0.5 # changing how much control the player has over movement whislt midair
-		deccel_backpedal = 0.5
+		accel = ACCEL_MIDAIR # changing how much control the player has over movement whislt midair
+		deccel_backpedal = DECCEL_BACKPEDAL_MIDAIR
 	else:
 		if !verticalForce == 0.0: 	 # handle landing downward head movement
 			verticalForce = 0.0
@@ -184,6 +188,7 @@ func _physics_process(delta):
 	console_ui.debug_label_velocity.text = "velocity: " + str(snapped(velocity.x, 0.01)) + ", " + str(snapped(velocity.z, 0.01))
 	
 	position_last_frame = position
+	Gamestate.player_global_position = global_position
 
 func _shotgun_bounce(direction, force): # bounce the player, sent by the shotgun script
 	var bounce_mod = 1.0
@@ -192,10 +197,17 @@ func _shotgun_bounce(direction, force): # bounce the player, sent by the shotgun
 	if is_on_wall(): bounce_mod += 0.2
 	console_ui.debug_label_bounce_mod.text = "last bounce mod: " + str(bounce_mod)
 	velocity = velocity * 0.8
+	
 	velocity.x += direction.x * force * bounce_mod
 	velocity.y += direction.y * force * bounce_mod
 	velocity.z += direction.z * force * bounce_mod
 
+func _explosion_bounce(direction, force, smoke_trail_amount): # direction and force determined by the explosion script
+	velocity.x += direction.x * force
+	velocity.y += direction.y * force
+	velocity.z += direction.z * force
+	explosion_trail_spawner.spawn(smoke_trail_amount) # to be implemented
+	
 func _input(event): # handling camera movement for the mouse
 	if event is InputEventMouseMotion:
 		rotation.y -= event.relative.x / mouse_sens

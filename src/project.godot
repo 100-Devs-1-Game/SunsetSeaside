@@ -21,9 +21,9 @@ buses/default_bus_layout=""
 [autoload]
 
 Settings="*res://Global/Settings.gd"
-Gamestate="*res://autoload/gamestate.gd"
-Events="*res://autoload/events.gd"
-Enums="*res://autoload/enums.gd"
+Gamestate="*res://scenes/!scripts (no scenes associated)/autoload/gamestate.gd"
+Events="*res://scenes/!scripts (no scenes associated)/autoload/events.gd"
+Enums="*res://scenes/!scripts (no scenes associated)/autoload/enums.gd"
 
 [display]
 

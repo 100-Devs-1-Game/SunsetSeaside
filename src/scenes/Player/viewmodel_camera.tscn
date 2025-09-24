@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://w8yk25b2couh"]
 
-[ext_resource type="Script" uid="uid://djlu56q6npdxd" path="res://scenes/Player/viewmodel_camera.gd" id="1_6gbjy"]
-[ext_resource type="Script" uid="uid://duswyloxdw522" path="res://scenes/Player/shotgun.gd" id="2_5k7ty"]
-[ext_resource type="Script" uid="uid://e42v4wci1flq" path="res://scenes/Player/mesh_mover.gd" id="3_ela8s"]
-[ext_resource type="Script" uid="uid://3eolpr5dyick" path="res://scenes/Player/muzzle.gd" id="3_j6l1b"]
+[ext_resource type="Script" uid="uid://djlu56q6npdxd" path="res://scenes/player/scripts/viewmodel_camera.gd" id="1_6gbjy"]
+[ext_resource type="Script" uid="uid://duswyloxdw522" path="res://scenes/player/shotgun/scripts/shotgun.gd" id="2_5k7ty"]
+[ext_resource type="Script" uid="uid://e42v4wci1flq" path="res://scenes/player/scripts/mesh_mover.gd" id="3_ela8s"]
+[ext_resource type="Script" uid="uid://3eolpr5dyick" path="res://scenes/player/scripts/muzzle.gd" id="3_j6l1b"]
 [ext_resource type="Texture2D" uid="uid://xejdredppl2p" path="res://assets/textures/muzzle-flash.png" id="4_u0xi3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5k7ty"]

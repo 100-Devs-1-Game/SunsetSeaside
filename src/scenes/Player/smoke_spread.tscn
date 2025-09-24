@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cafha5fqgonbw"]
 
-[ext_resource type="Script" uid="uid://lu3n13lafbmp" path="res://scenes/Player/shotgun/smoke_spread.gd" id="1_ksun5"]
+[ext_resource type="Script" uid="uid://lu3n13lafbmp" path="res://scenes/player/shotgun/scripts/smoke_spread.gd" id="1_ksun5"]
 
 [sub_resource type="Curve" id="Curve_quro8"]
 _limits = [0.0, 8.0, 0.0, 1.0]

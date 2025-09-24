@@ -11,7 +11,6 @@ signal damaged()
 # NOTE: impulse exist mostly for creating movement to debris or etc after a hit, not to the object itself
 func hit() : # collision point has default val for if none is specified
 	# maybe pass damage type as an array that can hold multiple types?
-	print("froy")
 	emit_signal("damaged")
 
 func _enter_tree() -> void:

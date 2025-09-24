@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cb7hrivgf84ve"]
 
-[ext_resource type="Script" uid="uid://c1j266d5d0v6n" path="res://scenes/Player/shotgun/cannon_blast_decal.gd" id="1_68jss"]
+[ext_resource type="Script" uid="uid://c1j266d5d0v6n" path="res://scenes/player/shotgun/scripts/cannon_blast_decal.gd" id="1_68jss"]
 [ext_resource type="Texture2D" uid="uid://pnw73wnxsl0m" path="res://assets/textures/pngkey.com-cloud-texture-png-961839.png" id="1_xg757"]
 
 [sub_resource type="Animation" id="Animation_p0wgl"]

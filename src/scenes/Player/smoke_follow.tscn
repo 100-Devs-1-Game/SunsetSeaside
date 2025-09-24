@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfx1xndky4suc"]
 
-[ext_resource type="Script" uid="uid://lu3n13lafbmp" path="res://scenes/Player/shotgun/smoke_spread.gd" id="1_hlvf7"]
+[ext_resource type="Script" uid="uid://lu3n13lafbmp" path="res://scenes/player/shotgun/scripts/smoke_spread.gd" id="1_hlvf7"]
 
 [sub_resource type="Curve" id="Curve_kp11c"]
 _data = [Vector2(0, 0.775281), 0.0, -0.667915, 0, 0, Vector2(0.135514, 0.764045), 0.0, 0.0, 0, 0, Vector2(0.53271, 0), -3.41973, 0.0, 0, 0]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://7tdi3vhymmce"]
+[gd_scene load_steps=15 format=3 uid="uid://7tdi3vhymmce"]
 
-[ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/Player/player.tscn" id="1_h3htm"]
+[ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/player/player.tscn" id="1_h3htm"]
 [ext_resource type="Script" uid="uid://c6f1ph0y5ej5s" path="res://scenes/levels/lightbulb.gd" id="2_npckm"]
 [ext_resource type="Texture2D" uid="uid://bc1l3yxle0b8x" path="res://assets/devblocks/textures/light/texture_09.png" id="2_y0acb"]
-[ext_resource type="PackedScene" uid="uid://b70bf2aqxvx47" path="res://scenes/Player/shotgun/blast_decal.tscn" id="4_j4d2a"]
-[ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/barrel.tscn" id="5_u81e1"]
+[ext_resource type="PackedScene" uid="uid://b70bf2aqxvx47" path="res://scenes/player/shotgun/blast_decal.tscn" id="4_j4d2a"]
+[ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/explosive_barrel.tscn" id="5_u81e1"]
+[ext_resource type="PackedScene" uid="uid://c8cgo4x2tdocl" path="res://scenes/entities/fragile_platform.tscn" id="6_b6bv0"]
+[ext_resource type="PackedScene" uid="uid://cgfjxk20su37m" path="res://scenes/entities/destructable_platform.tscn" id="7_ubwgw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2vj2h"]
 sky_horizon_color = Color(0.92778, 0.552728, 3.85046e-07, 1)
@@ -26,7 +28,7 @@ size = Vector3(1.5, 1.5, 1.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4d2a"]
 albedo_color = Color(0.621524, 0.621524, 0.621524, 1)
 albedo_texture = ExtResource("2_y0acb")
-uv1_scale = Vector3(100, 100, 100)
+uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wbxk"]
 
@@ -39,7 +41,7 @@ albedo_color = Color(0.741176, 1, 1, 1)
 environment = SubResource("Environment_2sq1o")
 
 [node name="Player" parent="." instance=ExtResource("1_h3htm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75716, 2.24028, 23.0933)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19497, 0.577124, 12.3478)
 
 [node name="areas" type="Node" parent="."]
 
@@ -52,8 +54,9 @@ shape = SubResource("BoxShape3D_saq0o")
 [node name="geometry" type="Node" parent="."]
 
 [node name="floor" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, -1.5, 4.5)
 use_collision = true
-size = Vector3(100, 1, 100)
+size = Vector3(20, 4, 20)
 material = SubResource("StandardMaterial3D_j4d2a")
 
 [node name="test_wall1" type="CSGBox3D" parent="geometry"]
@@ -154,3 +157,9 @@ script = ExtResource("2_npckm")
 
 [node name="barrel" parent="." instance=ExtResource("5_u81e1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17541, 1.5, -3.22119)
+
+[node name="fragile_platform" parent="." instance=ExtResource("6_b6bv0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0141, 9.41474, -7.96686)
+
+[node name="destructable_platform" parent="." instance=ExtResource("7_ubwgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4248, 9.49043, -5.1985)

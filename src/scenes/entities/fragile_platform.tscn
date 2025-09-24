@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8cgo4x2tdocl"]
+
+[ext_resource type="Script" uid="uid://g64v6hvrw4rd" path="res://scenes/entities/scripts/fragile_platform.gd" id="1_ib27n"]
+[ext_resource type="Script" uid="uid://bn8cpygo0uaix" path="res://scenes/!scripts (no scenes associated)/components/damageable_component.gd" id="1_msblv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_k55y8"]
+size = Vector3(2, 0.5, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msblv"]
+albedo_color = Color(1, 0.578795, 0.440443, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k55y8"]
+data = PackedVector3Array(-1, 0.25, 1, 1, 0.25, 1, -1, -0.25, 1, 1, 0.25, 1, 1, -0.25, 1, -1, -0.25, 1, 1, 0.25, -1, -1, 0.25, -1, 1, -0.25, -1, -1, 0.25, -1, -1, -0.25, -1, 1, -0.25, -1, 1, 0.25, 1, 1, 0.25, -1, 1, -0.25, 1, 1, 0.25, -1, 1, -0.25, -1, 1, -0.25, 1, -1, 0.25, -1, -1, 0.25, 1, -1, -0.25, -1, -1, 0.25, 1, -1, -0.25, 1, -1, -0.25, -1, 1, 0.25, 1, -1, 0.25, 1, 1, 0.25, -1, -1, 0.25, 1, -1, 0.25, -1, 1, 0.25, -1, -1, -0.25, 1, 1, -0.25, 1, -1, -0.25, -1, 1, -0.25, 1, 1, -0.25, -1, -1, -0.25, -1)
+
+[node name="fragile_platform" type="StaticBody3D"]
+script = ExtResource("1_ib27n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_k55y8")
+surface_material_override/0 = SubResource("StandardMaterial3D_msblv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_k55y8")
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("1_msblv")
+metadata/_custom_type_script = "uid://bn8cpygo0uaix"
+
+[node name="fragile_timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14208, 0)
+monitorable = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConcavePolygonShape3D_k55y8")
+
+[connection signal="damaged" from="Damageable" to="." method="_on_damageable_damaged"]
+[connection signal="timeout" from="fragile_timer" to="." method="_on_fragile_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
