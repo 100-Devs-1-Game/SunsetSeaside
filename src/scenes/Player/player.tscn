@@ -115,7 +115,6 @@ text = "0"
 label_settings = SubResource("LabelSettings_7tfl1")
 
 [node name="console_ui" type="Control" parent="Head/headbob_pivot/Camera3D"]
-visible = false
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0

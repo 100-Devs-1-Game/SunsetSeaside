@@ -75,6 +75,7 @@ var gravity = 16.0
 func _ready():
 	Events.shotgun_bounce.connect(_shotgun_bounce)
 	Events.explosion_bounce.connect(_explosion_bounce)
+	Events.player_death.connect(_fucking_die)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	# setting viewmodel viewport to be the same size as the window
 	$Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
@@ -189,6 +190,10 @@ func _physics_process(delta):
 	
 	position_last_frame = position
 	Gamestate.player_global_position = global_position
+	
+	# below map failsafe
+	if global_position.y < -10.0:
+		Events.player_death.emit(Enums.PlayerDeathType.INSTANT)
 
 func _shotgun_bounce(direction, force): # bounce the player, sent by the shotgun script
 	var bounce_mod = 1.0
@@ -207,6 +212,10 @@ func _explosion_bounce(direction, force, smoke_trail_amount): # direction and fo
 	velocity.y += direction.y * force
 	velocity.z += direction.z * force
 	explosion_trail_spawner.spawn(smoke_trail_amount) # to be implemented
+
+func _fucking_die(type : Enums.PlayerDeathType):
+	queue_free()
+	# add death animation
 	
 func _input(event): # handling camera movement for the mouse
 	if event is InputEventMouseMotion:

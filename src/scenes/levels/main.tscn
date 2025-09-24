@@ -1,12 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://7tdi3vhymmce"]
+[gd_scene load_steps=14 format=3 uid="uid://7tdi3vhymmce"]
 
-[ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/player/player.tscn" id="1_h3htm"]
-[ext_resource type="Script" uid="uid://c6f1ph0y5ej5s" path="res://scenes/levels/lightbulb.gd" id="2_npckm"]
 [ext_resource type="Texture2D" uid="uid://bc1l3yxle0b8x" path="res://assets/devblocks/textures/light/texture_09.png" id="2_y0acb"]
 [ext_resource type="PackedScene" uid="uid://b70bf2aqxvx47" path="res://scenes/player/shotgun/blast_decal.tscn" id="4_j4d2a"]
 [ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/explosive_barrel.tscn" id="5_u81e1"]
 [ext_resource type="PackedScene" uid="uid://c8cgo4x2tdocl" path="res://scenes/entities/fragile_platform.tscn" id="6_b6bv0"]
 [ext_resource type="PackedScene" uid="uid://cgfjxk20su37m" path="res://scenes/entities/destructable_platform.tscn" id="7_ubwgw"]
+[ext_resource type="PackedScene" uid="uid://dtd51ahita8ja" path="res://scenes/entities/spawnpoint.tscn" id="7_vkq25"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2vj2h"]
 sky_horizon_color = Color(0.92778, 0.552728, 3.85046e-07, 1)
@@ -39,9 +38,6 @@ albedo_color = Color(0.741176, 1, 1, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2sq1o")
-
-[node name="Player" parent="." instance=ExtResource("1_h3htm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19497, 0.577124, 12.3478)
 
 [node name="areas" type="Node" parent="."]
 
@@ -122,38 +118,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88685, 1.48849, 3.7996)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.10913, 0)
 shadow_enabled = true
 omni_range = 14.524
-script = ExtResource("2_npckm")
 
 [node name="lightbulb2" type="OmniLight3D" parent="lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4988, 14.6218, -20.0332)
 shadow_enabled = true
 omni_range = 14.524
-script = ExtResource("2_npckm")
 
 [node name="lightbulb5" type="OmniLight3D" parent="lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.301085, 9.20159, -12.9998)
 shadow_enabled = true
 omni_range = 14.524
-script = ExtResource("2_npckm")
 
 [node name="lightbulb3" type="OmniLight3D" parent="lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4679, 19.0652, -12.8997)
 shadow_enabled = true
 omni_range = 14.524
-script = ExtResource("2_npckm")
 
 [node name="lightbulb6" type="OmniLight3D" parent="lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4679, 19.0652, 1.42754)
 shadow_enabled = true
 omni_range = 14.524
-script = ExtResource("2_npckm")
 
 [node name="lightbulb4" type="OmniLight3D" parent="lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1759, 29.7998, 1.53179)
 light_color = Color(0.586423, 0.761659, 0, 1)
 shadow_enabled = true
 omni_range = 14.524
-script = ExtResource("2_npckm")
 
 [node name="barrel" parent="." instance=ExtResource("5_u81e1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17541, 1.5, -3.22119)
@@ -163,3 +153,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0141, 9.41474, -7.96686)
 
 [node name="destructable_platform" parent="." instance=ExtResource("7_ubwgw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4248, 9.49043, -5.1985)
+
+[node name="player_spawnpoint" parent="." instance=ExtResource("7_vkq25")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.431464, 1.70804, 12.3036)

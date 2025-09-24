@@ -13,3 +13,7 @@ signal explosion_bounce(direction, force, smoke_trail_amount)
 signal floor_reload()
 signal ui_ammo_update(ammo)
 signal fire_weapon() # shoots gun!
+
+###### gamestate signals
+signal establish_spawnpoint(node)
+signal player_death(type : Enums.PlayerDeathType)
