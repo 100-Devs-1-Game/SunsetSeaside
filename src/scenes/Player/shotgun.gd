@@ -2,9 +2,9 @@ extends Node3D
 
 @onready var muzzle: Node3D = $mesh_mover/mesh/muzzle
 @onready var mesh_mover: Node3D = $mesh_mover
-@onready var cannon_ray: RayCast3D = $cannon_ray # creates decals on firing
+@onready var cannon_decal_ray: RayCast3D = $cannon_decal_ray # creates decals on firing
 @onready var shot_delay_timer: Timer = $shot_delay_timer
-@onready var cannon_damage_area: Area3D = $cannon_damage_area
+@onready var cannon_damager: Node3D = $cannon_damager
 
 # recoil vars
 var recoil_dynamic = Vector2(0.02, 0.24)## NOTE: first val for this is a random range
@@ -36,8 +36,9 @@ func _blaow():
 	Events.head_recoil_affect.emit(Vector2(randf_range(-recoil_dynamic.x, recoil_dynamic.x), recoil_dynamic.y), recoil_instant, camera_shake)
 	muzzle.flash()
 	mesh_mover.recoil()
-	cannon_ray.create_decal()
+	cannon_decal_ray.create_decal()
 	shot_delay_timer.start()
+	cannon_damager.damage()
 	ammo -= 1
 	Events.ui_ammo_update.emit(ammo)
 	

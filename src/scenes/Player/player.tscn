@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=23 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" uid="uid://f76fggl2uyob" path="res://scenes/Player/player.gd" id="1_twte0"]
 [ext_resource type="Script" uid="uid://bw1c3unoeydxt" path="res://scenes/Player/head.gd" id="2_c4h5g"]
@@ -11,8 +11,8 @@
 [ext_resource type="Script" uid="uid://e42v4wci1flq" path="res://scenes/Player/mesh_mover.gd" id="6_n7rn1"]
 [ext_resource type="Script" uid="uid://3eolpr5dyick" path="res://scenes/Player/muzzle.gd" id="7_7tfl1"]
 [ext_resource type="Texture2D" uid="uid://xejdredppl2p" path="res://assets/textures/muzzle-flash.png" id="8_jxtnq"]
-[ext_resource type="Script" uid="uid://dktl25jrxiqs6" path="res://scenes/Player/cannon_ray.gd" id="10_n7rn1"]
-[ext_resource type="Script" uid="uid://wj1osu2cl05y" path="res://scenes/Player/cannon_damage_area.gd" id="11_7tfl1"]
+[ext_resource type="Script" uid="uid://dktl25jrxiqs6" path="res://scenes/Player/cannon_decal_ray.gd" id="10_n7rn1"]
+[ext_resource type="Script" uid="uid://wj1osu2cl05y" path="res://scenes/Player/cannon_damager.gd" id="11_7tfl1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 radius = 0.2
@@ -53,9 +53,6 @@ transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("8_jxtnq")
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_n7rn1"]
-height = 4.80884
-
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
@@ -86,6 +83,7 @@ cull_mask = 1048573
 fov = 85.0
 
 [node name="ui" type="Control" parent="Head/headbob_pivot/Camera3D"]
+visible = false
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -171,7 +169,7 @@ script = ExtResource("4_wwtew")
 [node name="shotgun" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig"]
 script = ExtResource("5_uxo23")
 
-[node name="cannon_ray" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun"]
+[node name="cannon_decal_ray" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0954311, 0)
 exclude_parent = false
 target_position = Vector3(0, 0, -7)
@@ -221,14 +219,53 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
-[node name="cannon_damage_area" type="Area3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun"]
-monitoring = false
-monitorable = false
+[node name="cannon_damager" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10224, 0)
 script = ExtResource("11_7tfl1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damage_area"]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, -2.60292)
-shape = SubResource("CylinderShape3D_n7rn1")
+[node name="damage_caster0" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damager"]
+enabled = false
+target_position = Vector3(0, 0, -1)
+
+[node name="damage_caster1" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damager"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, 0, -1)
+
+[node name="damage_caster2" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damager"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, 0, -1)
+
+[node name="damage_caster3" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damager"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, 0, -1)
+
+[node name="damage_caster4" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damager"]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, 0, -1)
+
+[node name="damage_caster5" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damager"]
+transform = Transform3D(0.992546, 0.0148521, -0.120961, 0, 0.992546, 0.121869, 0.121869, -0.120961, 0.985148, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, 0, -1)
+
+[node name="damage_caster6" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damager"]
+transform = Transform3D(0.992546, -0.0148521, -0.120961, 0, 0.992546, -0.121869, 0.121869, 0.120961, 0.985148, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, 0, -1)
+
+[node name="damage_caster7" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damager"]
+transform = Transform3D(0.992546, 0.0148521, 0.120961, 0, 0.992546, -0.121869, -0.121869, 0.120961, 0.985148, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, 0, -1)
+
+[node name="damage_caster8" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damager"]
+transform = Transform3D(0.992546, -0.0148521, 0.120961, 0, 0.992546, 0.121869, -0.121869, -0.120961, 0.985147, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, 0, -1)
 
 [node name="EdgeDetectorUp" type="RayCast3D" parent="."]
 target_position = Vector3(0, 1.2, 0)
@@ -240,4 +277,3 @@ max_polyphony = 2
 
 [connection signal="timeout" from="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/mesh_mover/mesh/muzzle/trail_timer" to="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/mesh_mover/mesh/muzzle" method="_on_trail_timer_timeout"]
 [connection signal="timeout" from="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/shot_delay_timer" to="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun" method="_on_shot_delay_timer_timeout"]
-[connection signal="body_entered" from="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damage_area" to="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun/cannon_damage_area" method="_on_body_entered"]

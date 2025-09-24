@@ -8,7 +8,8 @@ func create_decal():
 	var collision_normal = get_collision_normal() # declared for optimization
 	if is_colliding(): 
 		var new_decal = explosion_decal.instantiate()
-		get_parent().get_parent().get_parent().add_sibling(new_decal) # change this!
+		get_collider().add_child(new_decal)
+		#get_parent().get_parent().get_parent().add_sibling(new_decal) # change this!
 		# positioning
 		new_decal.global_position = collision_point
 		new_decal.transform.basis = Basis.looking_at(collision_normal)

@@ -5,12 +5,13 @@ extends Node
 @export var filter_by_type = false # if the damagable should filter damage based on what type it was
 #@export var types_damagable_by : Array[Enums.DamageType] # types the damagable can be damaged by, if toggled
 
-signal damaged(amount : int, type : String, collision_point, collision_normal, impulse)
+signal damaged()
 
 # hit should be called with these operable parameters
 # NOTE: impulse exist mostly for creating movement to debris or etc after a hit, not to the object itself
 func hit() : # collision point has default val for if none is specified
 	# maybe pass damage type as an array that can hold multiple types?
+	print("froy")
 	emit_signal("damaged")
 
 func _enter_tree() -> void:
