@@ -74,6 +74,7 @@ var gravity = 16.0
 
 func _ready():
 	set_meta(&"Player", self) # for recognition of type by areas, mostly explosive barrels
+	Gamestate.player = self
 	Events.shotgun_bounce.connect(_shotgun_bounce)
 	Events.explosion_bounce.connect(_explosion_bounce)
 	Events.player_death.connect(_fucking_die)

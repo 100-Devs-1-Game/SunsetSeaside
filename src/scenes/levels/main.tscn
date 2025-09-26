@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://7tdi3vhymmce"]
+[gd_scene load_steps=13 format=3 uid="uid://7tdi3vhymmce"]
 
 [ext_resource type="Texture2D" uid="uid://bc1l3yxle0b8x" path="res://assets/devblocks/textures/light/texture_09.png" id="2_y0acb"]
-[ext_resource type="PackedScene" uid="uid://b70bf2aqxvx47" path="res://scenes/player/shotgun/blast_decal.tscn" id="4_j4d2a"]
 [ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/explosive_barrel.tscn" id="5_u81e1"]
 [ext_resource type="PackedScene" uid="uid://c8cgo4x2tdocl" path="res://scenes/entities/fragile_platform.tscn" id="6_b6bv0"]
 [ext_resource type="PackedScene" uid="uid://cgfjxk20su37m" path="res://scenes/entities/destructable_platform.tscn" id="7_ubwgw"]
@@ -108,9 +107,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1.504, -2)
 use_collision = true
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_1ks3a")
-
-[node name="Node3D" parent="geometry" instance=ExtResource("4_j4d2a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88685, 1.48849, 3.7996)
 
 [node name="lights" type="Node" parent="."]
 

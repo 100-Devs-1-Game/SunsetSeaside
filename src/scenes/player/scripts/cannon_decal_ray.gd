@@ -2,14 +2,19 @@ extends RayCast3D
 
 @export var explosion_decal = preload("res://scenes/Player/shotgun/cannon_blast_decal.tscn")
 
+func _ready():
+	await get_tree().process_frame
+	add_exception(Gamestate.player)
+
 func create_decal():
 	enabled = true; force_raycast_update()
 	var collision_point = get_collision_point()
 	var collision_normal = get_collision_normal() # declared for optimization
+	print(is_colliding())
 	if is_colliding(): 
 		var new_decal = explosion_decal.instantiate()
 		#get_collider.add_child(new_decal)
-		get_parent().get_parent().get_parent().add_sibling(new_decal) # change this!
+		Gamestate.player.add_sibling(new_decal) # change this!
 		# positioning
 		new_decal.global_position = collision_point
 		new_decal.transform.basis = Basis.looking_at(collision_normal)

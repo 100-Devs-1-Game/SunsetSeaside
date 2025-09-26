@@ -171,7 +171,6 @@ script = ExtResource("5_uxo23")
 
 [node name="cannon_decal_ray" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/shotgun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0954311, 0)
-exclude_parent = false
 target_position = Vector3(0, 0, -7)
 script = ExtResource("10_n7rn1")
 

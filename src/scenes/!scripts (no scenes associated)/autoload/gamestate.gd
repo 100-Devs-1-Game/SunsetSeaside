@@ -5,6 +5,7 @@ const PLAYER_TSCN = preload("res://scenes/player/player.tscn")
 
 var player_global_position := Vector3.ZERO
 var player_spawnpoint : Node3D = null
+var player : CharacterBody3D # registered by player script on ready
 
 func _ready():
 	Events.establish_spawnpoint.connect(_establish_spawnpoint)

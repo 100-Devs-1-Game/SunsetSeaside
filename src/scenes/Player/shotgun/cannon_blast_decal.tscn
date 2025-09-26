@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb7hrivgf84ve"]
+[gd_scene load_steps=8 format=3 uid="uid://cb7hrivgf84ve"]
 
 [ext_resource type="Script" uid="uid://c1j266d5d0v6n" path="res://scenes/player/shotgun/scripts/cannon_blast_decal.gd" id="1_68jss"]
 [ext_resource type="Texture2D" uid="uid://pnw73wnxsl0m" path="res://assets/textures/pngkey.com-cloud-texture-png-961839.png" id="1_xg757"]
@@ -40,6 +40,15 @@ _data = {
 &"on_spawn": SubResource("Animation_68jss")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qocf0"]
+shading_mode = 0
+albedo_color = Color(1, 0.194167, 0.360698, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bq3ll"]
+material = SubResource("StandardMaterial3D_qocf0")
+radius = 0.05
+height = 0.1
+
 [node name="cannon_blast_decal" type="Node3D"]
 script = ExtResource("1_68jss")
 
@@ -52,5 +61,8 @@ lower_fade = 0.707107
 libraries = {
 &"": SubResource("AnimationLibrary_p0wgl")
 }
+
+[node name="debug_mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_bq3ll")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
