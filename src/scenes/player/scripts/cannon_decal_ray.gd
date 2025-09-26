@@ -21,5 +21,4 @@ func create_decal():
 		new_decal.decal_3d.size.x = distance_ratio * 2.4 + 0.8
 		new_decal.decal_3d.size.z = distance_ratio * 2.4 + 0.8
 	
-	
 	enabled = false

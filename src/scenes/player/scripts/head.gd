@@ -45,4 +45,5 @@ func _head_recoil_affect(recoil_dynamic, recoil_instant, camera_shake):
 
 
 func _add_camera_shake(amount):
+	print_debug("shake added: ", amount)
 	camera_shake += amount

@@ -1,0 +1,182 @@
+[gd_scene load_steps=10 format=3 uid="uid://cifoxjsd8db8n"]
+
+[ext_resource type="Script" uid="uid://3qpdodhrjty2" path="res://scenes/entities/scripts/explosion.gd" id="1_dndvl"]
+[ext_resource type="Script" uid="uid://cqjlir3h8d581" path="res://scenes/entities/scripts/explosion_area.gd" id="2_j1vcx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_j1vcx"]
+radius = 1.5
+height = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dndvl"]
+shading_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1vcx"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.980392, 0.580392, 0, 0.717647)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bkl10"]
+radius = 3.5
+
+[sub_resource type="Animation" id="Animation_bkl10"]
+resource_name = "explosion"
+length = 1.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosion_start_mesh:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("explosion_mesh:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.11, 0.31, 1.2),
+"transitions": PackedFloat32Array(0.277393, 5.46416, 1),
+"update": 0,
+"values": [Vector3(0.7, 0.7, 0.7), Vector3(2, 2, 2), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("explosion_mesh:surface_material_override/0:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.11, 0.31, 1.2),
+"transitions": PackedFloat32Array(1, 2.54912, 1),
+"update": 0,
+"values": [Color(0.261535, 0.139249, 7.21961e-08, 0.941176), Color(0.980392, 0.580392, 0, 0.819608), Color(0.988235, 0, 0.192157, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OmniLight3D:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.35, 1.2),
+"transitions": PackedFloat32Array(2.63902, 5.65685),
+"update": 0,
+"values": [3.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OmniLight3D:light_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.31, 1.2),
+"transitions": PackedFloat32Array(3.13834, 1),
+"update": 0,
+"values": [Color(0.980392, 0.580392, 0, 0.941176), Color(0.988235, 0, 0.176471, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j1vcx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosion_start_mesh:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("explosion_mesh:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("explosion_mesh:surface_material_override/0:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.980392, 0.580392, 0, 0.717647)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OmniLight3D:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OmniLight3D:light_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.843847, 0.643122, 1.15514e-06, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dndvl"]
+_data = {
+&"RESET": SubResource("Animation_j1vcx"),
+&"explosion": SubResource("Animation_bkl10")
+}
+
+[node name="explosion" type="Node3D"]
+script = ExtResource("1_dndvl")
+
+[node name="explosion_start_mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_j1vcx")
+surface_material_override/0 = SubResource("StandardMaterial3D_dndvl")
+
+[node name="explosion_mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_j1vcx")
+surface_material_override/0 = SubResource("StandardMaterial3D_j1vcx")
+
+[node name="explosion_area" type="Area3D" parent="."]
+collision_layer = 3
+script = ExtResource("2_j1vcx")
+
+[node name="area_shape" type="CollisionShape3D" parent="explosion_area"]
+shape = SubResource("SphereShape3D_bkl10")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.843847, 0.643122, 1.15514e-06, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dndvl")
+}
+
+[connection signal="body_entered" from="explosion_area" to="explosion_area" method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

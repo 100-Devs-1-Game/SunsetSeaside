@@ -73,6 +73,7 @@ var state = Enums.PlayerState.WALKING
 var gravity = 16.0
 
 func _ready():
+	set_meta(&"Player", self) # for recognition of type by areas, mostly explosive barrels
 	Events.shotgun_bounce.connect(_shotgun_bounce)
 	Events.explosion_bounce.connect(_explosion_bounce)
 	Events.player_death.connect(_fucking_die)
@@ -208,11 +209,12 @@ func _shotgun_bounce(direction, force): # bounce the player, sent by the shotgun
 	velocity.z += direction.z * force * bounce_mod
 
 func _explosion_bounce(direction, force, smoke_trail_amount): # direction and force determined by the explosion script
+	print(direction, force, smoke_trail_amount)
 	velocity.x += direction.x * force
 	velocity.y += direction.y * force
 	velocity.z += direction.z * force
 	explosion_trail_spawner.spawn(smoke_trail_amount) # to be implemented
-
+	
 func _fucking_die(type : Enums.PlayerDeathType):
 	queue_free()
 	# add death animation
