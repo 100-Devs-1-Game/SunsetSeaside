@@ -1,6 +1,6 @@
 extends RayCast3D
 
-@export var explosion_decal = preload("res://scenes/Player/shotgun/cannon_blast_decal.tscn")
+@export var explosion_decal = preload("res://scenes/player/shotgun/cannon_blast_decal.tscn")
 
 func _ready():
 	await get_tree().process_frame
