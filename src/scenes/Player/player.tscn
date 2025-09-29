@@ -162,6 +162,7 @@ render_target_update_mode = 4
 [node name="viewmodel_camera" type="Camera3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport"]
 cull_mask = 1047554
 fov = 32.0
+far = 10.0
 script = ExtResource("4_wwtew")
 
 [node name="fps_rig" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera"]

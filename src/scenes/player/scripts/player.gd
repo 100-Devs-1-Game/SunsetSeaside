@@ -210,7 +210,6 @@ func _shotgun_bounce(direction, force): # bounce the player, sent by the shotgun
 	velocity.z += direction.z * force * bounce_mod
 
 func _explosion_bounce(direction, force, smoke_trail_amount): # direction and force determined by the explosion script
-	print(direction, force, smoke_trail_amount)
 	velocity.x += direction.x * force
 	velocity.y += direction.y * force
 	velocity.z += direction.z * force

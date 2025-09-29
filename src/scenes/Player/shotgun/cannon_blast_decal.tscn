@@ -63,6 +63,7 @@ libraries = {
 }
 
 [node name="debug_mesh" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_bq3ll")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

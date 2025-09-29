@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://dtd51ahita8ja" path="res://scenes/entities/spawnpoint.tscn" id="7_vkq25"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2vj2h"]
-sky_horizon_color = Color(0.92778, 0.552728, 3.85046e-07, 1)
+sky_top_color = Color(0.158673, 9.11115e-05, 0.209403, 1)
+sky_horizon_color = Color(1, 0.438642, 0.208172, 1)
+sky_curve = 0.0512267
+sky_cover_modulate = Color(0.973699, 0.35188, 0, 1)
 
 [sub_resource type="Sky" id="Sky_y0acb"]
 sky_material = SubResource("ProceduralSkyMaterial_2vj2h")
@@ -112,31 +115,38 @@ material = SubResource("StandardMaterial3D_1ks3a")
 
 [node name="lightbulb" type="OmniLight3D" parent="lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.10913, 0)
+layers = 3
 shadow_enabled = true
 omni_range = 14.524
 
 [node name="lightbulb2" type="OmniLight3D" parent="lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4988, 14.6218, -20.0332)
+layers = 3
 shadow_enabled = true
 omni_range = 14.524
 
 [node name="lightbulb5" type="OmniLight3D" parent="lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.301085, 9.20159, -12.9998)
+layers = 3
+light_color = Color(1, 0.749359, 0.223898, 1)
 shadow_enabled = true
 omni_range = 14.524
 
 [node name="lightbulb3" type="OmniLight3D" parent="lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4679, 19.0652, -12.8997)
+layers = 3
 shadow_enabled = true
 omni_range = 14.524
 
 [node name="lightbulb6" type="OmniLight3D" parent="lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4679, 19.0652, 1.42754)
+layers = 3
 shadow_enabled = true
 omni_range = 14.524
 
 [node name="lightbulb4" type="OmniLight3D" parent="lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1759, 29.7998, 1.53179)
+layers = 3
 light_color = Color(0.586423, 0.761659, 0, 1)
 shadow_enabled = true
 omni_range = 14.524
