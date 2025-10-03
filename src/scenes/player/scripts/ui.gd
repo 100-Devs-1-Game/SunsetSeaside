@@ -1,6 +1,6 @@
 extends Control
 
-@onready var ammo_label: Label = $MarginContainer/ammo_label
+@export var ammo_label: Label 
 
 func _ready():
 	Events.ui_ammo_update.connect(_update_ammo_label)

@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwcaf4mcpsaqc"]
+
+[ext_resource type="Script" uid="uid://cpro2piy2tay0" path="res://scenes/entities/scripts/floating_label.gd" id="1_ax4ga"]
+
+[sub_resource type="Animation" id="Animation_qjpf5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ax4ga"]
+resource_name = "fade_out"
+length = 8.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(6.5, 8),
+"transitions": PackedFloat32Array(2.46229, 1.7411),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.104945, 0.435966, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qcyyi"]
+_data = {
+&"RESET": SubResource("Animation_qjpf5"),
+&"fade_out": SubResource("Animation_ax4ga")
+}
+
+[node name="Node3D" type="Label3D"]
+billboard = 1
+double_sided = false
+text = "text"
+outline_size = 0
+script = ExtResource("1_ax4ga")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qcyyi")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

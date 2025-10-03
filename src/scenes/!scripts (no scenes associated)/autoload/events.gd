@@ -17,3 +17,5 @@ signal fire_weapon() # shoots gun!
 ###### gamestate signals
 signal establish_spawnpoint(node)
 signal player_death(type : Enums.PlayerDeathType)
+signal level_end_reached() # called by ending areas
+signal first_movement()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=26 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" uid="uid://f76fggl2uyob" path="res://scenes/player/scripts/player.gd" id="1_twte0"]
 [ext_resource type="Script" uid="uid://bw1c3unoeydxt" path="res://scenes/player/scripts/head.gd" id="2_c4h5g"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cw30x4wy5quuw" path="res://scenes/player/scripts/headbob_pivot.gd" id="3_uxo23"]
 [ext_resource type="Script" uid="uid://r46iblp0dqej" path="res://scenes/player/scripts/ui.gd" id="4_jxtnq"]
 [ext_resource type="Script" uid="uid://djlu56q6npdxd" path="res://scenes/player/scripts/viewmodel_camera.gd" id="4_wwtew"]
+[ext_resource type="Script" uid="uid://cg2lh0y6jcuu4" path="res://scenes/player/scripts/timer_label.gd" id="5_fcs02"]
 [ext_resource type="Script" uid="uid://duswyloxdw522" path="res://scenes/player/shotgun/scripts/shotgun.gd" id="5_uxo23"]
 [ext_resource type="Script" uid="uid://e42v4wci1flq" path="res://scenes/player/scripts/mesh_mover.gd" id="6_n7rn1"]
 [ext_resource type="Script" uid="uid://3eolpr5dyick" path="res://scenes/player/scripts/muzzle.gd" id="7_7tfl1"]
@@ -24,6 +25,10 @@ height = 1.2
 
 [sub_resource type="LabelSettings" id="LabelSettings_7tfl1"]
 font_size = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_fcs02"]
+font_size = 24
+font_color = Color(1, 0.622923, 0.192928, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uiqp4"]
 font_size = 9
@@ -83,36 +88,63 @@ script = ExtResource("3_uxo23")
 cull_mask = 1048573
 fov = 85.0
 
-[node name="ui" type="Control" parent="Head/headbob_pivot/Camera3D"]
+[node name="ui" type="Control" parent="Head/headbob_pivot/Camera3D" node_paths=PackedStringArray("ammo_label")]
 layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4_jxtnq")
+ammo_label = NodePath("VBoxContainer/MarginContainer/ammo_label")
 
-[node name="MarginContainer" type="MarginContainer" parent="Head/headbob_pivot/Camera3D/ui"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Head/headbob_pivot/Camera3D/ui"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -81.0
-offset_top = -175.0
+offset_left = -105.0
+offset_top = -213.0
 grow_horizontal = 0
 grow_vertical = 0
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer"]
+layout_mode = 2
 theme_override_constants/margin_right = 32
 
-[node name="ammo_label" type="Label" parent="Head/headbob_pivot/Camera3D/ui/MarginContainer"]
+[node name="ammo_label" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer"]
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_7tfl1")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="timer_label" type="HBoxContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("5_fcs02")
+
+[node name="label_min" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/timer_label"]
+layout_mode = 2
+text = "0:"
+label_settings = SubResource("LabelSettings_fcs02")
+
+[node name="label_sec" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/timer_label"]
+layout_mode = 2
+text = "00:"
+label_settings = SubResource("LabelSettings_fcs02")
+
+[node name="label_msec" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/timer_label"]
+layout_mode = 2
+text = "00"
+label_settings = SubResource("LabelSettings_fcs02")
 
 [node name="console_ui" type="Control" parent="Head/headbob_pivot/Camera3D"]
 layout_mode = 3
@@ -153,10 +185,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="SubViewport" type="SubViewport" parent="Head/headbob_pivot/Camera3D/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
+size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="viewmodel_camera" type="Camera3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport"]

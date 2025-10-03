@@ -78,6 +78,7 @@ func _ready():
 	Events.shotgun_bounce.connect(_shotgun_bounce)
 	Events.explosion_bounce.connect(_explosion_bounce)
 	Events.player_death.connect(_fucking_die)
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	# setting viewmodel viewport to be the same size as the window
 	$Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
@@ -120,6 +121,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY
+		_first_input_check()
 
 	# handle movement augmentations (crouching, sliding, sprinting)
 	if Input.is_action_pressed("crouch"):
@@ -128,6 +130,7 @@ func _physics_process(delta):
 		standing_collision_shape.disabled = true; crouching_collision_shape.disabled = false
 		
 		state = Enums.PlayerState.CROUCHING
+		
 	elif !edge_detector_up.is_colliding():
 		# handle sprinting
 		if Input.is_action_pressed("sprint"):
@@ -138,35 +141,37 @@ func _physics_process(delta):
 			state = Enums.PlayerState.WALKING
 		head.position.y =  lerp(head.position.y, original_head_pos.y, delta * crouch_speed)
 		standing_collision_shape.disabled = false; crouching_collision_shape.disabled = true
-		
+
 	if Input.is_action_just_pressed("attack"):
 		Events.fire_weapon.emit()
+		_first_input_check()
 
 	# handle velocity
 	if direction:	
-			# velocity.x
-			if velocity.x >= 0:
-				if lerp(velocity.x, direction.x * speed, delta) - velocity.x < 0:
-					velocity.x = lerp(velocity.x, direction.x * speed, delta * deccel_backpedal)
-				else:
-					velocity.x = lerp(velocity.x, direction.x * speed, delta * accel)
-			if velocity.x < 0:
-				if lerp(velocity.x, direction.x * speed, delta) - velocity.x > 0:
-					velocity.x = lerp(velocity.x, direction.x * speed, delta * deccel_backpedal)
-				else:
-					velocity.x = lerp(velocity.x, direction.x * speed, delta * accel)
+		_first_input_check()
+		# velocity.x
+		if velocity.x >= 0:
+			if lerp(velocity.x, direction.x * speed, delta) - velocity.x < 0:
+				velocity.x = lerp(velocity.x, direction.x * speed, delta * deccel_backpedal)
+			else:
+				velocity.x = lerp(velocity.x, direction.x * speed, delta * accel)
+		if velocity.x < 0:
+			if lerp(velocity.x, direction.x * speed, delta) - velocity.x > 0:
+				velocity.x = lerp(velocity.x, direction.x * speed, delta * deccel_backpedal)
+			else:
+				velocity.x = lerp(velocity.x, direction.x * speed, delta * accel)
 
-			# velocity.z
-			if velocity.z >= 0:
-				if lerp(velocity.z, direction.z * speed, delta) - velocity.z < 0:
-					velocity.z = lerp(velocity.z, direction.z * speed, delta * deccel_backpedal)
-				else:
-					velocity.z = lerp(velocity.z, direction.z * speed, delta * accel)
-			if velocity.z < 0:
-				if lerp(velocity.z, direction.z * speed, delta) - velocity.z > 0:
-					velocity.z = lerp(velocity.z, direction.z * speed, delta * deccel_backpedal)
-				else:
-					velocity.z = lerp(velocity.z, direction.z * speed, delta * accel)
+		# velocity.z
+		if velocity.z >= 0:
+			if lerp(velocity.z, direction.z * speed, delta) - velocity.z < 0:
+				velocity.z = lerp(velocity.z, direction.z * speed, delta * deccel_backpedal)
+			else:
+				velocity.z = lerp(velocity.z, direction.z * speed, delta * accel)
+		if velocity.z < 0:
+			if lerp(velocity.z, direction.z * speed, delta) - velocity.z > 0:
+				velocity.z = lerp(velocity.z, direction.z * speed, delta * deccel_backpedal)
+			else:
+				velocity.z = lerp(velocity.z, direction.z * speed, delta * accel)
 	else:
 		if is_on_floor():
 			velocity.x = lerp(velocity.x, 0.0, delta * deccel)
@@ -218,7 +223,11 @@ func _explosion_bounce(direction, force, smoke_trail_amount): # direction and fo
 func _fucking_die(type : Enums.PlayerDeathType):
 	queue_free()
 	# add death animation
-	
+
+func _first_input_check():
+	if Gamestate.has_moved == false:
+		Events.first_movement.emit()
+
 func _input(event): # handling camera movement for the mouse
 	if event is InputEventMouseMotion:
 		rotation.y -= event.relative.x / mouse_sens
