@@ -21,6 +21,7 @@ func _respawn_player():
 	player_spawnpoint.add_sibling(new_player)
 	new_player.global_position = player_spawnpoint.global_position
 	new_player.global_rotation = player_spawnpoint.global_rotation
+	stopwatch.reset(); has_moved = false
 	
 func _establish_spawnpoint(node):
 	if player_spawnpoint != null:
@@ -38,6 +39,4 @@ func _first_player_movement():
 	stopwatch.start()
 
 func _level_end_reached():
-	# compare to current level to see if goals reached
-	# start the next level
-	pass
+	stopwatch.stop()

@@ -40,7 +40,7 @@ _data = {
 &"fade_out": SubResource("Animation_ax4ga")
 }
 
-[node name="Node3D" type="Label3D"]
+[node name="floating_label" type="Label3D"]
 billboard = 1
 double_sided = false
 text = "text"

@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-
-
 # node declarations
 @onready var head = $Head as Node3D
 @onready var camera = $Head/headbob_pivot/Camera3D as Camera3D
