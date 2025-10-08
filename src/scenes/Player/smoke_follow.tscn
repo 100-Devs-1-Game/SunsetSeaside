@@ -17,11 +17,11 @@ scale_min = 0.8
 scale_max = 1.2
 scale_curve = SubResource("CurveTexture_hwvil")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cda7s"]
-albedo_color = Color(0.838897, 0.838897, 0.838897, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r3fr"]
+albedo_color = Color(0.33288, 0.332881, 0.332881, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_uxewx"]
-material = SubResource("StandardMaterial3D_cda7s")
+material = SubResource("StandardMaterial3D_1r3fr")
 radius = 0.08
 height = 0.16
 
@@ -31,7 +31,6 @@ amount = 1
 lifetime = 2.0
 one_shot = true
 fixed_fps = 60
-trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_0gbwp")
 draw_pass_1 = SubResource("SphereMesh_uxewx")
 script = ExtResource("1_hlvf7")

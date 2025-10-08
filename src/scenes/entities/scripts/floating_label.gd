@@ -19,7 +19,7 @@ extends Label3D
 
 @export var fade_out = true
 
-#
+##
 #func _ready():
 	#self.text = label_text
 	#self.font_size = label_text_size

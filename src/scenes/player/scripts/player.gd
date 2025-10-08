@@ -45,7 +45,7 @@ var crouch_speed = 10.0 # how fast a crouch is completed
 var crouching_depth = -0.5
 
 # jump vars / const
-const JUMP_VELOCITY = 5.5
+const JUMP_VELOCITY = 7.0
 
 # camera variables
 var mouse_sens = 1200 # divides the relation between mouse movement and camera input

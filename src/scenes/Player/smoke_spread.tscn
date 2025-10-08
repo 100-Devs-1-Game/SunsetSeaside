@@ -39,7 +39,7 @@ scale_max = 1.2
 scale_curve = SubResource("CurveTexture_hwvil")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cda7s"]
-albedo_color = Color(0.838897, 0.838897, 0.838897, 1)
+albedo_color = Color(0.33288, 0.332881, 0.332881, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_uxewx"]
 material = SubResource("StandardMaterial3D_cda7s")
