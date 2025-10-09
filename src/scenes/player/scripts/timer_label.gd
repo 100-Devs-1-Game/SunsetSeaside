@@ -11,6 +11,6 @@ func _process(delta):
 	if secs > 0.0: $label_sec.visible = true; $label_sec.text = (str(secs) + ".")
 	else: $label_sec.visible = false	
 	if msecs > 0.0: $label_msec.visible = true; $label_msec.text = "%02d" % msecs
-	else: $label_msec.visible = false	
+	else: $label_msec.text = " " # stay visible for the sake of labels above not moving 
  
 	# print(str(min) + ":", str(secs) + ".", "%02d" % msecs) 

@@ -144,6 +144,10 @@ func _physics_process(delta):
 		Events.fire_weapon.emit()
 		_first_input_check()
 
+	if Input.is_action_just_pressed("toggle_console"):
+		if console_ui.visible: console_ui.close()
+		else: console_ui.open()
+
 	# handle velocity
 	if direction:	
 		_first_input_check()
@@ -190,8 +194,7 @@ func _physics_process(delta):
 		global_position = original_pos
 
 	# debug labels
-	console_ui.debug_label_speed.text = "speed: " + str(speed)
-	console_ui.debug_label_velocity.text = "velocity: " + str(snapped(velocity.x, 0.01)) + ", " + str(snapped(velocity.z, 0.01))
+	_debug_label_update()
 	
 	position_last_frame = position
 	Gamestate.player_global_position = global_position
@@ -205,7 +208,7 @@ func _shotgun_bounce(direction, force): # bounce the player, sent by the shotgun
 	if state == Enums.PlayerState.CROUCHING: bounce_mod += 0.2
 	if state == Enums.PlayerState.CROUCHING && is_on_floor(): bounce_mod += 0.2
 	if is_on_wall(): bounce_mod += 0.2
-	console_ui.debug_label_bounce_mod.text = "last bounce mod: " + str(bounce_mod)
+	console_ui.bounce_mod_update(bounce_mod)
 	velocity = velocity * 0.8
 	
 	velocity.x += direction.x * force * bounce_mod
@@ -217,6 +220,10 @@ func _explosion_bounce(direction, force, smoke_trail_amount): # direction and fo
 	velocity.y += direction.y * force
 	velocity.z += direction.z * force
 	explosion_trail_spawner.spawn(smoke_trail_amount) # to be implemented
+	
+func _debug_label_update():
+	console_ui.speed_update(speed)
+	console_ui.velocity_update(Vector2(velocity.x, velocity.z))
 	
 func _fucking_die(type : Enums.PlayerDeathType):
 	queue_free()

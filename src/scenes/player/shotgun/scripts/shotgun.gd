@@ -41,6 +41,7 @@ func _blaow():
 	cannon_damager.damage()
 	ammo -= 1
 	Events.ui_ammo_update.emit(ammo)
+	Events.weapon_fired.emit()
 	
 	fired_this_frame = true
 	cycled = false

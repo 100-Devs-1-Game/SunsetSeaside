@@ -10,7 +10,6 @@ func create_decal():
 	enabled = true; force_raycast_update()
 	var collision_point = get_collision_point()
 	var collision_normal = get_collision_normal() # declared for optimization
-	print(is_colliding())
 	if is_colliding(): 
 		var new_decal = explosion_decal.instantiate()
 		#get_collider.add_child(new_decal)

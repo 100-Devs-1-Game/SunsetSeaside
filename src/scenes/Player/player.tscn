@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=37 format=4 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" uid="uid://f76fggl2uyob" path="res://scenes/player/scripts/player.gd" id="1_twte0"]
 [ext_resource type="Script" uid="uid://bw1c3unoeydxt" path="res://scenes/player/scripts/head.gd" id="2_c4h5g"]
@@ -28,9 +28,17 @@ height = 1.2
 [sub_resource type="LabelSettings" id="LabelSettings_7tfl1"]
 font_size = 128
 
+[sub_resource type="LabelSettings" id="LabelSettings_kvlxm"]
+font_size = 42
+font_color = Color(1, 0.446759, 0.347475, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_fcs02"]
 font_size = 24
 font_color = Color(1, 0.622923, 0.192928, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uf5tr"]
+font_size = 9
+font_color = Color(0.546278, 0.789878, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uiqp4"]
 font_size = 9
@@ -230,6 +238,16 @@ layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_7tfl1")
 
+[node name="MarginContainer3" type="MarginContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 8
+
+[node name="shots_label" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_kvlxm")
+horizontal_alignment = 2
+
 [node name="MarginContainer2" type="MarginContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_right = 8
@@ -273,6 +291,11 @@ offset_top = -39.0
 offset_right = 86.0
 grow_vertical = 0
 theme_override_constants/separation = 0
+
+[node name="debug_label_fps" type="Label" parent="Head/headbob_pivot/Camera3D/console_ui/VBoxContainer"]
+layout_mode = 2
+text = "fps: "
+label_settings = SubResource("LabelSettings_uf5tr")
 
 [node name="debug_label_bounce_mod" type="Label" parent="Head/headbob_pivot/Camera3D/console_ui/VBoxContainer"]
 layout_mode = 2
