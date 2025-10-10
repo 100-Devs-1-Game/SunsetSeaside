@@ -1,20 +1,97 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=7 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
+[ext_resource type="Texture2D" uid="uid://d11m0it4kt8ry" path="res://assets/textures/god.webp" id="2_h1kbi"]
+[ext_resource type="Script" uid="uid://d0fcseiqo1nrk" path="res://scenes/ui/menus/scripts/menu_levels.gd" id="3_whicr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ryexs"]
 font_size = 64
 
-[node name="main_menu" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_whicr"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_ct055"]
+font_size = 24
+
+[node name="main_menu" type="CanvasLayer"]
+script = ExtResource("1_flhq8")
+
+[node name="menu_root" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_flhq8")
+mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="menu_title" type="MarginContainer" parent="menu_root"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_title"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="menu_root/menu_title/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "title text motherfucker
+"
+label_settings = SubResource("LabelSettings_ryexs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="menu_root/menu_title/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_h1kbi")
+stretch_mode = 3
+
+[node name="vbox_buttons" type="VBoxContainer" parent="menu_root/menu_title/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="button_levels" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../button_settings")
+focus_next = NodePath("../button_settings")
+focus_previous = NodePath("../button_quit")
+theme_override_font_sizes/font_size = 32
+text = "Levels
+"
+
+[node name="button_settings" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../button_levels")
+focus_neighbor_bottom = NodePath("../button_quit")
+focus_next = NodePath("../button_quit")
+focus_previous = NodePath("../button_levels")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="button_quit" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../button_settings")
+focus_next = NodePath("../button_levels")
+focus_previous = NodePath("../button_settings")
+theme_override_font_sizes/font_size = 32
+text = "Quit
+"
+
+[node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,53 +102,105 @@ theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
+script = ExtResource("3_whicr")
+level_slots_debug = NodePath("level_slots_root/level_slots_debug")
+level_slots_tutorial = NodePath("level_slots_root/level_slots_tutorial")
+level_slots_easy = NodePath("level_slots_root/level_slots_easy")
+level_slots_medium = NodePath("level_slots_root/level_slots_medium")
+level_slots_hard = NodePath("level_slots_root/level_slots_hard")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="level_slots_root" type="VBoxContainer" parent="menu_root/menu_levels"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root"]
 layout_mode = 2
-size_flags_vertical = 3
-text = "title text motherfucker
-"
-label_settings = SubResource("LabelSettings_ryexs")
+text = "levels"
+label_settings = SubResource("LabelSettings_whicr")
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="vbox_buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 10
-
-[node name="button_levels" type="Button" parent="MarginContainer/VBoxContainer/vbox_buttons"]
+[node name="level_slots_debug" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
 layout_mode = 2
 size_flags_horizontal = 4
-focus_neighbor_bottom = NodePath("../button_settings")
-focus_next = NodePath("../button_settings")
-focus_previous = NodePath("../button_quit")
-theme_override_font_sizes/font_size = 32
-text = "Levels
+
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_slots_debug"]
+layout_mode = 2
+text = "debug:"
+label_settings = SubResource("LabelSettings_ct055")
+
+[node name="level_slots_tutorial" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_slots_tutorial"]
+layout_mode = 2
+text = "daylight (tutorial):"
+label_settings = SubResource("LabelSettings_ct055")
+
+[node name="level_slots_easy" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_slots_easy"]
+layout_mode = 2
+text = "sunset:"
+label_settings = SubResource("LabelSettings_ct055")
+
+[node name="level_slots_medium" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_slots_medium"]
+layout_mode = 2
+text = "midnight:"
+label_settings = SubResource("LabelSettings_ct055")
+
+[node name="level_slots_hard" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_slots_hard"]
+layout_mode = 2
+text = "sunrise:"
+label_settings = SubResource("LabelSettings_ct055")
+
+[node name="menu_settings" type="MarginContainer" parent="menu_root"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="menu_root/menu_settings"]
+visible = false
+layout_mode = 2
+text = "there is nothing here yet! :)
+
+being a fortune 500 ceo
+has its perks, but
+its not all eeeasy
+its not easy being randall thymes
+im going to show you a day
+in the life of a fortune 500 ceo
+to show you how a 
+real ceo lives
+
+first i go to my local 7/11
+and get some black and milds
+and some black wood
+
 "
 
-[node name="button_settings" type="Button" parent="MarginContainer/VBoxContainer/vbox_buttons"]
-layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../button_levels")
-focus_neighbor_bottom = NodePath("../button_quit")
-focus_next = NodePath("../button_quit")
-focus_previous = NodePath("../button_levels")
-theme_override_font_sizes/font_size = 32
-text = "Settings"
-
-[node name="button_quit" type="Button" parent="MarginContainer/VBoxContainer/vbox_buttons"]
-layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../button_settings")
-focus_next = NodePath("../button_levels")
-focus_previous = NodePath("../button_settings")
-theme_override_font_sizes/font_size = 32
-text = "Quit
-"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/vbox_buttons/button_levels" to="." method="_on_button_levels_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/vbox_buttons/button_quit" to="." method="_on_button_quit_pressed"]
+[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/button_levels" to="." method="_on_button_levels_pressed"]
+[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/button_settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/button_quit" to="." method="_on_button_quit_pressed"]
+[connection signal="visibility_changed" from="menu_root/menu_levels" to="menu_root/menu_levels" method="_on_visibility_changed"]

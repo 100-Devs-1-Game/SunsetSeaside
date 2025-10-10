@@ -14,7 +14,7 @@ func _ready():
 	#_load_scene(TEST_LEVEL)
 
 func _open_level(grouping, id):
-	_load_scene(Gamestate.level_manager.fetch_level(grouping, id))
+	_load_scene(load(Gamestate.level_manager.fetch_level_path(grouping, id)))
 	_close_menu()
 
 func _load_scene(scene : PackedScene):

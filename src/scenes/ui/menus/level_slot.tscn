@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://d21bo2dynh40w"]
+
+[ext_resource type="Script" uid="uid://b4gems7hjes3w" path="res://scenes/ui/menus/scripts/level_slot.gd" id="1_sgx16"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sgx16"]
+font_size = 28
+
+[node name="Slot" type="Control" node_paths=PackedStringArray("id_label")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 48.0
+script = ExtResource("1_sgx16")
+id_label = NodePath("VBoxContainer/PanelContainer/MarginContainer/Label")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_sgx16")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="icon_under_par" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+
+[node name="icon_under_time_limit" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+
+[node name="icon_jug_collected" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="slot_clicked" from="." to="." method="_on_slot_clicked"]
+[connection signal="gui_input" from="VBoxContainer/PanelContainer/MarginContainer/TextureRect" to="." method="_on_texture_rect_gui_input"]
