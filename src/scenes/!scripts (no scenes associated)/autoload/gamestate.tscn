@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://boaaxnk7m7k4o"]
+[gd_scene load_steps=4 format=3 uid="uid://boaaxnk7m7k4o"]
 
 [ext_resource type="Script" uid="uid://dbw8nkeos4jjr" path="res://scenes/!scripts (no scenes associated)/autoload/gamestate.gd" id="1_p4h5l"]
 [ext_resource type="Script" uid="uid://cvtb7rjl2543l" path="res://scenes/!scripts (no scenes associated)/autoload/stopwatch.gd" id="2_22ih0"]
+[ext_resource type="Script" uid="uid://vrwtpwsift42" path="res://scenes/!scripts (no scenes associated)/autoload/level_manager.gd" id="3_nkf51"]
 
 [node name="Gamestate" type="Node"]
 script = ExtResource("1_p4h5l")
 
 [node name="stopwatch" type="Node" parent="."]
 script = ExtResource("2_22ih0")
+
+[node name="level_manager" type="Node" parent="."]
+script = ExtResource("3_nkf51")

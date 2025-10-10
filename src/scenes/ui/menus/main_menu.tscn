@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5cuy53a6pi64"]
+
+[ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ryexs"]
+font_size = 64
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_flhq8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "title text motherfucker
+"
+label_settings = SubResource("LabelSettings_ryexs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="vbox_buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="button_levels" type="Button" parent="MarginContainer/VBoxContainer/vbox_buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../button_settings")
+focus_next = NodePath("../button_settings")
+focus_previous = NodePath("../button_quit")
+theme_override_font_sizes/font_size = 32
+text = "Levels
+"
+
+[node name="button_settings" type="Button" parent="MarginContainer/VBoxContainer/vbox_buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../button_levels")
+focus_neighbor_bottom = NodePath("../button_quit")
+focus_next = NodePath("../button_quit")
+focus_previous = NodePath("../button_levels")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="button_quit" type="Button" parent="MarginContainer/VBoxContainer/vbox_buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../button_settings")
+focus_next = NodePath("../button_levels")
+focus_previous = NodePath("../button_settings")
+theme_override_font_sizes/font_size = 32
+text = "Quit
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/vbox_buttons/button_levels" to="." method="_on_button_levels_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/vbox_buttons/button_quit" to="." method="_on_button_quit_pressed"]

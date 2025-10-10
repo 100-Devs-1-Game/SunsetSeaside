@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://7tdi3vhymmce"]
+[gd_scene load_steps=3 format=3 uid="uid://7tdi3vhymmce"]
 
 [ext_resource type="Script" uid="uid://cyfogfuu6l2lx" path="res://scenes/!scripts (no scenes associated)/autoload/main.gd" id="1_72ix8"]
+[ext_resource type="PackedScene" uid="uid://b5cuy53a6pi64" path="res://scenes/ui/menus/main_menu.tscn" id="2_2vj2h"]
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_72ix8")
@@ -9,6 +10,11 @@ script = ExtResource("1_72ix8")
 
 [node name="menu_system" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="main_menu" parent="menu_system" instance=ExtResource("2_2vj2h")]
+layout_mode = 1

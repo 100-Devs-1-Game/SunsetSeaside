@@ -14,7 +14,7 @@ func _ready():
 	if !visible: set_process(false)
 
 func _process(delta):
-	debug_label_fps.text = "fps: " + str(Engine.get_frames_per_second())
+	debug_label_fps.text = "fps: " + str(snapped(Engine.get_frames_per_second(), 1))
 
 func open(): visible = true; set_process(true)
 func close(): visible = false; set_process(false)

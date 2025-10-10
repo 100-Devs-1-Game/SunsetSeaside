@@ -1,7 +1,9 @@
 extends Node
 # processes gamerules and holds vital information that other nodes can get
 
-@onready var stopwatch: Node = $stopwatch
+@onready var stopwatch: Node = $stopwatch # keeps level time
+@onready var level_manager: Node = $level_manager # contains references to level ids and groupings
+####### ^^^ could prlly move this somewhere else
 
 const PLAYER_TSCN = preload("res://scenes/player/player.tscn")
 

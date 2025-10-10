@@ -9,7 +9,13 @@ extends Node3D
 const TEST_LEVEL = preload("res://scenes/levels/test_level.tscn")
 
 func _ready():
-	_load_scene(TEST_LEVEL)
+	Events.open_level.connect(_open_level)
+	
+	#_load_scene(TEST_LEVEL)
+
+func _open_level(grouping, id):
+	_load_scene(Gamestate.level_manager.fetch_level(grouping, id))
+	_close_menu()
 
 func _load_scene(scene : PackedScene):
 	if scene_container.get_children().size() != 0:
@@ -17,10 +23,14 @@ func _load_scene(scene : PackedScene):
 	
 	var new_scene = scene.instantiate()
 	scene_container.add_child(new_scene)
+	
+	if scene_container.get_children().size() > 1:
+		print_debug("WARNING: more than one child in scene container of the main scene!")
 
 func _process(_delta):
-	#if scene_container.get_children().size() > 1:
-		#print_debug("WARNING: more than one child in scene container of the main scene!")
-	#
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene() ## change this to reload current level
+
+func _close_menu():
+	for node in menu_system.get_children():
+		node.queue_free()
