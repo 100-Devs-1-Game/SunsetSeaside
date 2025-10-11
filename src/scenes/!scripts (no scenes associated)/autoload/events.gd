@@ -15,6 +15,8 @@ signal head_recoil_affect(head_recoil_x, head_recoil_y, camera_shake) # for push
 ###### gamestate signals
 # level setup
 signal establish_spawnpoint(node) # establish spawnpoint with the gamestate
+signal establish_level_vars(max_ammo, par_limit, time_limit)
+
 # player actions
 signal player_death(type : Enums.PlayerDeathType) # read by gamestate, player
 signal level_end_reached() # called by ending areas
@@ -26,3 +28,4 @@ signal open_level(grouping : Enums.LevelGrouping, id : int) # called by the main
 ###### ui
 signal ui_ammo_update(ammo : int) 
 signal ui_shots_taken_update(amount : int)
+signal ui_set_level_vars(max_ammo, par_limit, time_limit) # emitted by gamestate to show these values on level startup

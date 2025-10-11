@@ -28,6 +28,10 @@ func _on_visibility_changed() -> void:
 		_populate_level_slots(level_amount_hard, level_slots_hard, Enums.LevelGrouping.SUNRISE)
 
 func _populate_level_slots(amount, slots, grouping):
+	# firstly, delete all slots if they exist
+	for slot in slots.get_children():
+		slot.queue_free()
+	
 	for i in amount:
 		var slot = LEVEL_SLOT.instantiate()
 		slots.add_child(slot)

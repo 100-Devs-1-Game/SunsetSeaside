@@ -26,11 +26,12 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="menu_title" type="MarginContainer" parent="menu_root"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -92,6 +93,7 @@ text = "Quit
 "
 
 [node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,11 +105,11 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 script = ExtResource("3_whicr")
-level_slots_debug = NodePath("level_slots_root/level_slots_debug")
-level_slots_tutorial = NodePath("level_slots_root/level_slots_tutorial")
-level_slots_easy = NodePath("level_slots_root/level_slots_easy")
-level_slots_medium = NodePath("level_slots_root/level_slots_medium")
-level_slots_hard = NodePath("level_slots_root/level_slots_hard")
+level_slots_debug = NodePath("level_slots_root/level_container_debug/level_slots_debug")
+level_slots_tutorial = NodePath("level_slots_root/level_container_tutorial/level_slots_tutorial")
+level_slots_easy = NodePath("level_slots_root/level_container_easy/level_slots_easy")
+level_slots_medium = NodePath("level_slots_root/level_container_medium/level_slots_medium")
+level_slots_hard = NodePath("level_slots_root/level_container_hard/level_slots_hard")
 
 [node name="level_slots_root" type="VBoxContainer" parent="menu_root/menu_levels"]
 layout_mode = 2
@@ -121,50 +123,70 @@ text = "levels"
 label_settings = SubResource("LabelSettings_whicr")
 horizontal_alignment = 1
 
-[node name="level_slots_debug" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+[node name="level_container_debug" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_slots_debug"]
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_container_debug"]
 layout_mode = 2
 text = "debug:"
 label_settings = SubResource("LabelSettings_ct055")
 
-[node name="level_slots_tutorial" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+[node name="level_slots_debug" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/level_container_debug"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_slots_tutorial"]
+[node name="level_container_tutorial" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_container_tutorial"]
 layout_mode = 2
 text = "daylight (tutorial):"
 label_settings = SubResource("LabelSettings_ct055")
 
-[node name="level_slots_easy" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+[node name="level_slots_tutorial" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/level_container_tutorial"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_slots_easy"]
+[node name="level_container_easy" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_container_easy"]
 layout_mode = 2
 text = "sunset:"
 label_settings = SubResource("LabelSettings_ct055")
 
-[node name="level_slots_medium" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+[node name="level_slots_easy" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/level_container_easy"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_slots_medium"]
+[node name="level_container_medium" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_container_medium"]
 layout_mode = 2
 text = "midnight:"
 label_settings = SubResource("LabelSettings_ct055")
 
-[node name="level_slots_hard" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+[node name="level_slots_medium" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/level_container_medium"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_slots_hard"]
+[node name="level_container_hard" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_container_hard"]
 layout_mode = 2
 text = "sunrise:"
 label_settings = SubResource("LabelSettings_ct055")
+
+[node name="level_slots_hard" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/level_container_hard"]
+layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="menu_settings" type="MarginContainer" parent="menu_root"]
 visible = false
@@ -181,7 +203,6 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
 [node name="Label" type="Label" parent="menu_root/menu_settings"]
-visible = false
 layout_mode = 2
 text = "there is nothing here yet! :)
 

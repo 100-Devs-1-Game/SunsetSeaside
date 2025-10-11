@@ -1,5 +1,6 @@
-[gd_scene load_steps=38 format=4 uid="uid://bxyf53ifrvvwv"]
+[gd_scene load_steps=39 format=4 uid="uid://bxyf53ifrvvwv"]
 
+[ext_resource type="Script" uid="uid://c35qacpu8na2l" path="res://scenes/levels/scripts/level.gd" id="1_eaa0b"]
 [ext_resource type="Texture2D" uid="uid://bc1l3yxle0b8x" path="res://assets/devblocks/textures/light/texture_09.png" id="1_jmx14"]
 [ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/explosive_barrel.tscn" id="2_eaa0b"]
 [ext_resource type="PackedScene" uid="uid://cwcaf4mcpsaqc" path="res://scenes/entities/floating_label.tscn" id="3_a5rnb"]
@@ -247,6 +248,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_1sf7s")
 
 [node name="test_level" type="Node3D"]
+script = ExtResource("1_eaa0b")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2sq1o")

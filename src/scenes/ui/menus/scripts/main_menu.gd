@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 # master node for opening and closing the submenus
-
+@onready var menu_root: Control = $menu_root
 @onready var menu_title: MarginContainer = $menu_root/menu_title
 @onready var menu_levels: MarginContainer = $menu_root/menu_levels
 @onready var menu_settings: MarginContainer = $menu_root/menu_settings
@@ -15,7 +15,7 @@ func _on_button_settings_pressed() -> void: _open_menu(MenuType.SETTINGS)
 func _on_button_quit_pressed() -> void: get_tree().quit()
 
 func _open_menu(menu): 
-	for node in self.get_children(): node.visible = false
+	for node in menu_root.get_children(): node.visible = false
 	# come get your child bro
 	
 	match menu:
