@@ -14,10 +14,10 @@ const LEVEL_SLOT = preload("res://scenes/ui/menus/level_slot.tscn")
 # defining the amount of levels for each category here
 # maybe pull from the level data list instead later? 
 var level_amount_debug = 1
-var level_amount_tutorial = 4
-var level_amount_easy = 6
-var level_amount_medium = 8
-var level_amount_hard = 5
+var level_amount_tutorial = 0
+var level_amount_easy = 0
+var level_amount_medium = 0
+var level_amount_hard = 0
 
 func _on_visibility_changed() -> void:
 	if visible:
