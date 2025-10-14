@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://chltm40kncitd"]
+
+[ext_resource type="Texture2D" uid="uid://d11m0it4kt8ry" path="res://assets/textures/god.webp" id="1_xfi4s"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 512
+theme_override_constants/margin_top = 256
+theme_override_constants/margin_right = 512
+theme_override_constants/margin_bottom = 256
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_xfi4s")

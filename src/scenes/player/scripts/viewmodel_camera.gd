@@ -1,6 +1,6 @@
 extends Camera3D
 
-@onready var fps_rig = $fps_rig
+@onready var fps_rig: Node3D = $viewmodel_pivot/fps_rig
 
 func _process(delta):
 	fps_rig.position.x = lerp(fps_rig.position.x , 0.0 , delta * 5)

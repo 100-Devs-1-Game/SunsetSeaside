@@ -27,6 +27,8 @@ var current_time_limit : float = 999.0
 var current_level_grouping : Enums.LevelGrouping
 var current_level_id : int
 
+var ending_was_reached = false
+
 func _ready():
 	Events.establish_spawnpoint.connect(_establish_spawnpoint)
 	Events.player_death.connect(_player_fucking_died)
@@ -83,4 +85,5 @@ func _count_shots():
 
 func _level_end_reached():
 	stopwatch.stop()
+	ending_was_reached = true
 	# open end screen and compare values here

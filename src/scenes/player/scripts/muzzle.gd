@@ -56,8 +56,8 @@ func _on_trail_timer_timeout() -> void:
 	get_parent().get_parent().add_sibling(new_smoke_trail)
 	new_smoke_trail.global_position = emitter_position.global_position
 	new_smoke_trail.global_rotation = emitter_position.global_rotation
-	new_smoke_trail.process_material.scale_min = 0.16 * trails_left * 1.4
-	new_smoke_trail.process_material.scale_max = 0.24 * trails_left * 1.4
+	new_smoke_trail.process_material.scale_min = 0.014 * trails_left * 1.4
+	new_smoke_trail.process_material.scale_max = 0.020 * trails_left * 1.4
 	trails_left -= 1
 	if trails_left > 0:
 		trail_timer.start()

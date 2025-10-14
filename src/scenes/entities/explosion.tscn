@@ -1,17 +1,84 @@
-[gd_scene load_steps=10 format=3 uid="uid://cifoxjsd8db8n"]
+[gd_scene load_steps=17 format=4 uid="uid://cifoxjsd8db8n"]
 
 [ext_resource type="Script" uid="uid://3qpdodhrjty2" path="res://scenes/entities/scripts/explosion.gd" id="1_dndvl"]
 [ext_resource type="Script" uid="uid://cqjlir3h8d581" path="res://scenes/entities/scripts/explosion_area.gd" id="2_j1vcx"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_j1vcx"]
-radius = 1.5
-height = 3.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sc020"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_v48ws"]
+_surfaces = [{
+"aabb": AABB(-2.68327, -3, -2.55192, 5.36655, 6, 5.10384),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgAEAAAAAgADAAUAAgAFAAQAAwAGAAUABAAFAAcABQAGAAcAAAAEAAgABAAHAAgAAAAJAAEAAAAIAAkAAQAKAAMACgAGAAMACQAKAAEABwAGAAsACAAHAAsACwAGAAoACAALAAkACQALAAoA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("/38AAP9/AAByWMFG//8AAIznwUYazwAAjKc9uf//AACM58FG5DAAAP//Pbn/fwAA/3////9/AACMpz25AAAAAHJYwUYAAAAAAADBRv9/AAByGD25Gs8AAHIYPbnkMAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_j1vcx"]
+resource_name = "sphere_low_poly_Icosphere_001"
+_surfaces = [{
+"aabb": AABB(-2.68327, -3, -2.55192, 5.36655, 6, 5.10384),
+"attribute_data": PackedByteArray("iy7//0UXr9fRRa/Xiy5grwAAYK9FFxGHFl1gr9FFEYdcdK/XFl3//6KLYK9cdBGH6KKv16KL//8tumCv6KIRh3PRr9ctuv//uehgr3PREYf//6/Xuej//w=="),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAQAEAAMABAAFAAMAAgADAAYAAwAHAAYAAgAGAAgAAgAIAAkACAAGAAoABgALAAoACAAKAAwADQAIAAwADAAKAA4ACgAPAA4ADAAOABAAEQAMABAAEAAOABIADgATABIAEAASABQAFQAQABQA"),
+"material": SubResource("StandardMaterial3D_sc020"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 22,
+"vertex_data": PackedByteArray("/38AAP9//sByWMFG//8yl4znwUYaz3qqjKc9uf//wJZyGD25Gs+Lqf9/////f/7A//89uf9/JsL/f////390yIznwUbkMLPa/38AAP9/VNWMpz25AACK8/9/////f13lcljBRgAAivP/fwAA/3/29nIYPbnkMLPa/3////9/9vYAAMFG/38mwv9/AAD/f13lchg9uRrP+qz/f////39U1XJYwUb//3Gb/38AAP9/dMjKHppwxTihpRldrTQM0fhF7Lb4zjThZI8MqYYUsd9lP6V0oCFUVVRVe5vCA/3M/BmDZDz8mnayRFmLXt5kiUy78lZ46wEzAubGmJTIqqqqqpYpLdNNIJnA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_v48ws")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j1vcx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dndvl"]
+next_pass = SubResource("ShaderMaterial_j1vcx")
 shading_mode = 0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gcxd"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7my5p"]
+_surfaces = [{
+"aabb": AABB(-2.68327, -3, -2.55192, 5.36655, 6, 5.10384),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgAEAAAAAgADAAUAAgAFAAQAAwAGAAUABAAFAAcABQAGAAcAAAAEAAgABAAHAAgAAAAJAAEAAAAIAAkAAQAKAAMACgAGAAMACQAKAAEABwAGAAsACAAHAAsACwAGAAoACAALAAkACQALAAoA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("/38AAP9/AAByWMFG//8AAIznwUYazwAAjKc9uf//AACM58FG5DAAAP//Pbn/fwAA/3////9/AACMpz25AAAAAHJYwUYAAAAAAADBRv9/AAByGD25Gs8AAHIYPbnkMAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_je6jj"]
+resource_name = "sphere_low_poly_Icosphere_001"
+_surfaces = [{
+"aabb": AABB(-2.68327, -3, -2.55192, 5.36655, 6, 5.10384),
+"attribute_data": PackedByteArray("iy7//0UXr9fRRa/Xiy5grwAAYK9FFxGHFl1gr9FFEYdcdK/XFl3//6KLYK9cdBGH6KKv16KL//8tumCv6KIRh3PRr9ctuv//uehgr3PREYf//6/Xuej//w=="),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAQAEAAMABAAFAAMAAgADAAYAAwAHAAYAAgAGAAgAAgAIAAkACAAGAAoABgALAAoACAAKAAwADQAIAAwADAAKAA4ACgAPAA4ADAAOABAAEQAMABAAEAAOABIADgATABIAEAASABQAFQAQABQA"),
+"material": SubResource("StandardMaterial3D_3gcxd"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 22,
+"vertex_data": PackedByteArray("/38AAP9//sByWMFG//8yl4znwUYaz3qqjKc9uf//wJZyGD25Gs+Lqf9/////f/7A//89uf9/JsL/f////390yIznwUbkMLPa/38AAP9/VNWMpz25AACK8/9/////f13lcljBRgAAivP/fwAA/3/29nIYPbnkMLPa/3////9/9vYAAMFG/38mwv9/AAD/f13lchg9uRrP+qz/f////39U1XJYwUb//3Gb/38AAP9/dMjKHppwxTihpRldrTQM0fhF7Lb4zjThZI8MqYYUsd9lP6V0oCFUVVRVe5vCA/3M/BmDZDz8mnayRFmLXt5kiUy78lZ46wEzAubGmJTIqqqqqpYpLdNNIJnA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_7my5p")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7my5p"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1vcx"]
+next_pass = SubResource("ShaderMaterial_7my5p")
 transparency = 1
+cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.980392, 0.580392, 0, 0.717647)
 
@@ -80,11 +147,35 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(0.843847, 0.643122, 1.15514e-06, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("explosion_mesh:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("explosion_mesh:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_bkl10"]
 resource_name = "explosion"
-length = 1.2
-step = 0.01
+length = 2.2
+step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -104,10 +195,10 @@ tracks/1/path = NodePath("explosion_mesh:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.11, 0.31, 1.2),
-"transitions": PackedFloat32Array(0.277393, 5.46416, 1),
+"times": PackedFloat32Array(0.12, 0.36, 2),
+"transitions": PackedFloat32Array(0.406126, 3.03143, 0.732043),
 "update": 0,
-"values": [Vector3(0.7, 0.7, 0.7), Vector3(2, 2, 2), Vector3(0, 0, 0)]
+"values": [Vector3(0.4, 0.4, 0.4), Vector3(1.3, 1.3, 1.3), Vector3(0.4, 0.4, 0.4)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -116,10 +207,10 @@ tracks/2/path = NodePath("explosion_mesh:surface_material_override/0:albedo_colo
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.11, 0.31, 1.2),
+"times": PackedFloat32Array(0.1, 0.26, 1.8),
 "transitions": PackedFloat32Array(1, 2.54912, 1),
 "update": 0,
-"values": [Color(0.261535, 0.139249, 7.21961e-08, 0.941176), Color(0.980392, 0.580392, 0, 0.819608), Color(0.988235, 0, 0.192157, 0)]
+"values": [Color(0.947296, 0.929277, 0, 0.941176), Color(0.980392, 0.580392, 0, 0.819608), Color(0.988235, 0, 0.192157, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -128,7 +219,7 @@ tracks/3/path = NodePath("OmniLight3D:light_energy")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.35, 1.2),
+"times": PackedFloat32Array(0.35, 1.78),
 "transitions": PackedFloat32Array(2.63902, 5.65685),
 "update": 0,
 "values": [3.0, 0.0]
@@ -140,10 +231,34 @@ tracks/4/path = NodePath("OmniLight3D:light_color")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.31, 1.2),
+"times": PackedFloat32Array(0.2, 1.78),
 "transitions": PackedFloat32Array(3.13834, 1),
 "update": 0,
 "values": [Color(0.980392, 0.580392, 0, 0.941176), Color(0.988235, 0, 0.176471, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("explosion_mesh:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.06),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("explosion_mesh:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(0.535887, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-3.14159, 3.14159, 3.14159)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dndvl"]
@@ -156,11 +271,12 @@ _data = {
 script = ExtResource("1_dndvl")
 
 [node name="explosion_start_mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_j1vcx")
+transform = Transform3D(-0.57, 0, 8.60676e-08, 0, 0.57, 0, -8.60676e-08, 0, -0.57, 0, 0, 0)
+mesh = SubResource("ArrayMesh_j1vcx")
 surface_material_override/0 = SubResource("StandardMaterial3D_dndvl")
 
 [node name="explosion_mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_j1vcx")
+mesh = SubResource("ArrayMesh_je6jj")
 surface_material_override/0 = SubResource("StandardMaterial3D_j1vcx")
 
 [node name="explosion_area" type="Area3D" parent="."]

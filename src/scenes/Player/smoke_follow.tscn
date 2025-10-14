@@ -1,38 +1,67 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfx1xndky4suc"]
+[gd_scene load_steps=8 format=4 uid="uid://dfx1xndky4suc"]
 
 [ext_resource type="Script" uid="uid://lu3n13lafbmp" path="res://scenes/player/shotgun/scripts/smoke_spread.gd" id="1_hlvf7"]
 
 [sub_resource type="Curve" id="Curve_kp11c"]
-_data = [Vector2(0, 0.775281), 0.0, -0.667915, 0, 0, Vector2(0.135514, 0.764045), 0.0, 0.0, 0, 0, Vector2(0.53271, 0), -3.41973, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, -0.667915, 0, 0, Vector2(0.0529412, 0.52809), 0.545746, 0.545746, 0, 0, Vector2(0.658824, 0), -3.41973, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_hwvil"]
 curve = SubResource("Curve_kp11c")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0gbwp"]
+particle_flag_align_y = true
 spread = 180.0
 flatness = 1.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.8
-scale_max = 1.2
+scale_min = 0.08
+scale_max = 0.12
 scale_curve = SubResource("CurveTexture_hwvil")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r3fr"]
-albedo_color = Color(0.33288, 0.332881, 0.332881, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u7pel"]
+transparency = 1
+specular_mode = 1
+albedo_color = Color(0.347817, 0.347817, 0.347817, 0.623529)
 
-[sub_resource type="SphereMesh" id="SphereMesh_uxewx"]
-material = SubResource("StandardMaterial3D_1r3fr")
-radius = 0.08
-height = 0.16
+[sub_resource type="ArrayMesh" id="ArrayMesh_7my5p"]
+_surfaces = [{
+"aabb": AABB(-2.68327, -3, -2.55192, 5.36655, 6, 5.10384),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgAEAAAAAgADAAUAAgAFAAQAAwAGAAUABAAFAAcABQAGAAcAAAAEAAgABAAHAAgAAAAJAAEAAAAIAAkAAQAKAAMACgAGAAMACQAKAAEABwAGAAsACAAHAAsACwAGAAoACAALAAkACQALAAoA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("/38AAP9/AAByWMFG//8AAIznwUYazwAAjKc9uf//AACM58FG5DAAAP//Pbn/fwAA/3////9/AACMpz25AAAAAHJYwUYAAAAAAADBRv9/AAByGD25Gs8AAHIYPbnkMAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1r3fr"]
+resource_name = "sphere_low_poly_Icosphere_001"
+_surfaces = [{
+"aabb": AABB(-2.68327, -3, -2.55192, 5.36655, 6, 5.10384),
+"attribute_data": PackedByteArray("iy7//0UXr9fRRa/Xiy5grwAAYK9FFxGHFl1gr9FFEYdcdK/XFl3//6KLYK9cdBGH6KKv16KL//8tumCv6KIRh3PRr9ctuv//uehgr3PREYf//6/Xuej//w=="),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAQAEAAMABAAFAAMAAgADAAYAAwAHAAYAAgAGAAgAAgAIAAkACAAGAAoABgALAAoACAAKAAwADQAIAAwADAAKAA4ACgAPAA4ADAAOABAAEQAMABAAEAAOABIADgATABIAEAASABQAFQAQABQA"),
+"material": SubResource("StandardMaterial3D_u7pel"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 22,
+"vertex_data": PackedByteArray("/38AAP9//sByWMFG//8yl4znwUYaz3qqjKc9uf//wJZyGD25Gs+Lqf9/////f/7A//89uf9/JsL/f////390yIznwUbkMLPa/38AAP9/VNWMpz25AACK8/9/////f13lcljBRgAAivP/fwAA/3/29nIYPbnkMLPa/3////9/9vYAAMFG/38mwv9/AAD/f13lchg9uRrP+qz/f////39U1XJYwUb//3Gb/38AAP9/dMjKHppwxTihpRldrTQM0fhF7Lb4zjThZI8MqYYUsd9lP6V0oCFUVVRVe5vCA/3M/BmDZDz8mnayRFmLXt5kiUy78lZ46wEzAubGmJTIqqqqqpYpLdNNIJnA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_7my5p")
 
 [node name="Node3D" type="GPUParticles3D"]
+transform = Transform3D(0.998701, 0, 0, 0, 0.998701, 0, 0, 0, 0.998701, 0, 0, 0)
 emitting = false
 amount = 1
 lifetime = 2.0
 one_shot = true
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_0gbwp")
-draw_pass_1 = SubResource("SphereMesh_uxewx")
+draw_pass_1 = SubResource("ArrayMesh_1r3fr")
 script = ExtResource("1_hlvf7")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

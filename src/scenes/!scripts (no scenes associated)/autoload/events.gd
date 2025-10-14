@@ -29,3 +29,4 @@ signal open_level(grouping : Enums.LevelGrouping, id : int) # called by the main
 signal ui_ammo_update(ammo : int) 
 signal ui_shots_taken_update(amount : int)
 signal ui_set_level_vars(max_ammo, par_limit, time_limit) # emitted by gamestate to show these values on level startup
+signal ui_send_level_end_results() # sends these values to the ending screen to be displayed after calc

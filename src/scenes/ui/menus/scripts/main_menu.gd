@@ -21,4 +21,4 @@ func _open_menu(menu):
 	match menu:
 		MenuType.TITLE: menu_title.visible = true 
 		MenuType.LEVELS: menu_levels.visible = true
-		MenuType.SETTINGS: menu_settings.visible = true; print(menu_settings.visible)
+		MenuType.SETTINGS: menu_settings.visible = true
