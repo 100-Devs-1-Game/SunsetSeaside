@@ -187,11 +187,11 @@ shadow_mesh = SubResource("ArrayMesh_4v6xx")
 resource_name = "CannonFPS_mat"
 cull_mode = 2
 albedo_texture = ExtResource("15_lgqa7")
-metallic = 0.8
-metallic_specular = 0.08
+metallic = 1.0
+metallic_specular = 0.0
 metallic_texture = ExtResource("16_8ydkj")
 metallic_texture_channel = 2
-roughness = 0.14
+roughness = 0.34
 roughness_texture_channel = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6fudp"]
@@ -727,7 +727,6 @@ script = ExtResource("5_uxo23")
 
 [node name="cannon_decal_ray" type="RayCast3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0954311, 0)
-visible = false
 target_position = Vector3(0, 0, -7)
 script = ExtResource("10_n7rn1")
 
@@ -863,7 +862,6 @@ one_shot = true
 
 [node name="cannon_damager" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10224, 0)
-visible = false
 script = ExtResource("11_7tfl1")
 damage_range = 6.0
 

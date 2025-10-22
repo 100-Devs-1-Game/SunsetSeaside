@@ -28,6 +28,7 @@ var current_level_grouping : Enums.LevelGrouping
 var current_level_id : int
 
 var ending_was_reached = false
+var jug_grabbed = false 
 
 func _ready():
 	Events.establish_spawnpoint.connect(_establish_spawnpoint)
@@ -86,4 +87,6 @@ func _count_shots():
 func _level_end_reached():
 	stopwatch.stop()
 	ending_was_reached = true
+	Events.open_menu.emit(Enums.Menus.RESULTS)
+	Events.ui_send_level_end_results.emit(stopwatch.time, current_time_limit, null, shots_taken, current_par_limit, null, null, null) # replace nulls once these are implemented
 	# open end screen and compare values here
