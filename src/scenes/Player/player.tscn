@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=67 format=4 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" uid="uid://f76fggl2uyob" path="res://scenes/player/scripts/player.gd" id="1_twte0"]
 [ext_resource type="Script" uid="uid://bw1c3unoeydxt" path="res://scenes/player/scripts/head.gd" id="2_c4h5g"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://djlu56q6npdxd" path="res://scenes/player/scripts/viewmodel_camera.gd" id="4_wwtew"]
 [ext_resource type="Script" uid="uid://cg2lh0y6jcuu4" path="res://scenes/player/scripts/timer_label.gd" id="5_fcs02"]
 [ext_resource type="Script" uid="uid://duswyloxdw522" path="res://scenes/player/shotgun/scripts/shotgun.gd" id="5_uxo23"]
+[ext_resource type="Script" uid="uid://yvwlsbfk5y16" path="res://scenes/Player/scripts/time_limit_label.gd" id="6_8ydkj"]
 [ext_resource type="Script" uid="uid://e42v4wci1flq" path="res://scenes/player/scripts/mesh_mover.gd" id="6_n7rn1"]
 [ext_resource type="Script" uid="uid://3eolpr5dyick" path="res://scenes/player/scripts/muzzle.gd" id="7_7tfl1"]
 [ext_resource type="Texture2D" uid="uid://xejdredppl2p" path="res://assets/textures/muzzle-flash.png" id="8_jxtnq"]
@@ -34,9 +35,17 @@ font_size = 128
 font_size = 42
 font_color = Color(1, 0.446759, 0.347475, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_3j4b4"]
+font_size = 20
+font_color = Color(0.454902, 0.882353, 0.890196, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_fcs02"]
 font_size = 24
 font_color = Color(1, 0.622923, 0.192928, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ydkj"]
+font_size = 24
+font_color = Color(0.5866, 0.808928, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uf5tr"]
 font_size = 9
@@ -592,7 +601,7 @@ script = ExtResource("3_uxo23")
 cull_mask = 1048573
 fov = 85.0
 
-[node name="ui" type="Control" parent="Head/headbob_pivot/Camera3D" node_paths=PackedStringArray("ammo_label")]
+[node name="ui" type="Control" parent="Head/headbob_pivot/Camera3D" node_paths=PackedStringArray("ammo_label", "shots_label", "time_limit_label", "par_amount_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -601,6 +610,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_jxtnq")
 ammo_label = NodePath("VBoxContainer/MarginContainer/ammo_label")
+shots_label = NodePath("VBoxContainer/MarginContainer3/VBoxContainer/shots_label")
+time_limit_label = NodePath("VBoxContainer/MarginContainer2/VBoxContainer/time_limit_label")
+par_amount_label = NodePath("VBoxContainer/MarginContainer3/VBoxContainer/HBoxContainer/par_amount_label")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Head/headbob_pivot/Camera3D/ui"]
 layout_mode = 1
@@ -617,48 +629,102 @@ alignment = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
 theme_override_constants/margin_right = 32
 
 [node name="ammo_label" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 1
 text = "0"
 label_settings = SubResource("LabelSettings_7tfl1")
+horizontal_alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer"]
+layout_mode = 2
 
 [node name="MarginContainer3" type="MarginContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_right = 8
 
-[node name="shots_label" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="shots_label" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer3/VBoxContainer"]
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_kvlxm")
 horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="par_label" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "par:"
+label_settings = SubResource("LabelSettings_3j4b4")
+
+[node name="par_amount_label" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "n/a"
+label_settings = SubResource("LabelSettings_3j4b4")
+
+[node name="HSeparator" type="HSeparator" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer"]
+layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="timer_label" type="HBoxContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="timer_label" type="HBoxContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 2
 script = ExtResource("5_fcs02")
 
-[node name="label_min" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/timer_label"]
+[node name="label_min" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/VBoxContainer/timer_label"]
 layout_mode = 2
 text = "0:"
 label_settings = SubResource("LabelSettings_fcs02")
 
-[node name="label_sec" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/timer_label"]
+[node name="label_sec" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/VBoxContainer/timer_label"]
 layout_mode = 2
 text = "00:"
 label_settings = SubResource("LabelSettings_fcs02")
 
-[node name="label_msec" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/timer_label"]
+[node name="label_msec" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/VBoxContainer/timer_label"]
 layout_mode = 2
 text = "00"
 label_settings = SubResource("LabelSettings_fcs02")
+
+[node name="time_limit_label" type="HBoxContainer" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("6_8ydkj")
+
+[node name="label_goal" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/VBoxContainer/time_limit_label"]
+layout_mode = 2
+text = "goal: "
+label_settings = SubResource("LabelSettings_8ydkj")
+
+[node name="label_min" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/VBoxContainer/time_limit_label"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_8ydkj")
+
+[node name="label_sec" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/VBoxContainer/time_limit_label"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_8ydkj")
+
+[node name="label_msec" type="Label" parent="Head/headbob_pivot/Camera3D/ui/VBoxContainer/MarginContainer2/VBoxContainer/time_limit_label"]
+layout_mode = 2
+text = "n/a"
+label_settings = SubResource("LabelSettings_8ydkj")
 
 [node name="console_ui" type="Control" parent="Head/headbob_pivot/Camera3D"]
 layout_mode = 3

@@ -249,6 +249,9 @@ shadow_mesh = SubResource("ArrayMesh_1sf7s")
 
 [node name="test_level" type="Node3D"]
 script = ExtResource("1_eaa0b")
+ammo_max = 420
+par_limit = 69
+time_limit = 260.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2sq1o")

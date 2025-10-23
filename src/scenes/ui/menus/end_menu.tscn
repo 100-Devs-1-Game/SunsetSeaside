@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://chltm40kncitd"]
+[gd_scene load_steps=7 format=3 uid="uid://chltm40kncitd"]
 
 [ext_resource type="Script" uid="uid://cokdnajdm2aq" path="res://scenes/ui/menus/scripts/end_menu.gd" id="1_xfi4s"]
+[ext_resource type="Script" uid="uid://dld2efnfljd86" path="res://scenes/ui/menus/scripts/end_screen_timer_label.gd" id="2_dijo2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fmdw5"]
 font_size = 48
@@ -14,8 +15,10 @@ font_size = 54
 [sub_resource type="LabelSettings" id="LabelSettings_7lor8"]
 font_size = 54
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("timer_label", "label_shots_amount")]
 script = ExtResource("1_xfi4s")
+timer_label = NodePath("Control/MarginContainer/VBoxContainer/HBoxContainer/timer_label")
+label_shots_amount = NodePath("Control/MarginContainer/VBoxContainer/HBoxContainer2/label_shots_amount")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -44,6 +47,7 @@ stretch_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="label_level_finished" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -58,17 +62,36 @@ alignment = 1
 
 [node name="label_time" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "time:
+text = "time: 
 "
 label_settings = SubResource("LabelSettings_xfi4s")
 horizontal_alignment = 1
 
-[node name="label_time_amount" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="timer_label" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+script = ExtResource("2_dijo2")
+
+[node name="label_min" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/timer_label"]
+layout_mode = 2
+text = "0:"
+label_settings = SubResource("LabelSettings_xfi4s")
+
+[node name="label_sec" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/timer_label"]
+layout_mode = 2
+text = "00:"
+label_settings = SubResource("LabelSettings_xfi4s")
+
+[node name="label_msec" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/timer_label"]
+layout_mode = 2
+text = "00"
 label_settings = SubResource("LabelSettings_xfi4s")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 alignment = 1
 
 [node name="label_shots" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -80,4 +103,6 @@ horizontal_alignment = 1
 
 [node name="label_shots_amount" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+text = "0"
 label_settings = SubResource("LabelSettings_7lor8")
+horizontal_alignment = 1

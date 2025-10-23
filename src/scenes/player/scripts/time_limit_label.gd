@@ -1,8 +1,12 @@
 extends HBoxContainer
 
-func _process(delta):
-	if Gamestate.stopwatch == null : return
-	var time = Gamestate.stopwatch.time
+var time = 0.0:
+	get: return time
+	set(value):
+		time = value
+		_time_updated()
+		
+func _time_updated():
 	var min = fmod(time, 3600) / 60
 	var secs = fmod(time, 60)
 	var msecs = fmod(time, 1) * 1000

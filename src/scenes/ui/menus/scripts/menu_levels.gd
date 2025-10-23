@@ -11,13 +11,11 @@ const LEVEL_SLOT = preload("res://scenes/ui/menus/level_slot.tscn")
 @export var level_slots_medium : HBoxContainer
 @export var level_slots_hard : HBoxContainer
 
-# defining the amount of levels for each category here
-# maybe pull from the level data list instead later? 
-var level_amount_debug = 1
-var level_amount_tutorial = 0
-var level_amount_easy = 0
-var level_amount_medium = 0
-var level_amount_hard = 0
+var level_amount_debug = Gamestate.level_manager.levels_debug.size()
+var level_amount_tutorial = Gamestate.level_manager.levels_tutorial.size()
+var level_amount_easy = Gamestate.level_manager.levels_easy.size()
+var level_amount_medium = Gamestate.level_manager.levels_medium.size()
+var level_amount_hard = Gamestate.level_manager.levels_hard.size()
 
 func _on_visibility_changed() -> void:
 	if visible:

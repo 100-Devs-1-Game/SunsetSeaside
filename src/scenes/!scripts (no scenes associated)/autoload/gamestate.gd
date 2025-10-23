@@ -15,9 +15,6 @@ var has_moved = false # if the character has moved this reset, for starting the 
 var shots_taken = 0 # shots taken since respawn / restart
 
 ### level vars
-const grouping_ammo_amount = [2, 1, 1, 2, 2]
-# grouping order: debug, tutorial, easy, medium, hard
-
 # current values for the level being played
 var current_ammo_amount : int = 1 # amount of shots before touching the ground
 var current_max_ammo : int = 999
@@ -59,18 +56,12 @@ func _establish_spawnpoint(node):
 func _setup_level_id(grouping, id):
 	current_level_grouping = grouping
 	current_level_id = id
-	match grouping:
-		Enums.LevelGrouping.DEBUG: current_ammo_amount = grouping_ammo_amount[0]
-		Enums.LevelGrouping.DAYLIGHT: current_ammo_amount = grouping_ammo_amount[1]
-		Enums.LevelGrouping.SUNSET: current_ammo_amount = grouping_ammo_amount[2]
-		Enums.LevelGrouping.MIDNIGHT: current_ammo_amount = grouping_ammo_amount[3]
-		Enums.LevelGrouping.SUNRISE: current_ammo_amount = grouping_ammo_amount[4]
+	current_ammo_amount = level_manager.fetch_ammo_amount(grouping)
 
 func _setup_level_vars(max_ammo, par_limit, time_limit):
 	current_max_ammo = max_ammo
 	current_par_limit = par_limit
-	current_par_limit = time_limit
-	Events.ui_set_level_vars.emit(max_ammo, par_limit, time_limit)
+	current_time_limit = time_limit
 
 #### player events
 func _player_fucking_died(type : Enums.PlayerDeathType): # oogway is fucking dead
@@ -85,8 +76,12 @@ func _count_shots():
 	Events.ui_shots_taken_update.emit(shots_taken)
 
 func _level_end_reached():
+	if ending_was_reached == true: return
+	
 	stopwatch.stop()
 	ending_was_reached = true
 	Events.open_menu.emit(Enums.Menus.RESULTS)
 	Events.ui_send_level_end_results.emit(stopwatch.time, current_time_limit, null, shots_taken, current_par_limit, null, null, null) # replace nulls once these are implemented
+										#(time, time_limit, time_best, shots_taken, par_limit, shots_best, jug_grabbed, jug_history)
+
 	# open end screen and compare values here

@@ -14,8 +14,8 @@ extends Node3D
 @export var flash_container : Node3D
 
 @onready var trail_timer: Timer = $trail_timer
-const SMOKE_SPREAD_EMITTER = preload("res://scenes/Player/smoke_spread.tscn")
-const SMOKE_TRAIL_EMITTER = preload("res://scenes/Player/smoke_follow.tscn")
+const SMOKE_SPREAD_EMITTER = preload("res://scenes/player/smoke_spread.tscn")
+const SMOKE_TRAIL_EMITTER = preload("res://scenes/player/smoke_follow.tscn")
 @onready var emitter_position: Node3D = $emitter_position
 var trails_left = 0
 
