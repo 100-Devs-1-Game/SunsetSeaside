@@ -25,10 +25,12 @@ signal weapon_fired() # called by cannon script on a succesful cannon fire
 # main
 signal open_level(grouping : Enums.LevelGrouping, id : int) # called by the main menu script, id in accordance to the menu option chosen
 signal open_menu(menu : Enums.Menus)
+signal close_menu()
 
 ###### ui
 signal ui_ammo_update(ammo : int) 
 signal ui_shots_taken_update(amount : int)
 signal ui_set_level_vars(max_ammo, par_limit, time_limit) # emitted by gamestate to show these values on level startup
-signal ui_send_level_end_results(time, time_limit, time_best, shots_taken, par_limit, shots_best, jug_grabbed, jug_history) # sends these values to the ending screen to be displayed after calc
+signal ui_send_end_results(time, time_limit, shots_taken, par_limit, jug_grabbed) # sends these values to the ending screen to be displayed after calc
+signal ui_send_level_history(time_best, shots_best, jug_history, hardcore_history) # split into two methods for ease
 signal ui_update_title_state(state)

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://tvhgjh6s2skh"]
+
+[ext_resource type="Script" uid="uid://dw0n2iwm6qwey" path="res://scenes/ui/menus/spinner.gd" id="1_c5qic"]
+[ext_resource type="Script" uid="uid://bu7e325btpdox" path="res://scenes/ui/menus/scripts/spinner_mesh_container.gd" id="2_gonmo"]
+[ext_resource type="Texture2D" uid="uid://d4cjxowa1dyio" path="res://assets/devblocks/textures/dark/texture_04.png" id="2_tv4vy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_clnwe"]
+albedo_texture = ExtResource("2_tv4vy")
+
+[sub_resource type="BoxMesh" id="BoxMesh_tv4vy"]
+material = SubResource("StandardMaterial3D_clnwe")
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="spinner" type="SubViewportContainer"]
+script = ExtResource("1_c5qic")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="spinner_positioner" type="Node3D" parent="SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/spinner_positioner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.02382)
+cull_mask = 1047556
+fov = 30.0
+
+[node name="spinner_mesh_container" type="Node3D" parent="SubViewport/spinner_positioner"]
+script = ExtResource("2_gonmo")
+
+[node name="spinner_rot_offset" type="Node3D" parent="SubViewport/spinner_positioner/spinner_mesh_container"]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="debug_mesh" type="MeshInstance3D" parent="SubViewport/spinner_positioner/spinner_mesh_container/spinner_rot_offset"]
+transform = Transform3D(1, -5.96046e-08, 0, 5.96046e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+layers = 4
+mesh = SubResource("BoxMesh_tv4vy")
+skeleton = NodePath("../..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewport/spinner_positioner"]
+transform = Transform3D(0.707107, -0.612372, 0.353553, 0, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 0.677858, 1.25835, 0.647303)
+layers = 4
+spot_angle = 20.8717

@@ -11,9 +11,9 @@ func _process(delta):
 	
 	display_time = lerp(display_time, time, delta * lerp_speed)
 	
-	var min = fmod(time, 3600) / 60
-	var secs = fmod(time, 60)
-	var msecs = fmod(time, 1) * 1000
+	var min = fmod(display_time, 3600) / 60
+	var secs = fmod(display_time, 60)
+	var msecs = fmod(display_time, 1) * 1000
 	
 	if min > 1.0: $label_min.visible = true; $label_min.text = ("%01d:" % min)
 	else: $label_min.visible = false
@@ -27,7 +27,7 @@ func _process(delta):
 	
 	if msecs > 0.0 || secs > 1.0 || min > 1.0: $label_msec.visible = true; $label_msec.text = ".%03d" % msecs
 	else: $label_msec.text = " " # stay visible for the sake of labels above not moving 
- 
+
 	if display_time == time: set_process(false)
 
 	# print(str(min) + ":", str(secs) + ".", "%02d" % msecs) 

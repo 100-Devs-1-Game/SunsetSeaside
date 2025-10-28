@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://djlu56q6npdxd" path="res://scenes/player/scripts/viewmodel_camera.gd" id="4_wwtew"]
 [ext_resource type="Script" uid="uid://cg2lh0y6jcuu4" path="res://scenes/player/scripts/timer_label.gd" id="5_fcs02"]
 [ext_resource type="Script" uid="uid://duswyloxdw522" path="res://scenes/player/shotgun/scripts/shotgun.gd" id="5_uxo23"]
-[ext_resource type="Script" uid="uid://yvwlsbfk5y16" path="res://scenes/Player/scripts/time_limit_label.gd" id="6_8ydkj"]
+[ext_resource type="Script" uid="uid://yvwlsbfk5y16" path="res://scenes/player/scripts/time_limit_label.gd" id="6_8ydkj"]
 [ext_resource type="Script" uid="uid://e42v4wci1flq" path="res://scenes/player/scripts/mesh_mover.gd" id="6_n7rn1"]
 [ext_resource type="Script" uid="uid://3eolpr5dyick" path="res://scenes/player/scripts/muzzle.gd" id="7_7tfl1"]
 [ext_resource type="Texture2D" uid="uid://xejdredppl2p" path="res://assets/textures/muzzle-flash.png" id="8_jxtnq"]

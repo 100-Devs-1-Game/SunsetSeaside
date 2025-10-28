@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Menu
 
 # master node for opening and closing the submenus
 @onready var menu_root: Control = $menu_root
@@ -9,12 +9,11 @@ extends CanvasLayer
 enum MenuType { TITLE, LEVELS, SETTINGS }
 
 func _ready():	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # should put this in main script in an "open menu" function. for now:
-func _process(_delta): if Input.is_action_just_pressed("menu_back"): _open_menu(MenuType.TITLE);
 func _on_button_levels_pressed() -> void: _open_menu(MenuType.LEVELS)
 func _on_button_settings_pressed() -> void: _open_menu(MenuType.SETTINGS)
 func _on_button_quit_pressed() -> void: get_tree().quit()
 
-func _open_menu(menu): 
+func _open_menu(menu): # rename this!
 	for node in menu_root.get_children(): node.visible = false
 	# come get your child bro
 	

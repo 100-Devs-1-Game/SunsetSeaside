@@ -13,6 +13,7 @@ var player_spawnpoint : Node3D = null
 var player : CharacterBody3D # registered by player script on ready
 var has_moved = false # if the character has moved this reset, for starting the timer
 var shots_taken = 0 # shots taken since respawn / restart
+var hardcore_enabled = false
 
 ### level vars
 # current values for the level being played
@@ -65,7 +66,12 @@ func _setup_level_vars(max_ammo, par_limit, time_limit):
 
 #### player events
 func _player_fucking_died(type : Enums.PlayerDeathType): # oogway is fucking dead
-	_respawn_player() 
+	if hardcore_enabled == true: 
+		pass
+		_respawn_player() 
+	else:
+		_respawn_player() 
+	
 
 func _first_player_movement():
 	has_moved = true
@@ -81,7 +87,8 @@ func _level_end_reached():
 	stopwatch.stop()
 	ending_was_reached = true
 	Events.open_menu.emit(Enums.Menus.RESULTS)
-	Events.ui_send_level_end_results.emit(stopwatch.time, current_time_limit, null, shots_taken, current_par_limit, null, null, null) # replace nulls once these are implemented
+	Events.ui_send_level_history.emit(null, null, null, null)
+	Events.ui_send_end_results.emit(stopwatch.time, current_time_limit, shots_taken, current_par_limit, null) # replace nulls once these are implemented
 										#(time, time_limit, time_best, shots_taken, par_limit, shots_best, jug_grabbed, jug_history)
 
 	# open end screen and compare values here
