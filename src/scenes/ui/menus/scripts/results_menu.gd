@@ -1,17 +1,24 @@
 extends Menu
 # handles ending menu updates and animations
-
+@export_subgroup("labels")
 @export var timer_label : HBoxContainer
+
+@export_subgroup("labels amount")
 @export var label_time_limit_amount : HBoxContainer
 @export var label_shots_amount : Label
 @export var label_par_amount : Label
 
-@export_category("buttons")
+@export_subgroup("labels best")
+@export var label_time_best : Label
+@export var label_par_best : Label
+@export var label_jug_best : Label
+
+@export_subgroup("buttons")
 @export var button_main_menu : Button
 @export var button_resart : Button
 @export var button_next_level : Button
 
-@export_category("spinners")
+@export_subgroup("spinners")
 @export var spinner_time : SubViewportContainer
 @export var spinner_par : SubViewportContainer
 @export var spinner_jug : SubViewportContainer
@@ -76,6 +83,9 @@ func _update_level_history(time_best, shots_best, jug_history, hardcore_history)
 	previous_shots_best = shots_best
 	previous_jug_history = jug_history
 	previous_hardcore_history = hardcore_history
+	
+	if previous_time_best != null:
+		label_time_best.text = str(previous_time_best)
 
 func update_level_calcs():
 	pass

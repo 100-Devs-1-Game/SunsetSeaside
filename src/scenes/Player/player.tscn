@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=71 format=4 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" uid="uid://f76fggl2uyob" path="res://scenes/player/scripts/player.gd" id="1_twte0"]
 [ext_resource type="Script" uid="uid://bw1c3unoeydxt" path="res://scenes/player/scripts/head.gd" id="2_c4h5g"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://cw30x4wy5quuw" path="res://scenes/player/scripts/headbob_pivot.gd" id="3_uxo23"]
 [ext_resource type="Script" uid="uid://r46iblp0dqej" path="res://scenes/player/scripts/ui.gd" id="4_jxtnq"]
 [ext_resource type="Script" uid="uid://djlu56q6npdxd" path="res://scenes/player/scripts/viewmodel_camera.gd" id="4_wwtew"]
+[ext_resource type="Shader" uid="uid://bpyxmtik2x3i2" path="res://assets/shaders/pixel.gdshader" id="4_yj68g"]
+[ext_resource type="FontFile" uid="uid://dmg3ppdo8dgqj" path="res://assets/fonts/Primitive-4yGY.ttf" id="5_3j4b4"]
 [ext_resource type="Script" uid="uid://cg2lh0y6jcuu4" path="res://scenes/player/scripts/timer_label.gd" id="5_fcs02"]
 [ext_resource type="Script" uid="uid://duswyloxdw522" path="res://scenes/player/shotgun/scripts/shotgun.gd" id="5_uxo23"]
 [ext_resource type="Script" uid="uid://yvwlsbfk5y16" path="res://scenes/player/scripts/time_limit_label.gd" id="6_8ydkj"]
@@ -28,22 +30,36 @@ radius = 0.2
 radius = 0.2
 height = 1.2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ioxgp"]
+render_priority = 0
+shader = ExtResource("4_yj68g")
+
+[sub_resource type="QuadMesh" id="QuadMesh_cnsyf"]
+material = SubResource("ShaderMaterial_ioxgp")
+flip_faces = true
+size = Vector2(2, 2)
+
 [sub_resource type="LabelSettings" id="LabelSettings_7tfl1"]
+font = ExtResource("5_3j4b4")
 font_size = 128
 
 [sub_resource type="LabelSettings" id="LabelSettings_kvlxm"]
+font = ExtResource("5_3j4b4")
 font_size = 42
 font_color = Color(1, 0.446759, 0.347475, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3j4b4"]
+font = ExtResource("5_3j4b4")
 font_size = 20
 font_color = Color(0.454902, 0.882353, 0.890196, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_fcs02"]
+font = ExtResource("5_3j4b4")
 font_size = 24
 font_color = Color(1, 0.622923, 0.192928, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ydkj"]
+font = ExtResource("5_3j4b4")
 font_size = 24
 font_color = Color(0.5866, 0.808928, 0, 1)
 
@@ -600,6 +616,12 @@ script = ExtResource("3_uxo23")
 [node name="Camera3D" type="Camera3D" parent="Head/headbob_pivot"]
 cull_mask = 1048573
 fov = 85.0
+
+[node name="shader quad" type="MeshInstance3D" parent="Head/headbob_pivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.577648, 0)
+visible = false
+mesh = SubResource("QuadMesh_cnsyf")
+skeleton = NodePath("../SubViewportContainer/SubViewport/viewmodel_camera")
 
 [node name="ui" type="Control" parent="Head/headbob_pivot/Camera3D" node_paths=PackedStringArray("ammo_label", "shots_label", "time_limit_label", "par_amount_label")]
 layout_mode = 3

@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://cyfogfuu6l2lx" path="res://scenes/!scripts (no scenes associated)/main.gd" id="1_72ix8"]
 [ext_resource type="Script" uid="uid://beagu8u0t3x4l" path="res://scenes/ui/menus/scripts/menu_system.gd" id="2_y0acb"]
 
-[node name="main" type="Node3D"]
+[node name="main" type="Node3D" node_paths=PackedStringArray("scene_container")]
 script = ExtResource("1_72ix8")
+scene_container = NodePath("scene_container")
 
 [node name="scene_container" type="Node" parent="."]
 

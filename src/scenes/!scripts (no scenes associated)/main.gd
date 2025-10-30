@@ -3,7 +3,7 @@ extends Node3D
 # main fundamental highest level control
 
 @onready var menu_system = $menu_system
-@onready var scene_container = $scene_container
+@export var scene_container : Node
 
 ## need a proper way to store / choose level scenes ( should call the file when chosen in a menu by an autoload)
  
