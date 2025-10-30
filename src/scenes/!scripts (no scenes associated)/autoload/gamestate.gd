@@ -44,7 +44,8 @@ func _respawn_player():
 	new_player.global_rotation = player_spawnpoint.global_rotation
 	stopwatch.reset(); has_moved = false
 	shots_taken = 0
-	
+	ending_was_reached = false
+
 #### setup functions
 func _establish_spawnpoint(node):
 	if player_spawnpoint != null:
@@ -72,7 +73,6 @@ func _player_fucking_died(type : Enums.PlayerDeathType): # oogway is fucking dea
 	else:
 		_respawn_player() 
 	
-
 func _first_player_movement():
 	has_moved = true
 	stopwatch.start()

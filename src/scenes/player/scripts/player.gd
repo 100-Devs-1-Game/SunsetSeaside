@@ -82,6 +82,7 @@ func _ready():
 	$Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
 
 func _physics_process(delta):
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	# setting viewmodel camera to default camera position
 	viewmodel_camera.global_transform = camera.global_transform
 	
@@ -203,6 +204,8 @@ func _physics_process(delta):
 	if global_position.y < -10.0:
 		Events.player_death.emit(Enums.PlayerDeathType.INSTANT)
 
+
+### physics functions
 func _shotgun_bounce(direction, force): # bounce the player, sent by the shotgun script
 	var bounce_mod = 1.0
 	if state == Enums.PlayerState.CROUCHING: bounce_mod += 0.2
@@ -220,7 +223,7 @@ func _explosion_bounce(direction, force, smoke_trail_amount): # direction and fo
 	velocity.y += direction.y * force
 	velocity.z += direction.z * force
 	explosion_trail_spawner.spawn(smoke_trail_amount) # to be implemented
-	
+
 func _debug_label_update():
 	console_ui.speed_update(speed)
 	console_ui.velocity_update(Vector2(velocity.x, velocity.z))
@@ -234,6 +237,7 @@ func _first_input_check():
 		Events.first_movement.emit()
 
 func _input(event): # handling camera movement for the mouse
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	if event is InputEventMouseMotion:
 		rotation.y -= event.relative.x / mouse_sens
 		head.rotation.x -= event.relative.y / mouse_sens

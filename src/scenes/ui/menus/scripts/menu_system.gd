@@ -14,6 +14,7 @@ func _update_menu_sizes():
 func _open_menu(menu : Enums.Menus):
 	_close_menu() # clear any previous menus
 
+
 	var menu_path : String
 	match menu: # storing menu paths here, FUCK IT
 		Enums.Menus.TITLE: menu_path = "res://scenes/ui/menus/main_menu.tscn"
@@ -26,6 +27,8 @@ func _open_menu(menu : Enums.Menus):
 	if menu == Enums.Menus.TITLE: # put title back to where it was
 		Events.ui_update_title_state.emit(last_title_menu_state)
 	last_menu_opened = menu
+
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 func _close_menu():
 	for node in self.get_children():

@@ -1,28 +1,68 @@
-[gd_scene load_steps=8 format=3 uid="uid://chltm40kncitd"]
+[gd_scene load_steps=14 format=3 uid="uid://chltm40kncitd"]
 
 [ext_resource type="Script" uid="uid://cokdnajdm2aq" path="res://scenes/ui/menus/scripts/results_menu.gd" id="1_hoa8c"]
+[ext_resource type="Texture2D" uid="uid://by2sfu06w3w3g" path="res://assets/textures/rustic-wood-texture-free-49.png" id="2_clnwe"]
 [ext_resource type="Script" uid="uid://dld2efnfljd86" path="res://scenes/ui/menus/scripts/end_screen_timer_label.gd" id="2_yf7o8"]
 [ext_resource type="PackedScene" uid="uid://tvhgjh6s2skh" path="res://scenes/ui/spinner.tscn" id="3_yf7o8"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yfc0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 8
+shadow_color = Color(0, 0, 0, 0.431373)
+shadow_size = 8
+
 [sub_resource type="LabelSettings" id="LabelSettings_fmdw5"]
-font_size = 48
+font_size = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cyhki"]
+bg_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
+border_width_left = 1
+border_width_top = 1
+border_color = Color(0.701961, 0.882353, 0, 1)
+shadow_color = Color(0, 0, 0, 0.258824)
+shadow_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_xfi4s"]
 font_size = 72
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_clnwe"]
+font_size = 42
+font_color = Color(0.701961, 0.882353, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clnwe"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 8
+border_color = Color(0.700774, 0.880942, 1.15514e-06, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_dijo2"]
 font_size = 54
+outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_7lor8"]
-font_size = 54
+[sub_resource type="LabelSettings" id="LabelSettings_yf7o8"]
+font_size = 42
+font_color = Color(1, 0.521803, 0.328809, 1)
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("timer_label", "label_shots_amount", "spinner_time", "spinner_par", "spinner_jug")]
+[sub_resource type="LabelSettings" id="LabelSettings_cyhki"]
+font_size = 15
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("timer_label", "label_time_limit_amount", "label_shots_amount", "label_par_amount", "button_main_menu", "button_resart", "button_next_level", "spinner_time", "spinner_par", "spinner_jug")]
 script = ExtResource("1_hoa8c")
-timer_label = NodePath("Control/MarginContainer/VBoxContainer/HBoxContainer/timer_label")
-label_shots_amount = NodePath("Control/MarginContainer/VBoxContainer/HBoxContainer2/label_shots_amount")
-spinner_time = NodePath("Control/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer4/HBoxContainer/MarginContainer/spinner")
-spinner_par = NodePath("Control/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer4/HBoxContainer/MarginContainer2/spinner")
-spinner_jug = NodePath("Control/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer4/HBoxContainer/MarginContainer3/spinner")
+timer_label = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer/timer_label")
+label_time_limit_amount = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer2/label_time_limit_amount")
+label_shots_amount = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/par labels/par labels/HBoxContainer2/label_shots_amount")
+label_par_amount = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/par labels/par labels/HBoxContainer/label_par_amount")
+button_main_menu = NodePath("Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer/button_main_menu")
+button_resart = NodePath("Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/button_restart")
+button_next_level = NodePath("Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/button_next_level")
+spinner_time = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/time spinner/spinner")
+spinner_par = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/par spinner/spinner")
+spinner_jug = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/jug spinner/spinner")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -37,115 +77,272 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -60.0
+offset_right = -4.0
+offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 256
+theme_override_constants/margin_left = 512
 theme_override_constants/margin_top = 128
-theme_override_constants/margin_right = 256
+theme_override_constants/margin_right = 512
 theme_override_constants/margin_bottom = 128
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5yfc0")
 
 [node name="background_texture" type="TextureRect" parent="Control/MarginContainer"]
 layout_mode = 2
-expand_mode = 3
-stretch_mode = 3
+texture = ExtResource("2_clnwe")
+expand_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
 [node name="label_level_finished" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "level complete!
-"
+text = "results"
 label_settings = SubResource("LabelSettings_fmdw5")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
+
+[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 0.045)
+layout_mode = 2
+columns = 3
+
+[node name="timer labels" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 16
+
+[node name="timer labels" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels"]
 layout_mode = 2
 alignment = 1
 
-[node name="label_time" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="label_time" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer"]
 layout_mode = 2
-text = "time: 
-"
+text = "time: "
 label_settings = SubResource("LabelSettings_xfi4s")
 horizontal_alignment = 1
 
-[node name="timer_label" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="timer_label" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 script = ExtResource("2_yf7o8")
 
-[node name="label_min" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/timer_label"]
+[node name="label_min" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer/timer_label"]
 layout_mode = 2
 text = "0:"
 label_settings = SubResource("LabelSettings_xfi4s")
 
-[node name="label_sec" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/timer_label"]
+[node name="label_sec" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer/timer_label"]
 layout_mode = 2
 text = "00:"
 label_settings = SubResource("LabelSettings_xfi4s")
 
-[node name="label_msec" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/timer_label"]
+[node name="label_msec" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer/timer_label"]
 layout_mode = 2
 text = "00"
 label_settings = SubResource("LabelSettings_xfi4s")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels"]
+layout_mode = 2
+alignment = 1
+
+[node name="label_time_limit" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer2"]
+layout_mode = 2
+text = "time limit: "
+label_settings = SubResource("LabelSettings_clnwe")
+
+[node name="label_time_limit_amount" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+script = ExtResource("2_yf7o8")
+
+[node name="label_min" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer2/label_time_limit_amount"]
+layout_mode = 2
+text = "0:"
+label_settings = SubResource("LabelSettings_clnwe")
+
+[node name="label_sec" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer2/label_time_limit_amount"]
+layout_mode = 2
+text = "00:"
+label_settings = SubResource("LabelSettings_clnwe")
+
+[node name="label_msec" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer2/label_time_limit_amount"]
+layout_mode = 2
+text = "00"
+label_settings = SubResource("LabelSettings_clnwe")
+
+[node name="VSeparator" type="VSeparator" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
+
+[node name="time spinner" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer/VBoxContainer/GridContainer/time spinner"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_clnwe")
+
+[node name="spinner" parent="Control/MarginContainer/VBoxContainer/GridContainer/time spinner" instance=ExtResource("3_yf7o8")]
+layout_mode = 2
+
+[node name="par labels" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 16
+
+[node name="par labels" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/par labels"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/par labels/par labels"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 alignment = 1
 
-[node name="label_shots" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="label_shots" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/par labels/par labels/HBoxContainer2"]
 layout_mode = 2
 text = "shots taken: "
 label_settings = SubResource("LabelSettings_dijo2")
 horizontal_alignment = 1
 
-[node name="label_shots_amount" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="label_shots_amount" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/par labels/par labels/HBoxContainer2"]
 layout_mode = 2
 text = "0"
-label_settings = SubResource("LabelSettings_7lor8")
+label_settings = SubResource("LabelSettings_dijo2")
 horizontal_alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/par labels/par labels"]
 layout_mode = 2
 alignment = 1
 
-[node name="MarginContainer4" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="label_par" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/par labels/par labels/HBoxContainer"]
 layout_mode = 2
+text = "shot par: "
+label_settings = SubResource("LabelSettings_yf7o8")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer4"]
+[node name="label_par_amount" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/par labels/par labels/HBoxContainer"]
 layout_mode = 2
+text = "n/a"
+label_settings = SubResource("LabelSettings_yf7o8")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer4/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
+
+[node name="par spinner" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="spinner" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer4/HBoxContainer/MarginContainer" instance=ExtResource("3_yf7o8")]
+[node name="Panel" type="Panel" parent="Control/MarginContainer/VBoxContainer/GridContainer/par spinner"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_clnwe")
+
+[node name="spinner" parent="Control/MarginContainer/VBoxContainer/GridContainer/par spinner" instance=ExtResource("3_yf7o8")]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer4/HBoxContainer"]
+[node name="jug labels" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 16
+
+[node name="jug labels" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/jug labels"]
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
+
+[node name="jug spinner" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="spinner" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer4/HBoxContainer/MarginContainer2" instance=ExtResource("3_yf7o8")]
+[node name="Panel" type="Panel" parent="Control/MarginContainer/VBoxContainer/GridContainer/jug spinner"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_clnwe")
+
+[node name="spinner" parent="Control/MarginContainer/VBoxContainer/GridContainer/jug spinner" instance=ExtResource("3_yf7o8")]
 layout_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer4/HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 24
+theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
+
+[node name="buttons" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/buttons"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer"]
+layout_mode = 2
 theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="spinner" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer4/HBoxContainer/MarginContainer3" instance=ExtResource("3_yf7o8")]
+[node name="button_main_menu" type="Button" parent="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "main menu
+"
+
+[node name="VSeparator" type="VSeparator" parent="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="button_restart" type="Button" parent="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "restart
+"
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "quick restart: r"
+label_settings = SubResource("LabelSettings_cyhki")
+horizontal_alignment = 1
+
+[node name="button_next_level" type="Button" parent="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "next"
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer/button_main_menu" to="." method="_on_button_main_menu_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/button_restart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/button_next_level" to="." method="_on_button_next_level_pressed"]

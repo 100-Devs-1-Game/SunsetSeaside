@@ -28,6 +28,8 @@ func _process(delta):
 	if msecs > 0.0 || secs > 1.0 || min > 1.0: $label_msec.visible = true; $label_msec.text = ".%03d" % msecs
 	else: $label_msec.text = " " # stay visible for the sake of labels above not moving 
 
-	if display_time == time: set_process(false)
-
+	if snapped(display_time, 0.00001) >= snapped(time, 0.00001): 
+		set_process(false)
+		time_ticking_finished.emit()
+ 
 	# print(str(min) + ":", str(secs) + ".", "%02d" % msecs) 
