@@ -1,6 +1,7 @@
 extends SubViewportContainer
 
 var rotation_speed = 0.6
+var rotation_start_offset = -100.0 # degrees
 
 var shake_amount = 0.0
 var shake_fade = 3.0
@@ -11,6 +12,7 @@ var offset_instance_pos_x = -4.0 # amount of offset based on instance number
 @onready var spinner_positioner: Node3D = $SubViewport/spinner_positioner
 @onready var spinner_mesh_container: Node3D = $SubViewport/spinner_positioner/spinner_mesh_container
 @onready var spinner_rot_offset: Node3D = $SubViewport/spinner_positioner/spinner_mesh_container/spinner_rot_offset
+@onready var debug_mesh: MeshInstance3D = $SubViewport/spinner_positioner/spinner_mesh_container/spinner_rot_offset/debug_mesh
 
 @export var spinner_mesh : PackedScene
 
@@ -24,8 +26,10 @@ func _process(delta):
 		### this is a work around, maybe find the true solution later? (the division)
 
 func _ready():
+	spinner_mesh_container.rotation.y += deg_to_rad(rotation_start_offset)
 	spinner_mesh_container.rotation_speed = rotation_speed
 	if spinner_mesh:
+		debug_mesh.visible = false
 		var new_mesh = spinner_mesh.instantiate()
 		spinner_rot_offset.add_child(new_mesh)
 

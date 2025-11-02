@@ -16,14 +16,18 @@ var cycle_delay = 0.1
 var cycled = true
 var fired_this_frame = false
 
+var player_touching_wall : bool
+
 var ammo = 2
 var max_ammo = 2
 
 func _ready():
 	Events.floor_reload.connect(_floor_reload)
+	Events.wall_reload.connect(_wall_reload)
 	Events.fire_weapon.connect(_blaow)
 	shot_delay_timer.wait_time = cycle_delay
 	Events.ui_ammo_update.emit(ammo)
+
 
 func _process(_delta):
 	fired_this_frame = false
@@ -51,7 +55,16 @@ func _floor_reload():
 	if ammo != max_ammo:
 		ammo = max_ammo
 		Events.ui_ammo_update.emit(ammo)
-		
+
+func _wall_reload():
+	if fired_this_frame: return
+	if ammo == 0:
+		ammo += 1
+		Events.ui_ammo_update.emit(ammo)
+
 func _on_shot_delay_timer_timeout() -> void:
 	cycled = true
 	shot_delay_timer.wait_time = cycle_delay
+
+func _update_wallstate(state : bool): # event sent from player script every frame
+	player_touching_wall = state

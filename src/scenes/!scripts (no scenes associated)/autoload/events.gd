@@ -7,6 +7,7 @@ signal shotgun_bounce(direction, force)
 signal explosion_bounce(direction, force, smoke_trail_amount)
 # gameplay
 signal floor_reload() # reloads the cannon upon touching a surface
+signal wall_reload() # reloads the cannon partially on walls
 signal fire_weapon() # shoots gun!
 # camera effects
 signal add_camera_shake(amount : float) # called by the camera shaker script, connects to player head

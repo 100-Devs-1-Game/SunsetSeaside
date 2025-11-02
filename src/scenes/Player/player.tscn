@@ -1,7 +1,8 @@
-[gd_scene load_steps=71 format=4 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=72 format=4 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" uid="uid://f76fggl2uyob" path="res://scenes/player/scripts/player.gd" id="1_twte0"]
 [ext_resource type="Script" uid="uid://bw1c3unoeydxt" path="res://scenes/player/scripts/head.gd" id="2_c4h5g"]
+[ext_resource type="Script" uid="uid://dbar8iaytv1f4" path="res://scenes/player/edge_detectors.gd" id="2_ioxgp"]
 [ext_resource type="Script" uid="uid://bwyvdfclwdvt8" path="res://scenes/player/scripts/console_ui.gd" id="3_uiqp4"]
 [ext_resource type="AudioStream" uid="uid://dhcbr0641oraf" path="res://assets/sounds/player/footstep_3.wav" id="3_umd5a"]
 [ext_resource type="Script" uid="uid://cw30x4wy5quuw" path="res://scenes/player/scripts/headbob_pivot.gd" id="3_uxo23"]
@@ -606,6 +607,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.399706, 0)
 shape = SubResource("CapsuleShape3D_dks2g")
 disabled = true
 
+[node name="edge_detectors" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+script = ExtResource("2_ioxgp")
+
+[node name="up" type="RayCast3D" parent="edge_detectors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+target_position = Vector3(0, 1.12, 0)
+
+[node name="left" type="RayCast3D" parent="edge_detectors"]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 0, 0, 0)
+target_position = Vector3(0.7, 0, 0)
+
+[node name="right" type="RayCast3D" parent="edge_detectors"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, 0, 0)
+target_position = Vector3(0.7, 0, 0)
+
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.577648, 0)
 script = ExtResource("2_c4h5g")
@@ -996,9 +1013,6 @@ target_position = Vector3(0, 0, -1)
 transform = Transform3D(0.992546, -0.0148521, 0.120961, 0, 0.992546, 0.121869, -0.121869, -0.120961, 0.985147, 0, 0, 0)
 enabled = false
 target_position = Vector3(0, 0, -1)
-
-[node name="EdgeDetectorUp" type="RayCast3D" parent="."]
-target_position = Vector3(0, 1.2, 0)
 
 [node name="AudioStreamPlayer_footstps" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_umd5a")

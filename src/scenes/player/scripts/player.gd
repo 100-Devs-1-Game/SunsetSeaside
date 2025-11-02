@@ -9,7 +9,7 @@ extends CharacterBody3D
 @onready var standing_collision_shape = $standing_collision_shape
 @onready var crouching_collision_shape = $crouching_collision_shape
 
-@onready var edge_detector_up = $EdgeDetectorUp
+@onready var edge_detectors: Node3D = $edge_detectors
 @onready var explosion_trail_spawner: Node3D = $explosion_trail_spawner
 
 #@onready var animation_player = $Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/katana/AnimationPlayer
@@ -46,6 +46,7 @@ var crouching_depth = -0.5
 
 # jump vars / const
 const JUMP_VELOCITY = 7.0
+var wall_jump_force = default_speed * 1.5
 
 # camera variables
 var mouse_sens = 1200 # divides the relation between mouse movement and camera input
@@ -116,7 +117,7 @@ func _physics_process(delta):
 		accel = ACCEL_DEFAULT
 		deccel_backpedal = DECCEL_BACKPEDAL_DEFAULT
 	
-	# handle jump and wall jump.
+	# handle jump and wall jump
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY
@@ -130,7 +131,7 @@ func _physics_process(delta):
 		
 		state = Enums.PlayerState.CROUCHING
 		
-	elif !edge_detector_up.is_colliding():
+	elif !edge_detectors.up.is_colliding():
 		# handle sprinting
 		if Input.is_action_pressed("sprint"):
 			speed = sprint_speed
@@ -180,8 +181,8 @@ func _physics_process(delta):
 			velocity.x = lerp(velocity.x, 0.0, delta * deccel)
 			velocity.z = lerp(velocity.z, 0.0, delta * deccel)
 	
-	if is_on_floor():
-		Events.floor_reload.emit()
+	if is_on_floor(): Events.floor_reload.emit()
+	elif is_on_wall(): Events.wall_reload.emit()
 	
 	move_and_slide()
 	

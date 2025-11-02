@@ -35,6 +35,7 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.02382)
 cull_mask = 1047556
 fov = 30.0
+far = 2.0
 
 [node name="spinner_mesh_container" type="Node3D" parent="SubViewport/spinner_positioner"]
 script = ExtResource("2_gonmo")

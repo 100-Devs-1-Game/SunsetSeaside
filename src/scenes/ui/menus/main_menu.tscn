@@ -61,33 +61,39 @@ stretch_mode = 3
 [node name="vbox_buttons" type="VBoxContainer" parent="menu_root/menu_title/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
+theme_override_constants/separation = 16
 
-[node name="button_levels" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
 layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_bottom = NodePath("../button_settings")
-focus_next = NodePath("../button_settings")
-focus_previous = NodePath("../button_quit")
-theme_override_font_sizes/font_size = 32
-text = "Levels
-"
+theme_override_constants/separation = 32
+alignment = 1
 
-[node name="button_settings" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
+[node name="button_settings" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_top = NodePath("../button_levels")
-focus_neighbor_bottom = NodePath("../button_quit")
-focus_next = NodePath("../button_quit")
+focus_neighbor_bottom = NodePath("../../button_quit")
+focus_next = NodePath("../../button_quit")
 focus_previous = NodePath("../button_levels")
 theme_override_font_sizes/font_size = 32
 text = "Settings"
 
+[node name="button_levels" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../button_settings")
+focus_next = NodePath("../button_settings")
+focus_previous = NodePath("../../button_quit")
+theme_override_font_sizes/font_size = 32
+text = "Levels
+"
+
 [node name="button_quit" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../button_settings")
-focus_next = NodePath("../button_levels")
-focus_previous = NodePath("../button_settings")
+focus_neighbor_top = NodePath("../HBoxContainer/button_settings")
+focus_next = NodePath("../HBoxContainer/button_levels")
+focus_previous = NodePath("../HBoxContainer/button_settings")
 theme_override_font_sizes/font_size = 32
 text = "Quit
 "
@@ -221,7 +227,7 @@ and some black wood
 
 "
 
-[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/button_levels" to="." method="_on_button_levels_pressed"]
-[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/button_settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/button_settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/button_levels" to="." method="_on_button_levels_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_levels" to="menu_root/menu_levels" method="_on_visibility_changed"]
