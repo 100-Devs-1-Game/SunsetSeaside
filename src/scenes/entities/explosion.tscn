@@ -73,14 +73,18 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7my5p")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7my5p"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1vcx"]
-next_pass = SubResource("ShaderMaterial_7my5p")
 transparency = 1
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.980392, 0.580392, 0, 0.717647)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7my5p"]
+transparency = 1
+blend_mode = 4
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.947296, 0.929277, 0, 0.941176)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bkl10"]
 radius = 3.5
@@ -170,6 +174,54 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("explosion_mesh2:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("explosion_mesh2:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("explosion_mesh2:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("explosion_mesh2:surface_material_override/0:albedo_color")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.947296, 0.929277, 0, 0.941176)]
 }
 
 [sub_resource type="Animation" id="Animation_bkl10"]
@@ -274,6 +326,54 @@ tracks/7/keys = {
 "method": &"_remove_area"
 }]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("explosion_mesh2:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.12, 0.36, 1.62, 1.68),
+"transitions": PackedFloat32Array(0.406126, 3.03143, 0.732043, 1),
+"update": 0,
+"values": [Vector3(0.4, 0.4, 0.4), Vector3(1, 1, 1), Vector3(0.4, 0.4, 0.4), Vector3(0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("explosion_mesh2:surface_material_override/0:albedo_color")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.1, 0.26, 1.8),
+"transitions": PackedFloat32Array(1, 2.54912, 1),
+"update": 0,
+"values": [Color(0.947296, 0.929277, 0, 0.941176), Color(0.980392, 0.580392, 0, 0.819608), Color(0.988235, 0, 0.192157, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("explosion_mesh2:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(-0.18, 0, 0.06, 1.68),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("explosion_mesh2:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(0.535887, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.28319, -6.28319, -3.14159)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dndvl"]
 _data = {
@@ -292,6 +392,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dndvl")
 [node name="explosion_mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_je6jj")
 surface_material_override/0 = SubResource("StandardMaterial3D_j1vcx")
+
+[node name="explosion_mesh2" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_je6jj")
+surface_material_override/0 = SubResource("StandardMaterial3D_7my5p")
 
 [node name="explosion_area" type="Area3D" parent="."]
 collision_layer = 3
