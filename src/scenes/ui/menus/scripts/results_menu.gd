@@ -2,6 +2,7 @@ extends Menu
 # handles ending menu updates and animations
 @export_subgroup("labels")
 @export var timer_label : HBoxContainer
+@export var label_jug_state : Label
 
 @export_subgroup("labels amount")
 @export var label_time_limit_amount : HBoxContainer
@@ -11,7 +12,11 @@ extends Menu
 @export_subgroup("labels best")
 @export var label_time_best : Label
 @export var label_par_best : Label
-@export var label_jug_best : Label
+#@export var label_jug_best : Label
+
+@export_subgroup("labels_record")
+@export var label_time_record : RichTextLabel
+@export var label_par_record : RichTextLabel
 
 @export_subgroup("buttons")
 @export var button_main_menu : Button
@@ -72,12 +77,15 @@ func _update_end_results(time, time_limit, shots_taken, par_limit, jug_grabbed):
 	
 	label_par_amount.text = str(par_limit)
 	
+	# update labels
 	if time < time_limit:
 		time_limit_made = true
 	if shots_taken < par_limit:
 		par_limit_made = true
 	
-	
+	if jug_grabbed == true:
+		label_jug_state.text = "collected!"
+		
 func _update_level_history(time_best, shots_best, jug_history, hardcore_history): 
 	previous_time_best = time_best
 	previous_shots_best = shots_best
@@ -94,9 +102,11 @@ func _animate_endscreen():
 	# debug spinner animation
 	spinner_time.mesh_visibility(true)
 	spinner_time.shake_amount += 0.14
+	label_time_record.visible = true
 	await get_tree().create_timer(0.3).timeout
 	spinner_par.mesh_visibility(true)
 	spinner_par.shake_amount += 0.14
+	label_par_record.visible = true
 	await get_tree().create_timer(0.3).timeout
 	spinner_jug.mesh_visibility(true)
 	spinner_jug.shake_amount += 0.14
@@ -105,6 +115,8 @@ func restart_level():
 	Events.player_death.emit(Enums.PlayerDeathType.INSTANT)
 	Events.close_menu.emit()
 
+
+# signal functions
 func _on_button_main_menu_pressed() -> void:
 	pass # Replace with function body.
 

@@ -213,11 +213,9 @@ shadow_mesh = SubResource("ArrayMesh_4v6xx")
 resource_name = "CannonFPS_mat"
 cull_mode = 2
 albedo_texture = ExtResource("15_lgqa7")
-metallic = 1.0
 metallic_specular = 0.0
 metallic_texture = ExtResource("16_8ydkj")
 metallic_texture_channel = 2
-roughness = 0.34
 roughness_texture_channel = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6fudp"]
@@ -370,11 +368,9 @@ shadow_mesh = SubResource("ArrayMesh_vwnxt")
 resource_name = "CannonFPS_mat"
 cull_mode = 2
 albedo_texture = ExtResource("15_lgqa7")
-metallic = 1.0
-metallic_specular = 0.25
+metallic_specular = 0.0
 metallic_texture = ExtResource("16_8ydkj")
 metallic_texture_channel = 2
-roughness = 0.31
 roughness_texture = ExtResource("16_8ydkj")
 roughness_texture_channel = 1
 

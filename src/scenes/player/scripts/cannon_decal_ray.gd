@@ -11,6 +11,7 @@ func create_decal():
 	var collision_point = get_collision_point()
 	var collision_normal = get_collision_normal() # declared for optimization
 	if is_colliding(): 
+		if get_collider().has_meta(&"Damageable"): enabled = false; return
 		var new_decal = explosion_decal.instantiate()
 		#get_collider.add_child(new_decal)
 		Gamestate.player.add_sibling(new_decal) # change this!

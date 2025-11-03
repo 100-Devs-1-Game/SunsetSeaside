@@ -1,32 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://dt5hkv16vsn2b"]
+[gd_scene load_steps=8 format=3 uid="uid://dt5hkv16vsn2b"]
 
 [ext_resource type="Shader" uid="uid://bd4b4g7f3821o" path="res://assets/shaders/water.gdshader" id="1_c34g3"]
 [ext_resource type="Texture2D" uid="uid://bpwamn2m0aowr" path="res://assets/textures/summer_background_47_a.jpg" id="2_orl5m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_orl5m"]
-render_priority = 0
-shader = ExtResource("1_c34g3")
-shader_parameter/water_texture = ExtResource("2_orl5m")
-shader_parameter/water_texture_raise = 0.8
-shader_parameter/water_uv = Vector2(10, 10)
-shader_parameter/water_albedo = Color(1, 1, 1, 1)
-shader_parameter/amount = 0.7
-shader_parameter/height_offset = 0.0
-shader_parameter/transperancy = true
-shader_parameter/beer_factor = 0.2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_orl5m"]
+noise_type = 0
+fractal_weighted_strength = 0.3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_orl5m"]
+width = 2048
+height = 2048
+noise = SubResource("FastNoiseLite_orl5m")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b7vw5"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_orl5m")
 shader = ExtResource("1_c34g3")
 shader_parameter/water_texture = ExtResource("2_orl5m")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_orl5m")
 shader_parameter/water_texture_raise = 0.0
 shader_parameter/water_uv = Vector2(10, 10)
 shader_parameter/water_albedo = Color(1, 1, 1, 1)
+shader_parameter/water_speed_multi = 0.022
 shader_parameter/amount = 0.7
-shader_parameter/height_offset = -0.2
+shader_parameter/height_offset = -0.16
 shader_parameter/transperancy = false
-shader_parameter/beer_factor = 0.2
+shader_parameter/beer_factor = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8pi60"]
 lightmap_size_hint = Vector2i(502, 502)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://chltm40kncitd"]
+[gd_scene load_steps=18 format=3 uid="uid://chltm40kncitd"]
 
 [ext_resource type="Script" uid="uid://cokdnajdm2aq" path="res://scenes/ui/menus/scripts/results_menu.gd" id="1_hoa8c"]
 [ext_resource type="Texture2D" uid="uid://by2sfu06w3w3g" path="res://assets/textures/rustic-wood-texture-free-49.png" id="2_clnwe"]
@@ -61,17 +61,26 @@ font = ExtResource("3_cyhki")
 font_size = 42
 font_color = Color(1, 0.521803, 0.328809, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_8fcwq"]
+font = ExtResource("3_cyhki")
+font_size = 42
+font_color = Color(0.830508, 0.64811, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_cyhki"]
 font = ExtResource("3_cyhki")
 font_size = 15
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("timer_label", "label_time_limit_amount", "label_shots_amount", "label_par_amount", "label_time_best", "button_main_menu", "button_resart", "button_next_level", "spinner_time", "spinner_par", "spinner_jug")]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("timer_label", "label_jug_state", "label_time_limit_amount", "label_shots_amount", "label_par_amount", "label_time_best", "label_par_best", "label_time_record", "label_par_record", "button_main_menu", "button_resart", "button_next_level", "spinner_time", "spinner_par", "spinner_jug")]
 script = ExtResource("1_hoa8c")
 timer_label = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer/timer_label")
+label_jug_state = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/jug labels/jug labels/label_jug_state")
 label_time_limit_amount = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer2/label_time_limit_amount")
 label_shots_amount = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/par labels/par labels/HBoxContainer2/label_shots_amount")
 label_par_amount = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/par labels/par labels/HBoxContainer/label_par_amount")
-label_time_best = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/time best/time best/VBoxContainer2/label_time_best")
+label_time_best = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/time best/time best/VBoxContainer/HBoxContainer/label_time_best")
+label_par_best = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/par_best/best/VBoxContainer/HBoxContainer/label_par_best")
+label_time_record = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/time best/time best/VBoxContainer/label_time_record")
+label_par_record = NodePath("Control/MarginContainer/VBoxContainer/GridContainer/par_best/best/VBoxContainer/label_par_record")
 button_main_menu = NodePath("Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer/button_main_menu")
 button_resart = NodePath("Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/button_restart")
 button_next_level = NodePath("Control/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/button_next_level")
@@ -225,19 +234,36 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/time best/time best"]
 layout_mode = 2
+theme_override_constants/separation = 0
 alignment = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/time best/time best/VBoxContainer"]
+[node name="label_time_record" type="RichTextLabel" parent="Control/MarginContainer/VBoxContainer/GridContainer/time best/time best/VBoxContainer"]
+visible = false
 layout_mode = 2
-text = "best:"
+theme_override_colors/default_color = Color(0.295143, 0.866224, 0, 1)
+theme_override_constants/line_separation = -8
+theme_override_fonts/normal_font = ExtResource("3_cyhki")
+theme_override_fonts/bold_font = ExtResource("3_cyhki")
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "[wave freq=3 amp=20][rainbow freq=0.15]new record!"
+fit_content = true
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/time best/time best/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/time best/time best/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "best: "
 label_settings = SubResource("LabelSettings_5yfc0")
 vertical_alignment = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/time best/time best"]
-layout_mode = 2
-alignment = 2
-
-[node name="label_time_best" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/time best/time best/VBoxContainer2"]
+[node name="label_time_best" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/time best/time best/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "n/a"
 label_settings = SubResource("LabelSettings_5yfc0")
@@ -302,8 +328,49 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_clnwe")
 [node name="spinner" parent="Control/MarginContainer/VBoxContainer/GridContainer/par spinner" instance=ExtResource("3_yf7o8")]
 layout_mode = 2
 
-[node name="par best" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
+[node name="par_best" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="best" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/par_best"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/par_best/best"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="label_par_record" type="RichTextLabel" parent="Control/MarginContainer/VBoxContainer/GridContainer/par_best/best/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/default_color = Color(0.295143, 0.866224, 0, 1)
+theme_override_constants/line_separation = -8
+theme_override_fonts/normal_font = ExtResource("3_cyhki")
+theme_override_fonts/bold_font = ExtResource("3_cyhki")
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "[wave freq=3 amp=20][rainbow freq=0.15]new record!"
+fit_content = true
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/par_best/best/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/par_best/best/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "best: "
+label_settings = SubResource("LabelSettings_5yfc0")
+vertical_alignment = 2
+
+[node name="label_par_best" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/par_best/best/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "n/a"
+label_settings = SubResource("LabelSettings_5yfc0")
+vertical_alignment = 2
 
 [node name="jug labels" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -311,6 +378,18 @@ theme_override_constants/margin_right = 16
 
 [node name="jug labels" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer/jug labels"]
 layout_mode = 2
+
+[node name="label_jug" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/jug labels/jug labels"]
+layout_mode = 2
+text = "Jug o' Rum:"
+label_settings = SubResource("LabelSettings_dijo2")
+horizontal_alignment = 1
+
+[node name="label_jug_state" type="Label" parent="Control/MarginContainer/VBoxContainer/GridContainer/jug labels/jug labels"]
+layout_mode = 2
+text = "left behind!"
+label_settings = SubResource("LabelSettings_8fcwq")
+horizontal_alignment = 1
 
 [node name="VSeparator3" type="VSeparator" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -330,8 +409,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_clnwe")
 [node name="spinner" parent="Control/MarginContainer/VBoxContainer/GridContainer/jug spinner" instance=ExtResource("3_yf7o8")]
 layout_mode = 2
 
-[node name="jug best" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
+[node name="par_best2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/margin_bottom = 32
 
 [node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
