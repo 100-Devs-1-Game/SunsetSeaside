@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn6yh6mesg0g8"]
+
+[ext_resource type="PackedScene" uid="uid://bo3c7qd5cq6nl" path="res://assets/models/dobert/boat.glb" id="1_uyfcq"]
+[ext_resource type="Script" uid="uid://ci43p3juxkchs" path="res://scenes/entities/pirate_ship.gd" id="2_ejupd"]
+
+[node name="boat" instance=ExtResource("1_uyfcq")]
+script = ExtResource("2_ejupd")
+
+[node name="Cylinder_001" parent="." index="0"]
+transform = Transform3D(-6.24017e-08, 0, 1.42758, 0, 1.42646, 0, -1.42758, 0, -6.24017e-08, 0, 4.81461, 0)

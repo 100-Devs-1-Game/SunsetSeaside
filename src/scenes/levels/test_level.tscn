@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://bxyf53ifrvvwv"]
+[gd_scene load_steps=79 format=4 uid="uid://bxyf53ifrvvwv"]
 
 [ext_resource type="Script" uid="uid://c35qacpu8na2l" path="res://scenes/levels/scripts/level.gd" id="1_eaa0b"]
 [ext_resource type="Texture2D" uid="uid://bc1l3yxle0b8x" path="res://assets/devblocks/textures/light/texture_09.png" id="1_jmx14"]
@@ -13,19 +13,35 @@
 [ext_resource type="Texture2D" uid="uid://c86hng33y8bhu" path="res://assets/models/cannon_sunset_assets_DefaultMaterial_Metallic-sunset_assets_DefaultMaterial_Roughness.png" id="10_qgrpf"]
 [ext_resource type="PackedScene" uid="uid://jv2pnk27hjjh" path="res://scenes/entities/lantern.tscn" id="11_c7nhy"]
 [ext_resource type="PackedScene" uid="uid://dhmr3qc2ppaxd" path="res://scenes/entities/dock_4m.tscn" id="13_a5rnb"]
-[ext_resource type="PackedScene" uid="uid://dt5hkv16vsn2b" path="res://scenes/entities/water.tscn" id="14_fqldq"]
+[ext_resource type="PackedScene" uid="uid://cbsslsn7fmhlj" path="res://scenes/entities/water_large.tscn" id="14_fqldq"]
+[ext_resource type="PackedScene" uid="uid://6s8ek40crmut" path="res://assets/models/dobert/medium_rock_v1.glb" id="15_v6k17"]
+[ext_resource type="PackedScene" uid="uid://46pk5h5rgi6y" path="res://assets/models/dobert/small_rock_v1.glb" id="16_upsmr"]
+[ext_resource type="PackedScene" uid="uid://cvwx055qfrk61" path="res://assets/models/dobert/barrel.glb" id="18_c7nhy"]
+[ext_resource type="PackedScene" uid="uid://cn6yh6mesg0g8" path="res://scenes/entities/pirate_ship.tscn" id="18_v6k17"]
+[ext_resource type="PackedScene" uid="uid://cjq8a2obh82kg" path="res://assets/models/dobert/box_big_v2.glb" id="19_c7nhy"]
+[ext_resource type="PackedScene" uid="uid://bj7uvp5qp5lt" path="res://assets/models/dobert/box_big_v1.glb" id="20_lxl1u"]
+[ext_resource type="PackedScene" uid="uid://cohn1rfolkoi7" path="res://assets/models/dobert/cannon.glb" id="21_cibht"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c7nhy"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lxl1u"]
+invert = true
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_c7nhy")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2vj2h"]
-sky_top_color = Color(0.158673, 9.11115e-05, 0.209403, 1)
+sky_top_color = Color(0, 0, 0, 1)
 sky_horizon_color = Color(0.982617, 0.462894, 0, 1)
 sky_curve = 0.0512267
 sky_energy_multiplier = 2.92
-sky_cover_modulate = Color(0.983006, 0.338864, 0, 1)
+sky_cover = SubResource("NoiseTexture2D_lxl1u")
+sky_cover_modulate = Color(0.824183, 0.365859, 1, 0.0117647)
 ground_bottom_color = Color(3.36915e-07, 0.20289, 0.218528, 1)
-ground_horizon_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.0480435, 1.84942e-05, 0.215115, 1)
 ground_curve = 0.0336358
-sun_angle_max = 14.05
-sun_curve = 0.0494816
+sun_angle_max = 3.25
+sun_curve = 3.63773
 
 [sub_resource type="Sky" id="Sky_y0acb"]
 sky_material = SubResource("ProceduralSkyMaterial_2vj2h")
@@ -1018,7 +1034,47 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_otkhw")
 
 [node name="water" parent="." instance=ExtResource("14_fqldq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.87139, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
+
+[node name="medium_rock_v1" parent="." instance=ExtResource("15_v6k17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8453, -4.02324, 21.7095)
+
+[node name="small_rock_v1" parent="." instance=ExtResource("16_upsmr")]
+transform = Transform3D(0.798814, 0, 0.601578, 0, 1, 0, -0.601578, 0, 0.798814, 6.44732, -3.142, 20.653)
+
+[node name="barrel4" parent="." instance=ExtResource("18_c7nhy")]
+transform = Transform3D(0.48083, 0, -0.252409, 0, 0.543055, 0, 0.252409, 0, 0.48083, 7.84012, 0.530529, 24.957)
+
+[node name="boat" parent="." instance=ExtResource("18_v6k17")]
+transform = Transform3D(0.818671, 0, -0.574262, 0, 1, 0, 0.574262, 0, 0.818671, 42.0477, -1.29695, 28.2756)
+wave_speed_z = 0.35
+wave_speed_x = 0.2
+tilt_amount_z = 4.0
+tilt_amount_x = 3.0
+
+[node name="lantern4" parent="boat" instance=ExtResource("11_c7nhy")]
+transform = Transform3D(0.94532, 0, 0.326146, 0, 1, 0, -0.326146, 0, 0.94532, -8.3255, 6.84352, 3.24685)
+
+[node name="lantern7" parent="boat" instance=ExtResource("11_c7nhy")]
+transform = Transform3D(0.0399398, 0, -0.999202, 0, 1, 0, 0.999202, 0, 0.0399398, -8.10975, 9.18067, -5.95238)
+
+[node name="lantern6" parent="boat" instance=ExtResource("11_c7nhy")]
+transform = Transform3D(0.975661, -0.0259527, -0.217743, 0, 0.992972, -0.118352, 0.219284, 0.115471, 0.968804, -0.491727, 22.7598, 1.39308)
+
+[node name="lantern5" parent="boat" instance=ExtResource("11_c7nhy")]
+transform = Transform3D(0.718927, 0, -0.695085, 0, 1, 0, 0.695085, 0, 0.718927, -7.35189, 4.58834, 11.5994)
+
+[node name="barrel" parent="boat" instance=ExtResource("18_c7nhy")]
+transform = Transform3D(1.22493, 0, -0.698998, 0, 1.41034, 0, 0.698998, 0, 1.22493, -4.17157, 3.38226, 13.1261)
+
+[node name="box_big_v2" parent="boat" instance=ExtResource("19_c7nhy")]
+transform = Transform3D(0.861749, 0, -1.19209e-07, 0, 0.861749, 0, 1.19209e-07, 0, 0.861749, 6.19855, 3.02133, 10.1392)
+
+[node name="box_big_v1" parent="boat" instance=ExtResource("20_lxl1u")]
+transform = Transform3D(0.896896, 0, 0.442242, 0, 1, 0, -0.442242, 0, 0.896896, 0.621197, 3.73343, -0.0924644)
+
+[node name="cannon" parent="boat" instance=ExtResource("21_cibht")]
+transform = Transform3D(1, 0, -1.49012e-07, 0, 1, 0, 1.49012e-07, 0, 1, -7.55705, 4.3527, 7.05424)
 
 [editable path="area_ending"]
 [editable path="area_ending2"]

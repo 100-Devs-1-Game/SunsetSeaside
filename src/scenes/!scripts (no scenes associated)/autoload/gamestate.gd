@@ -84,11 +84,21 @@ func _count_shots():
 func _level_end_reached():
 	if ending_was_reached == true: return
 	
+	# finish calcs
 	stopwatch.stop()
 	ending_was_reached = true
+	
+	# get level history
+	
+	# send values to results screen
 	Events.open_menu.emit(Enums.Menus.RESULTS)
 	Events.ui_send_level_history.emit(null, null, null, null)
 	Events.ui_send_end_results.emit(stopwatch.time, current_time_limit, shots_taken, current_par_limit, null) # replace nulls once these are implemented
 										#(time, time_limit, time_best, shots_taken, par_limit, shots_best, jug_grabbed, jug_history)
-
-	# open end screen and compare values here
+	# save new progress and completion
+	var level_history = Keeper.get_level_history(current_level_grouping, current_level_id)
+	
+	print(level_history["time_best"])
+	print(level_history["par_best"])
+	print(level_history["jug_history"])
+	print(level_history["hardcore_history"])

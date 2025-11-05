@@ -1,30 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://dt5hkv16vsn2b"]
+[gd_scene load_steps=6 format=3 uid="uid://cbsslsn7fmhlj"]
 
-[ext_resource type="Shader" uid="uid://bd4b4g7f3821o" path="res://assets/shaders/water.gdshader" id="1_c34g3"]
-[ext_resource type="Texture2D" uid="uid://bpwamn2m0aowr" path="res://assets/textures/summer_background_47_a.jpg" id="2_orl5m"]
+[ext_resource type="Shader" uid="uid://bd4b4g7f3821o" path="res://assets/shaders/water.gdshader" id="1_1k72u"]
+[ext_resource type="Texture2D" uid="uid://bpwamn2m0aowr" path="res://assets/textures/summer_background_47_a.jpg" id="2_8tjeb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_orl5m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b7vw5"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_orl5m")
-shader = ExtResource("1_c34g3")
-shader_parameter/water_texture = ExtResource("2_orl5m")
-shader_parameter/water_uv = Vector2(10, 10)
+shader = ExtResource("1_1k72u")
+shader_parameter/water_texture = ExtResource("2_8tjeb")
+shader_parameter/water_uv = Vector2(50, 50)
 shader_parameter/water_texture_raise = 0.0
 shader_parameter/wave_amount = 0.6
 shader_parameter/water_speed_multi = 0.022
-shader_parameter/height_offset = -0.349
-shader_parameter/height_color_multi = 0.664
+shader_parameter/height_offset = -0.312
+shader_parameter/height_color_multi = 0.7
 shader_parameter/transperancy = false
 shader_parameter/beer_factor = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8pi60"]
 lightmap_size_hint = Vector2i(502, 502)
 material = SubResource("ShaderMaterial_b7vw5")
-size = Vector2(100, 100)
-subdivide_width = 50
-subdivide_depth = 50
+size = Vector2(1000, 1000)
+subdivide_width = 500
+subdivide_depth = 500
 
 [node name="water" type="Node3D"]
 
