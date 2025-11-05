@@ -89,16 +89,34 @@ func _level_end_reached():
 	ending_was_reached = true
 	
 	# get level history
+	Keeper.load_records()
+	var level_history = Keeper.get_level_history(current_level_grouping, current_level_id)
 	
 	# send values to results screen
 	Events.open_menu.emit(Enums.Menus.RESULTS)
-	Events.ui_send_level_history.emit(null, null, null, null)
+	Events.ui_send_level_history.emit(level_history["time_best"], level_history["par_best"], level_history["jug_history"], level_history["hardcore_history"])
 	Events.ui_send_end_results.emit(stopwatch.time, current_time_limit, shots_taken, current_par_limit, null) # replace nulls once these are implemented
 										#(time, time_limit, time_best, shots_taken, par_limit, shots_best, jug_grabbed, jug_history)
 	# save new progress and completion
-	var level_history = Keeper.get_level_history(current_level_grouping, current_level_id)
 	
-	print(level_history["time_best"])
-	print(level_history["par_best"])
-	print(level_history["jug_history"])
-	print(level_history["hardcore_history"])
+	# compare and write to records
+	var new_time = null; var new_par = null; var new_jug = null; var new_hardcore = null;
+	if level_history["time_best"] == null: 
+		new_time = snapped(stopwatch.time, 0.00001)
+	elif level_history["time_best"] > snapped(stopwatch.time, 0.00001): 
+		new_time = snapped(stopwatch.time, 0.00001)
+		
+	if level_history["par_best"] == null: 
+		new_par  = shots_taken
+	elif level_history["par_best"] > shots_taken: 
+		new_par = shots_taken
+		
+	if level_history["jug_history"] == false && jug_grabbed == true:
+		new_jug = true
+		
+	if level_history["hardcore_history"] == false && hardcore_enabled == true:
+		new_hardcore = true
+		
+	# if vals are null then nothing is written to the respective slot
+	Keeper.write_level_history(current_level_grouping, current_level_id, new_time, new_par, new_jug, new_hardcore)
+	Keeper.save_records()

@@ -39,3 +39,6 @@ func offset_position(spinner_instance : int):
 func mesh_visibility(visibility):
 	if visibility: spinner_rot_offset.visible = true
 	else: spinner_rot_offset.visible = false
+
+func get_mesh_visibility():
+	return spinner_rot_offset.visible

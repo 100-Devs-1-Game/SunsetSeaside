@@ -14,7 +14,6 @@ var access : FileAccess
 var enc_key = "theres only 4 years left"
 
 func _ready():
-	erase_progress() ## debug, remove
 	if !FileAccess.file_exists(savepath + levels_file):
 		establish_level_save()
 	if !FileAccess.file_exists(savepath + settings_file):
@@ -34,7 +33,7 @@ func establish_level_save():
 	fresh_populate_section("levels_medium")
 	fresh_populate_section("levels_hard")
 	
-	save_progress()
+	save_records()
 
 func fresh_populate_section(level_section):
 	var current_section = null
@@ -51,7 +50,6 @@ func fresh_populate_section(level_section):
 			level_data[current_section]["id" + str(i)] = {"time_best" : null, "par_best" : null, "jug_history" : false, "hardcore_history" : false}
 
 func get_level_history(grouping, id) -> Dictionary: 
-	load_progress()
 	var level_grouping
 	match grouping:
 		Enums.LevelGrouping.DEBUG : level_grouping = "debug"
@@ -68,16 +66,35 @@ func get_level_history(grouping, id) -> Dictionary:
 	}
 	return level_info
 
+func write_level_history(grouping, id, time_best, par_best, jug_history, hardcore_history):
+	var level_grouping
+	match grouping:
+		Enums.LevelGrouping.DEBUG : level_grouping = "debug"
+		Enums.LevelGrouping.DAYLIGHT : level_grouping = "daylight"
+		Enums.LevelGrouping.SUNSET : level_grouping = "sunset"
+		Enums.LevelGrouping.MIDNIGHT : level_grouping = "midnight"
+		Enums.LevelGrouping.SUNRISE : level_grouping = "sunrise"
+	
+	if time_best != null: level_data[level_grouping]["id" + str(id)]["time_best"] = time_best
+	if par_best != null: level_data[level_grouping]["id" + str(id)]["par_best"] = par_best
+	if jug_history != null: level_data[level_grouping]["id" + str(id)]["jug_history"] = jug_history
+	if hardcore_history != null: level_data[level_grouping]["id" + str(id)]["hardcore_history"] = hardcore_history
+		
+
+
 func establish_settings_save():
 	settings_data = {}
+	save_settings()
 
-func save_progress():
+
+#### file access functions
+func save_records():
 	#access = FileAccess.open_encrypted_with_pass(savepath + levels_file, FileAccess.WRITE, enc_key)
 	access = FileAccess.open(savepath + levels_file, FileAccess.WRITE)
 	access.store_string(JSON.stringify(level_data))
 	access.close()
 
-func load_progress():
+func load_records():
 	if FileAccess.file_exists(savepath + levels_file):
 		#access = FileAccess.open_encrypted_with_pass(savepath + levels_file, FileAccess.READ, enc_key)
 		access = FileAccess.open(savepath + levels_file, FileAccess.READ)
@@ -110,7 +127,8 @@ func load_settings():
 		settings_data = JSON.parse_string(access.get_as_text())
 		access.close()
 		
-
 func erase_progress():
 	DirAccess.remove_absolute(savepath + levels_file)
 	DirAccess.remove_absolute(savepath + completion_file)
+	establish_level_save()
+	establish_settings_save()

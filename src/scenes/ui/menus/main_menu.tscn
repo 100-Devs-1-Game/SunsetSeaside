@@ -194,6 +194,10 @@ label_settings = SubResource("LabelSettings_ct055")
 layout_mode = 2
 size_flags_horizontal = 4
 
+[node name="button_erase_data" type="Button" parent="menu_root/menu_levels/level_slots_root"]
+layout_mode = 2
+text = "debug_erase_lvl_data"
+
 [node name="menu_settings" type="MarginContainer" parent="menu_root"]
 visible = false
 layout_mode = 1
@@ -231,3 +235,4 @@ and some black wood
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/button_levels" to="." method="_on_button_levels_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_levels" to="menu_root/menu_levels" method="_on_visibility_changed"]
+[connection signal="pressed" from="menu_root/menu_levels/level_slots_root/button_erase_data" to="." method="_on_button_erase_data_pressed"]

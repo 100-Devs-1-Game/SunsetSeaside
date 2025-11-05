@@ -10,7 +10,8 @@ extends Menu
 @export var label_par_amount : Label
 
 @export_subgroup("labels best")
-@export var label_time_best : Label
+@export var label_time_best : HBoxContainer
+@export var label_time_na : Label
 @export var label_par_best : Label
 #@export var label_jug_best : Label
 
@@ -37,10 +38,16 @@ extends Menu
 # calc vars
 var spinner_count : int
 
-var previous_time_best
-var previous_shots_best
-var previous_jug_history
-var previous_hardcore_history
+# storing vars for animating
+var current_time
+var current_shots
+var current_jug
+var current_hardcore
+
+var previous_time
+var previous_shots
+var previous_jug
+var previous_hardcore
 
 var time_limit_made = false
 var par_limit_made = false
@@ -65,8 +72,23 @@ func _process(_delta):
 	if Input.is_action_just_pressed("restart"):
 		restart_level()
 
+func _update_level_history(time_best, shots_best, jug_history, hardcore_history): 
+	previous_time = time_best
+	previous_shots = shots_best
+	previous_jug = jug_history
+	previous_hardcore = hardcore_history
+	
+	if previous_time != null:
+		update_time_best_label(previous_time)
+		
+
 func _update_end_results(time, time_limit, shots_taken, par_limit, jug_grabbed):
 	# best and jug related vars are currently null
+	
+	current_time = time
+	current_shots = shots_taken
+	current_jug = jug_grabbed
+	# current_hardcore = hardcore
 	
 	# label setups
 	timer_label.time = time
@@ -80,36 +102,59 @@ func _update_end_results(time, time_limit, shots_taken, par_limit, jug_grabbed):
 	# update labels
 	if time < time_limit:
 		time_limit_made = true
+	if previous_time == null: pass
+	elif time_limit > previous_time:
+		spinner_time.mesh_visibility(true)
+	
 	if shots_taken < par_limit:
 		par_limit_made = true
 	
 	if jug_grabbed == true:
 		label_jug_state.text = "collected!"
 		
-func _update_level_history(time_best, shots_best, jug_history, hardcore_history): 
-	previous_time_best = time_best
-	previous_shots_best = shots_best
-	previous_jug_history = jug_history
-	previous_hardcore_history = hardcore_history
-	
-	if previous_time_best != null:
-		label_time_best.text = str(previous_time_best)
-
-func update_level_calcs():
-	pass
-
+var animate_time_gap = 0.3
+var spinners_shake_amount = 0.14
 func _animate_endscreen():
 	# debug spinner animation
-	spinner_time.mesh_visibility(true)
-	spinner_time.shake_amount += 0.14
-	label_time_record.visible = true
-	await get_tree().create_timer(0.3).timeout
+	
+	var time_shaken
+	var par_shaken
+	var jug_shaken
+	
+	# timer spinner
+	if time_limit_made && spinner_time.get_mesh_visibility() == false:
+		spinner_time.mesh_visibility(true)
+		spinner_time.shake_amount += 0.14
+	
+	if previous_time == null:
+		label_time_record.visible = true
+		update_time_best_label(current_time)
+		if !time_shaken: spinner_time.shake_amount += spinners_shake_amount
+	elif previous_time > current_time:
+		label_time_record.visible = true
+		update_time_best_label(current_time)
+		if !time_shaken: spinner_time.shake_amount += spinners_shake_amount
+	
+	await get_tree().create_timer(animate_time_gap).timeout
+	
+	# par spinner
 	spinner_par.mesh_visibility(true)
 	spinner_par.shake_amount += 0.14
 	label_par_record.visible = true
-	await get_tree().create_timer(0.3).timeout
+	
+	await get_tree().create_timer(animate_time_gap).timeout
+	
+	# jug spinner
 	spinner_jug.mesh_visibility(true)
 	spinner_jug.shake_amount += 0.14
+
+func update_time_best_label(value):
+		label_time_best.visible = true
+		label_time_best.set_process(true)
+		label_time_best.time = value
+		label_time_best.display_time = value
+		
+		label_time_na.visible = false
 
 func restart_level():
 	Events.player_death.emit(Enums.PlayerDeathType.INSTANT)
