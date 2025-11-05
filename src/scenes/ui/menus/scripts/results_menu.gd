@@ -50,7 +50,7 @@ var previous_jug
 var previous_hardcore
 
 var time_limit_made = false
-var par_limit_made = false
+var par_made = false
 
 func on_menu_close():
 	Events.close_menu.emit()
@@ -74,13 +74,16 @@ func _process(_delta):
 
 func _update_level_history(time_best, shots_best, jug_history, hardcore_history): 
 	previous_time = time_best
-	previous_shots = shots_best
+	if shots_best == null: previous_shots = null
+	else: previous_shots = snapped(shots_best, 1) # was putting previous shots as a float???
 	previous_jug = jug_history
 	previous_hardcore = hardcore_history
 	
 	if previous_time != null:
 		update_time_best_label(previous_time)
 		
+	if previous_shots != null:
+		label_par_best.text = str(previous_shots)
 
 func _update_end_results(time, time_limit, shots_taken, par_limit, jug_grabbed):
 	# best and jug related vars are currently null
@@ -106,12 +109,17 @@ func _update_end_results(time, time_limit, shots_taken, par_limit, jug_grabbed):
 	elif time_limit > previous_time:
 		spinner_time.mesh_visibility(true)
 	
-	if shots_taken < par_limit:
-		par_limit_made = true
+	if shots_taken <= par_limit:
+		par_made = true
+	if previous_shots == null: pass
+	elif par_limit >= previous_shots:
+		spinner_par.mesh_visibility(true)
 	
 	if jug_grabbed == true:
 		label_jug_state.text = "collected!"
-		
+	if previous_jug == true:
+		spinner_jug.mesh_visibility(true)
+	
 var animate_time_gap = 0.3
 var spinners_shake_amount = 0.14
 func _animate_endscreen():
@@ -138,15 +146,29 @@ func _animate_endscreen():
 	await get_tree().create_timer(animate_time_gap).timeout
 	
 	# par spinner
-	spinner_par.mesh_visibility(true)
-	spinner_par.shake_amount += 0.14
-	label_par_record.visible = true
+	if par_made && spinner_par.get_mesh_visibility() == false:
+		spinner_par.mesh_visibility(true)
+		spinner_par.shake_amount += 0.14
+	
+	if previous_shots == null:
+		label_par_record.visible = true
+		label_par_best.text = str(current_shots)
+		if !par_shaken: spinner_par.shake_amount += spinners_shake_amount
+	elif previous_shots > current_shots:
+		label_par_record.visible = true
+		label_par_best.text = str(current_shots)
+		if !par_shaken: spinner_par.shake_amount += spinners_shake_amount
 	
 	await get_tree().create_timer(animate_time_gap).timeout
 	
 	# jug spinner
-	spinner_jug.mesh_visibility(true)
-	spinner_jug.shake_amount += 0.14
+	if current_jug == true && spinner_jug.get_mesh_visibility() == false:
+		spinner_jug.mesh_visibility(true)
+	
+	if current_jug:
+		spinner_jug.shake_amount += spinners_shake_amount
+		
+	
 
 func update_time_best_label(value):
 		label_time_best.visible = true
