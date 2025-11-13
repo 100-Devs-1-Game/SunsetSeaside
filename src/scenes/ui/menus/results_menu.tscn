@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://chltm40kncitd"]
+[gd_scene load_steps=25 format=3 uid="uid://chltm40kncitd"]
 
 [ext_resource type="Script" uid="uid://cokdnajdm2aq" path="res://scenes/ui/menus/scripts/results_menu.gd" id="1_hoa8c"]
 [ext_resource type="Shader" uid="uid://dgeo6lmgw5tnf" path="res://assets/shaders/menu_blur.gdshader" id="2_8fcwq"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dj58i00bv8dww" path="res://scenes/ui/menus/spinner_meshes/stopwatch_mesh.tscn" id="6_5yfc0"]
 [ext_resource type="PackedScene" uid="uid://bngk38h3a4rld" path="res://scenes/ui/menus/spinner_meshes/cannonball_mesh.tscn" id="8_jcwtr"]
 [ext_resource type="PackedScene" uid="uid://ckr8tt1vcqklu" path="res://scenes/ui/menus/spinner_meshes/jug_mesh.tscn" id="9_qpnnc"]
+[ext_resource type="Theme" uid="uid://xefwemd0japy" path="res://assets/themes/wooden_buttons.tres" id="10_u5u64"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jcwtr"]
 shader = ExtResource("2_8fcwq")
@@ -22,7 +23,7 @@ shadow_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_fmdw5"]
 font = ExtResource("3_cyhki")
-font_size = 64
+font_size = 72
 
 [sub_resource type="LabelSettings" id="LabelSettings_xfi4s"]
 font = ExtResource("3_cyhki")
@@ -73,9 +74,19 @@ font = ExtResource("3_cyhki")
 font_size = 42
 font_color = Color(0.830508, 0.64811, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u5u64"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5u64"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 6
+corner_detail = 6
+shadow_color = Color(0, 0, 0, 0.431373)
+shadow_size = 10
+
 [sub_resource type="LabelSettings" id="LabelSettings_cyhki"]
 font = ExtResource("3_cyhki")
 font_size = 15
+font_color = Color(1, 1, 1, 0.847059)
 
 [node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("timer_label", "label_jug_state", "label_time_limit_amount", "label_shots_amount", "label_par_amount", "label_time_best", "label_time_na", "label_par_best", "label_time_record", "label_par_record", "label_jug_cheers", "button_main_menu", "button_resart", "button_next_level", "spinner_time", "spinner_par", "spinner_jug")]
 script = ExtResource("1_hoa8c")
@@ -90,9 +101,9 @@ label_par_best = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer
 label_time_record = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/time best/time best/VBoxContainer/label_time_record")
 label_par_record = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/par_best/best/VBoxContainer/label_par_record")
 label_jug_cheers = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug_best/VBoxContainer/label_jug_cheers")
-button_main_menu = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer/button_main_menu")
-button_resart = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/button_restart")
-button_next_level = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/button_next_level")
+button_main_menu = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/VBoxContainer/MarginContainer/button_main_menu")
+button_resart = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer/button_restart")
+button_next_level = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer2/MarginContainer/button_next_level")
 spinner_time = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/time spinner/spinner")
 spinner_par = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/par spinner/spinner")
 spinner_jug = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug spinner/spinner")
@@ -500,6 +511,11 @@ text = " "
 label_settings = SubResource("LabelSettings_5yfc0")
 vertical_alignment = 2
 
+[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_u5u64")
+
 [node name="buttons" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -508,17 +524,28 @@ layout_mode = 2
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 20
 
-[node name="button_main_menu" type="Button" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer"]
+[node name="Panel" type="Panel" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5u64")
+
+[node name="button_main_menu" type="Button" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme = ExtResource("10_u5u64")
+theme_override_colors/font_outline_color = Color(0.865408, 0.586869, 3.85046e-07, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("3_cyhki")
 theme_override_font_sizes/font_size = 32
-text = "main menu  
+text = "<- main menu <
 "
 
 [node name="VSeparator" type="VSeparator" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer"]
@@ -538,11 +565,22 @@ theme_override_constants/separation = 64
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="button_restart" type="Button" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5u64")
+
+[node name="button_restart" type="Button" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("10_u5u64")
+theme_override_colors/font_outline_color = Color(0.865408, 0.586869, 3.85046e-07, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("3_cyhki")
 theme_override_font_sizes/font_size = 32
-text = "restart
+text = "> restart <
 "
 
 [node name="Label" type="Label" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
@@ -551,13 +589,27 @@ text = "quick restart: r"
 label_settings = SubResource("LabelSettings_cyhki")
 horizontal_alignment = 1
 
-[node name="button_next_level" type="Button" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5u64")
+
+[node name="button_next_level" type="Button" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme = ExtResource("10_u5u64")
+theme_override_colors/font_outline_color = Color(0.865408, 0.586869, 3.85046e-07, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("3_cyhki")
 theme_override_font_sizes/font_size = 32
-text = "next"
+text = "> next ->"
 
-[connection signal="pressed" from="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer/button_main_menu" to="." method="_on_button_main_menu_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/button_restart" to="." method="_on_button_restart_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/button_next_level" to="." method="_on_button_next_level_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/VBoxContainer/MarginContainer/button_main_menu" to="." method="_on_button_main_menu_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer/button_restart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer2/MarginContainer/button_next_level" to="." method="_on_button_next_level_pressed"]

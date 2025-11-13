@@ -834,6 +834,13 @@ light_color = Color(0.586423, 0.761659, 0, 1)
 shadow_enabled = true
 omni_range = 14.524
 
+[node name="lightbulb9" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5901, 1.72705, 2.29928)
+layers = 3
+light_color = Color(0.586423, 0.761659, 0, 1)
+shadow_enabled = true
+omni_range = 2.887
+
 [node name="Node3D2" parent="." instance=ExtResource("3_a5rnb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6939, 1.79326, 10.3804)
 text = "test end zone"

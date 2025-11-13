@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=25 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
 [ext_resource type="Texture2D" uid="uid://d11m0it4kt8ry" path="res://assets/textures/god.webp" id="2_h1kbi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://by2sfu06w3w3g" path="res://assets/textures/rustic-wood-texture-free-49.png" id="4_ct055"]
 [ext_resource type="Shader" uid="uid://dgeo6lmgw5tnf" path="res://assets/shaders/menu_blur.gdshader" id="5_oj1oe"]
 [ext_resource type="Script" uid="uid://d1d0u5a6wjyh0" path="res://scenes/ui/menus/scripts/menu_settings.gd" id="6_y4aia"]
+[ext_resource type="Theme" uid="uid://xefwemd0japy" path="res://assets/themes/wooden_buttons.tres" id="8_jk7nv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y4aia"]
 shader = ExtResource("5_oj1oe")
@@ -14,6 +15,13 @@ shader_parameter/amount = 3.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ryexs"]
 font_size = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpnnc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 4
+corner_detail = 4
+shadow_color = Color(0, 0, 0, 0.431373)
+shadow_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_whicr"]
 font_size = 48
@@ -33,6 +41,8 @@ font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_nmbxx"]
 font_size = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhmlp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p0q51"]
 font = ExtResource("3_p0q51")
@@ -122,34 +132,62 @@ layout_mode = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="button_settings" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../button_levels")
-focus_neighbor_bottom = NodePath("../../button_quit")
-focus_next = NodePath("../../button_quit")
-focus_previous = NodePath("../button_levels")
-theme_override_fonts/font = ExtResource("3_p0q51")
-theme_override_font_sizes/font_size = 32
-text = "<- settings "
 
-[node name="button_levels" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer"]
+[node name="Panel" type="Panel" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpnnc")
+
+[node name="button_settings" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-focus_neighbor_bottom = NodePath("../button_settings")
-focus_next = NodePath("../button_settings")
-focus_previous = NodePath("../../button_quit")
+focus_neighbor_top = NodePath("../../MarginContainer2/button_levels")
+focus_neighbor_bottom = NodePath("../../../HBoxContainer2/MarginContainer/button_quit")
+focus_next = NodePath("../../../HBoxContainer2/MarginContainer/button_quit")
+focus_previous = NodePath("../../MarginContainer2/button_levels")
+theme = ExtResource("8_jk7nv")
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
-text = " levels ->
+text = "<- settings  "
+
+[node name="MarginContainer2" type="MarginContainer" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpnnc")
+
+[node name="button_levels" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../../MarginContainer/button_settings")
+focus_next = NodePath("../../MarginContainer/button_settings")
+focus_previous = NodePath("../../../HBoxContainer2/MarginContainer/button_quit")
+theme = ExtResource("8_jk7nv")
+theme_override_fonts/font = ExtResource("3_p0q51")
+theme_override_font_sizes/font_size = 32
+text = "  levels ->
 "
 
-[node name="button_quit" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpnnc")
+
+[node name="button_quit" type="Button" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../HBoxContainer/button_settings")
-focus_next = NodePath("../HBoxContainer/button_levels")
-focus_previous = NodePath("../HBoxContainer/button_settings")
+focus_neighbor_top = NodePath("../../../HBoxContainer/MarginContainer/button_settings")
+focus_next = NodePath("../../../HBoxContainer/MarginContainer2/button_levels")
+focus_previous = NodePath("../../../HBoxContainer/MarginContainer/button_settings")
+theme = ExtResource("8_jk7nv")
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
 text = "> quit <
@@ -342,9 +380,13 @@ label_settings = SubResource("LabelSettings_nmbxx")
 
 [node name="HSeparator3" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dhmlp")
 
 [node name="HSeparator4" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dhmlp")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -367,7 +409,7 @@ value = 0.2
 
 [node name="label_sens_val" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2"]
 layout_mode = 2
-text = " 0.2"
+text = " 0.4"
 label_settings = SubResource("LabelSettings_oj1oe")
 
 [node name="Label" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
@@ -391,9 +433,13 @@ layout_mode = 2
 
 [node name="HSeparator5" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dhmlp")
 
 [node name="HSeparator6" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dhmlp")
 
 [node name="Label9" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -474,9 +520,13 @@ label_settings = SubResource("LabelSettings_ykpw6")
 
 [node name="HSeparator7" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dhmlp")
 
 [node name="HSeparator8" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dhmlp")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -575,10 +625,14 @@ alignment = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
 layout_mode = 2
-theme_override_constants/margin_left = 8
+theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpnnc")
 
 [node name="button_return_settings" type="Button" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer"]
 layout_mode = 2
@@ -587,13 +641,14 @@ focus_neighbor_top = NodePath("../button_levels")
 focus_neighbor_bottom = NodePath("../../button_quit")
 focus_next = NodePath("../../button_quit")
 focus_previous = NodePath("../button_levels")
+theme = ExtResource("8_jk7nv")
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
-text = " return "
+text = "  return  "
 
-[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/button_settings" to="." method="_on_button_settings_pressed"]
-[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/button_levels" to="." method="_on_button_levels_pressed"]
-[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/button_quit" to="." method="_on_button_quit_pressed"]
+[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer/button_settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2/button_levels" to="." method="_on_button_levels_pressed"]
+[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer/button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_levels" to="menu_root/menu_levels" method="_on_visibility_changed"]
 [connection signal="pressed" from="menu_root/menu_levels/level_slots_root/button_erase_data" to="." method="_on_button_erase_data_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_settings" to="menu_root/menu_settings" method="_on_visibility_changed"]
