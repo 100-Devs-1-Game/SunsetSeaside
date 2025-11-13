@@ -92,7 +92,7 @@ func establish_settings_save():
 		"sfx vol" : 100,
 		"music vol" : 100,
 		"ambient vol" : 100,
-		"fullscreen" : false,
+		"fullscreen" : true,
 		"4by3" : false,
 		"resolution scale" : 1
 		

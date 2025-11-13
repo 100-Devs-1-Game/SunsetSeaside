@@ -10,10 +10,14 @@ extends Node3D
 func _ready():
 	Events.open_level.connect(_open_level)
 	Events.queue_menu_package.connect(_queue_menu_package)
+	Events.set_fullscreen.connect(_set_fullscreen)
 	
 	# startup scenes
 	_open_level(Enums.LevelGrouping.DEBUG, 0)
 	Events.open_menu.emit(Enums.Menus.TITLE)
+	
+	Keeper.load_settings()
+	_set_fullscreen(Keeper.settings_data["fullscreen"])
 
 func _open_level(grouping, id):
 	_load_scene(load(Gamestate.level_manager.fetch_level_path(grouping, id)))
@@ -51,3 +55,7 @@ func _input(event):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	if event is InputEventMouseMotion:
 		Events.fps_mouse_movement.emit(event)
+
+func _set_fullscreen(fullscreen):
+	if fullscreen == true: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

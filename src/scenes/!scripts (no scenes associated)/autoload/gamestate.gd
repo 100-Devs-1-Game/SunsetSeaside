@@ -14,6 +14,7 @@ var player : CharacterBody3D # registered by player script on ready
 var has_moved = false # if the character has moved this reset, for starting the timer
 var shots_taken = 0 # shots taken since respawn / restart
 var hardcore_enabled = false
+var hide_macaw_text = false
 
 ### level vars
 # current values for the level being played
@@ -37,6 +38,7 @@ func _ready():
 	Events.open_level.connect(_setup_level_id)
 	Events.establish_level_vars.connect(_setup_level_vars)
 	Events.jug_collected.connect(_jug_collected)
+	Events.set_labels_hidden.connect(_set_macaw_text)
 
 func _respawn_player():
 	var new_player = PLAYER_TSCN.instantiate()
@@ -125,3 +127,6 @@ func _level_end_reached():
 	# if vals are null then nothing is written to the respective slot
 	Keeper.write_level_history(current_level_grouping, current_level_id, new_time, new_par, new_jug, new_hardcore)
 	Keeper.save_records()
+
+func _set_macaw_text(state):
+	hide_macaw_text = state

@@ -71,7 +71,6 @@ func _on_slider_sens_value_changed(value: float) -> void:
 	label_sens_val.text = " " + str(value)
 	Events.set_sens.emit(value)
 	current_settings_data["sensitivity"] = value
-	print(2.0 - value)
 
 func _on_slider_fov_value_changed(value: float) -> void:
 	label_fov_val.text = " " + str(snapped(value, 1))

@@ -850,6 +850,16 @@ label_text_size = 64
 fade_out = false
 fade_out_pretime = 10.0
 
+[node name="Node3D6" parent="." instance=ExtResource("3_a5rnb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9789, 1.79326, -2.18758)
+text = "squawk"
+font_size = 64
+label_text = "squawk"
+label_text_size = 64
+fade_out = false
+fade_out_pretime = 10.0
+macaw_text = true
+
 [node name="barrel" parent="." instance=ExtResource("2_eaa0b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17541, 1.5, -3.22119)
 

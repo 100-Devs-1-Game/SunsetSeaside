@@ -43,6 +43,7 @@ const DECCEL_BACKPEDAL_MIDAIR = 0.6
 # crouch vars
 var crouch_speed = 10.0 # how fast a crouch is completed
 var crouching_depth = -0.5
+var crouch_toggle = false
 
 # jump vars / const
 const JUMP_VELOCITY = 7.0
@@ -83,6 +84,8 @@ func _ready():
 	
 	###### settings events
 	Events.set_sens.connect(_set_sensitivity)
+	# Events.set_fov is connected in the head script
+	Events.set_crouch_toggle.connect(_set_crouch_toggle)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	# setting viewmodel viewport to be the same size as the window
@@ -92,6 +95,7 @@ func _ready():
 	Keeper.load_settings() # refresh
 	mouse_sense = Keeper.settings_data["sensitivity"]
 	head.set_fov(Keeper.settings_data["fov"])
+	crouch_toggle = Keeper.settings_data["crouch toggle"]
 
 func _physics_process(delta):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
@@ -259,6 +263,9 @@ func _camera_control(event): # sent by main script, having to bypass because mai
 
 func _set_sensitivity(sensitivity):
 	mouse_sense = sensitivity
+
+func _set_crouch_toggle(toggle):
+	crouch_toggle = toggle
 
 #func _input(event): # handling camera movement for the mouse
 	##if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
