@@ -17,7 +17,7 @@ func _ready():
 	if !FileAccess.file_exists(savepath + levels_file):
 		establish_level_save()
 	if !FileAccess.file_exists(savepath + settings_file):
-		pass
+		establish_settings_save()
 
 func establish_level_save():
 	level_data = {
@@ -83,9 +83,27 @@ func write_level_history(grouping, id, time_best, par_best, jug_history, hardcor
 
 
 func establish_settings_save():
-	settings_data = {}
+	settings_data = { # defaults established here
+		"sensitivity" : 0.42,
+		"fov" : 85,
+		"crouch toggle" : false,
+		"hidden labels" : false,
+		"master vol" : 100,
+		"sfx vol" : 100,
+		"music vol" : 100,
+		"ambient vol" : 100,
+		"fullscreen" : false,
+		"4by3" : false,
+		"resolution scale" : 1
+		
+	}
 	save_settings()
 
+func write_settings_data(current_settings_data : Dictionary):
+	settings_data = current_settings_data
+
+func get_settings_data():
+	return settings_data
 
 #### file access functions
 func save_records():

@@ -10,9 +10,14 @@ var recoil_y = 0.0
 var recoil_x = 0.0
 var camera_shake = 0.0
 
+var viewmodel_fov_default : float
+
 func _ready():
 	Events.add_camera_shake.connect(_add_camera_shake)
 	Events.head_recoil_affect.connect(_head_recoil_affect)
+	Events.set_fov.connect(set_fov)
+	
+	viewmodel_fov_default = camera_viewmodel.fov
 
 func _process(delta):
 	
@@ -47,3 +52,8 @@ func _head_recoil_affect(recoil_dynamic, recoil_instant, camera_shake):
 func _add_camera_shake(amount):
 	#print_debug("shake added: ", amount)
 	camera_shake += amount
+
+func set_fov(fov):
+	camera_main.fov = fov
+	if fov != 85.0:
+		camera_viewmodel.fov = viewmodel_fov_default + ((fov - 85.0) / 5.0)

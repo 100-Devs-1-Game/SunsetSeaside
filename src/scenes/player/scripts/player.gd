@@ -49,7 +49,8 @@ const JUMP_VELOCITY = 7.0
 var wall_jump_force = default_speed * 1.5
 
 # camera variables
-var mouse_sens = 1200 # divides the relation between mouse movement and camera input
+var mouse_sense = 0.4 # divides the relation between mouse movement and camera input
+var mouse_sense_offset = 6000
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 
@@ -74,15 +75,23 @@ var gravity = 16.0
 func _ready():
 	set_meta(&"Player", self) # for recognition of type by areas, mostly explosive barrels
 	Gamestate.player = self
+	###### game events
 	Events.shotgun_bounce.connect(_shotgun_bounce)
 	Events.explosion_bounce.connect(_explosion_bounce)
 	Events.player_death.connect(_fucking_die)
 	Events.fps_mouse_movement.connect(_camera_control)
 	
+	###### settings events
+	Events.set_sens.connect(_set_sensitivity)
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	print(Input.mouse_mode)
 	# setting viewmodel viewport to be the same size as the window
 	$Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
+
+	# establish settings values
+	Keeper.load_settings() # refresh
+	mouse_sense = Keeper.settings_data["sensitivity"]
+	head.set_fov(Keeper.settings_data["fov"])
 
 func _physics_process(delta):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
@@ -240,13 +249,16 @@ func _first_input_check():
 		Events.first_movement.emit()
 
 func _camera_control(event): # sent by main script, having to bypass because main subviewport is a greedy gluttonous creature
-	rotation.y -= event.relative.x / mouse_sens
-	head.rotation.x -= event.relative.y / mouse_sens
+	var relative = Vector2(event.relative.x * (mouse_sense / 600), event.relative.y *  (mouse_sense / 600))
+	rotation.y -= relative.x
+	head.rotation.x -= relative.y
 	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
 	mouse_relative_x = clamp(event.relative.x, -50, 50)
 	mouse_relative_y = clamp(event.relative.y, -50, 10)
-	viewmodel_camera.sway(Vector2(event.relative.x,event.relative.y))
+	viewmodel_camera.sway(Vector2(relative.x * 800.0, relative.y * 800.0))
 
+func _set_sensitivity(sensitivity):
+	mouse_sense = sensitivity
 
 #func _input(event): # handling camera movement for the mouse
 	##if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return

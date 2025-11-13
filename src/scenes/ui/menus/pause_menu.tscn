@@ -1,12 +1,62 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhe75scn8abr"]
+[gd_scene load_steps=20 format=3 uid="uid://bhe75scn8abr"]
 
 [ext_resource type="FontFile" uid="uid://dmg3ppdo8dgqj" path="res://assets/fonts/Primitive-4yGY.ttf" id="1_5p30d"]
 [ext_resource type="Script" uid="uid://dbvh207pplr46" path="res://scenes/ui/menus/scripts/pause_menu.gd" id="1_dd7lr"]
 [ext_resource type="Shader" uid="uid://dgeo6lmgw5tnf" path="res://assets/shaders/menu_blur.gdshader" id="2_n4ldv"]
+[ext_resource type="Script" uid="uid://d1d0u5a6wjyh0" path="res://scenes/ui/menus/scripts/menu_settings.gd" id="4_2f5f3"]
+[ext_resource type="Texture2D" uid="uid://by2sfu06w3w3g" path="res://assets/textures/rustic-wood-texture-free-49.png" id="5_a3xc8"]
+[ext_resource type="Theme" uid="uid://xefwemd0japy" path="res://assets/themes/wooden_buttons.tres" id="6_sn3bg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_idy5m"]
 shader = ExtResource("2_n4ldv")
 shader_parameter/amount = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdfhy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 8
+shadow_color = Color(0, 0, 0, 0.431373)
+shadow_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_srbt0"]
+font = ExtResource("1_5p30d")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_xiye5"]
+font_size = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tt2gu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3kafx"]
+font = ExtResource("1_5p30d")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_sfe43"]
+font = ExtResource("1_5p30d")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3xdc"]
+font = ExtResource("1_5p30d")
+font_size = 20
+font_color = Color(0.701961, 0.882353, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wj8ry"]
+font = ExtResource("1_5p30d")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5l4ab"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_1n3fv"]
+font = ExtResource("1_5p30d")
+
+[sub_resource type="LabelSettings" id="LabelSettings_hh46y"]
+font_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4ucw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 4
+corner_detail = 4
+shadow_color = Color(0, 0, 0, 0.431373)
+shadow_size = 8
 
 [node name="pause_menu" type="CanvasLayer"]
 script = ExtResource("1_dd7lr")
@@ -84,7 +134,7 @@ theme_override_font_sizes/font_size = 32
 text = "quit
 "
 
-[node name="menu_settings" type="MarginContainer" parent="menu_root"]
+[node name="menu_settings" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("label_sens_val", "label_fov_val", "label_res_scale_val", "label_master_vol", "label_sfx_vol", "label_music_vol", "label_ambient_vol", "slider_sens", "slider_fov", "slider_res_scale", "slider_master_vol", "slider_sfx_vol", "slider_music_vol", "slider_ambient_vol", "checkbox_fullscreen", "checkbox_4by3", "checkbox_labels_hidden", "checkbox_crouch_toggle")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -92,7 +142,376 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+script = ExtResource("4_2f5f3")
+label_sens_val = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2/label_sens_val")
+label_fov_val = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer5/label_fov_val")
+label_res_scale_val = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6/label_res_scale_val")
+label_master_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer4/label_master_vol")
+label_sfx_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer9/lable_sfx_vol")
+label_music_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer8/label_music_vol")
+label_ambient_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer7/label_ambient_vol")
+slider_sens = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2/slider_sens")
+slider_fov = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer5/slider_fov")
+slider_res_scale = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6/slider_res_scale")
+slider_master_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer4/slider_master_vol")
+slider_sfx_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer9/slider_sfx_vol")
+slider_music_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer8/slider_music_vol")
+slider_ambient_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer7/slider_ambient_vol")
+checkbox_fullscreen = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_fullscreen")
+checkbox_4by3 = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_4by3")
+checkbox_labels_hidden = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_hide_labels")
+checkbox_crouch_toggle = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_crouch_toggle")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_settings"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_settings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 640
+theme_override_constants/margin_top = 256
+theme_override_constants/margin_right = 640
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rdfhy")
+
+[node name="background_texture" type="TextureRect" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+texture_filter = 2
+layout_mode = 2
+texture = ExtResource("5_a3xc8")
+expand_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+text = "settings"
+label_settings = SubResource("LabelSettings_srbt0")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="Label13" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(232, 0)
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_xiye5")
+
+[node name="Label14" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(316, 0)
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_xiye5")
+
+[node name="HSeparator3" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tt2gu")
+
+[node name="HSeparator4" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tt2gu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+text = "sensitivity: "
+label_settings = SubResource("LabelSettings_3kafx")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="slider_sens" type="HSlider" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(240, 34)
+layout_mode = 2
+min_value = 0.01
+max_value = 2.0
+step = 0.01
+value = 0.2
+
+[node name="label_sens_val" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+text = " 0.4"
+label_settings = SubResource("LabelSettings_sfe43")
+
+[node name="Label" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "toggle crouch: "
+label_settings = SubResource("LabelSettings_3kafx")
+horizontal_alignment = 2
+
+[node name="checkbox_crouch_toggle" type="CheckBox" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label7" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "hide macaw labels: "
+label_settings = SubResource("LabelSettings_3kafx")
+horizontal_alignment = 2
+
+[node name="checkbox_hide_labels" type="CheckBox" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="HSeparator5" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tt2gu")
+
+[node name="HSeparator6" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tt2gu")
+
+[node name="Label9" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "master "
+label_settings = SubResource("LabelSettings_v3xdc")
+horizontal_alignment = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="slider_master_vol" type="HSlider" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(200, 28)
+layout_mode = 2
+value = 100.0
+
+[node name="label_master_vol" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer4"]
+layout_mode = 2
+text = " 100"
+label_settings = SubResource("LabelSettings_wj8ry")
+
+[node name="Label10" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "sfx "
+label_settings = SubResource("LabelSettings_v3xdc")
+horizontal_alignment = 2
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="slider_sfx_vol" type="HSlider" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer9"]
+custom_minimum_size = Vector2(200, 28)
+layout_mode = 2
+value = 100.0
+
+[node name="lable_sfx_vol" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer9"]
+layout_mode = 2
+text = " 100"
+label_settings = SubResource("LabelSettings_wj8ry")
+
+[node name="Label11" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+text = "music "
+label_settings = SubResource("LabelSettings_v3xdc")
+horizontal_alignment = 2
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="slider_music_vol" type="HSlider" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(200, 28)
+layout_mode = 2
+value = 100.0
+
+[node name="label_music_vol" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer8"]
+layout_mode = 2
+text = " 100"
+label_settings = SubResource("LabelSettings_wj8ry")
+
+[node name="Label12" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "ambient "
+label_settings = SubResource("LabelSettings_v3xdc")
+horizontal_alignment = 2
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="slider_ambient_vol" type="HSlider" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(200, 28)
+layout_mode = 2
+value = 100.0
+
+[node name="label_ambient_vol" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer7"]
+layout_mode = 2
+text = " 100"
+label_settings = SubResource("LabelSettings_wj8ry")
+
+[node name="HSeparator7" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tt2gu")
+
+[node name="HSeparator8" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tt2gu")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label2" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer3"]
+layout_mode = 2
+text = "fov: "
+label_settings = SubResource("LabelSettings_3kafx")
+horizontal_alignment = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="slider_fov" type="HSlider" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(240, 38)
+layout_mode = 2
+min_value = 65.0
+max_value = 110.0
+value = 85.0
+
+[node name="label_fov_val" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer5"]
+layout_mode = 2
+text = " 85"
+label_settings = SubResource("LabelSettings_sfe43")
+
+[node name="Label2" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "fullscreen: "
+label_settings = SubResource("LabelSettings_3kafx")
+horizontal_alignment = 2
+
+[node name="checkbox_fullscreen" type="CheckBox" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label15" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_5l4ab")
+
+[node name="Label16" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_5l4ab")
+
+[node name="Label4" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "retro effects:"
+label_settings = SubResource("LabelSettings_1n3fv")
+horizontal_alignment = 2
+
+[node name="Label5" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_hh46y")
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "4:3 ratio: "
+label_settings = SubResource("LabelSettings_3kafx")
+horizontal_alignment = 2
+
+[node name="checkbox_4by3" type="CheckBox" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "resolution scale: "
+label_settings = SubResource("LabelSettings_3kafx")
+horizontal_alignment = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="slider_res_scale" type="HSlider" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(240, 38)
+layout_mode = 2
+min_value = 1.0
+max_value = 4.0
+value = 1.0
+
+[node name="label_res_scale_val" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6"]
+layout_mode = 2
+text = " 1x"
+label_settings = SubResource("LabelSettings_sfe43")
+
+[node name="Label2" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a4ucw")
+
+[node name="button_return_settings" type="Button" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../button_levels")
+focus_neighbor_bottom = NodePath("../../button_quit")
+focus_next = NodePath("../../button_quit")
+focus_previous = NodePath("../button_levels")
+theme = ExtResource("6_sn3bg")
+theme_override_fonts/font = ExtResource("1_5p30d")
+theme_override_font_sizes/font_size = 32
+text = "  return  "
 
 [connection signal="pressed" from="menu_root/menu_selection/HBoxContainer/VBoxContainer/button_settings_open" to="." method="_on_button_settings_open_pressed"]
 [connection signal="pressed" from="menu_root/menu_selection/HBoxContainer/VBoxContainer/button_return" to="." method="_on_button_return_pressed"]
 [connection signal="pressed" from="menu_root/menu_selection/HBoxContainer/VBoxContainer/button_quit" to="." method="_on_button_quit_pressed"]
+[connection signal="visibility_changed" from="menu_root/menu_settings" to="menu_root/menu_settings" method="_on_visibility_changed"]
+[connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2/slider_sens" to="menu_root/menu_settings" method="_on_slider_sens_value_changed"]
+[connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_crouch_toggle" to="menu_root/menu_settings" method="_on_checkbox_crouch_toggle_toggled"]
+[connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_hide_labels" to="menu_root/menu_settings" method="_on_checkbox_hide_labels_toggled"]
+[connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer4/slider_master_vol" to="menu_root/menu_settings" method="_on_slider_master_vol_value_changed"]
+[connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer9/slider_sfx_vol" to="menu_root/menu_settings" method="_on_slider_sfx_vol_value_changed"]
+[connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer8/slider_music_vol" to="menu_root/menu_settings" method="_on_slider_music_vol_value_changed"]
+[connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer7/slider_ambient_vol" to="menu_root/menu_settings" method="_on_slider_ambient_vol_value_changed"]
+[connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer5/slider_fov" to="menu_root/menu_settings" method="_on_slider_fov_value_changed"]
+[connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_fullscreen" to="menu_root/menu_settings" method="_on_checkbox_fullscreen_toggled"]
+[connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_4by3" to="menu_root/menu_settings" method="_on_checkbox_4_by_3_toggled"]
+[connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6/slider_res_scale" to="menu_root/menu_settings" method="_on_slider_res_scale_value_changed"]
+[connection signal="pressed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer/button_return_settings" to="." method="_on_button_return_settings_pressed"]

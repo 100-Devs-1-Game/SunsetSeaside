@@ -90,6 +90,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="menu_title" type="MarginContainer" parent="menu_root"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -293,8 +294,7 @@ size_flags_horizontal = 4
 layout_mode = 2
 text = "debug_erase_lvl_data"
 
-[node name="menu_settings" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("label_sens_val", "label_fov_val", "label_res_scale_val", "label_master_vol", "label_sfx_vol", "label_music_vol", "label_ambient_vol")]
-visible = false
+[node name="menu_settings" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("label_sens_val", "label_fov_val", "label_res_scale_val", "label_master_vol", "label_sfx_vol", "label_music_vol", "label_ambient_vol", "slider_sens", "slider_fov", "slider_res_scale", "slider_master_vol", "slider_sfx_vol", "slider_music_vol", "slider_ambient_vol", "checkbox_fullscreen", "checkbox_4by3", "checkbox_labels_hidden", "checkbox_crouch_toggle")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -314,6 +314,17 @@ label_master_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginC
 label_sfx_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer9/lable_sfx_vol")
 label_music_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer8/label_music_vol")
 label_ambient_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer7/label_ambient_vol")
+slider_sens = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2/slider_sens")
+slider_fov = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer5/slider_fov")
+slider_res_scale = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6/slider_res_scale")
+slider_master_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer4/slider_master_vol")
+slider_sfx_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer9/slider_sfx_vol")
+slider_music_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer8/slider_music_vol")
+slider_ambient_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer7/slider_ambient_vol")
+checkbox_fullscreen = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_fullscreen")
+checkbox_4by3 = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_4by3")
+checkbox_labels_hidden = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_hide_labels")
+checkbox_crouch_toggle = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_crouch_toggle")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_settings"]
 layout_mode = 2
@@ -403,6 +414,7 @@ layout_mode = 2
 [node name="slider_sens" type="HSlider" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(240, 34)
 layout_mode = 2
+min_value = 0.01
 max_value = 2.0
 step = 0.01
 value = 0.2
@@ -423,7 +435,7 @@ layout_mode = 2
 
 [node name="Label7" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "hide ingame label: "
+text = "hide macaw labels: "
 label_settings = SubResource("LabelSettings_p0q51")
 horizontal_alignment = 2
 

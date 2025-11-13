@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
 const float time = float(0.0);
-uniform float speed : hint_range(0.0, 5.0);  
-const vec4 target_color = vec4(0.0,0.0,0.0,0.1); 
-const float tolerance = float(1.0); 
+uniform float speed : hint_range(0.0, 5.0);
+const vec4 target_color = vec4(0.0,0.0,0.0,0.1);
+const float tolerance = float(1.0);
 
 
 uniform float NoiseResolution :hint_range(0.0, 4.0)  ;
@@ -88,11 +88,11 @@ void fragment() {
         color.r += 0.25 + fbm(pos.xy);
     }
 
-    
+
     float color_distance = distance(color, target_color);
     if (color_distance < tolerance) {
-        COLOR = vec4(color.xyz, 0.0); 
+        COLOR = vec4(color.xyz, 0.0);
     } else {
-        COLOR = vec4(color.xyz, 1.0);  
+        COLOR = vec4(color.xyz, 1.0);
     }
 }
