@@ -9,8 +9,11 @@ extends Node3D
  
 func _ready():
 	Events.open_level.connect(_open_level)
+	Events.queue_menu_package.connect(_queue_menu_package)
+	
+	# startup scenes
+	_open_level(Enums.LevelGrouping.DEBUG, 0)
 	Events.open_menu.emit(Enums.Menus.TITLE)
-	#_load_scene(TEST_LEVEL)
 
 func _open_level(grouping, id):
 	_load_scene(load(Gamestate.level_manager.fetch_level_path(grouping, id)))
@@ -25,9 +28,17 @@ func _load_scene(scene : PackedScene):
 	if level.has_meta(&"Level"):
 		Events.establish_level_vars.emit(level.ammo_max, level.par_limit, level.time_limit)
 	
+	await get_tree().process_frame
 	if scene_container.get_children().size() > 1:
 		print_debug("WARNING: more than one child in scene container of the main scene!")
 
+
+func _queue_menu_package(grouping, id, menu): # a workaround for menus being able to open both a scene and menu before they are removed from memory
+	_open_level(grouping, id)
+	Events.open_menu.emit(menu)
+	
+	
+	
 func _process(_delta):
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene() ## change this to reload current level
@@ -35,3 +46,8 @@ func _process(_delta):
 		if menu_system.get_children().size() > 0:
 			menu_system.get_child(0).on_menu_close()
 		else: Events.open_menu.emit(Enums.Menus.PAUSE)
+
+func _input(event):
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
+	if event is InputEventMouseMotion:
+		Events.fps_mouse_movement.emit(event)

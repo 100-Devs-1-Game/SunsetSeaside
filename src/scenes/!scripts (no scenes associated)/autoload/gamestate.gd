@@ -36,6 +36,7 @@ func _ready():
 	Events.weapon_fired.connect(_count_shots)
 	Events.open_level.connect(_setup_level_id)
 	Events.establish_level_vars.connect(_setup_level_vars)
+	Events.jug_collected.connect(_jug_collected)
 
 func _respawn_player():
 	var new_player = PLAYER_TSCN.instantiate()
@@ -45,6 +46,7 @@ func _respawn_player():
 	stopwatch.reset(); has_moved = false
 	shots_taken = 0
 	ending_was_reached = false
+	jug_grabbed = false
 
 #### setup functions
 func _establish_spawnpoint(node):
@@ -80,6 +82,9 @@ func _first_player_movement():
 func _count_shots():
 	shots_taken += 1
 	Events.ui_shots_taken_update.emit(shots_taken)
+	
+func _jug_collected():
+	jug_grabbed = true
 
 func _level_end_reached():
 	if ending_was_reached == true: return
@@ -95,7 +100,7 @@ func _level_end_reached():
 	# send values to results screen
 	Events.open_menu.emit(Enums.Menus.RESULTS)
 	Events.ui_send_level_history.emit(level_history["time_best"], level_history["par_best"], level_history["jug_history"], level_history["hardcore_history"])
-	Events.ui_send_end_results.emit(stopwatch.time, current_time_limit, shots_taken, current_par_limit, null) # replace nulls once these are implemented
+	Events.ui_send_end_results.emit(stopwatch.time, current_time_limit, shots_taken, current_par_limit, jug_grabbed) # replace nulls once these are implemented
 										#(time, time_limit, time_best, shots_taken, par_limit, shots_best, jug_grabbed, jug_history)
 	# save new progress and completion
 	

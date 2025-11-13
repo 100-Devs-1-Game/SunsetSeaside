@@ -5,9 +5,10 @@ extends Node
 
 var path : NodePath
 ##### paths
+const TITLE_BACKGROUND = "res://scenes/levels/title_background.tscn"
 const TEST_LEVEL = "res://scenes/levels/test_level.tscn"
 
-var levels_debug = [TEST_LEVEL]
+var levels_debug = [TITLE_BACKGROUND, TEST_LEVEL]
 var levels_tutorial = []
 var levels_easy = []
 var levels_medium = []

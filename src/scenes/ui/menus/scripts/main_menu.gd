@@ -11,7 +11,10 @@ enum MenuType { TITLE, LEVELS, SETTINGS }
 func _ready():	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # should put this in main script in an "open menu" function. for now:
 func _on_button_levels_pressed() -> void: _open_menu(MenuType.LEVELS)
 func _on_button_settings_pressed() -> void: _open_menu(MenuType.SETTINGS)
+func _on_button_return_settings_pressed() -> void: _open_menu(MenuType.TITLE)
 func _on_button_quit_pressed() -> void: get_tree().quit()
+
+
 
 func _open_menu(menu): # rename this!
 	for node in menu_root.get_children(): node.visible = false
@@ -22,6 +25,8 @@ func _open_menu(menu): # rename this!
 		MenuType.LEVELS: menu_levels.visible = true
 		MenuType.SETTINGS: menu_settings.visible = true
 
+func on_menu_close():
+	_open_menu(MenuType.TITLE)
 
 func _on_button_erase_data_pressed() -> void:
 	Keeper.erase_progress()

@@ -12,6 +12,7 @@ signal fire_weapon() # shoots gun!
 # camera effects
 signal add_camera_shake(amount : float) # called by the camera shaker script, connects to player head
 signal head_recoil_affect(head_recoil_x, head_recoil_y, camera_shake) # for pushing recoil data from weapons to the head node
+signal fps_mouse_movement(event)
 
 ###### gamestate signals
 # level setup
@@ -23,10 +24,12 @@ signal player_death(type : Enums.PlayerDeathType) # read by gamestate, player
 signal level_end_reached() # called by ending areas
 signal first_movement() # read by gamestate for starting the stopwatch
 signal weapon_fired() # called by cannon script on a succesful cannon fire
+signal jug_collected() # jug get!
 # main
 signal open_level(grouping : Enums.LevelGrouping, id : int) # called by the main menu script, id in accordance to the menu option chosen
 signal open_menu(menu : Enums.Menus)
 signal close_menu()
+signal queue_menu_package(grouping, id, menu)
 
 ###### ui
 signal ui_ammo_update(ammo : int) 

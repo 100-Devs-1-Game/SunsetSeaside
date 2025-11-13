@@ -1,11 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://chltm40kncitd"]
+[gd_scene load_steps=22 format=3 uid="uid://chltm40kncitd"]
 
 [ext_resource type="Script" uid="uid://cokdnajdm2aq" path="res://scenes/ui/menus/scripts/results_menu.gd" id="1_hoa8c"]
+[ext_resource type="Shader" uid="uid://dgeo6lmgw5tnf" path="res://assets/shaders/menu_blur.gdshader" id="2_8fcwq"]
 [ext_resource type="Texture2D" uid="uid://by2sfu06w3w3g" path="res://assets/textures/rustic-wood-texture-free-49.png" id="2_clnwe"]
 [ext_resource type="Script" uid="uid://dld2efnfljd86" path="res://scenes/ui/menus/scripts/end_screen_timer_label.gd" id="2_yf7o8"]
 [ext_resource type="FontFile" uid="uid://dmg3ppdo8dgqj" path="res://assets/fonts/Primitive-4yGY.ttf" id="3_cyhki"]
 [ext_resource type="PackedScene" uid="uid://tvhgjh6s2skh" path="res://scenes/ui/spinner.tscn" id="3_yf7o8"]
 [ext_resource type="PackedScene" uid="uid://dj58i00bv8dww" path="res://scenes/ui/menus/spinner_meshes/stopwatch_mesh.tscn" id="6_5yfc0"]
+[ext_resource type="PackedScene" uid="uid://bngk38h3a4rld" path="res://scenes/ui/menus/spinner_meshes/cannonball_mesh.tscn" id="8_jcwtr"]
+[ext_resource type="PackedScene" uid="uid://ckr8tt1vcqklu" path="res://scenes/ui/menus/spinner_meshes/jug_mesh.tscn" id="9_qpnnc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcwtr"]
+shader = ExtResource("2_8fcwq")
+shader_parameter/amount = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yfc0"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -17,15 +24,6 @@ shadow_size = 12
 font = ExtResource("3_cyhki")
 font_size = 64
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cyhki"]
-bg_color = Color(0.0862745, 0.0862745, 0.0862745, 0)
-border_width_left = 1
-border_width_top = 1
-border_color = Color(0.701961, 0.882353, 0, 0)
-corner_radius_top_left = 8
-shadow_color = Color(0, 0, 0, 0.478431)
-shadow_size = 8
-
 [sub_resource type="LabelSettings" id="LabelSettings_xfi4s"]
 font = ExtResource("3_cyhki")
 font_size = 72
@@ -35,6 +33,15 @@ outline_color = Color(0, 0, 0, 1)
 font = ExtResource("3_cyhki")
 font_size = 42
 font_color = Color(0.701961, 0.882353, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cyhki"]
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 0)
+border_width_left = 1
+border_width_top = 1
+border_color = Color(0.701961, 0.882353, 0, 0)
+corner_radius_top_left = 8
+shadow_color = Color(0, 0, 0, 0.478431)
+shadow_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clnwe"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -70,7 +77,7 @@ font_color = Color(0.830508, 0.64811, 0, 1)
 font = ExtResource("3_cyhki")
 font_size = 15
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("timer_label", "label_jug_state", "label_time_limit_amount", "label_shots_amount", "label_par_amount", "label_time_best", "label_time_na", "label_par_best", "label_time_record", "label_par_record", "button_main_menu", "button_resart", "button_next_level", "spinner_time", "spinner_par", "spinner_jug")]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("timer_label", "label_jug_state", "label_time_limit_amount", "label_shots_amount", "label_par_amount", "label_time_best", "label_time_na", "label_par_best", "label_time_record", "label_par_record", "label_jug_cheers", "button_main_menu", "button_resart", "button_next_level", "spinner_time", "spinner_par", "spinner_jug")]
 script = ExtResource("1_hoa8c")
 timer_label = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/timer labels/timer labels/HBoxContainer/timer_label")
 label_jug_state = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug labels/jug labels/label_jug_state")
@@ -82,6 +89,7 @@ label_time_na = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/
 label_par_best = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/par_best/best/VBoxContainer/HBoxContainer/label_par_best")
 label_time_record = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/time best/time best/VBoxContainer/label_time_record")
 label_par_record = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/par_best/best/VBoxContainer/label_par_record")
+label_jug_cheers = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug_best/VBoxContainer/label_jug_cheers")
 button_main_menu = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer/button_main_menu")
 button_resart = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/button_restart")
 button_next_level = NodePath("Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2/HBoxContainer/button_next_level")
@@ -96,6 +104,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="background blur panel" type="Panel" parent="Control"]
+material = SubResource("ShaderMaterial_jcwtr")
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -134,14 +148,25 @@ text = "Results"
 label_settings = SubResource("LabelSettings_fmdw5")
 horizontal_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="Control/MarginContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
-
 [node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 0.045)
+custom_minimum_size = Vector2(40, 0.045)
 layout_mode = 2
 columns = 4
+
+[node name="Label13" type="Label" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+
+[node name="Label14" type="Label" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label15" type="Label" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="Label16" type="Label" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 
 [node name="timer labels" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -357,6 +382,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_clnwe")
 
 [node name="spinner" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/par spinner" instance=ExtResource("3_yf7o8")]
 layout_mode = 2
+spinner_mesh = ExtResource("8_jcwtr")
 
 [node name="par_best" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -409,6 +435,7 @@ theme_override_constants/margin_right = 16
 
 [node name="jug labels" type="VBoxContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug labels"]
 layout_mode = 2
+alignment = 1
 
 [node name="label_jug" type="Label" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug labels/jug labels"]
 layout_mode = 2
@@ -439,14 +466,39 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_clnwe")
 
 [node name="spinner" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug spinner" instance=ExtResource("3_yf7o8")]
 layout_mode = 2
+spinner_mesh = ExtResource("9_qpnnc")
 
-[node name="par_best2" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="jug_best" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 32
 
-[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug_best"]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="label_jug_cheers" type="RichTextLabel" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug_best/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/default_color = Color(0.295143, 0.866224, 0, 1)
+theme_override_constants/line_separation = -8
+theme_override_fonts/normal_font = ExtResource("3_cyhki")
+theme_override_fonts/bold_font = ExtResource("3_cyhki")
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "[wave freq=3 amp=20][rainbow freq=0.15]cheers!"
+fit_content = true
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug_best/VBoxContainer"]
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_5yfc0")
+vertical_alignment = 2
 
 [node name="buttons" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -459,7 +511,7 @@ alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_bottom = 20
 
 [node name="button_main_menu" type="Button" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -476,7 +528,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
 [node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/buttons/VBoxContainer/MarginContainer2"]
 layout_mode = 2

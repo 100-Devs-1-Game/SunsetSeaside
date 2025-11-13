@@ -18,6 +18,7 @@ extends Menu
 @export_subgroup("labels_record")
 @export var label_time_record : RichTextLabel
 @export var label_par_record : RichTextLabel
+@export var label_jug_cheers : RichTextLabel
 
 @export_subgroup("buttons")
 @export var button_main_menu : Button
@@ -84,6 +85,9 @@ func _update_level_history(time_best, shots_best, jug_history, hardcore_history)
 		
 	if previous_shots != null:
 		label_par_best.text = str(previous_shots)
+		
+	if jug_history == true:
+		spinner_jug.mesh_visibility(true)
 
 func _update_end_results(time, time_limit, shots_taken, par_limit, jug_grabbed):
 	# best and jug related vars are currently null
@@ -167,9 +171,9 @@ func _animate_endscreen():
 	
 	if current_jug:
 		spinner_jug.shake_amount += spinners_shake_amount
+		label_jug_cheers.visible = true
 		
-	
-
+		
 func update_time_best_label(value):
 		label_time_best.visible = true
 		label_time_best.set_process(true)
@@ -185,7 +189,7 @@ func restart_level():
 
 # signal functions
 func _on_button_main_menu_pressed() -> void:
-	pass # Replace with function body.
+	Events.queue_menu_package.emit(Enums.LevelGrouping.DEBUG, 0, Enums.Menus.TITLE)
 
 func _on_button_restart_pressed() -> void:
 	restart_level()

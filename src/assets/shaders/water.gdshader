@@ -1,20 +1,24 @@
 shader_type spatial;
 render_mode cull_back, diffuse_burley;
 
-uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_nearest_mipmap;
+uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D water_texture;
-//uniform sampler2D noise_texture;
 uniform vec2 water_uv = vec2(10.0, 10.0);
 uniform float water_texture_raise : hint_range(0.0, 1.0) = 0.0;
-//uniform vec4 water_albedo : source_color = vec4(1.0, 1.0, 1.0, 1.0);
-uniform float wave_amount : hint_range(0.2, 1.5) = 0.7;
+uniform vec4 water_albedo : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float water_albedo_mix_ratio : hint_range(0.0, 1.0) = 0.2;
+uniform float wave_amount : hint_range(0.2, 1.5) = 0.46;
 uniform float water_speed_multi = 0.022;
 uniform float height_offset : hint_range(-2.0, 2.0)  = -0.24;
 uniform float height_color_multi : hint_range(0.0, 2.0) = 0.7;
 
 uniform bool transperancy = false;
 uniform float beer_factor = 0.2;
+uniform float depth_offset = -0.75;
+uniform vec4 color_shallow : source_color;
+uniform vec4 color_deep : source_color;
 
+// calc vars
 varying float vertex_height;
 
 float generateOffset(float x, float z, float val1, float val2, float time, vec2 uv){
@@ -44,7 +48,7 @@ void vertex() {
 }
 
 void fragment() {
-	
+
 	//NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX) ) );
 	//NORMAL = normalize(mix(dFdx(VERTEX), dFdy(VERTEX), vec3(0.5, 1.0, 1.0)));
 	//ALBEDO = out_color.xyz * 2.0;
@@ -55,7 +59,7 @@ void fragment() {
 	float height_white_augment = vertex_height * height_color_multi;
 	
 	vec4 texture_color = texture(water_texture, UV * vec2(water_uv.x, water_uv.y) + vec2(TIME * water_speed_multi, TIME * water_speed_multi)) + vec4(water_texture_raise, water_texture_raise, water_texture_raise, 1.0) + vec4(height_white_augment, height_white_augment, height_white_augment, 1.0); 
-	ALBEDO = texture_color.xyz * 1.0;
+	ALBEDO = mix(texture_color.xyz * 1.0, water_albedo.xyz, water_albedo_mix_ratio);
 	
 	//if (transperancy == true){
 		//float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;

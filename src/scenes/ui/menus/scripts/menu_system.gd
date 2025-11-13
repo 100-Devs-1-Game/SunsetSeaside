@@ -19,7 +19,7 @@ func _open_menu(menu : Enums.Menus):
 	match menu: # storing menu paths here, FUCK IT
 		Enums.Menus.TITLE: menu_path = "res://scenes/ui/menus/main_menu.tscn"
 		Enums.Menus.RESULTS: menu_path = "res://scenes/ui/menus/results_menu.tscn"
-		Enums.Menus.PAUSE: return # for now, no pause menu
+		Enums.Menus.PAUSE: menu_path = "res://scenes/ui/menus/pause_menu.tscn"
 		
 	var new_menu = load(menu_path).instantiate()
 	self.add_child(new_menu)

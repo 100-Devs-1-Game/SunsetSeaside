@@ -16,7 +16,7 @@ extends CharacterBody3D
 @onready var original_pos = global_position
 
 # debug labels
-@onready var console_ui: Control = $Head/headbob_pivot/Camera3D/console_ui
+@export var console_ui: Control
 
 # @onready var animation_list_size = animation_player.get_animation_list().size() - 1
 
@@ -77,8 +77,10 @@ func _ready():
 	Events.shotgun_bounce.connect(_shotgun_bounce)
 	Events.explosion_bounce.connect(_explosion_bounce)
 	Events.player_death.connect(_fucking_die)
+	Events.fps_mouse_movement.connect(_camera_control)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	print(Input.mouse_mode)
 	# setting viewmodel viewport to be the same size as the window
 	$Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
 
@@ -237,12 +239,21 @@ func _first_input_check():
 	if Gamestate.has_moved == false:
 		Events.first_movement.emit()
 
-func _input(event): # handling camera movement for the mouse
-	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
-	if event is InputEventMouseMotion:
-		rotation.y -= event.relative.x / mouse_sens
-		head.rotation.x -= event.relative.y / mouse_sens
-		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
-		mouse_relative_x = clamp(event.relative.x, -50, 50)
-		mouse_relative_y = clamp(event.relative.y, -50, 10)
-		viewmodel_camera.sway(Vector2(event.relative.x,event.relative.y))
+func _camera_control(event): # sent by main script, having to bypass because main subviewport is a greedy gluttonous creature
+	rotation.y -= event.relative.x / mouse_sens
+	head.rotation.x -= event.relative.y / mouse_sens
+	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
+	mouse_relative_x = clamp(event.relative.x, -50, 50)
+	mouse_relative_y = clamp(event.relative.y, -50, 10)
+	viewmodel_camera.sway(Vector2(event.relative.x,event.relative.y))
+
+
+#func _input(event): # handling camera movement for the mouse
+	##if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
+	#if event is InputEventMouseMotion:
+		#rotation.y -= event.relative.x / mouse_sens
+		#head.rotation.x -= event.relative.y / mouse_sens
+		#head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
+		#mouse_relative_x = clamp(event.relative.x, -50, 50)
+		#mouse_relative_y = clamp(event.relative.y, -50, 10)
+		#viewmodel_camera.sway(Vector2(event.relative.x,event.relative.y))

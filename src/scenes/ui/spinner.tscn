@@ -13,20 +13,26 @@ material = SubResource("StandardMaterial3D_tv4vy")
 radius = 0.04
 height = 0.08
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_clnwe"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gonmo"]
 albedo_texture = ExtResource("2_tv4vy")
 
 [sub_resource type="BoxMesh" id="BoxMesh_tv4vy"]
-material = SubResource("StandardMaterial3D_clnwe")
+material = SubResource("StandardMaterial3D_gonmo")
 size = Vector3(0.25, 0.25, 0.25)
 
 [node name="spinner" type="SubViewportContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+offset_right = 256.0
+offset_bottom = 256.0
+scale = Vector2(0.996034, 1)
+stretch = true
 script = ExtResource("1_c5qic")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(128, 128)
+size = Vector2i(256, 256)
 render_target_update_mode = 4
 
 [node name="spinner_positioner" type="Node3D" parent="SubViewport"]
@@ -53,6 +59,7 @@ visible = false
 
 [node name="debug_mesh" type="MeshInstance3D" parent="SubViewport/spinner_positioner/spinner_mesh_container/spinner_rot_offset"]
 transform = Transform3D(1, -5.96046e-08, 0, 5.96046e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 layers = 4
 mesh = SubResource("BoxMesh_tv4vy")
 skeleton = NodePath("../..")

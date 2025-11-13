@@ -5,9 +5,28 @@
 
 [node name="main" type="Node3D" node_paths=PackedStringArray("scene_container")]
 script = ExtResource("1_72ix8")
-scene_container = NodePath("scene_container")
+scene_container = NodePath("SubViewportContainer/SubViewport/scene_container")
 
-[node name="scene_container" type="Node" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+scaling_3d_mode = 1
+canvas_item_default_texture_filter = 0
+gui_disable_input = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="scene_container" type="Node" parent="SubViewportContainer/SubViewport"]
 
 [node name="menu_system" type="Control" parent="."]
 layout_mode = 3

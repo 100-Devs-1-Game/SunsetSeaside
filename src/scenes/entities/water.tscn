@@ -12,12 +12,17 @@ shader = ExtResource("1_c34g3")
 shader_parameter/water_texture = ExtResource("2_orl5m")
 shader_parameter/water_uv = Vector2(10, 10)
 shader_parameter/water_texture_raise = 0.0
+shader_parameter/water_albedo = Color(0, 0.826535, 0.973728, 1)
+shader_parameter/water_albedo_mix_ratio = 0.527
 shader_parameter/wave_amount = 0.6
 shader_parameter/water_speed_multi = 0.022
-shader_parameter/height_offset = -0.349
-shader_parameter/height_color_multi = 0.664
+shader_parameter/height_offset = -0.24
+shader_parameter/height_color_multi = 1.377
 shader_parameter/transperancy = false
 shader_parameter/beer_factor = 1.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/color_shallow = Color(0, 0, 0, 1)
+shader_parameter/color_deep = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8pi60"]
 lightmap_size_hint = Vector2i(502, 502)
