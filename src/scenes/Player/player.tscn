@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=4 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=79 format=4 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" uid="uid://f76fggl2uyob" path="res://scenes/player/scripts/player.gd" id="1_twte0"]
 [ext_resource type="Script" uid="uid://bw1c3unoeydxt" path="res://scenes/player/scripts/head.gd" id="2_c4h5g"]
@@ -23,6 +23,10 @@
 [ext_resource type="Texture2D" uid="uid://c86hng33y8bhu" path="res://assets/models/cannon_sunset_assets_DefaultMaterial_Metallic-sunset_assets_DefaultMaterial_Roughness.png" id="14_uf5tr"]
 [ext_resource type="Texture2D" uid="uid://cvxjcj30jaesj" path="res://assets/models/cannon_smooth_sunset_assets_DefaultMaterial_BaseColor.png" id="15_lgqa7"]
 [ext_resource type="Texture2D" uid="uid://cwbdm4yo32yu3" path="res://assets/models/cannon_smooth_sunset_assets_DefaultMaterial_Metallic.png-sunset_assets_DefaultMaterial_Roughness.png" id="16_8ydkj"]
+
+[sub_resource type="Curve" id="Curve_ioxgp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0992064, 0), 0.0, 0.0, 0, 0, Vector2(0.464286, 1), 0.0, 0.0, 0, 0, Vector2(0.960317, 1), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 radius = 0.2
@@ -79,9 +83,17 @@ font_color = Color(0.958314, 0.615091, 0, 1)
 font_size = 9
 font_color = Color(1, 0.560784, 0.470588, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ioxgp"]
+font_size = 9
+font_color = Color(1, 0.501258, 0.79695, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_tjdps"]
 font_size = 9
 font_color = Color(0.282353, 0.941176, 0.443137, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cnsyf"]
+font_size = 9
+font_color = Color(8.95232e-06, 0.942885, 0.605007, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5k7ty"]
 albedo_color = Color(0.259294, 0.259294, 0.259294, 1)
@@ -333,6 +345,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f02cs")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ioxgp"]
+resource_name = "CannonFPS_mat"
+cull_mode = 2
+albedo_texture = ExtResource("15_lgqa7")
+metallic_specular = 0.0
+metallic_texture = ExtResource("16_8ydkj")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("16_8ydkj")
+roughness_texture_channel = 1
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_vwnxt"]
 _surfaces = [{
 "aabb": AABB(-2.36802, -0.679444, -1.38043, 5.43662, 1.46892, 3.01707),
@@ -357,7 +379,36 @@ _surfaces = [{
 "index_count": 252,
 "index_data": PackedByteArray("JAA5AAwAJAAlADkAOgAkAAwAOgAMADsACgAkADoACgALACQACwAlACQACwA8ACUAJgA9AAIAJgApAD0ACAApACYACAA+ACkACAA/AD4AQAAIACYACAAsAD8AQAAsAAgALAAAAD8AQAAmACgAKAAmAAIAQAAHACwAKAACAEEALABCAAAABwBCACwABwAJAEIAAgAEAEEAAgAnAAQAPQAnAAIAJwBDAAQAPQABACcAAQADACcAJwADAEMAAQBEAAMAKgADAEQAKwBDAAMAKgArAAMABgArACoAKwBFAEMABgBGACsARgBFACsARgAFAEUALQBHAC8ALQAuAEcAMQAtAC8AMQAvAEgASQAtADEASQBKAC0ASgAuAC0ASgAwAC4AMgAOAA8AMgAQAA4ADQAyAA8ADQAPABEAEgARAA8AEgAPAEsAFAASAEsAFAAVABIAFAAXABUAFAA0ABcAFAAWADQAFAAzABYASwAzABQASwATADMAGAAZABoAGAA1ABkAGwAdAEwAGwAcAB0ATQBOADgAHgBNADgAHgA4ACAATQAfAE4AIQAgADgAHwBPAE4AOABOAE8AHwBQAE8AOABPADcANwBPAFAAIQA4ADcANgBQAB8ANwBQADYANgAhADcANgAfAFEANgAiACEANgBRACMANgAjACIA"),
 "lods": [0.361699, PackedByteArray("JAAlAAwACwAlACQACgAkAAwACgALACQAJgABAAIAAQAnAAIAKAAmAAIABwAmACgAAgAEACgAAgAnAAQAJgApAAEAAQADACcAJwADAAQAAQAqAAMAKwAEAAMAKgArAAMAKwAFAAQABgArACoABgAFACsACAApACYABwAIACYACAAAACkABwAsAAgACAAsAAAABwAJACwALAAJAAAALQAuAC8AMAAuAC0AMQAtAC8AMQAwAC0AMgAOAA8AMgAQAA4ADQAyAA8ADQAPABEAEgARAA8AEgAPABMAFAASABMAFAAVABIAEwAzABQAFAAXABUAFAAzABYAFAA0ABcAFAAWADQAGAAZABoAGAA1ABkAGwAcAB0ANgAhADcANgAiACEANgAjACIANgAfACMAHwA2ADcAIQA4ADcAHwA3ADgAIQAgADgAHgAfADgAHgA4ACAA"), 0.970719, PackedByteArray("AAABAAIAAQADAAIABAAAAAIAAgADAAQAAQAFAAMABQAEAAMABgAFAAEABwAAAAQABwAIAAAACAAJAAAABwAJAAgACgALAAwADQAOAA8ADQAQAA4ADQAPABEAEgARAA8AEgAPABMAFAASABMAFAAVABIAEwAWABQAFAAXABUAFAAWABcAGAAZABoAGwAcAB0AHgAfACAAHwAhACAAHwAiACEAIgAfACMA")],
-"material": SubResource("StandardMaterial3D_d34pt"),
+"material": SubResource("StandardMaterial3D_ioxgp"),
+"name": "CannonFPS_mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 82,
+"vertex_data": PackedByteArray("hu14MKzzJN///4HvT9D+unmuRfCncZ7gBZ9F8A7S18N/TYHvZnOL6ahSeDAPo4DShu14MKzzMMZ/Te0iZnPYznmuKSKncT/wqFJ4MA+jQr2oUngwD6NQtX9N7SJmc2vQf02B72ZzHc6GVdNAF5htvwAA88ZCarPHUhvr7zKNLcIAAK5DQmrc3oZVzskXmD+1xF/OyQFYPtrQCfPG2CwM+kMrtxpyKYHsxF/TQAFY6vUAAK5DQmqEuIZV00AXmLPPAACuQ0Jq3urQCfPG2Cyo8QAA88ZCat7qUhvr7zKNr84AAPPGQmpH9NAJ88bYLFbzEkaJPnJL5+PVKwAApxYmwGZB43rbRVP6Ok1OiBZIZtfnUfRLrU3b0xJGiT5yS93jf003iWZzncvxYTeJt0PI9MSwN4lXY9T3v6b//9uhbs/xYTeJt0MJ+M/8N4lTlNPnjOs3if//Yr+5nDeJXuCQwb+mbxLbobjc/v83iU/QSfuM6zeJ//97+f//ge9P0DTshu14MKzzD/XP/DeJU5RS/VIbtxoyjXLP0AmuQ9gsU91SG7caMo2XvtAJrkPYLKjx50VXD+Yk2OJBP1NqoRUs5AcwU2omKyj6+F/24QpQpeyvUDeJYq/AoqhS9uEPo9+v+F94MApQH/DV+vbhpqBn1NX6eDCmoIH+///tIk/QdfD4X3gwClBT5vhf9uEKUNHwBZ8pIg7SaMyoUvbhD6NU0Ybt9uGs8yK4r1A3iWKvHckFnykiDtLYzIbt9uGs80Hq1fr24aagx+rV+ngwpqBB8P//7SJP0HPxQyvr73IpSeRDK+vvcinZ4602Vw9sOmrUvScFOEAN6uEdMQU4AADp/jU1AABnCS/wrTZXD2w6KPt7FjfmXbvXIZfLJDo36roo0+12PgLMUfkODxDaRU1B6Rs1htLwO1by7jxS52VOne3umLPMEhmu3V3mP8ih8AgtwdOZ5bbkzCb5x0lByFIItJUy0MpfLTnOelDu6FociucCS392N+3ITH72/DSD64Mk0+/iL8XpgklpcEplSj6cwmXa9BpesjwjGpaMN2VwS2VpjsT3y4qE9jy7n0NF2Y0yRUT4u6qzskpZDt0NHfLY8cQuiN1ItSN8dY+/fuKuv5SXG5Pu2NM3easp5PMTRz3H7ij+5zczOG0dkPU9OriBIwZf1qKJl9DPmZrL9xak9L2gVm3zrbx0OB8rC9FhF5zTC0JI0jnVczyiJkTs2vovNW7ZBBhc413hriaM7G2VI5mZx2CSbhpqwPkXLdRqzsE9pc+cP8Bbt240VquxdbdQLh02idIUbMli")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_vwnxt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cnsyf"]
+resource_name = "CannonFPS_mat"
+cull_mode = 2
+albedo_texture = ExtResource("15_lgqa7")
+metallic_specular = 0.0
+metallic_texture = ExtResource("16_8ydkj")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("16_8ydkj")
+roughness_texture_channel = 1
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_007i1"]
+resource_name = "cannon_smooth_Cube_001"
+_surfaces = [{
+"aabb": AABB(-2.36802, -0.679444, -1.38043, 5.43662, 1.46892, 3.01707),
+"attribute_data": PackedByteArray("SoJEbzJKMXIYVqRItT4qSPxLpR7YKQAiOihzbZF4pR4cbiJJ6IPaI0YZcyVIDXMl2xCnDHyT3P8OpXDQQ6Q/4QqRTMw5p4j8B7oA+d62+9GqyWTeF8wP+FTWTMyG3Wf2R9hZOuvnaUpH2GlK46E/4W6mcNCetFvYLN8uiXz0Y5fb3EuUMdi7mgXarab94WSrEQ8NGW8ADBcOYuNIcUpoSEJi5CS3YNxssDPNbDoy6UdFemFJCl/pF61t6hlAXU8kW2y7DmdQ5xWoiLvgC8cf0aLfo9nr51k6repRoJ/n75lN6A+V3ASnDLQdDhtjHOAPwAE6IkxViGwgbGBtvXYCdK5t1iTWVsEkz4aiSbZA8SMpP3FsRDUdI1klpkc/aU8kuVEWIdVUggvUYIILvbf64N24+uBY7jSLA+ykl3jrW5k57mqbfPRWqA=="),
+"format": 34896613399,
+"index_count": 252,
+"index_data": PackedByteArray("JAA5AAwAJAAlADkAOgAkAAwAOgAMADsACgAkADoACgALACQACwAlACQACwA8ACUAJgA9AAIAJgApAD0ACAApACYACAA+ACkACAA/AD4AQAAIACYACAAsAD8AQAAsAAgALAAAAD8AQAAmACgAKAAmAAIAQAAHACwAKAACAEEALABCAAAABwBCACwABwAJAEIAAgAEAEEAAgAnAAQAPQAnAAIAJwBDAAQAPQABACcAAQADACcAJwADAEMAAQBEAAMAKgADAEQAKwBDAAMAKgArAAMABgArACoAKwBFAEMABgBGACsARgBFACsARgAFAEUALQBHAC8ALQAuAEcAMQAtAC8AMQAvAEgASQAtADEASQBKAC0ASgAuAC0ASgAwAC4AMgAOAA8AMgAQAA4ADQAyAA8ADQAPABEAEgARAA8AEgAPAEsAFAASAEsAFAAVABIAFAAXABUAFAA0ABcAFAAWADQAFAAzABYASwAzABQASwATADMAGAAZABoAGAA1ABkAGwAdAEwAGwAcAB0ATQBOADgAHgBNADgAHgA4ACAATQAfAE4AIQAgADgAHwBPAE4AOABOAE8AHwBQAE8AOABPADcANwBPAFAAIQA4ADcANgBQAB8ANwBQADYANgAhADcANgAfAFEANgAiACEANgBRACMANgAjACIA"),
+"lods": [0.361699, PackedByteArray("JAAlAAwACwAlACQACgAkAAwACgALACQAJgABAAIAAQAnAAIAKAAmAAIABwAmACgAAgAEACgAAgAnAAQAJgApAAEAAQADACcAJwADAAQAAQAqAAMAKwAEAAMAKgArAAMAKwAFAAQABgArACoABgAFACsACAApACYABwAIACYACAAAACkABwAsAAgACAAsAAAABwAJACwALAAJAAAALQAuAC8AMAAuAC0AMQAtAC8AMQAwAC0AMgAOAA8AMgAQAA4ADQAyAA8ADQAPABEAEgARAA8AEgAPABMAFAASABMAFAAVABIAEwAzABQAFAAXABUAFAAzABYAFAA0ABcAFAAWADQAGAAZABoAGAA1ABkAGwAcAB0ANgAhADcANgAiACEANgAjACIANgAfACMAHwA2ADcAIQA4ADcAHwA3ADgAIQAgADgAHgAfADgAHgA4ACAA"), 0.970719, PackedByteArray("AAABAAIAAQADAAIABAAAAAIAAgADAAQAAQAFAAMABQAEAAMABgAFAAEABwAAAAQABwAIAAAACAAJAAAABwAJAAgACgALAAwADQAOAA8ADQAQAA4ADQAPABEAEgARAA8AEgAPABMAFAASABMAFAAVABIAEwAWABQAFAAXABUAFAAWABcAGAAZABoAGwAcAB0AHgAfACAAHwAhACAAHwAiACEAIgAfACMA")],
+"material": SubResource("StandardMaterial3D_cnsyf"),
 "name": "CannonFPS_mat",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -597,6 +648,7 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_twte0")
 console_ui = NodePath("Head/headbob_pivot/Camera3D/SubViewportContainer2/SubViewport/console_ui")
+air_strafe_curve = SubResource("Curve_ioxgp")
 
 [node name="standing_collision_shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00182062, -0.00115187, -0.000355512)
@@ -832,10 +884,20 @@ layout_mode = 2
 text = "speed: "
 label_settings = SubResource("LabelSettings_vaad7")
 
+[node name="debug_label_airstrafe" type="Label" parent="Head/headbob_pivot/Camera3D/SubViewportContainer2/SubViewport/console_ui/VBoxContainer"]
+layout_mode = 2
+text = "airstrafe val: "
+label_settings = SubResource("LabelSettings_ioxgp")
+
 [node name="debug_label_velocity" type="Label" parent="Head/headbob_pivot/Camera3D/SubViewportContainer2/SubViewport/console_ui/VBoxContainer"]
 layout_mode = 2
 text = "velocity: x, y"
 label_settings = SubResource("LabelSettings_tjdps")
+
+[node name="debug_label_velocity2" type="Label" parent="Head/headbob_pivot/Camera3D/SubViewportContainer2/SubViewport/console_ui/VBoxContainer"]
+layout_mode = 2
+text = "true velocity:"
+label_settings = SubResource("LabelSettings_cnsyf")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Head/headbob_pivot/Camera3D"]
 texture_filter = 1
@@ -957,6 +1019,12 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21014, 0.0153585, 2.39779)
 layers = 2
 mesh = SubResource("ArrayMesh_gmsa3")
+skeleton = NodePath("")
+
+[node name="4 - hand_left2" type="MeshInstance3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun/mesh_mover/mesh/cannon2"]
+transform = Transform3D(-0.916332, -0.0206988, -0.399883, 0.0653457, 0.977545, -0.20034, 0.39505, -0.209709, -0.894403, 6.74697, -0.0445144, 3.29024)
+layers = 2
+mesh = SubResource("ArrayMesh_007i1")
 skeleton = NodePath("")
 
 [node name="5 - hand_right" type="MeshInstance3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun/mesh_mover/mesh/cannon2"]

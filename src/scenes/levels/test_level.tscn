@@ -849,6 +849,7 @@ label_text = "test end zone"
 label_text_size = 64
 fade_out = false
 fade_out_pretime = 10.0
+macaw_text = false
 
 [node name="Node3D6" parent="." instance=ExtResource("3_a5rnb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9789, 1.79326, -2.18758)
@@ -874,6 +875,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0372949, 1.15038, 0.0086336
 text = "explosive barrel"
 label_text = "explosive barrel"
 fade_out = false
+macaw_text = false
 
 [node name="fragile_platform" parent="." instance=ExtResource("4_fqldq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.25, 11.0555)
@@ -885,6 +887,7 @@ font_size = 24
 label_text = "fragile platform"
 label_text_size = 24
 fade_out = false
+macaw_text = false
 
 [node name="destructable_platform" parent="." instance=ExtResource("5_3ay3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.25, 13.6213)
@@ -896,6 +899,7 @@ font_size = 24
 label_text = "destructable platform"
 label_text_size = 24
 fade_out = false
+macaw_text = false
 
 [node name="destructable_platform2" parent="." instance=ExtResource("5_3ay3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.25, 4.37133)

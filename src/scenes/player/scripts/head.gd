@@ -11,6 +11,7 @@ var recoil_x = 0.0
 var camera_shake = 0.0
 
 var viewmodel_fov_default : float
+var looking_behind = false
 
 func _ready():
 	Events.add_camera_shake.connect(_add_camera_shake)
@@ -36,7 +37,13 @@ func _process(delta):
 		### this is a work around, maybe find the true solution later? (the division)
 		camera_viewmodel.h_offset = -camera_offset.x / 18
 		camera_viewmodel.v_offset = -camera_offset.y / 18
-		
+	
+	if looking_behind:
+		camera_main.rotation.y = lerp(camera_main.rotation.y, deg_to_rad(180), delta * 20.0)
+		camera_viewmodel.visible = false
+	else: 
+		camera_main.rotation.y = lerp(camera_main.rotation.y, 0.0, delta * 20.0)
+		camera_viewmodel.visible = true
 
 func _head_recoil_affect(recoil_dynamic, recoil_instant, camera_shake):
 	# instant recoil

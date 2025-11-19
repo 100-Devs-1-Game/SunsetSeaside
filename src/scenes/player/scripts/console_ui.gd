@@ -4,11 +4,15 @@ extends Control
 @onready var debug_label_speed: Label = $VBoxContainer/debug_label_speed
 @onready var debug_label_velocity: Label = $VBoxContainer/debug_label_velocity
 @onready var debug_label_bounce_mod: Label = $VBoxContainer/debug_label_bounce_mod
+@onready var debug_label_airstrafe: Label = $VBoxContainer/debug_label_airstrafe
+@onready var debug_label_combi_velocity: Label = $VBoxContainer/debug_label_velocity2
 
 #### called by the player script
 func velocity_update(velocity): debug_label_velocity.text = "velocity: " + str(snapped(velocity.x, 0.01)) + ", " + str(snapped(velocity.y, 0.01))
 func speed_update(speed): debug_label_speed.text = "speed: " + str(speed)
 func bounce_mod_update(bounce_mod): debug_label_bounce_mod.text = "last bounce mod: " + str(bounce_mod)
+func airstrafe_val_update(val): debug_label_airstrafe.text = "airstrafe val: " + str(val)
+func combi_velocity_update(val): debug_label_combi_velocity.text = "true velocity: " + str(val)
 
 func _ready():
 	if !visible: set_process(false)

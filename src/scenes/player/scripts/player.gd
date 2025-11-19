@@ -1,4 +1,9 @@
 extends CharacterBody3D
+# responsible for player movement, input, and some ui
+
+# movement and airstrafing made in part with implementations by AceSpectre, cheers
+# https://www.youtube.com/watch?v=id-odmTZ_H4&t=157s 
+# https://github.com/AceSpectre/Quakelike-Controller
 
 # node declarations
 @onready var head = $Head as Node3D
@@ -12,49 +17,45 @@ extends CharacterBody3D
 @onready var edge_detectors: Node3D = $edge_detectors
 @onready var explosion_trail_spawner: Node3D = $explosion_trail_spawner
 
-#@onready var animation_player = $Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/fps_rig/katana/AnimationPlayer
-@onready var original_pos = global_position
-
-# debug labels
 @export var console_ui: Control
+@onready var original_pos = global_position
 
 # @onready var animation_list_size = animation_player.get_animation_list().size() - 1
 
-# movement variables
-
-# speed vars
-var speed = default_speed # the current desired speed that velocity is trying to reach
-var accel = ACCEL_DEFAULT # affects how quickly velocity reaches speed (by multiplying delta in the lerp function for velocity)
-var deccel = DECCEL_DEFAULT
-var deccel_backpedal = DECCEL_BACKPEDAL_DEFAULT
-
-# speed constants
-##### the movement speed of each state
-const default_speed = 6.0
-const crouching_speed = 3.0
-const sprint_speed = 11.0
-
-const ACCEL_DEFAULT = 4.0
-const DECCEL_DEFAULT = 5.0
-const DECCEL_BACKPEDAL_DEFAULT = 3.0
-const ACCEL_MIDAIR = 0.6
-const DECCEL_BACKPEDAL_MIDAIR = 0.6
+const speeds = {
+	"walk" : 6.0,
+	"crouch" : 3.0,
+	"sprint" : 11.0,
+	"air" : 15.0 
+	}
+const accels = {
+	"floor" : 7.0,
+	"crouch" : 4.0,
+	"air" : 0.3
+	} 
+const drags = {
+	"floor" : 8.0,
+	"crouch" : 4.0,
+	"air" : 0.01 
+	}
+const gravity = 16.0
 
 # crouch vars
-var crouch_speed = 10.0 # how fast a crouch is completed
+var crouch_headspeed = 10.0 # how fast a crouch is completed
 var crouching_depth = -0.5
-var crouch_toggle = false
+#var crouch_toggle = false
 
 # jump vars / const
-const JUMP_VELOCITY = 7.0
-var wall_jump_force = default_speed * 1.5
+const jump_velocity = 8.5
 
-# camera variables
+# airstrafing
+@export var air_strafe_curve : Curve
+var strafe_angle_min = 0.0
+var strafe_angle_max = 180.0
+var air_strafe_modifier = 2.5 # multiplies the curve value
+
+### camera variables
 var mouse_sense = 0.4 # divides the relation between mouse movement and camera input
-var mouse_sense_offset = 6000
-var mouse_relative_x = 0
-var mouse_relative_y = 0
-
 # headbob vars
 var position_last_frame = Vector3.ZERO
 var foot_step_alternate = false
@@ -70,158 +71,82 @@ var landing_buffer = 48 # decreases the length of the sin wave on both ends to m
 # states
 var state = Enums.PlayerState.WALKING
 
-# get the gravity from the project settings to be synced with rigidbody nodes
-var gravity = 16.0
-
+# reminder: type safety is for pussies
 func _ready():
-	set_meta(&"Player", self) # for recognition of type by areas, mostly explosive barrels
+	set_meta(&"Player", self) # for recognition of body type by areas
 	Gamestate.player = self
-	###### game events
-	Events.shotgun_bounce.connect(_shotgun_bounce)
-	Events.explosion_bounce.connect(_explosion_bounce)
-	Events.player_death.connect(_fucking_die)
-	Events.fps_mouse_movement.connect(_camera_control)
-	
-	###### settings events
-	Events.set_sens.connect(_set_sensitivity)
-	# Events.set_fov is connected in the head script
-	Events.set_crouch_toggle.connect(_set_crouch_toggle)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	# setting viewmodel viewport to be the same size as the window
 	$Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
 
-	# establish settings values
-	Keeper.load_settings() # refresh
-	mouse_sense = Keeper.settings_data["sensitivity"]
-	head.set_fov(Keeper.settings_data["fov"])
-	crouch_toggle = Keeper.settings_data["crouch toggle"]
+	_establish_events()
+	_establish_settings()
 
-func _physics_process(delta):
+
+func _process(delta):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	# setting viewmodel camera to default camera position
 	viewmodel_camera.global_transform = camera.global_transform
 	
-	# ~~~ movement ~~~~~~~~~~~~~~~~~~
-	
-	# getting direction var from keyboard input
-	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	# handle gravity and all midair checks
-	if !is_on_floor():
-		velocity.y -= gravity * delta
-		if velocity.y < verticalForce : 		# recording the amount of vertical force to enact on the camera after falling
-			verticalForce = velocity.y  		# force is based on the distance of the fall
-		verticalForceStorage = verticalForce
-
-		accel = ACCEL_MIDAIR # changing how much control the player has over movement whislt midair
-		deccel_backpedal = DECCEL_BACKPEDAL_MIDAIR
-	else:
-		if !verticalForce == 0.0: 	 # handle landing downward head movement
-			verticalForce = 0.0
-		if verticalForceStorage < 0:
-			var lerp = sin(deg_to_rad(landing_sin_degrees)) * verticalForceStorage  # pushes head downward one length of a sinwave, amplified by verticalForce
-			head.position.y += lerp / (100 * landing_head_bob)
-			if landing_sin_degrees < 181 - landing_buffer:
-				landing_sin_degrees += 24
-			else:
-				verticalForceStorage = 0.0
-				landing_sin_degrees = 0 + landing_buffer
-
-		accel = ACCEL_DEFAULT
-		deccel_backpedal = DECCEL_BACKPEDAL_DEFAULT
-	
-	# handle jump and wall jump
-	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
-			velocity.y = JUMP_VELOCITY
-		_first_input_check()
-
-	# handle movement augmentations (crouching, sliding, sprinting)
-	if Input.is_action_pressed("crouch"):
-		speed = crouching_speed
-		head.position.y =  lerp(head.position.y, original_head_pos.y + crouching_depth, delta * crouch_speed)
-		standing_collision_shape.disabled = true; crouching_collision_shape.disabled = false
-		
-		state = Enums.PlayerState.CROUCHING
-		
-	elif !edge_detectors.up.is_colliding():
-		# handle sprinting
-		if Input.is_action_pressed("sprint"):
-			speed = sprint_speed
-			state = Enums.PlayerState.SPRINTING
-		else:
-			speed = default_speed
-			state = Enums.PlayerState.WALKING
-		head.position.y =  lerp(head.position.y, original_head_pos.y, delta * crouch_speed)
-		standing_collision_shape.disabled = false; crouching_collision_shape.disabled = true
-
-	if Input.is_action_just_pressed("attack"):
-		Events.fire_weapon.emit()
-		_first_input_check()
-
-	if Input.is_action_just_pressed("toggle_console"):
-		if console_ui.visible: console_ui.close()
-		else: console_ui.open()
-
-	# handle velocity
-	if direction:	
-		_first_input_check()
-		# velocity.x
-		if velocity.x >= 0:
-			if lerp(velocity.x, direction.x * speed, delta) - velocity.x < 0:
-				velocity.x = lerp(velocity.x, direction.x * speed, delta * deccel_backpedal)
-			else:
-				velocity.x = lerp(velocity.x, direction.x * speed, delta * accel)
-		if velocity.x < 0:
-			if lerp(velocity.x, direction.x * speed, delta) - velocity.x > 0:
-				velocity.x = lerp(velocity.x, direction.x * speed, delta * deccel_backpedal)
-			else:
-				velocity.x = lerp(velocity.x, direction.x * speed, delta * accel)
-
-		# velocity.z
-		if velocity.z >= 0:
-			if lerp(velocity.z, direction.z * speed, delta) - velocity.z < 0:
-				velocity.z = lerp(velocity.z, direction.z * speed, delta * deccel_backpedal)
-			else:
-				velocity.z = lerp(velocity.z, direction.z * speed, delta * accel)
-		if velocity.z < 0:
-			if lerp(velocity.z, direction.z * speed, delta) - velocity.z > 0:
-				velocity.z = lerp(velocity.z, direction.z * speed, delta * deccel_backpedal)
-			else:
-				velocity.z = lerp(velocity.z, direction.z * speed, delta * accel)
-	else:
-		if is_on_floor():
-			velocity.x = lerp(velocity.x, 0.0, delta * deccel)
-			velocity.z = lerp(velocity.z, 0.0, delta * deccel)
+	# state -> movement
+	_input_calc()
+	_handle_crouch(delta)
+	_handle_landing_cam()
+	_move(delta)
 	
 	if is_on_floor(): Events.floor_reload.emit()
 	elif is_on_wall(): Events.wall_reload.emit()
 	
-	move_and_slide()
-	
-	# ~~~ end of movement ~~~~~~~~~~~~~~~~~~
-	
-	# head bob
+	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down") # keeping for headbob script
+	#if input_dir != Vector2.ZERO: _first_input_check()
 	neck.headbob(position_last_frame, is_on_floor(), input_dir, state, position, delta)
-	
-	# reset
-	if Input.is_action_just_pressed("reset"):
-		global_position = original_pos
-
-	# debug labels
-	_debug_label_update()
-	
 	position_last_frame = position
 	Gamestate.player_global_position = global_position
 	
-	# below map failsafe
-	if global_position.y < -10.0:
+	# debug
+	if global_position.y < -10.0: # below map failsafe
 		Events.player_death.emit(Enums.PlayerDeathType.INSTANT)
 
+	if Input.is_action_just_pressed("reset"):
+		global_position = original_pos
 
+	_debug_label_update()
+	
 ### physics functions
+func _move(delta):
+	# assign movement values based on state
+	var move_vals = _get_movestate_vals()
+	var speed = move_vals[0]
+	var accel = move_vals[1]
+	var drag = move_vals[2] 
+
+	var direction = Vector3.ZERO
+	var h_rot : float = global_transform.basis.get_euler().y
+	var f_input : float = Input.get_axis("move_up", "move_down")
+	var h_input : float = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	direction = Vector3(h_input, 0, f_input).rotated(Vector3.UP, h_rot).normalized()	
+	if direction != Vector3.ZERO:
+		_first_input_check()
+	
+	var wish_vel = direction * speed
+	
+	if !is_on_floor(): # airstrafing
+		var angle_diff : float = rad_to_deg(_get_horizontal_angle(velocity, wish_vel))
+		var sample_point = (angle_diff - strafe_angle_min) / strafe_angle_max
+		#velocity += wish_vel.normalized() * delta * airStrafeCurve.sample(samplePoint) * airSpeed
+		var air_strafe_additive = (air_strafe_curve.sample(sample_point) * air_strafe_modifier)
+		wish_vel *= 1.0 + air_strafe_additive
+		console_ui.airstrafe_val_update(air_strafe_additive)
+	
+	if direction.length() > 0:
+		velocity = lerp(velocity, wish_vel, accel * delta)
+	else:
+		velocity = lerp(velocity, wish_vel, drag * delta)
+	
+	velocity.y -= gravity * delta
+	move_and_slide()
+
 func _shotgun_bounce(direction, force): # bounce the player, sent by the shotgun script
 	var bounce_mod = 1.0
 	if state == Enums.PlayerState.CROUCHING: bounce_mod += 0.2
@@ -240,10 +165,61 @@ func _explosion_bounce(direction, force, smoke_trail_amount): # direction and fo
 	velocity.z += direction.z * force
 	explosion_trail_spawner.spawn(smoke_trail_amount) # to be implemented
 
-func _debug_label_update():
-	console_ui.speed_update(speed)
-	console_ui.velocity_update(Vector2(velocity.x, velocity.z))
+func _input_calc():
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			velocity.y = jump_velocity
+		_first_input_check()
+
+	# handle movement augmentations (crouching, sliding, sprinting)
+	if Input.is_action_pressed("crouch"):
+		state = Enums.PlayerState.CROUCHING
+		
+	elif !edge_detectors.up.is_colliding():
+		# handle sprinting
+		if Input.is_action_pressed("sprint"):
+			state = Enums.PlayerState.SPRINTING
+		else:
+			state = Enums.PlayerState.WALKING
+
+	if Input.is_action_just_pressed("attack"):
+		Events.fire_weapon.emit()
+		_first_input_check()
+
+	if Input.is_action_just_pressed("toggle_console"):
+		if console_ui.visible: console_ui.close()
+		else: console_ui.open()
 	
+	if Input.is_action_pressed("look_behind"):
+		head.looking_behind = true
+	else:
+		head.looking_behind = false
+
+func _handle_crouch(delta):
+	if state == Enums.PlayerState.CROUCHING:
+		head.position.y =  lerp(head.position.y, original_head_pos.y + crouching_depth, delta * crouch_headspeed)
+		standing_collision_shape.disabled = true; crouching_collision_shape.disabled = false
+	else:
+		head.position.y =  lerp(head.position.y, original_head_pos.y, delta * crouch_headspeed)
+		standing_collision_shape.disabled = false; crouching_collision_shape.disabled = true
+
+func _handle_landing_cam(): # this is insanely fucking messy and unoptimized :)
+	if !is_on_floor():
+		if velocity.y < verticalForce : 		# recording the amount of vertical force to enact on the camera after falling
+			verticalForce = velocity.y  		# force is based on the distance of the fall
+		verticalForceStorage = verticalForce
+	else:
+		if !verticalForce == 0.0: 	 # handle landing downward head movement
+			verticalForce = 0.0
+		if verticalForceStorage < 0:
+			var lerp = sin(deg_to_rad(landing_sin_degrees)) * verticalForceStorage  # pushes head downward one length of a sinwave, amplified by verticalForce
+			head.position.y += lerp / (100 * landing_head_bob)
+			if landing_sin_degrees < 181 - landing_buffer:
+				landing_sin_degrees += 24
+			else:
+				verticalForceStorage = 0.0
+				landing_sin_degrees = 0 + landing_buffer
+
 func _fucking_die(type : Enums.PlayerDeathType):
 	queue_free()
 	# add death animation
@@ -252,27 +228,68 @@ func _first_input_check():
 	if Gamestate.has_moved == false:
 		Events.first_movement.emit()
 
-func _camera_control(event): # sent by main script, having to bypass because main subviewport is a greedy gluttonous creature
+func _camera_control(event): # sent by main script, having to bypass because main subviewport is greedy & gluttonous
 	var relative = Vector2(event.relative.x * (mouse_sense / 600), event.relative.y *  (mouse_sense / 600))
 	rotation.y -= relative.x
 	head.rotation.x -= relative.y
 	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
-	mouse_relative_x = clamp(event.relative.x, -50, 50)
-	mouse_relative_y = clamp(event.relative.y, -50, 10)
 	viewmodel_camera.sway(Vector2(relative.x * 800.0, relative.y * 800.0))
 
 func _set_sensitivity(sensitivity):
 	mouse_sense = sensitivity
 
-func _set_crouch_toggle(toggle):
-	crouch_toggle = toggle
+#func _set_crouch_toggle(toggle):
+	#crouch_toggle = toggle
 
-#func _input(event): # handling camera movement for the mouse
-	##if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
-	#if event is InputEventMouseMotion:
-		#rotation.y -= event.relative.x / mouse_sens
-		#head.rotation.x -= event.relative.y / mouse_sens
-		#head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
-		#mouse_relative_x = clamp(event.relative.x, -50, 50)
-		#mouse_relative_y = clamp(event.relative.y, -50, 10)
-		#viewmodel_camera.sway(Vector2(event.relative.x,event.relative.y))
+# helper methods, moved for organization
+func _establish_events():
+	###### game events
+	Events.shotgun_bounce.connect(_shotgun_bounce)
+	Events.explosion_bounce.connect(_explosion_bounce)
+	Events.player_death.connect(_fucking_die)
+	Events.fps_mouse_movement.connect(_camera_control)
+	
+	###### settings events
+	Events.set_sens.connect(_set_sensitivity)
+	#Events.set_crouch_toggle.connect(_set_crouch_toggle) # unimplemented
+	# Events.set_fov is connected in the head script
+	
+func _establish_settings():
+	# establish settings values
+	Keeper.load_settings() # refresh
+	mouse_sense = Keeper.settings_data["sensitivity"]
+	head.set_fov(Keeper.settings_data["fov"])
+	#crouch_toggle = Keeper.settings_data["crouch toggle"]
+
+func _debug_label_update():
+	#console_ui.speed_update(speed)
+	console_ui.velocity_update(Vector2(velocity.x, velocity.z))
+	console_ui.combi_velocity_update(snapped(sqrt(velocity.x ** 2 + velocity.z ** 2), 0.001))
+	
+func _get_horizontal_angle(vec1 : Vector3, vec2 : Vector3) -> float:
+	vec1.y = 0
+	vec2.y = 0
+	return abs(vec1.angle_to(vec2))
+
+func _get_movestate_vals(): # helper method, moved for organization
+	var movevals = [0.0, 0.0, 0.0] 
+
+	if !is_on_floor():
+		movevals[0] = speeds["air"]
+		movevals[1] = accels["air"]
+		movevals[2] = drags["air"]
+	else:
+		match state:
+			Enums.PlayerState.WALKING: 
+				movevals[0] = speeds["walk"]
+				movevals[1] = accels["floor"]
+				movevals[2] = drags["floor"]
+			Enums.PlayerState.SPRINTING: 
+				movevals[0] = speeds["sprint"]
+				movevals[1] = accels["floor"]
+				movevals[2] = drags["floor"]
+			Enums.PlayerState.CROUCHING: 
+				movevals[0] = speeds["crouch"]
+				movevals[1] = accels["crouch"]
+				movevals[2] = drags["crouch"]
+	return movevals

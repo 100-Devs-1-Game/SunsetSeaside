@@ -1,3 +1,6 @@
+// created in part by using help from a video by codat, cheers
+// https://www.youtube.com/watch?v=5MfcliFqjnE
+
 shader_type spatial;
 render_mode cull_back, diffuse_burley;
 

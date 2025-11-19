@@ -40,14 +40,14 @@ signal ui_send_level_history(time_best, shots_best, jug_history, hardcore_histor
 signal ui_update_title_state(state)
 
 ###### settings
-signal set_sens(sensitivity : float)
-signal set_crouch_toggle(toggled : bool)
-signal set_labels_hidden(hidden : bool)
-signal set_master_vol(vol : int)
-signal set_sfx_vol(vol : int)
-signal set_music_vol(vol : int)
-signal set_ambient_vol(vol : int)
-signal set_fov(fov : int)
-signal set_fullscreen(fullscreen : bool)
-signal set_4by3(fourbythree : bool)
+signal set_sens(sensitivity : float) # done
+signal set_crouch_toggle(toggled : bool) # needs code in player script
+signal set_labels_hidden(hidden : bool) # done
+signal set_master_vol(vol : int) # done
+signal set_sfx_vol(vol : int) # done
+signal set_music_vol(vol : int) # done
+signal set_ambient_vol(vol : int) # done
+signal set_fov(fov : int) # done
+signal set_fullscreen(fullscreen : bool) # done?
+signal set_4by3(fourbythree : bool) # currently unused
 signal set_reso_scale(multi : int) # currently unused

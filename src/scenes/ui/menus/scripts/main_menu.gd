@@ -27,6 +27,6 @@ func _open_menu(menu): # rename this!
 
 func on_menu_close():
 	_open_menu(MenuType.TITLE)
-
+ 
 func _on_button_erase_data_pressed() -> void:
 	Keeper.erase_progress()
