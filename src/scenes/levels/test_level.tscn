@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=4 uid="uid://bxyf53ifrvvwv"]
+[gd_scene load_steps=99 format=4 uid="uid://bxyf53ifrvvwv"]
 
 [ext_resource type="Script" uid="uid://c35qacpu8na2l" path="res://scenes/levels/scripts/level.gd" id="1_eaa0b"]
 [ext_resource type="Texture2D" uid="uid://bc1l3yxle0b8x" path="res://assets/devblocks/textures/light/texture_09.png" id="1_jmx14"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cxc7h8fscjiwl" path="res://scenes/entities/treasure_chest.tscn" id="25_78u6e"]
 [ext_resource type="PackedScene" uid="uid://dhecr53va5gvu" path="res://scenes/entities/bottle.tscn" id="26_cj4me"]
 [ext_resource type="PackedScene" uid="uid://b7r2y5s2yjonr" path="res://scenes/entities/skull.tscn" id="27_0d6o1"]
+[ext_resource type="PackedScene" uid="uid://0tahmp7igbtj" path="res://scenes/entities/net.tscn" id="28_vptxo"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_c7nhy"]
 
@@ -849,7 +850,6 @@ label_text = "test end zone"
 label_text_size = 64
 fade_out = false
 fade_out_pretime = 10.0
-macaw_text = false
 
 [node name="Node3D6" parent="." instance=ExtResource("3_a5rnb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9789, 1.79326, -2.18758)
@@ -875,7 +875,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0372949, 1.15038, 0.0086336
 text = "explosive barrel"
 label_text = "explosive barrel"
 fade_out = false
-macaw_text = false
 
 [node name="fragile_platform" parent="." instance=ExtResource("4_fqldq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.25, 11.0555)
@@ -887,7 +886,6 @@ font_size = 24
 label_text = "fragile platform"
 label_text_size = 24
 fade_out = false
-macaw_text = false
 
 [node name="destructable_platform" parent="." instance=ExtResource("5_3ay3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.25, 13.6213)
@@ -899,7 +897,6 @@ font_size = 24
 label_text = "destructable platform"
 label_text_size = 24
 fade_out = false
-macaw_text = false
 
 [node name="destructable_platform2" parent="." instance=ExtResource("5_3ay3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.25, 4.37133)
@@ -1295,6 +1292,9 @@ transform = Transform3D(0.436975, 0, -0.899474, 0, 1, 0, 0.899474, 0, 0.436975, 
 
 [node name="Node3D5" parent="." instance=ExtResource("27_0d6o1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.52637, 0.610676, -0.173511)
+
+[node name="net" parent="." instance=ExtResource("28_vptxo")]
+transform = Transform3D(2.49866, 0, 0, 0, 2.49866, 0, 0, 0, 2.49866, 13.8674, -0.558583, -9.59215)
 
 [editable path="area_ending"]
 [editable path="area_ending2"]

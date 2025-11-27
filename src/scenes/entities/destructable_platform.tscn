@@ -15,8 +15,11 @@ data = PackedVector3Array(-1, 0.25, 1, 1, 0.25, 1, -1, -0.25, 1, 1, 0.25, 1, 1, 
 [node name="destructable_platform" type="StaticBody3D"]
 script = ExtResource("1_pyyab")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh"]
 mesh = SubResource("BoxMesh_k55y8")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_msblv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -41,14 +41,17 @@ func _ready():
 	Events.set_labels_hidden.connect(_set_macaw_text)
 
 func _respawn_player():
-	var new_player = PLAYER_TSCN.instantiate()
-	player_spawnpoint.add_sibling(new_player)
-	new_player.global_position = player_spawnpoint.global_position
-	new_player.global_rotation = player_spawnpoint.global_rotation
+	# reset values and entities
+	Events.entity_reset.emit()
 	stopwatch.reset(); has_moved = false
 	shots_taken = 0
 	ending_was_reached = false
 	jug_grabbed = false
+
+	var new_player = PLAYER_TSCN.instantiate()
+	player_spawnpoint.add_sibling(new_player)
+	new_player.global_position = player_spawnpoint.global_position
+	new_player.global_rotation = player_spawnpoint.global_rotation
 
 #### setup functions
 func _establish_spawnpoint(node):
@@ -97,6 +100,7 @@ func _level_end_reached():
 	
 	# get level history
 	Keeper.load_records()
+	Keeper.load_completion() # fetching for the sake of not overwritting other level values
 	var level_history = Keeper.get_level_history(current_level_grouping, current_level_id)
 	
 	# send values to results screen
@@ -124,9 +128,12 @@ func _level_end_reached():
 	if level_history["hardcore_history"] == false && hardcore_enabled == true:
 		new_hardcore = true
 		
-	# if vals are null then nothing is written to the respective slot
+	# if vals are still null then nothing is written to the respective slot
 	Keeper.write_level_history(current_level_grouping, current_level_id, new_time, new_par, new_jug, new_hardcore)
+	Keeper.write_level_completion(current_level_grouping, current_level_id, true, stopwatch.time < current_time_limit, shots_taken <= current_par_limit, jug_grabbed, hardcore_enabled)
+	
 	Keeper.save_records()
+	Keeper.save_completion()
 
 func _set_macaw_text(state):
 	hide_macaw_text = state

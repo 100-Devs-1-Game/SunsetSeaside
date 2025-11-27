@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=27 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
 [ext_resource type="Texture2D" uid="uid://d11m0it4kt8ry" path="res://assets/textures/god.webp" id="2_h1kbi"]
@@ -68,6 +68,15 @@ font = ExtResource("3_p0q51")
 
 [sub_resource type="LabelSettings" id="LabelSettings_h4dpu"]
 font_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_c8e1o"]
+font = ExtResource("3_p0q51")
+font_size = 32
+font_color = Color(1, 0.291825, 0.300667, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e7y46"]
+font = ExtResource("3_p0q51")
+font_size = 40
 
 [node name="main_menu" type="CanvasLayer"]
 script = ExtResource("1_flhq8")
@@ -633,7 +642,31 @@ layout_mode = 2
 
 [node name="HBoxContainer10" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 148
 alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpnnc")
+
+[node name="button_delete_confirm_open" type="Button" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../button_levels")
+focus_neighbor_bottom = NodePath("../../button_quit")
+focus_next = NodePath("../../button_quit")
+focus_previous = NodePath("../button_levels")
+theme = ExtResource("8_jk7nv")
+theme_override_fonts/font = ExtResource("3_p0q51")
+theme_override_font_sizes/font_size = 32
+text = " delete save data "
 
 [node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
 layout_mode = 2
@@ -658,6 +691,82 @@ theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
 text = "  return  "
 
+[node name="menu_delete_confirm" type="MarginContainer" parent="menu_root"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="menu_root/menu_delete_confirm"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p0q51")
+
+[node name="background_texture" type="TextureRect" parent="menu_root/menu_delete_confirm"]
+visible = false
+texture_filter = 2
+layout_mode = 2
+texture = ExtResource("4_ct055")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_delete_confirm"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_delete_confirm/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "this is irreversable."
+label_settings = SubResource("LabelSettings_c8e1o")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "are you certain?"
+label_settings = SubResource("LabelSettings_e7y46")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="button_delete_no" type="Button" parent="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../button_levels")
+focus_neighbor_bottom = NodePath("../../button_quit")
+focus_next = NodePath("../../button_quit")
+focus_previous = NodePath("../button_levels")
+theme = ExtResource("8_jk7nv")
+theme_override_fonts/font = ExtResource("3_p0q51")
+theme_override_font_sizes/font_size = 32
+text = "> no <"
+
+[node name="button_delete_yes" type="Button" parent="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../button_levels")
+focus_neighbor_bottom = NodePath("../../button_quit")
+focus_next = NodePath("../../button_quit")
+focus_previous = NodePath("../button_levels")
+theme = ExtResource("8_jk7nv")
+theme_override_fonts/font = ExtResource("3_p0q51")
+theme_override_font_sizes/font_size = 32
+text = "< yes >
+"
+
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer/button_settings" to="." method="_on_button_settings_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2/button_levels" to="." method="_on_button_levels_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer/button_quit" to="." method="_on_button_quit_pressed"]
@@ -675,4 +784,7 @@ text = "  return  "
 [connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_fullscreen" to="menu_root/menu_settings" method="_on_checkbox_fullscreen_toggled"]
 [connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_4by3" to="menu_root/menu_settings" method="_on_checkbox_4_by_3_toggled"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6/slider_res_scale" to="menu_root/menu_settings" method="_on_slider_res_scale_value_changed"]
+[connection signal="pressed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer2/button_delete_confirm_open" to="." method="_on_button_delete_confirm_open_pressed"]
 [connection signal="pressed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer/button_return_settings" to="." method="_on_button_return_settings_pressed"]
+[connection signal="pressed" from="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_no" to="." method="_on_button_delete_no_pressed"]
+[connection signal="pressed" from="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_yes" to="." method="_on_button_delete_yes_pressed"]

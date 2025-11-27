@@ -292,7 +292,7 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xcifl"]
-radius = 4.0
+radius = 4.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sc020"]
 
@@ -415,7 +415,7 @@ shape = SubResource("SphereShape3D_xcifl")
 transform = Transform3D(-0.13843, 0, -0.990372, 0, 1, 0, 0.990372, 0, -0.13843, 0, 0, 0)
 
 [node name="Icosphere" type="MeshInstance3D" parent="Area3D/sphere_container"]
-transform = Transform3D(0.944925, -0.590455, 0.69625, 0.696251, 1.11424, 0, -0.590455, 0.368957, 1.11423, 0, 0, 0)
+transform = Transform3D(1.06396, -0.664839, 0.783962, 0.783963, 1.25461, 0, -0.664839, 0.415437, 1.2546, 0, 0, 0)
 mesh = SubResource("ArrayMesh_xcifl")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_vqm2l")

@@ -84,7 +84,7 @@ func _ready():
 	_establish_settings()
 
 
-func _process(delta):
+func _process(delta): # this should be physics processs instead :)
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	# setting viewmodel camera to default camera position
 	viewmodel_camera.global_transform = camera.global_transform
@@ -119,7 +119,7 @@ func _move(delta):
 	var move_vals = _get_movestate_vals()
 	var speed = move_vals[0]
 	var accel = move_vals[1]
-	var drag = move_vals[2] 
+	var drag = move_vals[2]
 
 	var direction = Vector3.ZERO
 	var h_rot : float = global_transform.basis.get_euler().y
@@ -164,6 +164,12 @@ func _explosion_bounce(direction, force, smoke_trail_amount): # direction and fo
 	velocity.y += direction.y * force
 	velocity.z += direction.z * force
 	explosion_trail_spawner.spawn(smoke_trail_amount) # to be implemented
+
+func _net_bounce(net_normal):
+	# should bounce vector based on the nets normal (Vector3.bounce())
+	# for now:
+	#velocity.y = -velocity.y * 0.95
+	velocity = velocity.bounce(net_normal) * 0.95
 
 func _input_calc():
 	if Input.is_action_just_pressed("jump"):
@@ -222,7 +228,7 @@ func _handle_landing_cam(): # this is insanely fucking messy and unoptimized :)
 
 func _fucking_die(type : Enums.PlayerDeathType):
 	queue_free()
-	# add death animation
+	# add death animation ?
 
 func _first_input_check():
 	if Gamestate.has_moved == false:
@@ -235,19 +241,15 @@ func _camera_control(event): # sent by main script, having to bypass because mai
 	head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
 	viewmodel_camera.sway(Vector2(relative.x * 800.0, relative.y * 800.0))
 
-func _set_sensitivity(sensitivity):
-	mouse_sense = sensitivity
 
-#func _set_crouch_toggle(toggle):
-	#crouch_toggle = toggle
 
-# helper methods, moved for organization
 func _establish_events():
 	###### game events
 	Events.shotgun_bounce.connect(_shotgun_bounce)
 	Events.explosion_bounce.connect(_explosion_bounce)
 	Events.player_death.connect(_fucking_die)
 	Events.fps_mouse_movement.connect(_camera_control)
+	Events.net_bounce.connect(_net_bounce)
 	
 	###### settings events
 	Events.set_sens.connect(_set_sensitivity)
@@ -261,11 +263,20 @@ func _establish_settings():
 	head.set_fov(Keeper.settings_data["fov"])
 	#crouch_toggle = Keeper.settings_data["crouch toggle"]
 
+func _set_sensitivity(sensitivity):
+	mouse_sense = sensitivity
+
+#func _set_crouch_toggle(toggle):
+	#crouch_toggle = toggle
+
+
 func _debug_label_update():
 	#console_ui.speed_update(speed)
 	console_ui.velocity_update(Vector2(velocity.x, velocity.z))
 	console_ui.combi_velocity_update(snapped(sqrt(velocity.x ** 2 + velocity.z ** 2), 0.001))
-	
+
+
+# helper methods
 func _get_horizontal_angle(vec1 : Vector3, vec2 : Vector3) -> float:
 	vec1.y = 0
 	vec2.y = 0

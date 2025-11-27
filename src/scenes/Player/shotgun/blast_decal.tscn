@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://b70bf2aqxvx47"]
+[gd_scene load_steps=3 format=3 uid="uid://b70bf2aqxvx47"]
 
 [ext_resource type="Texture2D" uid="uid://pnw73wnxsl0m" path="res://assets/textures/pngkey.com-cloud-texture-png-961839.png" id="1_a1yhm"]
+[ext_resource type="Script" uid="uid://c1j266d5d0v6n" path="res://scenes/player/shotgun/scripts/cannon_blast_decal.gd" id="2_5soex"]
 
 [node name="Node3D" type="Decal"]
 texture_albedo = ExtResource("1_a1yhm")
 upper_fade = 0.707107
 lower_fade = 0.466517
+script = ExtResource("2_5soex")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

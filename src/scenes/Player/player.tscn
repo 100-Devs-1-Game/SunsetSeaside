@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://f76fggl2uyob" path="res://scenes/player/scripts/player.gd" id="1_twte0"]
 [ext_resource type="Script" uid="uid://bw1c3unoeydxt" path="res://scenes/player/scripts/head.gd" id="2_c4h5g"]
-[ext_resource type="Script" uid="uid://dbar8iaytv1f4" path="res://scenes/player/edge_detectors.gd" id="2_ioxgp"]
+[ext_resource type="Script" uid="uid://dbar8iaytv1f4" path="res://scenes/player/scripts/edge_detectors.gd" id="2_ioxgp"]
 [ext_resource type="Script" uid="uid://bwyvdfclwdvt8" path="res://scenes/player/scripts/console_ui.gd" id="3_uiqp4"]
 [ext_resource type="AudioStream" uid="uid://dhcbr0641oraf" path="res://assets/sounds/player/footstep_3.wav" id="3_umd5a"]
 [ext_resource type="Script" uid="uid://cw30x4wy5quuw" path="res://scenes/player/scripts/headbob_pivot.gd" id="3_uxo23"]
@@ -16,8 +16,8 @@
 [ext_resource type="Script" uid="uid://e42v4wci1flq" path="res://scenes/player/scripts/mesh_mover.gd" id="6_n7rn1"]
 [ext_resource type="Script" uid="uid://3eolpr5dyick" path="res://scenes/player/scripts/muzzle.gd" id="7_7tfl1"]
 [ext_resource type="Texture2D" uid="uid://xejdredppl2p" path="res://assets/textures/muzzle-flash.png" id="8_jxtnq"]
-[ext_resource type="Script" uid="uid://dktl25jrxiqs6" path="res://scenes/player/scripts/cannon_decal_ray.gd" id="10_n7rn1"]
-[ext_resource type="Script" uid="uid://wj1osu2cl05y" path="res://scenes/player/scripts/cannon_damager.gd" id="11_7tfl1"]
+[ext_resource type="Script" uid="uid://dktl25jrxiqs6" path="res://scenes/player/shotgun/scripts/cannon_decal_ray.gd" id="10_n7rn1"]
+[ext_resource type="Script" uid="uid://wj1osu2cl05y" path="res://scenes/player/shotgun/scripts/cannon_damager.gd" id="11_7tfl1"]
 [ext_resource type="Texture2D" uid="uid://c16qerqj1k5sm" path="res://assets/models/cannon_sunset_assets_DefaultMaterial_BaseColor.png" id="13_kvlxm"]
 [ext_resource type="Script" uid="uid://caepwt04uvelp" path="res://scenes/player/scripts/explosion_trail_spawner.gd" id="14_t6q27"]
 [ext_resource type="Texture2D" uid="uid://c86hng33y8bhu" path="res://assets/models/cannon_sunset_assets_DefaultMaterial_Metallic-sunset_assets_DefaultMaterial_Roughness.png" id="14_uf5tr"]
@@ -1022,7 +1022,7 @@ mesh = SubResource("ArrayMesh_gmsa3")
 skeleton = NodePath("")
 
 [node name="4 - hand_left2" type="MeshInstance3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun/mesh_mover/mesh/cannon2"]
-transform = Transform3D(-0.916332, -0.0206988, -0.399883, 0.0653457, 0.977545, -0.20034, 0.39505, -0.209709, -0.894403, 6.74697, -0.0445144, 3.29024)
+transform = Transform3D(-0.941006, -0.0204029, -0.375505, 0.0671052, 0.963572, -0.188127, 0.405687, -0.206711, -0.839878, 6.74697, -0.0661917, 3.1435)
 layers = 2
 mesh = SubResource("ArrayMesh_007i1")
 skeleton = NodePath("")

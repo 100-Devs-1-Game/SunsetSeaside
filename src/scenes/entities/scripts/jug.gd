@@ -3,12 +3,16 @@ extends Node3D
 
 @onready var mesh_container: Node3D = $mesh_container
 @onready var mesh_spinner: Node3D = $mesh_container/mesh_spinner
+@onready var area_3d: Area3D = $Area3D
 
 var rotation_speed = 1.0
 var wave_speed = 1.0
 var wave_amp = 0.08
 
 var wave_increment : float = 0.0
+
+func _ready():
+	Events.entity_reset.connect(_reset)
 
 func _physics_process(delta):
 	# animate mesh
@@ -23,4 +27,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		Events.jug_collected.emit()
 		# play sound
 		# particles?
-		queue_free()
+		mesh_container.visible = false
+		area_3d.monitoring = false
+		
+func _reset():
+	mesh_container.visible = true
+	area_3d.monitoring = true

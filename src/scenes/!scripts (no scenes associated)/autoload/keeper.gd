@@ -16,9 +16,12 @@ var enc_key = "theres only 4 years left"
 func _ready():
 	if !FileAccess.file_exists(savepath + levels_file):
 		establish_level_save()
+	if !FileAccess.file_exists(savepath + completion_file):
+		establish_completion_save()
 	if !FileAccess.file_exists(savepath + settings_file):
 		establish_settings_save()
-
+	
+#### establishments
 func establish_level_save():
 	level_data = {
 		"debug":{},
@@ -35,6 +38,40 @@ func establish_level_save():
 	
 	save_records()
 
+func establish_completion_save():
+	completion_data = {
+		"debug":{},
+		"daylight":{},
+		"sunset":{},
+		"midnight":{},
+		"sunrise":{}
+	}
+	fresh_populate_section_completion("levels_debug")
+	fresh_populate_section_completion("levels_tutorial")
+	fresh_populate_section_completion("levels_easy")
+	fresh_populate_section_completion("levels_medium")
+	fresh_populate_section_completion("levels_hard")
+	
+	save_completion()
+
+func establish_settings_save():
+	settings_data = { # defaults established here
+		"sensitivity" : 0.42,
+		"fov" : 85,
+		"crouch toggle" : false,
+		"hidden labels" : false,
+		"master vol" : 100,
+		"sfx vol" : 100,
+		"music vol" : 100,
+		"ambient vol" : 100,
+		"fullscreen" : true,
+		"4by3" : false,
+		"resolution scale" : 1
+		
+	}
+	save_settings()
+
+#### population
 func fresh_populate_section(level_section):
 	var current_section = null
 	match level_section:
@@ -49,6 +86,21 @@ func fresh_populate_section(level_section):
 		if !level_data[current_section].has("id" + str(i)):
 			level_data[current_section]["id" + str(i)] = {"time_best" : null, "par_best" : null, "jug_history" : false, "hardcore_history" : false}
 
+func fresh_populate_section_completion(level_section):
+	var current_section = null
+	match level_section:
+		"levels_debug" : current_section = "debug"
+		"levels_tutorial" : current_section = "daylight"
+		"levels_easy" : current_section = "sunset"
+		"levels_medium" : current_section = "midnight"
+		"levels_hard" : current_section = "sunrise"
+	
+	var level_array = Gamestate.level_manager.get(level_section)
+	for i in level_array.size():
+		if !completion_data[current_section].has("id" + str(i)):
+			completion_data[current_section]["id" + str(i)] = {"level_complete" : false,  "time_complete" : false, "par_complete" : false, "jug_complete" : false, "hardcore_complete" : false}
+
+#### write and retrieval
 func get_level_history(grouping, id) -> Dictionary: 
 	var level_grouping
 	match grouping:
@@ -81,23 +133,38 @@ func write_level_history(grouping, id, time_best, par_best, jug_history, hardcor
 	if hardcore_history != null: level_data[level_grouping]["id" + str(id)]["hardcore_history"] = hardcore_history
 		
 
-
-func establish_settings_save():
-	settings_data = { # defaults established here
-		"sensitivity" : 0.42,
-		"fov" : 85,
-		"crouch toggle" : false,
-		"hidden labels" : false,
-		"master vol" : 100,
-		"sfx vol" : 100,
-		"music vol" : 100,
-		"ambient vol" : 100,
-		"fullscreen" : true,
-		"4by3" : false,
-		"resolution scale" : 1
+func get_level_completion(grouping, id) -> Dictionary: 
+	var level_grouping
+	match grouping:
+		Enums.LevelGrouping.DEBUG : level_grouping = "debug"
+		Enums.LevelGrouping.DAYLIGHT : level_grouping = "daylight"
+		Enums.LevelGrouping.SUNSET : level_grouping = "sunset"
+		Enums.LevelGrouping.MIDNIGHT : level_grouping = "midnight"
+		Enums.LevelGrouping.SUNRISE : level_grouping = "sunrise"
 		
+	var level_info = {
+		"level_complete" : completion_data[level_grouping]["id" + str(id)]["level_complete"],
+		"time_complete" : completion_data[level_grouping]["id" + str(id)]["time_complete"],
+		"par_complete" : completion_data[level_grouping]["id" + str(id)]["par_complete"],
+		"jug_complete" : completion_data[level_grouping]["id" + str(id)]["jug_complete"],
+		"hardcore_complete" :completion_data[level_grouping]["id" + str(id)]["hardcore_complete"]
 	}
-	save_settings()
+	return level_info
+
+func write_level_completion(grouping, id, level_complete, time_complete, par_complete, jug_complete, hardcore_complete):
+	var level_grouping
+	match grouping:
+		Enums.LevelGrouping.DEBUG : level_grouping = "debug"
+		Enums.LevelGrouping.DAYLIGHT : level_grouping = "daylight"
+		Enums.LevelGrouping.SUNSET : level_grouping = "sunset"
+		Enums.LevelGrouping.MIDNIGHT : level_grouping = "midnight"
+		Enums.LevelGrouping.SUNRISE : level_grouping = "sunrise"
+	
+	if level_complete != false: completion_data[level_grouping]["id" + str(id)]["level_complete"] = true
+	if time_complete != false: completion_data[level_grouping]["id" + str(id)]["time_complete"] = true
+	if par_complete != false: completion_data[level_grouping]["id" + str(id)]["par_complete"] = true
+	if jug_complete != false: completion_data[level_grouping]["id" + str(id)]["jug_complete"] = true
+	if hardcore_complete != false: completion_data[level_grouping]["id" + str(id)]["hardcore_complete"] = true
 
 func write_settings_data(current_settings_data : Dictionary):
 	settings_data = current_settings_data
@@ -149,4 +216,5 @@ func erase_progress():
 	DirAccess.remove_absolute(savepath + levels_file)
 	DirAccess.remove_absolute(savepath + completion_file)
 	establish_level_save()
-	establish_settings_save()
+	establish_completion_save()
+	#establish_settings_save()

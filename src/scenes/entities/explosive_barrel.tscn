@@ -46,7 +46,9 @@ data = PackedVector3Array(0, 0, -1.0579, 0.6557, 1, -0.3786, 0, 1, -0.7572, 0, 0
 [node name="barrel" type="StaticBody3D"]
 script = ExtResource("1_kl45m")
 
-[node name="Cylinder" type="MeshInstance3D" parent="."]
+[node name="mesh" type="Node3D" parent="."]
+
+[node name="Cylinder" type="MeshInstance3D" parent="mesh"]
 mesh = SubResource("ArrayMesh_e1v0g")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_4kl1x")
@@ -57,5 +59,7 @@ shape = SubResource("ConcavePolygonShape3D_4kl1x")
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("2_h5a3t")
 metadata/_custom_type_script = "uid://bn8cpygo0uaix"
+
+[node name="child_container" type="Node3D" parent="."]
 
 [connection signal="damaged" from="Damageable" to="." method="_on_damageable_damaged"]

@@ -15,8 +15,11 @@ data = PackedVector3Array(-1, 0.25, 1, 1, 0.25, 1, -1, -0.25, 1, 1, 0.25, 1, 1, 
 [node name="fragile_platform" type="StaticBody3D"]
 script = ExtResource("1_ib27n")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh"]
 mesh = SubResource("BoxMesh_k55y8")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_msblv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -36,6 +39,8 @@ monitorable = false
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("ConcavePolygonShape3D_k55y8")
+
+[node name="child_container" type="Node3D" parent="."]
 
 [connection signal="damaged" from="Damageable" to="." method="_on_damageable_damaged"]
 [connection signal="timeout" from="fragile_timer" to="." method="_on_fragile_timer_timeout"]

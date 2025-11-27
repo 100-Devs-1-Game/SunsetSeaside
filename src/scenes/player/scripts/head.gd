@@ -38,12 +38,12 @@ func _process(delta):
 		camera_viewmodel.h_offset = -camera_offset.x / 18
 		camera_viewmodel.v_offset = -camera_offset.y / 18
 	
-	if looking_behind:
-		camera_main.rotation.y = lerp(camera_main.rotation.y, deg_to_rad(180), delta * 20.0)
-		camera_viewmodel.visible = false
-	else: 
-		camera_main.rotation.y = lerp(camera_main.rotation.y, 0.0, delta * 20.0)
-		camera_viewmodel.visible = true
+	#if looking_behind:
+		#camera_main.rotation.y = lerp(camera_main.rotation.y, deg_to_rad(180), delta * 20.0)
+		#camera_viewmodel.visible = false
+	#else: 
+		#camera_main.rotation.y = lerp(camera_main.rotation.y, 0.0, delta * 20.0)
+		#camera_viewmodel.visible = true
 
 func _head_recoil_affect(recoil_dynamic, recoil_instant, camera_shake):
 	# instant recoil

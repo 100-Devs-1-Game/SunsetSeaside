@@ -5,6 +5,7 @@ extends Node
 # physics
 signal shotgun_bounce(direction, force)
 signal explosion_bounce(direction, force, smoke_trail_amount)
+signal net_bounce(net_normal)
 # gameplay
 signal floor_reload() # reloads the cannon upon touching a surface
 signal wall_reload() # reloads the cannon partially on walls
@@ -18,6 +19,7 @@ signal fps_mouse_movement(event)
 # level setup
 signal establish_spawnpoint(node) # establish spawnpoint with the gamestate
 signal establish_level_vars(max_ammo, par_limit, time_limit)
+signal entity_reset() # called by the gamestate on respawn
 
 # player actions
 signal player_death(type : Enums.PlayerDeathType) # read by gamestate, player

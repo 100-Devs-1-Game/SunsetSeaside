@@ -11,7 +11,7 @@ extends Control
 func velocity_update(velocity): debug_label_velocity.text = "velocity: " + str(snapped(velocity.x, 0.01)) + ", " + str(snapped(velocity.y, 0.01))
 func speed_update(speed): debug_label_speed.text = "speed: " + str(speed)
 func bounce_mod_update(bounce_mod): debug_label_bounce_mod.text = "last bounce mod: " + str(bounce_mod)
-func airstrafe_val_update(val): debug_label_airstrafe.text = "airstrafe val: " + str(val)
+func airstrafe_val_update(val): debug_label_airstrafe.text = "airstrafe val: " + str(snapped(val, 0.0001))
 func combi_velocity_update(val): debug_label_combi_velocity.text = "true velocity: " + str(val)
 
 func _ready():
