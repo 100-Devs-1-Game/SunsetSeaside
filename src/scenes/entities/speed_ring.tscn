@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://slqymgnmj1tp"]
+
+[ext_resource type="Script" uid="uid://qwhjrfekya68" path="res://scenes/entities/scripts/speed_ring.gd" id="1_1e5fk"]
+
+[sub_resource type="Curve" id="Curve_1e5fk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.497835, 0), 0.0, 0.0, 0, 0, Vector2(0.982684, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_vgefk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.497835, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_omhhc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_g24xv"]
+curve_x = SubResource("Curve_1e5fk")
+curve_y = SubResource("Curve_vgefk")
+curve_z = SubResource("Curve_omhhc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1e5fk"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.498039)
+albedo_texture = SubResource("CurveXYZTexture_g24xv")
+uv1_scale = Vector3(0.15, 0.15, 0.15)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_320fc"]
+material = SubResource("StandardMaterial3D_1e5fk")
+inner_radius = 2.4
+outer_radius = 3.0
+rings = 8
+ring_segments = 8
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1e5fk"]
+height = 0.4
+radius = 2.6
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_1e5fk")
+
+[node name="mesh" type="Node3D" parent="."]
+transform = Transform3D(1, -1.74846e-07, 0, 1.74846e-07, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(0.99913, 1.82282e-09, 0.0417013, 0.0417013, -4.36734e-08, -0.99913, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("TorusMesh_320fc")
+
+[node name="Area3D" type="Area3D" parent="."]
+physics_interpolation_mode = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_1e5fk")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

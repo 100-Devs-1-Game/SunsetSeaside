@@ -36,7 +36,7 @@ const accels = {
 const drags = {
 	"floor" : 8.0,
 	"crouch" : 4.0,
-	"air" : 0.01 
+	"air" : 0.01
 	}
 const gravity = 16.0
 
@@ -84,7 +84,7 @@ func _ready():
 	_establish_settings()
 
 
-func _process(delta): # this should be physics processs instead :)
+func _physics_process(delta):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	# setting viewmodel camera to default camera position
 	viewmodel_camera.global_transform = camera.global_transform
@@ -171,6 +171,10 @@ func _net_bounce(net_normal):
 	#velocity.y = -velocity.y * 0.95
 	velocity = velocity.bounce(net_normal) * 0.95
 
+func _ring_boost():
+	velocity = velocity * 1.3
+	Events.add_camera_shake.emit(0.2)
+
 func _input_calc():
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
@@ -250,6 +254,7 @@ func _establish_events():
 	Events.player_death.connect(_fucking_die)
 	Events.fps_mouse_movement.connect(_camera_control)
 	Events.net_bounce.connect(_net_bounce)
+	Events.ring_boost.connect(_ring_boost)
 	
 	###### settings events
 	Events.set_sens.connect(_set_sensitivity)

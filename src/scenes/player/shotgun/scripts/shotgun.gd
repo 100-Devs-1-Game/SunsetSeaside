@@ -7,7 +7,7 @@ extends Node3D
 @onready var cannon_damager: Node3D = $cannon_damager
 
 # recoil vars
-var recoil_dynamic = Vector2(0.02, 0.24)## NOTE: first val for this is a random range
+var recoil_dynamic = Vector2(0.02, 0.24) ## NOTE: first val for this is a random range
 var recoil_instant = Vector2(0.0, 0.1)
 var camera_shake : float = 0.1
 var bounce_force = 12.0
@@ -18,8 +18,8 @@ var fired_this_frame = false
 
 var player_touching_wall : bool
 
-var ammo = 2
-var max_ammo = 2
+var ammo = 1
+var max_ammo = 1
 
 func _ready():
 	Events.floor_reload.connect(_floor_reload)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dlo72yn7rkg4u"]
+[gd_scene load_steps=23 format=4 uid="uid://dlo72yn7rkg4u"]
 
 [ext_resource type="Script" uid="uid://ddnqe18jvlv83" path="res://scenes/entities/scripts/jug.gd" id="1_ydxnq"]
 [ext_resource type="Shader" uid="uid://hwu37npmqd16" path="res://assets/shaders/outline.gdshader" id="2_pl2tn"]
@@ -157,7 +157,22 @@ next_pass = SubResource("ShaderMaterial_pwasj")
 transparency = 1
 cull_mode = 1
 shading_mode = 0
-albedo_color = Color(0.918476, 0.4629, 0, 0.235294)
+albedo_color = Color(0.917647, 0.462745, 0, 0.435294)
+albedo_texture = SubResource("NoiseTexture2D_m1pmm")
+
+[sub_resource type="TorusMesh" id="TorusMesh_pwasj"]
+inner_radius = 1.2
+outer_radius = 1.7
+rings = 8
+ring_segments = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2qbh"]
+next_pass = SubResource("ShaderMaterial_pwasj")
+transparency = 1
+blend_mode = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.278431, 0.470588, 0, 1)
 albedo_texture = SubResource("NoiseTexture2D_m1pmm")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e52dn"]
@@ -186,8 +201,13 @@ mesh = SubResource("ArrayMesh_je6jj")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_pwasj")
 
-[node name="sphere_low_poly" type="Node3D" parent="mesh_container/mesh_spinner"]
-transform = Transform3D(0.152508, 0, 0, 0, 0.152508, 0, 0, 0, 0.152508, 0, 0, 0)
+[node name="mesh_spinner_outer" type="Node3D" parent="mesh_container"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_container/mesh_spinner_outer"]
+transform = Transform3D(0.154993, -0.268456, 0, 0.268456, 0.154993, 0, 0, 0, 0.309987, 0, 0, 0)
+mesh = SubResource("TorusMesh_pwasj")
+skeleton = NodePath("../../mesh_spinner/rum_jug_brown2")
+surface_material_override/0 = SubResource("StandardMaterial3D_v2qbh")
 
 [node name="Area3D" type="Area3D" parent="."]
 monitorable = false

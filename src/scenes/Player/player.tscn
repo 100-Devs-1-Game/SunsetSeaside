@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://cwbdm4yo32yu3" path="res://assets/models/cannon_smooth_sunset_assets_DefaultMaterial_Metallic.png-sunset_assets_DefaultMaterial_Roughness.png" id="16_8ydkj"]
 
 [sub_resource type="Curve" id="Curve_ioxgp"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0992064, 0), 0.0, 0.0, 0, 0, Vector2(0.464286, 1), 0.0, 0.0, 0, 0, Vector2(0.960317, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0992064, 0), 0.0, 0.0, 0, 0, Vector2(0.501873, 1), 0.0, 0.0, 0, 0, Vector2(0.960317, 1), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]

@@ -6,6 +6,7 @@ extends Node
 signal shotgun_bounce(direction, force)
 signal explosion_bounce(direction, force, smoke_trail_amount)
 signal net_bounce(net_normal)
+signal ring_boost()
 # gameplay
 signal floor_reload() # reloads the cannon upon touching a surface
 signal wall_reload() # reloads the cannon partially on walls

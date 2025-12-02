@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=4 uid="uid://bxyf53ifrvvwv"]
+[gd_scene load_steps=100 format=4 uid="uid://bxyf53ifrvvwv"]
 
 [ext_resource type="Script" uid="uid://c35qacpu8na2l" path="res://scenes/levels/scripts/level.gd" id="1_eaa0b"]
 [ext_resource type="Texture2D" uid="uid://bc1l3yxle0b8x" path="res://assets/devblocks/textures/light/texture_09.png" id="1_jmx14"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://dhecr53va5gvu" path="res://scenes/entities/bottle.tscn" id="26_cj4me"]
 [ext_resource type="PackedScene" uid="uid://b7r2y5s2yjonr" path="res://scenes/entities/skull.tscn" id="27_0d6o1"]
 [ext_resource type="PackedScene" uid="uid://0tahmp7igbtj" path="res://scenes/entities/net.tscn" id="28_vptxo"]
+[ext_resource type="PackedScene" uid="uid://slqymgnmj1tp" path="res://scenes/entities/speed_ring.tscn" id="29_0nxvq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_c7nhy"]
 
@@ -1295,6 +1296,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.52637, 0.610676, -0.173511)
 
 [node name="net" parent="." instance=ExtResource("28_vptxo")]
 transform = Transform3D(2.49866, 0, 0, 0, 2.49866, 0, 0, 0, 2.49866, 13.8674, -0.558583, -9.59215)
+
+[node name="Node3D7" parent="." instance=ExtResource("29_0nxvq")]
+transform = Transform3D(-0.0373025, 0, 0.594563, 0, 0.595732, 0, -0.594563, 0, -0.0373025, 10.2482, 3.10752, -67.6815)
+
+[node name="Node3D8" parent="." instance=ExtResource("29_0nxvq")]
+transform = Transform3D(0.711617, 0.412914, -0.568422, -0.322624, 0.91077, 0.257704, 0.624111, 4.10669e-08, 0.781335, -6.15342, 7.49841, 12.7236)
+
+[node name="Node3D9" parent="." instance=ExtResource("29_0nxvq")]
+transform = Transform3D(0.71589, 0.535766, -0.447724, -0.246804, 0.794022, 0.555533, 0.653138, -0.2872, 0.700661, -7.44943, 8.58023, 14.8029)
+
+[node name="Node3D10" parent="." instance=ExtResource("29_0nxvq")]
+transform = Transform3D(0.71589, 0.647424, -0.261426, -0.246804, 0.584894, 0.772649, 0.653138, -0.488611, 0.578507, -8.53473, 9.92686, 16.5013)
 
 [editable path="area_ending"]
 [editable path="area_ending2"]

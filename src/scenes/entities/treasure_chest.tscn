@@ -346,7 +346,7 @@ next_pass = SubResource("ShaderMaterial_m1pmm")
 transparency = 1
 cull_mode = 1
 shading_mode = 0
-albedo_color = Color(0.440245, 0.69116, 0, 0.235294)
+albedo_color = Color(0.439216, 0.690196, 0, 0.443137)
 albedo_texture = SubResource("NoiseTexture2D_m1pmm")
 
 [node name="treasure_chest" type="Node3D"]

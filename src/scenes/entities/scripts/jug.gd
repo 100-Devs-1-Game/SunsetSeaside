@@ -3,6 +3,7 @@ extends Node3D
 
 @onready var mesh_container: Node3D = $mesh_container
 @onready var mesh_spinner: Node3D = $mesh_container/mesh_spinner
+@onready var mesh_spinner_outer: Node3D = $mesh_container/mesh_spinner_outer
 @onready var area_3d: Area3D = $Area3D
 
 var rotation_speed = 1.0
@@ -17,7 +18,8 @@ func _ready():
 func _physics_process(delta):
 	# animate mesh
 	mesh_spinner.rotation.y += rotation_speed * delta
-
+	mesh_spinner_outer.rotation.y -= rotation_speed * delta
+	
 	wave_increment += wave_speed * delta
 	wave_increment = wrapf(wave_increment, 0.0, 2 * PI)
 	mesh_container.position.y = sin(wave_increment) * wave_amp
