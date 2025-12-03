@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cd7lkf440a3k7"]
+
+[ext_resource type="FontFile" uid="uid://dmg3ppdo8dgqj" path="res://assets/fonts/Primitive-4yGY.ttf" id="1_g86xg"]
+
+[resource]
+font = ExtResource("1_g86xg")
+font_size = 28
+outline_size = 1
+outline_color = Color(1, 0.756863, 0, 1)

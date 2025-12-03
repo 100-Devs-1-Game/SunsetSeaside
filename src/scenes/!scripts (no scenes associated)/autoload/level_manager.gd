@@ -7,11 +7,17 @@ var path : NodePath
 ##### paths
 const TITLE_BACKGROUND = "res://scenes/levels/title_background.tscn"
 const TEST_LEVEL = "res://scenes/levels/test_level.tscn"
+const DEBUG_LVL1 = null
+const DEBUG_LVL2 = null
+const DEBUG_LVL3 = null
+const DEBUG_LVL4 = null
+const DEBUG_LVL5 = null
+const DEBUG_LVL6 = null
 
 var levels_debug = [TITLE_BACKGROUND, TEST_LEVEL]
-var levels_tutorial = []
-var levels_easy = []
-var levels_medium = []
+var levels_tutorial = [DEBUG_LVL1, DEBUG_LVL2]
+var levels_easy = [DEBUG_LVL3, DEBUG_LVL4, DEBUG_LVL5]
+var levels_medium = [DEBUG_LVL6]
 var levels_hard = []
 
 const grouping_ammo_amount = [1, 1, 1, 1, 1] # removed ability for 2 shots
@@ -36,6 +42,7 @@ func fetch_ammo_amount(grouping): # now entirely irrelevent
 		Enums.LevelGrouping.MIDNIGHT: return grouping_ammo_amount[3]
 		Enums.LevelGrouping.SUNRISE: return grouping_ammo_amount[4]
 
+# these dont iterate until the actual previous or next, but its fucking good enough mate
 func fetch_next_level_info(grouping, id): # returns dictionary of info about the next level
 	var level_info = {
 		"grouping" = null,
@@ -44,16 +51,11 @@ func fetch_next_level_info(grouping, id): # returns dictionary of info about the
 	
 	var next_group_enum
 	match grouping:
-		Enums.LevelGrouping.DEBUG: 
-			next_group_enum = Enums.LevelGrouping.DAYLIGHT
-		Enums.LevelGrouping.DAYLIGHT: 
-			next_group_enum = Enums.LevelGrouping.SUNSET
-		Enums.LevelGrouping.SUNSET: 
-			next_group_enum = Enums.LevelGrouping.MIDNIGHT
-		Enums.LevelGrouping.MIDNIGHT: 
-			next_group_enum = Enums.LevelGrouping.SUNRISE
-		Enums.LevelGrouping.SUNRISE: 
-			next_group_enum = null
+		Enums.LevelGrouping.DEBUG: next_group_enum = Enums.LevelGrouping.DAYLIGHT
+		Enums.LevelGrouping.DAYLIGHT: next_group_enum = Enums.LevelGrouping.SUNSET
+		Enums.LevelGrouping.SUNSET: next_group_enum = Enums.LevelGrouping.MIDNIGHT
+		Enums.LevelGrouping.MIDNIGHT: next_group_enum = Enums.LevelGrouping.SUNRISE
+		Enums.LevelGrouping.SUNRISE: next_group_enum = null
 	
 	var check_group = fetch_group_by_enum(grouping)
 	var next_group = null
@@ -84,6 +86,7 @@ func fetch_previous_level_info(grouping, id):
 		Enums.LevelGrouping.SUNSET: previous_grouping_enum = Enums.LevelGrouping.DAYLIGHT
 		Enums.LevelGrouping.MIDNIGHT: previous_grouping_enum = Enums.LevelGrouping.SUNSET
 		Enums.LevelGrouping.SUNRISE: previous_grouping_enum = Enums.LevelGrouping.MIDNIGHT
+		
 	var previous_group = null
 	if previous_grouping_enum != null:
 		previous_group = fetch_group_by_enum(previous_grouping_enum)  

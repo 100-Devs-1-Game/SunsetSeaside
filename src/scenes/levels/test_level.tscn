@@ -1309,5 +1309,8 @@ transform = Transform3D(0.71589, 0.535766, -0.447724, -0.246804, 0.794022, 0.555
 [node name="Node3D10" parent="." instance=ExtResource("29_0nxvq")]
 transform = Transform3D(0.71589, 0.647424, -0.261426, -0.246804, 0.584894, 0.772649, 0.653138, -0.488611, 0.578507, -8.53473, 9.92686, 16.5013)
 
+[node name="Node3D11" parent="." instance=ExtResource("29_0nxvq")]
+transform = Transform3D(0.998114, 0.0182851, -0.0585996, -0.026671, 0.988971, -0.145689, 0.0552894, 0.146977, 0.987593, -0.124277, 10.612, -19.2036)
+
 [editable path="area_ending"]
 [editable path="area_ending2"]

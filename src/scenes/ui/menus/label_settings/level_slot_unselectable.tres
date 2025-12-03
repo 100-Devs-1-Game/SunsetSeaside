@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c5d0at7n2p17h"]
+
+[ext_resource type="FontFile" uid="uid://dmg3ppdo8dgqj" path="res://assets/fonts/Primitive-4yGY.ttf" id="1_fefoa"]
+
+[resource]
+font = ExtResource("1_fefoa")
+font_size = 28
+font_color = Color(0.396889, 0.396889, 0.396889, 1)

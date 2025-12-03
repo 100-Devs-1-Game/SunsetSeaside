@@ -73,27 +73,15 @@ func establish_settings_save():
 
 #### population
 func fresh_populate_section(level_section):
-	var current_section = null
-	match level_section:
-		"levels_debug" : current_section = "debug"
-		"levels_tutorial" : current_section = "daylight"
-		"levels_easy" : current_section = "sunset"
-		"levels_medium" : current_section = "midnight"
-		"levels_hard" : current_section = "sunrise"
-	
+	var current_section = get_section_name(level_section)
+
 	var level_array = Gamestate.level_manager.get(level_section)
 	for i in level_array.size():
 		if !level_data[current_section].has("id" + str(i)):
 			level_data[current_section]["id" + str(i)] = {"time_best" : null, "par_best" : null, "jug_history" : false, "hardcore_history" : false}
 
 func fresh_populate_section_completion(level_section):
-	var current_section = null
-	match level_section:
-		"levels_debug" : current_section = "debug"
-		"levels_tutorial" : current_section = "daylight"
-		"levels_easy" : current_section = "sunset"
-		"levels_medium" : current_section = "midnight"
-		"levels_hard" : current_section = "sunrise"
+	var current_section = get_section_name(level_section)
 	
 	var level_array = Gamestate.level_manager.get(level_section)
 	for i in level_array.size():
@@ -102,13 +90,7 @@ func fresh_populate_section_completion(level_section):
 
 #### write and retrieval
 func get_level_history(grouping, id) -> Dictionary: 
-	var level_grouping
-	match grouping:
-		Enums.LevelGrouping.DEBUG : level_grouping = "debug"
-		Enums.LevelGrouping.DAYLIGHT : level_grouping = "daylight"
-		Enums.LevelGrouping.SUNSET : level_grouping = "sunset"
-		Enums.LevelGrouping.MIDNIGHT : level_grouping = "midnight"
-		Enums.LevelGrouping.SUNRISE : level_grouping = "sunrise"
+	var level_grouping = _get_group_name(grouping)
 		
 	var level_info = {
 		"time_best" : level_data[level_grouping]["id" + str(id)]["time_best"],
@@ -119,13 +101,7 @@ func get_level_history(grouping, id) -> Dictionary:
 	return level_info
 
 func write_level_history(grouping, id, time_best, par_best, jug_history, hardcore_history):
-	var level_grouping
-	match grouping:
-		Enums.LevelGrouping.DEBUG : level_grouping = "debug"
-		Enums.LevelGrouping.DAYLIGHT : level_grouping = "daylight"
-		Enums.LevelGrouping.SUNSET : level_grouping = "sunset"
-		Enums.LevelGrouping.MIDNIGHT : level_grouping = "midnight"
-		Enums.LevelGrouping.SUNRISE : level_grouping = "sunrise"
+	var level_grouping = _get_group_name(grouping)
 	
 	if time_best != null: level_data[level_grouping]["id" + str(id)]["time_best"] = time_best
 	if par_best != null: level_data[level_grouping]["id" + str(id)]["par_best"] = par_best
@@ -134,13 +110,7 @@ func write_level_history(grouping, id, time_best, par_best, jug_history, hardcor
 		
 
 func get_level_completion(grouping, id) -> Dictionary: 
-	var level_grouping
-	match grouping:
-		Enums.LevelGrouping.DEBUG : level_grouping = "debug"
-		Enums.LevelGrouping.DAYLIGHT : level_grouping = "daylight"
-		Enums.LevelGrouping.SUNSET : level_grouping = "sunset"
-		Enums.LevelGrouping.MIDNIGHT : level_grouping = "midnight"
-		Enums.LevelGrouping.SUNRISE : level_grouping = "sunrise"
+	var level_grouping = _get_group_name(grouping)
 		
 	var level_info = {
 		"level_complete" : completion_data[level_grouping]["id" + str(id)]["level_complete"],
@@ -152,13 +122,7 @@ func get_level_completion(grouping, id) -> Dictionary:
 	return level_info
 
 func write_level_completion(grouping, id, level_complete, time_complete, par_complete, jug_complete, hardcore_complete):
-	var level_grouping
-	match grouping:
-		Enums.LevelGrouping.DEBUG : level_grouping = "debug"
-		Enums.LevelGrouping.DAYLIGHT : level_grouping = "daylight"
-		Enums.LevelGrouping.SUNSET : level_grouping = "sunset"
-		Enums.LevelGrouping.MIDNIGHT : level_grouping = "midnight"
-		Enums.LevelGrouping.SUNRISE : level_grouping = "sunrise"
+	var level_grouping = _get_group_name(grouping)
 	
 	if level_complete != false: completion_data[level_grouping]["id" + str(id)]["level_complete"] = true
 	if time_complete != false: completion_data[level_grouping]["id" + str(id)]["time_complete"] = true
@@ -171,6 +135,29 @@ func write_settings_data(current_settings_data : Dictionary):
 
 func get_settings_data():
 	return settings_data
+
+#### helpers
+func _get_group_name(grouping):
+	var group_name = ""
+	match grouping:
+		Enums.LevelGrouping.DEBUG : group_name = "debug"
+		Enums.LevelGrouping.DAYLIGHT : group_name = "daylight"
+		Enums.LevelGrouping.SUNSET : group_name = "sunset"
+		Enums.LevelGrouping.MIDNIGHT : group_name = "midnight"
+		Enums.LevelGrouping.SUNRISE : group_name = "sunrise"
+	
+	return group_name
+
+func get_section_name(section):
+	var section_name = ""
+	match section:
+		"levels_debug" : section_name = "debug"
+		"levels_tutorial" : section_name = "daylight"
+		"levels_easy" : section_name = "sunset"
+		"levels_medium" : section_name = "midnight"
+		"levels_hard" : section_name = "sunrise"
+	
+	return section_name
 
 #### file access functions
 func save_records():

@@ -172,7 +172,7 @@ func _net_bounce(net_normal):
 	velocity = velocity.bounce(net_normal) * 0.95
 
 func _ring_boost():
-	velocity = velocity * 1.3
+	velocity = velocity * 1.5
 	Events.add_camera_shake.emit(0.2)
 
 func _input_calc():

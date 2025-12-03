@@ -99,6 +99,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="menu_title" type="MarginContainer" parent="menu_root"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -203,7 +204,6 @@ text = "> quit <
 "
 
 [node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -218,7 +218,7 @@ script = ExtResource("3_whicr")
 level_slots_debug = NodePath("level_slots_root/level_container_debug/level_slots_debug")
 level_slots_tutorial = NodePath("level_slots_root/level_container_tutorial/level_slots_tutorial")
 level_slots_easy = NodePath("level_slots_root/level_container_easy/level_slots_easy")
-level_slots_medium = NodePath("level_slots_root/level_container_medium/level_slots_medium")
+level_slots_medium = NodePath("")
 level_slots_hard = NodePath("level_slots_root/level_container_hard/level_slots_hard")
 
 [node name="level_slots_root" type="VBoxContainer" parent="menu_root/menu_levels"]
@@ -281,10 +281,6 @@ layout_mode = 2
 text = "midnight:"
 label_settings = SubResource("LabelSettings_ct055")
 
-[node name="level_slots_medium" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/level_container_medium"]
-layout_mode = 2
-size_flags_horizontal = 4
-
 [node name="level_container_hard" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -297,10 +293,6 @@ label_settings = SubResource("LabelSettings_ct055")
 [node name="level_slots_hard" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/level_container_hard"]
 layout_mode = 2
 size_flags_horizontal = 4
-
-[node name="button_erase_data" type="Button" parent="menu_root/menu_levels/level_slots_root"]
-layout_mode = 2
-text = "debug_erase_lvl_data"
 
 [node name="menu_settings" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("label_sens_val", "label_fov_val", "label_res_scale_val", "label_master_vol", "label_sfx_vol", "label_music_vol", "label_ambient_vol", "slider_sens", "slider_fov", "slider_res_scale", "slider_master_vol", "slider_sfx_vol", "slider_music_vol", "slider_ambient_vol", "checkbox_fullscreen", "checkbox_4by3", "checkbox_labels_hidden", "checkbox_crouch_toggle")]
 visible = false
@@ -771,7 +763,6 @@ text = "< yes >
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2/button_levels" to="." method="_on_button_levels_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer/button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_levels" to="menu_root/menu_levels" method="_on_visibility_changed"]
-[connection signal="pressed" from="menu_root/menu_levels/level_slots_root/button_erase_data" to="." method="_on_button_erase_data_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_settings" to="menu_root/menu_settings" method="_on_visibility_changed"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2/slider_sens" to="menu_root/menu_settings" method="_on_slider_sens_value_changed"]
 [connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_crouch_toggle" to="menu_root/menu_settings" method="_on_checkbox_crouch_toggle_toggled"]
