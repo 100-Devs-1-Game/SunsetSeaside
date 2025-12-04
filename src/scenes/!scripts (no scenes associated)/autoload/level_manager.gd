@@ -8,33 +8,33 @@ var path : NodePath
 ##### paths
 const TITLE_BACKGROUND = {
 	"name" : "title!!", 
-	"path" : "res://scenes/levels/title_background.tscn"}
+	"path" : "res://scenes/levels/debug/title_background.tscn"}
 const TEST_LEVEL = {
 	"name" : "test level",
-	"path" : "res://scenes/levels/test_level.tscn"}
+	"path" : "res://scenes/levels/debug/test_level.tscn"}
 const DEBUG_LVL1 = {
 	"name" : "debug",
-	"path" : "res://scenes/levels/debug_level.tscn"}
+	"path" : "res://scenes/levels/debug/debug_level.tscn"}
 const DEBUG_LVL2 = {
 	"name" : "debug",
-	"path" : "res://scenes/levels/debug_level.tscn"}
+	"path" : "res://scenes/levels/debug/debug_level.tscn"}
 const DEBUG_LVL3 = {
 	"name" : "debug",
-	"path" : "res://scenes/levels/debug_level.tscn"}
-const DEBUG_LVL4 = {
+	"path" : "res://scenes/levels/debug/debug_level.tscn"}
+const BONUS_LVL1 = {
 	"name" : "debug",
-	"path" : "res://scenes/levels/debug_level.tscn"}
-const DEBUG_LVL5 = {
+	"path" : "res://scenes/levels/bonus/bonus_1.tscn"}
+const BONUS_LVL2 = {
 	"name" : "debug",
-	"path" : "res://scenes/levels/debug_level.tscn"}
-const DEBUG_LVL6 = {
+	"path" : "res://scenes/levels/bonus/bonus_2.tscn"}
+const BONUS_LVL3 = {
 	"name" : "debug",
-	"path" : "res://scenes/levels/debug_level.tscn"}
+	"path" : "res://scenes/levels/bonus/bonus_3.tscn"}
 
 var levels_debug = [TITLE_BACKGROUND, TEST_LEVEL]
 var levels_tutorial = [DEBUG_LVL1, DEBUG_LVL2]
-var levels_easy = [DEBUG_LVL3, DEBUG_LVL4, DEBUG_LVL5]
-var levels_medium = [DEBUG_LVL6]
+var levels_easy = [DEBUG_LVL3]
+var levels_medium = []
 var levels_hard = []
 
 const grouping_ammo_amount = [1, 1, 1, 1, 1] # removed ability for 2 shots

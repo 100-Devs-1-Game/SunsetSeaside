@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwcaf4mcpsaqc"]
 
-[ext_resource type="Script" uid="uid://cpro2piy2tay0" path="res://scenes/entities/scripts/floating_label.gd" id="1_ax4ga"]
+[ext_resource type="Script" uid="uid://cpro2piy2tay0" path="res://scenes/entities/level objects/scripts/floating_label.gd" id="1_ax4ga"]
 [ext_resource type="FontFile" uid="uid://dmg3ppdo8dgqj" path="res://assets/fonts/Primitive-4yGY.ttf" id="1_qjpf5"]
 
 [sub_resource type="Animation" id="Animation_qjpf5"]

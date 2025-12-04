@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbfmqi2iru3d0"]
 
-[ext_resource type="PackedScene" uid="uid://dekttd80pfxsq" path="res://scenes/entities/flame_particles_small.tscn" id="1_1jicx"]
+[ext_resource type="PackedScene" uid="uid://dekttd80pfxsq" path="res://scenes/entities/effects/flame_particles_small.tscn" id="1_1jicx"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_qgq63"]
 top_radius = 0.07

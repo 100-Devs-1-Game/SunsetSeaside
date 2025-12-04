@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://c5k1w4g1o2gnk"]
 
 [ext_resource type="Script" uid="uid://c35qacpu8na2l" path="res://scenes/levels/scripts/level.gd" id="1_hkwi7"]
-[ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/explosive_barrel.tscn" id="2_7o5vt"]
-[ext_resource type="PackedScene" uid="uid://dtd51ahita8ja" path="res://scenes/entities/spawnpoint.tscn" id="3_5l8w0"]
-[ext_resource type="PackedScene" uid="uid://dlo72yn7rkg4u" path="res://scenes/entities/jug.tscn" id="4_dk8gf"]
-[ext_resource type="PackedScene" uid="uid://cxc7h8fscjiwl" path="res://scenes/entities/treasure_chest.tscn" id="5_nfmkk"]
-[ext_resource type="PackedScene" uid="uid://jv2pnk27hjjh" path="res://scenes/entities/lantern.tscn" id="6_nfmkk"]
+[ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/level objects/explosive_barrel.tscn" id="2_7o5vt"]
+[ext_resource type="PackedScene" uid="uid://dtd51ahita8ja" path="res://scenes/entities/level objects/spawnpoint.tscn" id="3_5l8w0"]
+[ext_resource type="PackedScene" uid="uid://dlo72yn7rkg4u" path="res://scenes/entities/level objects/jug.tscn" id="4_dk8gf"]
+[ext_resource type="PackedScene" uid="uid://cxc7h8fscjiwl" path="res://scenes/entities/level objects/treasure_chest.tscn" id="5_nfmkk"]
+[ext_resource type="PackedScene" uid="uid://jv2pnk27hjjh" path="res://scenes/entities/level objects/lantern.tscn" id="6_nfmkk"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dk8gf"]
 

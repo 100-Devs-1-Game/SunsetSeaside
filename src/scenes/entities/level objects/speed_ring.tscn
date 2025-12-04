@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://slqymgnmj1tp"]
 
-[ext_resource type="Script" uid="uid://qwhjrfekya68" path="res://scenes/entities/scripts/speed_ring.gd" id="1_1e5fk"]
+[ext_resource type="Script" uid="uid://qwhjrfekya68" path="res://scenes/entities/level objects/scripts/speed_ring.gd" id="1_1e5fk"]
 
 [sub_resource type="Curve" id="Curve_1e5fk"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.497835, 0), 0.0, 0.0, 0, 0, Vector2(0.982684, 1), 0.0, 0.0, 0, 0]

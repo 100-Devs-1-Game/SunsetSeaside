@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://dt5hkv16vsn2b"]
 
-[ext_resource type="Shader" uid="uid://bd4b4g7f3821o" path="res://assets/shaders/water.gdshader" id="1_c34g3"]
-[ext_resource type="Texture2D" uid="uid://bpwamn2m0aowr" path="res://assets/textures/summer_background_47_a.jpg" id="2_orl5m"]
+[ext_resource type="Shader" uid="uid://bd4b4g7f3821o" path="res://assets/shaders/water.gdshader" id="1_38j17"]
+[ext_resource type="Texture2D" uid="uid://bpwamn2m0aowr" path="res://assets/textures/summer_background_47_a.jpg" id="2_vbxru"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_orl5m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b7vw5"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_orl5m")
-shader = ExtResource("1_c34g3")
-shader_parameter/water_texture = ExtResource("2_orl5m")
+shader = ExtResource("1_38j17")
+shader_parameter/water_texture = ExtResource("2_vbxru")
 shader_parameter/water_uv = Vector2(10, 10)
 shader_parameter/water_texture_raise = 0.0
 shader_parameter/water_albedo = Color(0, 0.826535, 0.973728, 1)

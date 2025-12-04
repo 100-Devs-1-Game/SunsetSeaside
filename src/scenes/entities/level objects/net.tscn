@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://0tahmp7igbtj"]
 
-[ext_resource type="Script" uid="uid://uyev5qml6145" path="res://scenes/entities/scripts/net.gd" id="1_7vde7"]
+[ext_resource type="Script" uid="uid://uyev5qml6145" path="res://scenes/entities/level objects/scripts/net.gd" id="1_7vde7"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6vo56"]
 

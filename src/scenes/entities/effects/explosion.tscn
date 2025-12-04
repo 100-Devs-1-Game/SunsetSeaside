@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=4 uid="uid://cifoxjsd8db8n"]
 
-[ext_resource type="Script" uid="uid://3qpdodhrjty2" path="res://scenes/entities/scripts/explosion.gd" id="1_dndvl"]
-[ext_resource type="Script" uid="uid://cqjlir3h8d581" path="res://scenes/entities/scripts/explosion_area.gd" id="2_j1vcx"]
+[ext_resource type="Script" uid="uid://3qpdodhrjty2" path="res://scenes/entities/level objects/scripts/explosion.gd" id="1_12by8"]
+[ext_resource type="Script" uid="uid://cqjlir3h8d581" path="res://scenes/entities/level objects/scripts/explosion_area.gd" id="2_gfkia"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sc020"]
 
@@ -382,7 +382,7 @@ _data = {
 }
 
 [node name="explosion" type="Node3D"]
-script = ExtResource("1_dndvl")
+script = ExtResource("1_12by8")
 
 [node name="explosion_start_mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.57, 0, 8.60676e-08, 0, 0.57, 0, -8.60676e-08, 0, -0.57, 0, 0, 0)
@@ -399,7 +399,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_7my5p")
 
 [node name="explosion_area" type="Area3D" parent="."]
 collision_layer = 3
-script = ExtResource("2_j1vcx")
+script = ExtResource("2_gfkia")
 
 [node name="area_shape" type="CollisionShape3D" parent="explosion_area"]
 shape = SubResource("SphereShape3D_bkl10")

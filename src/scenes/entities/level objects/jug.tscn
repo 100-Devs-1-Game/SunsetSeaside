@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=4 uid="uid://dlo72yn7rkg4u"]
 
-[ext_resource type="Script" uid="uid://ddnqe18jvlv83" path="res://scenes/entities/scripts/jug.gd" id="1_ydxnq"]
+[ext_resource type="Script" uid="uid://ddnqe18jvlv83" path="res://scenes/entities/level objects/scripts/jug.gd" id="1_ydxnq"]
 [ext_resource type="Shader" uid="uid://hwu37npmqd16" path="res://assets/shaders/outline.gdshader" id="2_pl2tn"]
 [ext_resource type="Texture2D" uid="uid://d1fx4xk623mal" path="res://assets/models/dobert/rum_jug_brown_rum paint.png" id="2_pwasj"]
 [ext_resource type="Texture2D" uid="uid://dxt1no5cc8bks" path="res://assets/models/dobert/rum_jug_brown_cork paint.png" id="3_v2qbh"]

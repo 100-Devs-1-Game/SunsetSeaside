@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtd51ahita8ja"]
 
-[ext_resource type="Script" uid="uid://b1qsc8pds2bqr" path="res://scenes/entities/scripts/spawnpoint.gd" id="1_nl6c3"]
+[ext_resource type="Script" uid="uid://b1qsc8pds2bqr" path="res://scenes/entities/level objects/scripts/spawnpoint.gd" id="1_nl6c3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uw2d4"]
 radius = 0.2

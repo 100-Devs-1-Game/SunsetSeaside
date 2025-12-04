@@ -1,6 +1,6 @@
 extends StaticBody3D
 
-const EXPLOSION = preload("res://scenes/entities/explosion.tscn")
+const EXPLOSION = preload("res://scenes/entities/effects/explosion.tscn")
 const BLAST_DECAL = preload("res://scenes/player/shotgun/cannon_blast_decal.tscn")
 const SMOKE_SPREAD = preload("res://scenes/player/smoke_spread.tscn")
 

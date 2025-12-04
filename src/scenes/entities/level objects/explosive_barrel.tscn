@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://n30qaxd36ea0"]
 
-[ext_resource type="Script" uid="uid://jjewae0np01y" path="res://scenes/entities/scripts/explosive_barrel.gd" id="1_kl45m"]
+[ext_resource type="Script" uid="uid://jjewae0np01y" path="res://scenes/entities/level objects/scripts/explosive_barrel.gd" id="1_kl45m"]
 [ext_resource type="Script" uid="uid://bn8cpygo0uaix" path="res://scenes/!scripts (no scenes associated)/components/damageable_component.gd" id="2_h5a3t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7kq0"]
