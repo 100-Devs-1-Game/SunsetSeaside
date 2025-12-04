@@ -30,6 +30,7 @@ signal weapon_fired() # called by cannon script on a succesful cannon fire
 signal jug_collected() # jug get!
 # main
 signal open_level(grouping : Enums.LevelGrouping, id : int) # called by the main menu script, id in accordance to the menu option chosen
+signal open_next_level()
 signal open_menu(menu : Enums.Menus)
 signal close_menu()
 signal queue_menu_package(grouping, id, menu)

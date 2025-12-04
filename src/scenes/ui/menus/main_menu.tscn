@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=37 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
 [ext_resource type="Texture2D" uid="uid://d11m0it4kt8ry" path="res://assets/textures/god.webp" id="2_h1kbi"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://by2sfu06w3w3g" path="res://assets/textures/rustic-wood-texture-free-49.png" id="4_ct055"]
 [ext_resource type="Shader" uid="uid://dgeo6lmgw5tnf" path="res://assets/shaders/menu_blur.gdshader" id="5_oj1oe"]
 [ext_resource type="Script" uid="uid://d1d0u5a6wjyh0" path="res://scenes/ui/menus/scripts/menu_settings.gd" id="6_y4aia"]
+[ext_resource type="PackedScene" uid="uid://d21bo2dynh40w" path="res://scenes/ui/menus/level_slot.tscn" id="7_dhmlp"]
 [ext_resource type="Theme" uid="uid://xefwemd0japy" path="res://assets/themes/wooden_buttons.tres" id="8_jk7nv"]
+[ext_resource type="Script" uid="uid://dld2efnfljd86" path="res://scenes/ui/menus/scripts/end_screen_timer_label.gd" id="9_ykpw6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y4aia"]
 shader = ExtResource("5_oj1oe")
@@ -26,14 +28,41 @@ shadow_size = 8
 [sub_resource type="LabelSettings" id="LabelSettings_whicr"]
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_ct055"]
-font_size = 24
+[sub_resource type="LabelSettings" id="LabelSettings_smbs8"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_nmk8p"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_1p6kj"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_r1no3"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_xs2a0"]
+font_size = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0q51"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 corner_radius_top_left = 8
 shadow_color = Color(0, 0, 0, 0.431373)
 shadow_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_r4c53"]
+font = ExtResource("3_p0q51")
+font_size = 72
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h4dpu"]
+size = Vector2(256, 256)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pia5f"]
+font = ExtResource("3_p0q51")
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_51wkr"]
+font = ExtResource("3_p0q51")
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_y4aia"]
 font = ExtResource("3_p0q51")
@@ -203,7 +232,7 @@ theme_override_font_sizes/font_size = 32
 text = "> quit <
 "
 
-[node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard")]
+[node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_title_label", "level_image", "level_info_grid", "time_record_label", "par_record_label", "jug_collected_label", "button_play_level", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -215,84 +244,268 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 script = ExtResource("3_whicr")
-level_slots_debug = NodePath("level_slots_root/level_container_debug/level_slots_debug")
-level_slots_tutorial = NodePath("level_slots_root/level_container_tutorial/level_slots_tutorial")
-level_slots_easy = NodePath("level_slots_root/level_container_easy/level_slots_easy")
-level_slots_medium = NodePath("")
-level_slots_hard = NodePath("level_slots_root/level_container_hard/level_slots_hard")
+level_title_label = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_title_label")
+level_image = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/level_image")
+level_info_grid = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid")
+time_record_label = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/time_record_label")
+par_record_label = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/par_record_label")
+jug_collected_label = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/jug_collected_label")
+button_play_level = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/button_play_level")
+level_slots_debug = NodePath("level_slots_root/VBoxContainer/GridContainer/level_slots_debug")
+level_slots_tutorial = NodePath("level_slots_root/VBoxContainer/GridContainer/level_slots_tutorial")
+level_slots_easy = NodePath("level_slots_root/VBoxContainer/GridContainer/level_slots_easy")
+level_slots_medium = NodePath("level_slots_root/VBoxContainer/GridContainer/level_slots_medium")
+level_slots_hard = NodePath("level_slots_root/VBoxContainer/GridContainer/level_slots_hard")
 
-[node name="level_slots_root" type="VBoxContainer" parent="menu_root/menu_levels"]
+[node name="level_slots_root" type="HBoxContainer" parent="menu_root/menu_levels"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 24
+alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="menu_root/menu_levels/level_slots_root/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpnnc")
+
+[node name="button_return_levels" type="Button" parent="menu_root/menu_levels/level_slots_root/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 24
+focus_neighbor_top = NodePath("../button_levels")
+focus_neighbor_bottom = NodePath("../../button_quit")
+focus_next = NodePath("../../button_quit")
+focus_previous = NodePath("../button_levels")
+theme = ExtResource("8_jk7nv")
+theme_override_fonts/font = ExtResource("3_p0q51")
+theme_override_font_sizes/font_size = 32
+text = "  return  "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
-[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root"]
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/VBoxContainer"]
 layout_mode = 2
 text = "levels"
 label_settings = SubResource("LabelSettings_whicr")
 horizontal_alignment = 1
 
-[node name="level_container_debug" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+[node name="GridContainer" type="GridContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 24
+columns = 2
+
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "debug"
+label_settings = SubResource("LabelSettings_smbs8")
+horizontal_alignment = 2
+
+[node name="level_slots_debug" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_container_debug"]
+[node name="Slot" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_debug" instance=ExtResource("7_dhmlp")]
 layout_mode = 2
-text = "debug:"
-label_settings = SubResource("LabelSettings_ct055")
 
-[node name="level_slots_debug" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/level_container_debug"]
+[node name="Slot2" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_debug" instance=ExtResource("7_dhmlp")]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "tutorial"
+label_settings = SubResource("LabelSettings_nmk8p")
+horizontal_alignment = 2
+
+[node name="level_slots_tutorial" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="level_container_tutorial" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+[node name="Slot" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_tutorial" instance=ExtResource("7_dhmlp")]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "easy"
+label_settings = SubResource("LabelSettings_1p6kj")
+horizontal_alignment = 2
+
+[node name="level_slots_easy" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_container_tutorial"]
+[node name="Slot" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_easy" instance=ExtResource("7_dhmlp")]
 layout_mode = 2
-text = "daylight (tutorial):"
-label_settings = SubResource("LabelSettings_ct055")
 
-[node name="level_slots_tutorial" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/level_container_tutorial"]
+[node name="Slot2" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_easy" instance=ExtResource("7_dhmlp")]
+layout_mode = 2
+
+[node name="Slot3" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_easy" instance=ExtResource("7_dhmlp")]
+layout_mode = 2
+
+[node name="Slot4" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_easy" instance=ExtResource("7_dhmlp")]
+layout_mode = 2
+
+[node name="Slot5" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_easy" instance=ExtResource("7_dhmlp")]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "medium"
+label_settings = SubResource("LabelSettings_r1no3")
+horizontal_alignment = 2
+
+[node name="level_slots_medium" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="level_container_easy" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+[node name="Slot" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_medium" instance=ExtResource("7_dhmlp")]
+layout_mode = 2
+
+[node name="Slot2" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_medium" instance=ExtResource("7_dhmlp")]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "hard"
+label_settings = SubResource("LabelSettings_xs2a0")
+horizontal_alignment = 2
+
+[node name="level_slots_hard" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_container_easy"]
+[node name="Slot" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_hard" instance=ExtResource("7_dhmlp")]
 layout_mode = 2
-text = "sunset:"
-label_settings = SubResource("LabelSettings_ct055")
 
-[node name="level_slots_easy" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/level_container_easy"]
+[node name="Slot2" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/GridContainer/level_slots_hard" instance=ExtResource("7_dhmlp")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_levels/level_slots_root"]
+custom_minimum_size = Vector2(654, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="menu_root/menu_levels/level_slots_root/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p0q51")
+
+[node name="background_texture" type="TextureRect" parent="menu_root/menu_levels/level_slots_root/MarginContainer"]
+texture_filter = 2
+layout_mode = 2
+texture = ExtResource("4_ct055")
+
+[node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 72
+alignment = 1
+
+[node name="level_title_label" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "level title"
+label_settings = SubResource("LabelSettings_r4c53")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="level_image" type="TextureRect" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_h4dpu")
+stretch_mode = 2
+
+[node name="level_info_grid" type="GridContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+columns = 2
 
-[node name="level_container_medium" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
+[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+layout_mode = 2
+text = "best time:"
+label_settings = SubResource("LabelSettings_pia5f")
+
+[node name="time_record_label" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("9_ykpw6")
+
+[node name="time_record_na_label" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/time_record_label"]
+layout_mode = 2
+
+[node name="label_min" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/time_record_label"]
+layout_mode = 2
+text = "0:"
+label_settings = SubResource("LabelSettings_51wkr")
+
+[node name="label_sec" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/time_record_label"]
+layout_mode = 2
+text = "00:"
+label_settings = SubResource("LabelSettings_51wkr")
+
+[node name="label_msec" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/time_record_label"]
+layout_mode = 2
+text = "00"
+label_settings = SubResource("LabelSettings_51wkr")
+
+[node name="Label3" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+layout_mode = 2
+text = "best par:"
+label_settings = SubResource("LabelSettings_pia5f")
+
+[node name="par_record_label" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_pia5f")
+horizontal_alignment = 2
+
+[node name="Label5" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+layout_mode = 2
+text = "jug collected:"
+label_settings = SubResource("LabelSettings_pia5f")
+horizontal_alignment = 2
+
+[node name="jug_collected_label" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+layout_mode = 2
+text = "nay!"
+label_settings = SubResource("LabelSettings_pia5f")
+horizontal_alignment = 2
+
+[node name="button_play_level" type="Button" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-
-[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_container_medium"]
-layout_mode = 2
-text = "midnight:"
-label_settings = SubResource("LabelSettings_ct055")
-
-[node name="level_container_hard" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/level_container_hard"]
-layout_mode = 2
-text = "sunrise:"
-label_settings = SubResource("LabelSettings_ct055")
-
-[node name="level_slots_hard" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/level_container_hard"]
-layout_mode = 2
-size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../button_levels")
+focus_neighbor_bottom = NodePath("../../button_quit")
+focus_next = NodePath("../../button_quit")
+focus_previous = NodePath("../button_levels")
+theme = ExtResource("8_jk7nv")
+theme_override_fonts/font = ExtResource("3_p0q51")
+theme_override_font_sizes/font_size = 64
+text = " play level! "
 
 [node name="menu_settings" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("label_sens_val", "label_fov_val", "label_res_scale_val", "label_master_vol", "label_sfx_vol", "label_music_vol", "label_ambient_vol", "slider_sens", "slider_fov", "slider_res_scale", "slider_master_vol", "slider_sfx_vol", "slider_music_vol", "slider_ambient_vol", "checkbox_fullscreen", "checkbox_4by3", "checkbox_labels_hidden", "checkbox_crouch_toggle")]
 visible = false
@@ -763,6 +976,8 @@ text = "< yes >
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2/button_levels" to="." method="_on_button_levels_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer/button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_levels" to="menu_root/menu_levels" method="_on_visibility_changed"]
+[connection signal="pressed" from="menu_root/menu_levels/level_slots_root/VBoxContainer2/MarginContainer/button_return_levels" to="." method="_on_button_return_settings_pressed"]
+[connection signal="pressed" from="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/button_play_level" to="menu_root/menu_levels" method="_on_button_play_level_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_settings" to="menu_root/menu_settings" method="_on_visibility_changed"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2/slider_sens" to="menu_root/menu_settings" method="_on_slider_sens_value_changed"]
 [connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_crouch_toggle" to="menu_root/menu_settings" method="_on_checkbox_crouch_toggle_toggled"]

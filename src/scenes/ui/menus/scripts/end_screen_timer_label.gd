@@ -1,4 +1,8 @@
 extends HBoxContainer
+# this is jank and theres like three of these exact same scripts
+# help
+
+@onready var label_msec: Label = $label_msec
 
 var time = 0.0
 var display_time = 0.0
@@ -33,3 +37,9 @@ func _process(delta):
 		time_ticking_finished.emit()
  
 	# print(str(min) + ":", str(secs) + ".", "%02d" % msecs) 
+
+func hide_min_and_sec(): # broke boy writes broke ass method to fix broke ass script error
+	$label_min.visible = false
+	$label_sec.visible = false
+	
+	

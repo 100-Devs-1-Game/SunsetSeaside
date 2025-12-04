@@ -1,18 +1,35 @@
+class_name LevelManager
 extends Node
 
-# there are better ways to do this
-# currently do not fucking care :)
+# there are better ways to do this,
+# i can't be fucked
 
 var path : NodePath
 ##### paths
-const TITLE_BACKGROUND = "res://scenes/levels/title_background.tscn"
-const TEST_LEVEL = "res://scenes/levels/test_level.tscn"
-const DEBUG_LVL1 = null
-const DEBUG_LVL2 = null
-const DEBUG_LVL3 = null
-const DEBUG_LVL4 = null
-const DEBUG_LVL5 = null
-const DEBUG_LVL6 = null
+const TITLE_BACKGROUND = {
+	"name" : "title!!", 
+	"path" : "res://scenes/levels/title_background.tscn"}
+const TEST_LEVEL = {
+	"name" : "test level",
+	"path" : "res://scenes/levels/test_level.tscn"}
+const DEBUG_LVL1 = {
+	"name" : "debug",
+	"path" : "res://scenes/levels/debug_level.tscn"}
+const DEBUG_LVL2 = {
+	"name" : "debug",
+	"path" : "res://scenes/levels/debug_level.tscn"}
+const DEBUG_LVL3 = {
+	"name" : "debug",
+	"path" : "res://scenes/levels/debug_level.tscn"}
+const DEBUG_LVL4 = {
+	"name" : "debug",
+	"path" : "res://scenes/levels/debug_level.tscn"}
+const DEBUG_LVL5 = {
+	"name" : "debug",
+	"path" : "res://scenes/levels/debug_level.tscn"}
+const DEBUG_LVL6 = {
+	"name" : "debug",
+	"path" : "res://scenes/levels/debug_level.tscn"}
 
 var levels_debug = [TITLE_BACKGROUND, TEST_LEVEL]
 var levels_tutorial = [DEBUG_LVL1, DEBUG_LVL2]
@@ -23,8 +40,11 @@ var levels_hard = []
 const grouping_ammo_amount = [1, 1, 1, 1, 1] # removed ability for 2 shots
 # grouping order: debug, tutorial, easy, medium, hard
 
+func fetch_level_name(grouping, id):
+	return fetch_group_by_enum(grouping)[id]["name"]
+
 func fetch_level_path(grouping, id):
-	return fetch_group_by_enum(grouping)[id]
+	return fetch_group_by_enum(grouping)[id]["path"]
 
 func fetch_group_by_enum(grouping):
 	match grouping:
@@ -42,11 +62,12 @@ func fetch_ammo_amount(grouping): # now entirely irrelevent
 		Enums.LevelGrouping.MIDNIGHT: return grouping_ammo_amount[3]
 		Enums.LevelGrouping.SUNRISE: return grouping_ammo_amount[4]
 
-# these dont iterate until the actual previous or next, but its fucking good enough mate
+# these don't iterate until the actual previous or next, but mate, its fucking good enough mate
 func fetch_next_level_info(grouping, id): # returns dictionary of info about the next level
 	var level_info = {
 		"grouping" = null,
-		"id" = null
+		"id" = null, 
+		"in next group" = false # so the gamestate to determine whether or not to return to level select
 	}
 	
 	var next_group_enum
@@ -70,6 +91,7 @@ func fetch_next_level_info(grouping, id): # returns dictionary of info about the
 		if next_group.size() > 0:
 			level_info["grouping"] = next_group_enum
 			level_info["id"] = 0
+			level_info["in next group"] = true
 	
 	return level_info
 

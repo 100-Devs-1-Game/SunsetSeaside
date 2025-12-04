@@ -2,7 +2,7 @@ extends Node
 # processes gamerules and holds vital information that other nodes can get
 
 @onready var stopwatch: Node = $stopwatch # keeps level time
-@onready var level_manager: Node = $level_manager # contains references to level ids and groupings
+@onready var level_manager: LevelManager = $level_manager # contains references to level ids and groupings
 ####### ^^^ could prlly move this somewhere else
 
 const PLAYER_TSCN = preload("res://scenes/player/player.tscn")
@@ -39,6 +39,7 @@ func _ready():
 	Events.establish_level_vars.connect(_setup_level_vars)
 	Events.jug_collected.connect(_jug_collected)
 	Events.set_labels_hidden.connect(_set_macaw_text)
+	Events.open_next_level.connect(_open_next_level)
 
 func _respawn_player():
 	# reset values and entities
@@ -71,6 +72,17 @@ func _setup_level_vars(max_ammo, par_limit, time_limit):
 	current_max_ammo = max_ammo
 	current_par_limit = par_limit
 	current_time_limit = time_limit
+
+func _open_next_level():
+	var next_level = level_manager.fetch_next_level_info(current_level_grouping, current_level_id)
+	if next_level["in next group"] == true: 
+		Events.open_level.emit(Enums.LevelGrouping.DEBUG, 0)
+		Events.open_menu.emit(Enums.Menus.TITLE)
+	elif next_level["grouping"] == null && next_level["id"] == null:
+		Events.open_level.emit(Enums.LevelGrouping.DEBUG, 0)
+		Events.open_menu.emit(Enums.Menus.TITLE)
+	else:
+		Events.open_level.emit(next_level["grouping"], next_level["id"])
 
 #### player events
 func _player_fucking_died(type : Enums.PlayerDeathType): # oogway is fucking dead

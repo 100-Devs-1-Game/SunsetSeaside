@@ -195,4 +195,4 @@ func _on_button_restart_pressed() -> void:
 	restart_level()
 
 func _on_button_next_level_pressed() -> void:
-	pass # Replace with function body.
+	Events.open_next_level.emit()

@@ -6,6 +6,7 @@ const LEVEL_SLOT_UNSELECTABLE = preload("res://scenes/ui/menus/label_settings/le
 @export var icon_time: TextureRect
 @export var icon_par: TextureRect
 @export var icon_jug: TextureRect
+@export var selection_indicator : Panel
 
 @export var id_label : Label
 

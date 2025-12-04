@@ -1,8 +1,11 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://xefwemd0japy"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://xefwemd0japy"]
 
 [ext_resource type="Texture2D" uid="uid://ciwdr2u88fpg4" path="res://assets/textures/wood_sign_hover.png" id="1_hahhc"]
 [ext_resource type="Texture2D" uid="uid://b8vbrb8phsu1d" path="res://assets/textures/wood_sign1.png" id="2_e4no3"]
 [ext_resource type="Texture2D" uid="uid://cdy8ce3y8omr" path="res://assets/textures/wood_sign_highlight.png" id="3_3nkay"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lap2t"]
+texture = ExtResource("3_3nkay")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h4dpu"]
 texture = ExtResource("1_hahhc")
@@ -15,6 +18,7 @@ texture = ExtResource("3_3nkay")
 
 [resource]
 Button/icons/icon = null
+Button/styles/disabled = SubResource("StyleBoxTexture_lap2t")
 Button/styles/hover = SubResource("StyleBoxTexture_h4dpu")
 Button/styles/normal = SubResource("StyleBoxTexture_dhmlp")
 Button/styles/pressed = SubResource("StyleBoxTexture_ykpw6")
