@@ -84,7 +84,9 @@ func fresh_populate_section_completion(level_section):
 	var current_section = get_section_name(level_section)
 	
 	var level_array = Gamestate.level_manager.get(level_section)
+	print(level_section)
 	for i in level_array.size():
+		print(i)
 		if !completion_data[current_section].has("id" + str(i)):
 			completion_data[current_section]["id" + str(i)] = {"level_complete" : false,  "time_complete" : false, "par_complete" : false, "jug_complete" : false, "hardcore_complete" : false}
 

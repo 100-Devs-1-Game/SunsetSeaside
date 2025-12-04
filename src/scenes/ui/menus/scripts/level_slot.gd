@@ -23,7 +23,7 @@ func set_level_data(grouping, id, selectable, time_history, par_history, jug_his
 	level_selectable = selectable
 	
 	# set slot graphics
-	id_label.text = str(id)
+	id_label.text = str(id + 1)
 	if selectable == false:
 		id_label.label_settings = LEVEL_SLOT_UNSELECTABLE
 	if time_history == false:

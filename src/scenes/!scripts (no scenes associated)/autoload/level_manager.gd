@@ -22,20 +22,20 @@ const DEBUG_LVL3 = {
 	"name" : "debug",
 	"path" : "res://scenes/levels/debug/debug_level.tscn"}
 const BONUS_LVL1 = {
-	"name" : "debug",
+	"name" : "bonus 1!",
 	"path" : "res://scenes/levels/bonus/bonus_1.tscn"}
 const BONUS_LVL2 = {
-	"name" : "debug",
+	"name" : "bonus 2!",
 	"path" : "res://scenes/levels/bonus/bonus_2.tscn"}
 const BONUS_LVL3 = {
-	"name" : "debug",
+	"name" : "bonus 3!",
 	"path" : "res://scenes/levels/bonus/bonus_3.tscn"}
 
 var levels_debug = [TITLE_BACKGROUND, TEST_LEVEL]
 var levels_tutorial = [DEBUG_LVL1, DEBUG_LVL2]
 var levels_easy = [DEBUG_LVL3]
 var levels_medium = []
-var levels_hard = []
+var levels_hard = [BONUS_LVL1, BONUS_LVL2, BONUS_LVL3]
 
 const grouping_ammo_amount = [1, 1, 1, 1, 1] # removed ability for 2 shots
 # grouping order: debug, tutorial, easy, medium, hard

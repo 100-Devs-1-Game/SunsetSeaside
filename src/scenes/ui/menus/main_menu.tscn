@@ -128,7 +128,6 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="menu_title" type="MarginContainer" parent="menu_root"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -233,6 +232,7 @@ text = "> quit <
 "
 
 [node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_title_label", "level_image", "level_info_grid", "time_record_label", "par_record_label", "jug_collected_label", "button_play_level", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

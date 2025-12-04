@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://c5k1w4g1o2gnk"]
 
-[ext_resource type="Script" uid="uid://c35qacpu8na2l" path="res://scenes/levels/scripts/level.gd" id="1_hkwi7"]
-[ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/level objects/explosive_barrel.tscn" id="2_7o5vt"]
-[ext_resource type="PackedScene" uid="uid://dtd51ahita8ja" path="res://scenes/entities/level objects/spawnpoint.tscn" id="3_5l8w0"]
-[ext_resource type="PackedScene" uid="uid://dlo72yn7rkg4u" path="res://scenes/entities/level objects/jug.tscn" id="4_dk8gf"]
-[ext_resource type="PackedScene" uid="uid://cxc7h8fscjiwl" path="res://scenes/entities/level objects/treasure_chest.tscn" id="5_nfmkk"]
-[ext_resource type="PackedScene" uid="uid://jv2pnk27hjjh" path="res://scenes/entities/level objects/lantern.tscn" id="6_nfmkk"]
+[ext_resource type="Script" uid="uid://c35qacpu8na2l" path="res://scenes/levels/scripts/level.gd" id="1_6c0tf"]
+[ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/level objects/explosive_barrel.tscn" id="2_du6va"]
+[ext_resource type="PackedScene" uid="uid://dtd51ahita8ja" path="res://scenes/entities/level objects/spawnpoint.tscn" id="3_qdd3i"]
+[ext_resource type="PackedScene" uid="uid://dlo72yn7rkg4u" path="res://scenes/entities/level objects/jug.tscn" id="4_7lym8"]
+[ext_resource type="PackedScene" uid="uid://cxc7h8fscjiwl" path="res://scenes/entities/level objects/treasure_chest.tscn" id="5_p00d8"]
+[ext_resource type="PackedScene" uid="uid://jv2pnk27hjjh" path="res://scenes/entities/level objects/lantern.tscn" id="6_3ew07"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dk8gf"]
 
@@ -41,7 +41,7 @@ ambient_light_color = Color(0.726588, 0.554418, 3.85046e-07, 1)
 reflected_light_source = 2
 
 [node name="DebugLevel" type="Node3D"]
-script = ExtResource("1_hkwi7")
+script = ExtResource("1_6c0tf")
 ammo_max = 1
 par_limit = 2
 time_limit = 4.2
@@ -51,20 +51,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81114, -1.95721, -2.2359)
 use_collision = true
 size = Vector3(6.92905, 1.62219, 6.59731)
 
-[node name="barrel" parent="." instance=ExtResource("2_7o5vt")]
+[node name="barrel" parent="." instance=ExtResource("2_du6va")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.943218, -0.0419471, -0.0270553)
 
-[node name="player_spawnpoint" parent="." instance=ExtResource("3_5l8w0")]
+[node name="player_spawnpoint" parent="." instance=ExtResource("3_qdd3i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.78389, -0.0724275, 0.225275)
 
-[node name="jug" parent="." instance=ExtResource("4_dk8gf")]
+[node name="jug" parent="." instance=ExtResource("4_7lym8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24719, 0, -1.30405)
 
-[node name="treasure_chest" parent="." instance=ExtResource("5_nfmkk")]
+[node name="treasure_chest" parent="." instance=ExtResource("5_p00d8")]
 transform = Transform3D(-3.13381e-08, 0, -0.716933, 0, 0.716933, 0, 0.716933, 0, -3.13381e-08, 3.73909, -0.89584, -4.76814)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yj7dt")
 
-[node name="lantern" parent="." instance=ExtResource("6_nfmkk")]
+[node name="lantern" parent="." instance=ExtResource("6_3ew07")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2101, -0.917187, -5.09535)

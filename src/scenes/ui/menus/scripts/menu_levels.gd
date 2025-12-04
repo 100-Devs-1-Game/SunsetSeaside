@@ -27,6 +27,8 @@ var level_amount_medium = Gamestate.level_manager.levels_medium.size()
 var level_amount_hard = Gamestate.level_manager.levels_hard.size()
 
 var show_debug_levels = true # intended for development only
+var all_levels_selectable = true # ^
+
 var current_slot_info = {"grouping" : null, "id" : null}
 
 func _on_visibility_changed() -> void:
@@ -54,7 +56,12 @@ func _populate_level_slots(amount, slots, grouping):
 		var slot = LEVEL_SLOT.instantiate()
 		slots.add_child(slot)
 		var level_history = Keeper.get_level_completion(grouping, i)
-		slot.set_level_data(grouping, i, _check_selectablity(grouping, i), level_history["time_complete"], level_history["par_complete"], level_history["jug_complete"])	
+		
+		var selectable = all_levels_selectable
+		if selectable == false: 
+			selectable = _check_selectablity(grouping, i)
+		slot.set_level_data(grouping, i, selectable, level_history["time_complete"], level_history["par_complete"], level_history["jug_complete"])	
+		
 		slot.slot_clicked.connect(_on_slot_clicked)
 
 func _on_slot_clicked(slot, button):
@@ -111,9 +118,13 @@ func _check_selectablity(grouping, id): # checking to see if previous level was 
 	if grouping == Enums.LevelGrouping.DEBUG: return true
 	if grouping == Enums.LevelGrouping.DAYLIGHT && id == 0: return true
 	
+	
 	var previous_level = Gamestate.level_manager.fetch_previous_level_info(grouping, id)
-	var previous_level_completion = Keeper.get_level_completion(previous_level["grouping"], previous_level["id"])
-	return previous_level_completion["level_complete"]
+	if previous_level["grouping"] == null || previous_level["id"] == null: 
+		return true
+	else:
+		var previous_level_completion = Keeper.get_level_completion(previous_level["grouping"], previous_level["id"])
+		return previous_level_completion["level_complete"]
 
 func _on_button_play_level_pressed() -> void:
 	Events.open_level.emit(current_slot_info["grouping"], current_slot_info["id"])
