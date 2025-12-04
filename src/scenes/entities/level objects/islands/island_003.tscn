@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxadjnbbatamx"]
+
+[ext_resource type="PackedScene" uid="uid://b1orpirbfwbcn" path="res://assets/models/dobert/island_003.glb" id="1_hu7ub"]
+[ext_resource type="PackedScene" uid="uid://xnu4ddk4m5bo" path="res://scenes/entities/level objects/landscape/giant_rock_001.tscn" id="2_laokx"]
+[ext_resource type="PackedScene" uid="uid://b8yum05cvptuh" path="res://scenes/entities/level objects/landscape/pebbles_001.tscn" id="3_bi0ky"]
+[ext_resource type="PackedScene" uid="uid://dkdmb30n4kx30" path="res://scenes/entities/level objects/landscape/pebbles_002.tscn" id="4_wlyht"]
+[ext_resource type="PackedScene" uid="uid://6re35dgiuvet" path="res://scenes/entities/level objects/landscape/medium_rock_002.tscn" id="5_6odl1"]
+[ext_resource type="PackedScene" uid="uid://dcuepc4y515dv" path="res://scenes/entities/level objects/landscape/palm_tree_004.tscn" id="6_tr64i"]
+[ext_resource type="PackedScene" uid="uid://b7ohh3c0eehg3" path="res://scenes/entities/level objects/landscape/palm_tree_001.tscn" id="7_7abt5"]
+[ext_resource type="PackedScene" uid="uid://byvaffts1r8dp" path="res://scenes/entities/level objects/landscape/plant_floppy.tscn" id="8_m8y8d"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_w5hes"]
+data = PackedVector3Array(4.1753, 0.4472, 7.353, 4.3269, 0.8506, 6.5555, 5.0429, 0.5257, 7.2498, 4.3269, 0.8506, 6.5555, 5.5262, 1, 3.9087, 6.549, 0.8506, 5.2855, 4.3269, 0.8506, 6.5555, 6.549, 0.8506, 5.2855, 5.0429, 0.5257, 7.2498, 5.0429, 0.5257, 7.2498, 6.549, 0.8506, 5.2855, 6.5779, 0.4472, 6.4309, 5.2301, -1.6022, 10.2184, 4.1753, 0.4472, 7.353, 5.0429, 0.5257, 7.2498, 5.2301, -1.6022, 10.2184, 5.0429, 0.5257, 7.2498, 7.0735, -1.6022, 9.5744, 7.0735, -1.6022, 9.5744, 5.0429, 0.5257, 7.2498, 6.5779, 0.4472, 6.4309, 3.7497, -1.6022, 9.7818, 4.1753, 0.4472, 7.353, 5.2301, -1.6022, 10.2184, 7.0735, -1.6022, 9.5744, 6.5779, 0.4472, 6.4309, 11.9653, -1.6022, 5.8598, 3.7497, -1.6022, 9.7818, 3.2849, 0.5257, 6.5405, 4.1753, 0.4472, 7.353, 1.879, -1.6022, 7.7247, 3.2849, 0.5257, 6.5405, 3.7497, -1.6022, 9.7818, 1.879, -1.6022, 7.7247, 2.3353, 0.4472, 5.2722, 3.2849, 0.5257, 6.5405, 3.2849, 0.5257, 6.5405, 4.3269, 0.8506, 6.5555, 4.1753, 0.4472, 7.353, 2.3353, 0.4472, 5.2722, 3.6157, 0.8506, 4.642, 3.2849, 0.5257, 6.5405, 3.6157, 0.8506, 4.642, 4.3269, 0.8506, 6.5555, 3.2849, 0.5257, 6.5405, 3.6157, 0.8506, 4.642, 5.5262, 1, 3.9087, 4.3269, 0.8506, 6.5555, 11.9653, -1.6022, 5.8598, 6.5779, 0.4472, 6.4309, 7.6795, 0.6189, 3.6969, 6.5779, 0.4472, 6.4309, 6.549, 0.8506, 5.2855, 7.6795, 0.6189, 3.6969, 11.9653, -1.6022, 5.8598, 7.6795, 0.6189, 3.6969, 10.1428, -1.9037, -4.4714, 6.549, 0.8506, 5.2855, 5.8664, 0.9076, 2.9942, 7.6795, 0.6189, 3.6969, 6.549, 0.8506, 5.2855, 5.5262, 1, 3.9087, 5.8664, 0.9076, 2.9942, 7.6795, 0.6189, 3.6969, 5.8664, 0.9076, 2.9942, 5.5742, 0.83, 0.6247, 10.1428, -1.9037, -4.4714, 7.6795, 0.6189, 3.6969, 5.5742, 0.83, 0.6247, 10.1428, -1.9037, -4.4714, 5.5742, 0.83, 0.6247, 4.242, -1.6022, -5.6955, 4.242, -1.6022, -5.6955, 5.5742, 0.83, 0.6247, 3.0264, 0.5257, -0.6959, 5.5742, 0.83, 0.6247, 5.8664, 0.9076, 2.9942, 3.0264, 0.5257, -0.6959, 4.242, -1.6022, -5.6955, 3.0264, 0.5257, -0.6959, -1.9853, -1.6022, -0.868, 5.8664, 0.9076, 2.9942, 3.0605, 0.8506, 1.4857, 3.0264, 0.5257, -0.6959, 5.8664, 0.9076, 2.9942, 5.5262, 1, 3.9087, 3.0605, 0.8506, 1.4857, 3.0264, 0.5257, -0.6959, 3.0605, 0.8506, 1.4857, 0.2773, 0.4472, 1.7863, -1.9853, -1.6022, -0.868, 3.0264, 0.5257, -0.6959, 0.2773, 0.4472, 1.7863, -1.9853, -1.6022, -0.868, 0.2773, 0.4472, 1.7863, -3.5302, -1.6022, 1.8689, -3.5302, -1.6022, 1.8689, 0.2773, 0.4472, 1.7863, -0.0105, 0.5257, 3.6105, 0.2773, 0.4472, 1.7863, 3.0605, 0.8506, 1.4857, -0.0105, 0.5257, 3.6105, -3.5302, -1.6022, 1.8689, -0.0105, 0.5257, 3.6105, -2.5213, -1.6022, 5.3729, 3.0605, 0.8506, 1.4857, 3.6157, 0.8506, 4.642, -0.0105, 0.5257, 3.6105, 3.0605, 0.8506, 1.4857, 5.5262, 1, 3.9087, 3.6157, 0.8506, 4.642, -0.0105, 0.5257, 3.6105, 3.6157, 0.8506, 4.642, 2.3353, 0.4472, 5.2722, -2.5213, -1.6022, 5.3729, -0.0105, 0.5257, 3.6105, 2.3353, 0.4472, 5.2722, -2.5213, -1.6022, 5.3729, 2.3353, 0.4472, 5.2722, 1.879, -1.6022, 7.7247)
+
+[node name="island_003" instance=ExtResource("1_hu7ub")]
+
+[node name="Icosphere_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.50946, 0, -4.34677)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Icosphere_001" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Icosphere_001/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_w5hes")
+
+[node name="giant_rock_v1" parent="." index="1" instance=ExtResource("2_laokx")]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 2.13764, -0.789001, -4.4323)
+
+[node name="pebbles_v1" parent="." index="2" instance=ExtResource("3_bi0ky")]
+transform = Transform3D(0.654931, 0.00948815, 0, -0.00948414, 0.654655, 0.0190314, 0.000275684, -0.0190294, 0.654723, -1.7561, 0.575361, -3.19863)
+
+[node name="pebbles_v2" parent="." index="3" instance=ExtResource("3_bi0ky")]
+transform = Transform3D(0.543855, 0.250445, -0.265562, -0.248208, 0.603125, 0.0604776, 0.267655, 0.0504178, 0.595688, 1.08355, 0.379817, -0.415534)
+
+[node name="pebbles_v3" parent="." index="4" instance=ExtResource("4_wlyht")]
+transform = Transform3D(0.84907, 0.528098, 0.0139167, -0.527991, 0.847435, 0.0554938, 0.0175126, -0.054466, 0.998362, 2.90936, -1.05182, -2.47479)
+
+[node name="medium_rock_v2" parent="." index="5" instance=ExtResource("5_6odl1")]
+transform = Transform3D(0.345, 0, 0, 0, 0.277856, 0.204502, 0, -0.204502, 0.277856, -0.520084, -1.46514, -8.03402)
+
+[node name="medium_rock_v3" parent="." index="6" instance=ExtResource("5_6odl1")]
+transform = Transform3D(0.345, 0, 0, 0, 0.271522, 0.212839, 0, -0.212839, 0.271522, -6.69501, -0.548529, -2.57287)
+
+[node name="palm_tree_004" parent="." index="7" instance=ExtResource("6_tr64i")]
+transform = Transform3D(0.24953, -0.0221397, 0.182605, 0, 0.307746, 0.0373122, -0.183942, -0.0300339, 0.247716, -4.44347, -0.602463, -3.80557)
+
+[node name="palm_tree_001" parent="." index="8" instance=ExtResource("7_7abt5")]
+transform = Transform3D(0.335, 0, 0, 0, 0.332945, -0.0370516, 0, 0.0370516, 0.332945, -5.46919, -0.407852, 1.10578)
+
+[node name="plant_floppy" parent="." index="9" instance=ExtResource("8_m8y8d")]
+transform = Transform3D(0.308349, -0.106246, 0.076537, 0.130943, 0.250191, -0.180231, 2.0696e-09, 0.195809, 0.271816, -3.86557, 0.140547, 1.83935)
+
+[node name="plant_floppy2" parent="." index="10" instance=ExtResource("8_m8y8d")]
+transform = Transform3D(0.0611333, -0.0707833, 0.321679, 0.176569, 0.283233, 0.0287676, -0.278049, 0.164298, 0.0889943, -2.6734, 0.732452, 1.83935)
+
+[node name="plant_floppy3" parent="." index="11" instance=ExtResource("8_m8y8d")]
+transform = Transform3D(0.0459172, -0.102087, -0.315745, -0.016339, 0.317671, -0.105086, 0.331436, 0.0298035, 0.0385631, -4.33098, 0.616079, 0.28353)

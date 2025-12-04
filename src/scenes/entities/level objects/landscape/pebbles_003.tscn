@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cevr33v0loi7u"]
+
+[ext_resource type="PackedScene" uid="uid://8lf35f3d3t1h" path="res://assets/models/dobert/pebbles_v3.glb" id="1_4pdtd"]
+
+[node name="pebbles_v3" instance=ExtResource("1_4pdtd")]
+
+[node name="Sphere_053" parent="." index="0"]
+transform = Transform3D(0.139003, -0.132737, 0.124491, 0.178839, 0.128623, -0.0625432, -0.0336717, 0.135189, 0.181739, 0.0942469, 0.282705, -0.459356)

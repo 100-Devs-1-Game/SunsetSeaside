@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ge78gxo560lg"]
+
+[ext_resource type="PackedScene" uid="uid://blnqw82hi6nun" path="res://assets/models/dobert/wooden_torch.glb" id="1_2lp54"]
+[ext_resource type="PackedScene" uid="uid://dekttd80pfxsq" path="res://scenes/entities/effects/flame_particles_small.tscn" id="2_mvuea"]
+
+[node name="wooden_torch" instance=ExtResource("1_2lp54")]
+transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0, 0)
+
+[node name="Node3D" parent="." index="1" instance=ExtResource("2_mvuea")]
+transform = Transform3D(15.7912, 0, 0, 0, 33.57, 0, 0, 0, 10.251, 0, 4.51737, 0)
+amount = 33
