@@ -253,6 +253,7 @@ layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
 
 [node name="time spinner" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(152, 152)
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
@@ -381,6 +382,7 @@ theme_override_constants/separation = 0
 theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
 
 [node name="par spinner" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(152, 152)
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
@@ -465,6 +467,7 @@ layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_cyhki")
 
 [node name="jug spinner" type="MarginContainer" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(152, 152)
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24

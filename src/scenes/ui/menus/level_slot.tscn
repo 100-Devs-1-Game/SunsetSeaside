@@ -31,7 +31,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(48, 48)
+custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
@@ -67,7 +67,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="icon_under_time_limit" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/icon_under_time_limit"]
@@ -83,7 +83,7 @@ texture = SubResource("NoiseTexture2D_1k1ax")
 expand_mode = 1
 
 [node name="icon_under_par" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/icon_under_par"]
@@ -99,7 +99,7 @@ texture = SubResource("NoiseTexture2D_1k1ax")
 expand_mode = 1
 
 [node name="icon_jug_collected" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/icon_jug_collected"]
