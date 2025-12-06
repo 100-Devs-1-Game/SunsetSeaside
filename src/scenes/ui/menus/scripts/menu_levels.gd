@@ -5,8 +5,10 @@ const LEVEL_IMAGE_PLACEHOLDER = preload("res://scenes/ui/menus/level_images/leve
 
 @export_subgroup("level info labels")
 @export var level_info_grid : GridContainer
-@export var par_record_label : Label
 @export var time_record_label : HBoxContainer
+@export var time_limit_label: HBoxContainer
+@export var par_record_label : Label
+@export var par_limit_label : Label
 @export var jug_collected_label : Label
 @export_subgroup("level info spinners")
 @export var spinner_time : SubViewportContainer
@@ -37,16 +39,16 @@ var level_amount_medium = Gamestate.level_manager.levels_medium.size()
 var level_amount_hard = Gamestate.level_manager.levels_hard.size()
 
 var show_debug_levels = true # intended for development only
-var all_levels_selectable = true # ^
+var all_levels_selectable = false # ^
 
 var spinner_count = 0
 var current_slot_info = {"grouping" : null, "id" : null}
 
 func _ready():
-		for spinner in spinners_list:
-			if spinner != null:
-				spinner.offset_position(spinner_count)
-				spinner_count += 1
+	for spinner in spinners_list:
+		if spinner != null:
+			spinner.offset_position(spinner_count)
+			spinner_count += 1
 
 func _on_visibility_changed() -> void:
 	if visible:
@@ -57,7 +59,7 @@ func _on_visibility_changed() -> void:
 		if show_debug_levels == true:  
 			_populate_level_slots(level_amount_debug, level_slots_debug, Enums.LevelGrouping.DEBUG)
 			label_debug_slots.visible = true;
-		else: label_debug_slots.visible = false
+		else: label_debug_slots.visible = false; level_slots_debug.visible = false
 		_populate_level_slots(level_amount_tutorial, level_slots_tutorial, Enums.LevelGrouping.DAYLIGHT)
 		_populate_level_slots(level_amount_easy, level_slots_easy, Enums.LevelGrouping.SUNSET)
 		_populate_level_slots(level_amount_medium, level_slots_medium, Enums.LevelGrouping.MIDNIGHT)
@@ -91,14 +93,15 @@ func _on_slot_clicked(slot, button):
 func _show_level_info(slot, button):
 	# animate panel
 	animation_player.play("new_selection")
+	var level_info = Gamestate.level_manager.fetch_level_info(slot.level_grouping, slot.level_id)
 	
 	# level title
-	level_title_label.text = Gamestate.level_manager.fetch_level_name(slot.level_grouping, slot.level_id)
+	level_title_label.text = level_info["name"]
 	level_title_label.label_settings.font_color = Color.WHITE
 	
 	# level image and spinners
 	image_spinner_container.visible = true
-	var level_image_path = Gamestate.level_manager.fetch_level_image(slot.level_grouping, slot.level_id)
+	var level_image_path = level_info["level_image_path"]
 	if level_image_path != null: level_image.texture = load(level_image_path)
 	else: level_image.texture = LEVEL_IMAGE_PLACEHOLDER
 	var level_history = Keeper.get_level_completion(slot.level_grouping, slot.level_id)
@@ -113,21 +116,34 @@ func _show_level_info(slot, button):
 	
 	# level records and info
 	level_info_grid.visible = true
+	# limits
+	if level_info["time_limit"] == null:
+		time_limit_label.label_msec.text = "n/a"; time_limit_label.set_process(false)
+		time_limit_label.hide_min_and_sec()
+	else:
+		time_limit_label.time = level_info["time_limit"]; time_limit_label.set_process(true)
+		time_limit_label.display_time = level_info["time_limit"]
+	
+	if level_info["par"] == null:
+		par_limit_label.text = "n/a"
+	else: par_limit_label.text = str(snapped(level_info["par"], 0))
+	
+	# records
 	if level_history["level_complete"] == false:
 		time_record_label.label_msec.text = "n/a"; time_record_label.set_process(false)
 		time_record_label.hide_min_and_sec() # we are a broken species
 		par_record_label.text = "n/a"
+		par_record_label.label_settings.font_color = Color.WEB_GRAY # sets colors for all record labels since they share the same label settings
 		jug_collected_label.text = "n/a"
-		jug_collected_label.label_settings.font_color = Color.WEB_GRAY # sets colors for all record labels since they share the same label settings
 	else:
 		var level_records = Keeper.get_level_history(slot.level_grouping, slot.level_id)
 		time_record_label.time = level_records["time_best"]; time_record_label.set_process(true)
 		time_record_label.display_time = level_records["time_best"]
 		par_record_label.text = str(snapped(level_records["par_best"], 0))
+		par_record_label.label_settings.font_color = Color.WHITE
 		if level_records["jug_history"]: jug_collected_label.text = "aye!"
 		else: jug_collected_label.text = "nay!"
-		jug_collected_label.label_settings.font_color = Color.WHITE
-	
+
 	# button
 	button_play_level.visible = true
 	if slot.level_selectable == false:
@@ -142,7 +158,7 @@ func _show_level_info(slot, button):
 
 
 func _reset_level_info():
-	level_title_label.text = "unselected!"
+	level_title_label.text = "unselected..."
 	level_title_label.label_settings.font_color = Color.WEB_GRAY
 	image_spinner_container.visible = false
 	level_info_grid.visible = false

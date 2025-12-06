@@ -9,44 +9,63 @@ var path : NodePath
 const TITLE_BACKGROUND = {
 	"name" : "title!!", 
 	"path" : "res://scenes/levels/debug/title_background.tscn",
+	"time_limit" : null,
+	"par" : null,
 	"level_image_path" : null}
 const TEST_LEVEL = {
 	"name" : "test level",
 	"path" : "res://scenes/levels/debug/test_level.tscn",
+	"time_limit" : 4.2,
+	"par" : 7,
 	"level_image_path" : null}
 const DEBUG_LVL1 = {
 	"name" : "debug",
 	"path" : "res://scenes/levels/debug/debug_level.tscn",
+	"time_limit" : null,
+	"par" : null,
 	"level_image_path" : null}
 const DEBUG_LVL2 = {
 	"name" : "debug",
 	"path" : "res://scenes/levels/debug/debug_level.tscn",
+	"time_limit" : null,
+	"par" : null,
 	"level_image_path" : null}
 const DEBUG_LVL3 = {
 	"name" : "debug",
 	"path" : "res://scenes/levels/debug/debug_level.tscn",
+	"time_limit" : null,
+	"par" : null,
 	"level_image_path" : null}
 const BONUS_LVL1 = {
 	"name" : "bonus 1!",
 	"path" : "res://scenes/levels/bonus/bonus_1.tscn",
+	"time_limit" : null,
+	"par" : null,
 	"level_image_path" : null}
 const BONUS_LVL2 = {
 	"name" : "bonus 2!",
 	"path" : "res://scenes/levels/bonus/bonus_2.tscn",
+	"time_limit" : null,
+	"par" : null,
 	"level_image_path" : null}
 const BONUS_LVL3 = {
 	"name" : "bonus 3!",
 	"path" : "res://scenes/levels/bonus/bonus_3.tscn",
+	"time_limit" : null,
+	"par" : null,
 	"level_image_path" : "res://scenes/ui/menus/level_images/bonus_3.PNG"}
 
 var levels_debug = [TITLE_BACKGROUND, TEST_LEVEL]
 var levels_tutorial = [DEBUG_LVL1, DEBUG_LVL2]
 var levels_easy = [DEBUG_LVL3]
-var levels_medium = []
+var levels_medium = [DEBUG_LVL3]
 var levels_hard = [BONUS_LVL1, BONUS_LVL2, BONUS_LVL3]
 
 const grouping_ammo_amount = [1, 1, 1, 1, 1] # removed ability for 2 shots
 # grouping order: debug, tutorial, easy, medium, hard
+
+func fetch_level_info(grouping, id):
+	return fetch_group_by_enum(grouping)[id]
 
 func fetch_level_name(grouping, id):
 	return fetch_group_by_enum(grouping)[id]["name"]
@@ -57,6 +76,13 @@ func fetch_level_path(grouping, id):
 func fetch_level_image(grouping, id):
 	return fetch_group_by_enum(grouping)[id]["level_image_path"]
 
+func fetch_level_time_limit(grouping, id):
+	return fetch_group_by_enum(grouping)[id]["time_limit"]
+	
+func fetch_level_par(grouping, id):
+	return fetch_group_by_enum(grouping)[id]["par"]
+	
+	
 func fetch_group_by_enum(grouping):
 	match grouping:
 		Enums.LevelGrouping.DEBUG: return levels_debug

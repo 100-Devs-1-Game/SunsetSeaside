@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=48 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
 [ext_resource type="Texture2D" uid="uid://d11m0it4kt8ry" path="res://assets/textures/god.webp" id="2_h1kbi"]
@@ -15,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://dj58i00bv8dww" path="res://scenes/ui/menus/spinner_meshes/stopwatch_mesh.tscn" id="10_bl8wb"]
 [ext_resource type="PackedScene" uid="uid://bngk38h3a4rld" path="res://scenes/ui/menus/spinner_meshes/cannonball_mesh.tscn" id="11_c8e1o"]
 [ext_resource type="PackedScene" uid="uid://ckr8tt1vcqklu" path="res://scenes/ui/menus/spinner_meshes/jug_mesh.tscn" id="12_e7y46"]
+[ext_resource type="LabelSettings" uid="uid://42eqrdf8vmh5" path="res://scenes/ui/menus/label_settings/time_text_color.tres" id="14_1p6kj"]
+[ext_resource type="LabelSettings" uid="uid://dbpcscbsp4nm2" path="res://scenes/ui/menus/label_settings/par_text_color.tres" id="16_r1no3"]
+[ext_resource type="LabelSettings" uid="uid://d0sc8tap3uldg" path="res://scenes/ui/menus/label_settings/jug_text_color.tres" id="17_xs2a0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y4aia"]
 shader = ExtResource("5_oj1oe")
@@ -30,6 +33,11 @@ corner_detail = 1
 shadow_color = Color(0, 0, 0, 0.431373)
 shadow_size = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_1p6kj"]
+font = ExtResource("3_p0q51")
+font_size = 44
+font_color = Color(1, 0.521803, 0.328809, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_xs2a0"]
 font = ExtResource("3_p0q51")
 font_size = 44
@@ -40,16 +48,25 @@ corner_radius_top_left = 8
 shadow_color = Color(0, 0, 0, 0.431373)
 shadow_size = 12
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smbs8"]
+bg_color = Color(0.223529, 0.145098, 0.0313726, 0.176471)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.341176)
+shadow_size = 16
+
 [sub_resource type="LabelSettings" id="LabelSettings_r4c53"]
 font = ExtResource("3_p0q51")
 font_size = 72
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl8wb"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1p6kj"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 corner_radius_top_left = 4
 corner_detail = 16
-shadow_color = Color(0, 0, 0, 0.431373)
-shadow_size = 16
+shadow_color = Color(0, 0, 0, 0.537255)
+shadow_size = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8e1o"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -75,7 +92,9 @@ shadow_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_pia5f"]
 font = ExtResource("3_p0q51")
-font_size = 42
+font_size = 36
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e7y46"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7y46"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -288,7 +307,7 @@ theme_override_font_sizes/font_size = 32
 text = "> quit <
 "
 
-[node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_info_grid", "par_record_label", "time_record_label", "jug_collected_label", "spinner_time", "spinner_par", "spinner_jug", "level_title_label", "image_spinner_container", "level_image", "button_play_level", "animation_player", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard", "label_debug_slots")]
+[node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_info_grid", "time_record_label", "time_limit_label", "par_record_label", "par_limit_label", "jug_collected_label", "spinner_time", "spinner_par", "spinner_jug", "level_title_label", "image_spinner_container", "level_image", "button_play_level", "animation_player", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard", "label_debug_slots")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -301,8 +320,10 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 script = ExtResource("3_whicr")
 level_info_grid = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid")
-par_record_label = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/par_record_label")
 time_record_label = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/time_record_label")
+time_limit_label = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/time_limit_label")
+par_record_label = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/par_record_label")
+par_limit_label = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/par_limit_label")
 jug_collected_label = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/jug_collected_label")
 spinner_time = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/image_spinner_container/HBoxContainer2/time spinner/spinner")
 spinner_par = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/image_spinner_container/HBoxContainer2/par spinner/spinner")
@@ -361,17 +382,17 @@ theme_override_constants/separation = 16
 
 [node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 13
 
 [node name="labels" type="VBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 58
+theme_override_constants/separation = 57
 
 [node name="label_debug_slots" type="Label" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/MarginContainer/labels"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 text = "debug"
-label_settings = SubResource("LabelSettings_xs2a0")
+label_settings = SubResource("LabelSettings_1p6kj")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -407,13 +428,23 @@ label_settings = SubResource("LabelSettings_xs2a0")
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Label6" type="Label" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/MarginContainer/labels"]
+visible = false
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+text = "bonus"
+label_settings = SubResource("LabelSettings_xs2a0")
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="slots" type="VBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 64
 
 [node name="level_slots_debug" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-theme_override_constants/separation = 42
+theme_override_constants/separation = 44
 
 [node name="Slot" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_debug" instance=ExtResource("7_dhmlp")]
 layout_mode = 2
@@ -422,15 +453,17 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="level_slots_tutorial" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-theme_override_constants/separation = 42
+theme_override_constants/separation = 44
 
 [node name="Slot" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_tutorial" instance=ExtResource("7_dhmlp")]
 layout_mode = 2
 
 [node name="level_slots_easy" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-theme_override_constants/separation = 42
+theme_override_constants/separation = 44
 
 [node name="Slot" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_easy" instance=ExtResource("7_dhmlp")]
 layout_mode = 2
@@ -448,8 +481,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="level_slots_medium" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-theme_override_constants/separation = 42
+theme_override_constants/separation = 44
 
 [node name="Slot" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_medium" instance=ExtResource("7_dhmlp")]
 layout_mode = 2
@@ -458,14 +492,20 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="level_slots_hard" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-theme_override_constants/separation = 42
+theme_override_constants/separation = 44
 
 [node name="Slot" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_hard" instance=ExtResource("7_dhmlp")]
 layout_mode = 2
 
 [node name="Slot2" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_hard" instance=ExtResource("7_dhmlp")]
 layout_mode = 2
+
+[node name="level_slots_bonus" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_constants/separation = 44
 
 [node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_levels/level_slots_root"]
 custom_minimum_size = Vector2(654, 0)
@@ -483,6 +523,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_p0q51")
 texture_filter = 2
 layout_mode = 2
 texture = ExtResource("4_ct055")
+
+[node name="MarginContainer2" type="MarginContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="Panel" type="Panel" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_smbs8")
 
 [node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer"]
 layout_mode = 2
@@ -516,7 +567,7 @@ layout_mode = 2
 
 [node name="Panel" type="Panel" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/image_spinner_container/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bl8wb")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1p6kj")
 
 [node name="level_image" type="TextureRect" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/image_spinner_container/VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -579,11 +630,44 @@ spinner_mesh = ExtResource("12_e7y46")
 [node name="level_info_grid" type="GridContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/v_separation = 0
 columns = 2
+
+[node name="Label2" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+layout_mode = 2
+text = "time limit:"
+label_settings = ExtResource("14_1p6kj")
+
+[node name="time_limit_label" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("9_ykpw6")
+
+[node name="time_record_na_label" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/time_limit_label"]
+layout_mode = 2
+label_settings = ExtResource("14_1p6kj")
+
+[node name="label_min" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/time_limit_label"]
+layout_mode = 2
+text = "0:"
+label_settings = ExtResource("14_1p6kj")
+
+[node name="label_sec" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/time_limit_label"]
+layout_mode = 2
+text = "00:"
+label_settings = ExtResource("14_1p6kj")
+
+[node name="label_msec" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid/time_limit_label"]
+layout_mode = 2
+text = "00"
+label_settings = ExtResource("14_1p6kj")
 
 [node name="Label" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
 layout_mode = 2
-text = "best time:"
+text = "time record:"
 label_settings = SubResource("LabelSettings_pia5f")
 
 [node name="time_record_label" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
@@ -613,9 +697,30 @@ layout_mode = 2
 text = "00"
 label_settings = SubResource("LabelSettings_pia5f")
 
+[node name="HSeparator" type="HSeparator" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_e7y46")
+
+[node name="HSeparator2" type="HSeparator" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_e7y46")
+
+[node name="Label6" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+layout_mode = 2
+text = "shot par:"
+label_settings = ExtResource("16_r1no3")
+
+[node name="par_limit_label" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+layout_mode = 2
+text = "n/a"
+label_settings = ExtResource("16_r1no3")
+horizontal_alignment = 2
+
 [node name="Label3" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
 layout_mode = 2
-text = "best par:"
+text = "shot record:"
 label_settings = SubResource("LabelSettings_pia5f")
 
 [node name="par_record_label" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
@@ -624,16 +729,26 @@ text = "0"
 label_settings = SubResource("LabelSettings_pia5f")
 horizontal_alignment = 2
 
+[node name="HSeparator3" type="HSeparator" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_e7y46")
+
+[node name="HSeparator4" type="HSeparator" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_e7y46")
+
 [node name="Label5" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
 layout_mode = 2
 text = "jug collected:"
-label_settings = SubResource("LabelSettings_pia5f")
+label_settings = ExtResource("17_xs2a0")
 horizontal_alignment = 2
 
 [node name="jug_collected_label" type="Label" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/level_info_grid"]
 layout_mode = 2
 text = "nay!"
-label_settings = SubResource("LabelSettings_pia5f")
+label_settings = ExtResource("17_xs2a0")
 horizontal_alignment = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer"]
@@ -656,6 +771,7 @@ theme_override_font_sizes/font_size = 64
 text = "     play level!     "
 
 [node name="animation_panel" type="Panel" parent="menu_root/menu_levels/level_slots_root/MarginContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_e7y46")

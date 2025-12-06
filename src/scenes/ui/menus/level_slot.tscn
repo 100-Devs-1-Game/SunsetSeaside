@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d21bo2dynh40w"]
+[gd_scene load_steps=7 format=3 uid="uid://d21bo2dynh40w"]
 
 [ext_resource type="Script" uid="uid://b4gems7hjes3w" path="res://scenes/ui/menus/scripts/level_slot.gd" id="1_sgx16"]
 [ext_resource type="LabelSettings" uid="uid://cd7lkf440a3k7" path="res://scenes/ui/menus/label_settings/level_slot_selectable.tres" id="2_1k1ax"]
+[ext_resource type="Texture2D" uid="uid://cb0auap0dhr1y" path="res://scenes/ui/menus/smol_icons/timersmol_png.png" id="3_yer46"]
+[ext_resource type="Texture2D" uid="uid://1dj0hrocs07h" path="res://scenes/ui/menus/smol_icons/cannonballsmol_png.png" id="4_fmdn1"]
+[ext_resource type="Texture2D" uid="uid://ogx8qncwspur" path="res://scenes/ui/menus/smol_icons/jugsmol_png.png" id="5_v3kgf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1k1ax"]
 bg_color = Color(0.854466, 0.586633, 0, 1)
@@ -9,8 +12,6 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1k1ax"]
 
 [node name="Slot" type="Control" node_paths=PackedStringArray("icon_time", "icon_par", "icon_jug", "selection_indicator", "id_label")]
 custom_minimum_size = Vector2(48, 48)
@@ -79,7 +80,7 @@ theme_override_constants/margin_bottom = 2
 
 [node name="icon_time" type="TextureRect" parent="VBoxContainer/HBoxContainer/icon_under_time_limit/MarginContainer"]
 layout_mode = 2
-texture = SubResource("NoiseTexture2D_1k1ax")
+texture = ExtResource("3_yer46")
 expand_mode = 1
 
 [node name="icon_under_par" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
@@ -95,7 +96,7 @@ theme_override_constants/margin_bottom = 2
 
 [node name="icon_par" type="TextureRect" parent="VBoxContainer/HBoxContainer/icon_under_par/MarginContainer"]
 layout_mode = 2
-texture = SubResource("NoiseTexture2D_1k1ax")
+texture = ExtResource("4_fmdn1")
 expand_mode = 1
 
 [node name="icon_jug_collected" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
@@ -111,7 +112,7 @@ theme_override_constants/margin_bottom = 2
 
 [node name="icon_jug" type="TextureRect" parent="VBoxContainer/HBoxContainer/icon_jug_collected/MarginContainer"]
 layout_mode = 2
-texture = SubResource("NoiseTexture2D_1k1ax")
+texture = ExtResource("5_v3kgf")
 expand_mode = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

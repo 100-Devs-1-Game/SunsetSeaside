@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cdy8ce3y8omr" path="res://assets/textures/wood_sign_highlight.png" id="3_3nkay"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lap2t"]
-texture = ExtResource("1_hahhc")
+texture = ExtResource("3_3nkay")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h4dpu"]
 texture = ExtResource("1_hahhc")

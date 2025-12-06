@@ -64,6 +64,10 @@ func _ready():
 	timer_label.time_ticking_finished.connect(_animate_endscreen)
 	
 	# position spinners to prevent overlap in camera views
+	for spinner in spinners_list:
+		if spinner != null:
+			spinner.offset_position(spinner_count)
+			spinner_count += 1
 
 func _process(_delta):
 	if Input.is_action_just_pressed("restart"):

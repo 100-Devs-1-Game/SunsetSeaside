@@ -8,6 +8,6 @@ cull_mode = 2
 albedo_color = Color(0.955192, 0.865729, 0.718187, 1)
 albedo_texture = ExtResource("1_qaggl")
 roughness = 0.690476
-uv1_scale = Vector3(0.06, 0.06, 0.06)
+uv1_scale = Vector3(0.04, 0.04, 0.04)
 uv1_triplanar = true
 uv1_world_triplanar = true

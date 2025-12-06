@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d0sc8tap3uldg"]
+
+[ext_resource type="FontFile" uid="uid://dmg3ppdo8dgqj" path="res://assets/fonts/Primitive-4yGY.ttf" id="1_502hb"]
+
+[resource]
+font = ExtResource("1_502hb")
+font_size = 42
+font_color = Color(0.830508, 0.64811, 0, 1)
