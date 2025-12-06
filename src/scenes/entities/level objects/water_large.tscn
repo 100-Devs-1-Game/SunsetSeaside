@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbsslsn7fmhlj"]
+[gd_scene load_steps=8 format=3 uid="uid://cbsslsn7fmhlj"]
 
 [ext_resource type="Shader" uid="uid://bd4b4g7f3821o" path="res://assets/shaders/water.gdshader" id="1_1k72u"]
+[ext_resource type="Script" uid="uid://qp1eofecvesb" path="res://scenes/entities/level objects/scripts/water_death_trigger.gd" id="1_j71fk"]
 [ext_resource type="Texture2D" uid="uid://bpwamn2m0aowr" path="res://assets/textures/summer_background_47_a.jpg" id="2_8tjeb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_orl5m"]
@@ -31,8 +32,21 @@ size = Vector2(1000, 1000)
 subdivide_width = 500
 subdivide_depth = 500
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nlfp5"]
+size = Vector3(1000, 3.78679, 1000)
+
 [node name="water" type="Node3D"]
+script = ExtResource("1_j71fk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145056, -0.188966, 0.562124)
 mesh = SubResource("PlaneMesh_8pi60")
+
+[node name="death_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="death_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.48121, 0)
+shape = SubResource("BoxShape3D_nlfp5")
+debug_color = Color(0.999922, 0, 0.112279, 1)
+
+[connection signal="body_entered" from="death_area" to="." method="_on_death_area_body_entered"]

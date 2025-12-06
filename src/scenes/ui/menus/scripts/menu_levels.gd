@@ -1,6 +1,7 @@
 extends MarginContainer
 
 const LEVEL_SLOT = preload("res://scenes/ui/menus/level_slot.tscn")
+const LEVEL_IMAGE_PLACEHOLDER = preload("res://scenes/ui/menus/level_images/level_image_placeholder.tres")
 
 @export_subgroup("level info labels")
 @export var level_info_grid : GridContainer
@@ -86,17 +87,23 @@ func _on_slot_clicked(slot, button):
 	current_slot_info["grouping"] = slot.level_grouping
 	current_slot_info["id"] = slot.level_id
 	_show_level_info(slot, button)
-	animation_player.play("new_selection")
 
 func _show_level_info(slot, button):
+	# animate panel
+	animation_player.play("new_selection")
+	
 	# level title
 	level_title_label.text = Gamestate.level_manager.fetch_level_name(slot.level_grouping, slot.level_id)
 	level_title_label.label_settings.font_color = Color.WHITE
 	
 	# level image and spinners
 	image_spinner_container.visible = true
-	#level_image.texture = load(Gamestate.level_manager.fetch_level_image(slot.level_grouping, slot.level_id)
+	var level_image_path = Gamestate.level_manager.fetch_level_image(slot.level_grouping, slot.level_id)
+	if level_image_path != null: level_image.texture = load(level_image_path)
+	else: level_image.texture = LEVEL_IMAGE_PLACEHOLDER
 	var level_history = Keeper.get_level_completion(slot.level_grouping, slot.level_id)
+	
+	spinner_time.shake_amount = 0.0; spinner_par.shake_amount = 0.0; spinner_jug.shake_amount = 0.0
 	if level_history["time_complete"]: spinner_time.mesh_visibility(true); spinner_time.shake_amount += 0.1
 	else: spinner_time.mesh_visibility(false)
 	if level_history["par_complete"]: spinner_par.mesh_visibility(true); spinner_par.shake_amount += 0.1

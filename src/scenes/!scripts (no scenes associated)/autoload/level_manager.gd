@@ -8,28 +8,36 @@ var path : NodePath
 ##### paths
 const TITLE_BACKGROUND = {
 	"name" : "title!!", 
-	"path" : "res://scenes/levels/debug/title_background.tscn"}
+	"path" : "res://scenes/levels/debug/title_background.tscn",
+	"level_image_path" : null}
 const TEST_LEVEL = {
 	"name" : "test level",
-	"path" : "res://scenes/levels/debug/test_level.tscn"}
+	"path" : "res://scenes/levels/debug/test_level.tscn",
+	"level_image_path" : null}
 const DEBUG_LVL1 = {
 	"name" : "debug",
-	"path" : "res://scenes/levels/debug/debug_level.tscn"}
+	"path" : "res://scenes/levels/debug/debug_level.tscn",
+	"level_image_path" : null}
 const DEBUG_LVL2 = {
 	"name" : "debug",
-	"path" : "res://scenes/levels/debug/debug_level.tscn"}
+	"path" : "res://scenes/levels/debug/debug_level.tscn",
+	"level_image_path" : null}
 const DEBUG_LVL3 = {
 	"name" : "debug",
-	"path" : "res://scenes/levels/debug/debug_level.tscn"}
+	"path" : "res://scenes/levels/debug/debug_level.tscn",
+	"level_image_path" : null}
 const BONUS_LVL1 = {
 	"name" : "bonus 1!",
-	"path" : "res://scenes/levels/bonus/bonus_1.tscn"}
+	"path" : "res://scenes/levels/bonus/bonus_1.tscn",
+	"level_image_path" : null}
 const BONUS_LVL2 = {
 	"name" : "bonus 2!",
-	"path" : "res://scenes/levels/bonus/bonus_2.tscn"}
+	"path" : "res://scenes/levels/bonus/bonus_2.tscn",
+	"level_image_path" : null}
 const BONUS_LVL3 = {
 	"name" : "bonus 3!",
-	"path" : "res://scenes/levels/bonus/bonus_3.tscn"}
+	"path" : "res://scenes/levels/bonus/bonus_3.tscn",
+	"level_image_path" : "res://scenes/ui/menus/level_images/bonus_3.PNG"}
 
 var levels_debug = [TITLE_BACKGROUND, TEST_LEVEL]
 var levels_tutorial = [DEBUG_LVL1, DEBUG_LVL2]
@@ -45,6 +53,9 @@ func fetch_level_name(grouping, id):
 
 func fetch_level_path(grouping, id):
 	return fetch_group_by_enum(grouping)[id]["path"]
+	
+func fetch_level_image(grouping, id):
+	return fetch_group_by_enum(grouping)[id]["level_image_path"]
 
 func fetch_group_by_enum(grouping):
 	match grouping:

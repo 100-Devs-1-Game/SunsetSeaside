@@ -74,8 +74,8 @@ reflected_light_source = 2
 [node name="DebugLevel" type="Node3D"]
 script = ExtResource("1_s4nmt")
 ammo_max = 1
-par_limit = 2
-time_limit = 4.2
+par_limit = 12
+time_limit = 23.5
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81114, 0.610745, -2.2359)
@@ -130,7 +130,7 @@ transform = Transform3D(0.906647, 0, -0.42189, 0, 1, 0, 0.42189, 0, 0.906647, 27
 transform = Transform3D(0.312302, 0, -0.949983, 0, 1, 0, 0.949983, 0, 0.312302, 81.874, -0.207479, 33.1875)
 
 [node name="island_005" parent="Islands" instance=ExtResource("14_elwb7")]
-transform = Transform3D(0.714973, 0, 0.699152, 0, 1, 0, -0.699152, 0, 0.714973, 1.23516, 0, 108.836)
+transform = Transform3D(0.714973, 0, 0.699152, 0, 1, 0, -0.699152, 0, 0.714973, 1.23516, -0.41777, 108.836)
 
 [node name="Node3D" parent="Islands" instance=ExtResource("15_adcm4")]
 transform = Transform3D(0.999631, 0.0179773, -0.0203521, -0.0142427, 0.985219, 0.170703, 0.02312, -0.17035, 0.985112, 34.2783, -0.312518, -23.7103)
@@ -342,7 +342,7 @@ transform = Transform3D(0.535, 0, 0, 0, 0.525682, 0.0994142, 0, -0.0994142, 0.52
 transform = Transform3D(0.535, 0, 0, 0, 0.53234, 0.0532847, 0, -0.0532847, 0.53234, 52.9616, -0.647135, 13.6489)
 
 [node name="wooden_torch7" parent="Props" instance=ExtResource("20_xc2u5")]
-transform = Transform3D(0.535, 0, 0, 0, 0.524373, -0.106104, 0, 0.106104, 0.524373, 52.9616, 7.76904, 138.422)
+transform = Transform3D(0.535, 0, 0, 0, 0.524373, -0.106104, 0, 0.106104, 0.524373, 52.9616, 3.04975, 138.422)
 
 [node name="wooden_torch8" parent="Props" instance=ExtResource("20_xc2u5")]
 transform = Transform3D(0.875, 0, 0, 0, 0.869598, 0.0970799, 0, -0.0970799, 0.869598, 143.254, 6.76213, 113.536)
@@ -390,10 +390,10 @@ transform = Transform3D(1.37269, 0.143205, 0.671883, -0.118572, 1.52814, -0.0834
 transform = Transform3D(1.14242, 2.4358e-08, -1.33883, 0.186515, 1.74284, 0.159152, 1.32578, -0.245188, 1.13128, 77.3255, -3.34058, 67.7333)
 
 [node name="lantern7" parent="Props" instance=ExtResource("6_0qxmi")]
-transform = Transform3D(1, 0, 0, 0, 0.996545, -0.0830517, 0, 0.0830517, 0.996545, -1.13768, 1.98541, 109.185)
+transform = Transform3D(1, 0, 0, 0, 0.996545, -0.0830517, 0, 0.0830517, 0.996545, -1.13768, 1.71387, 109.185)
 
 [node name="barrel9" parent="Props" instance=ExtResource("16_ykl1k")]
-transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, -1.13035, 1.24162, 109.135)
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, -1.13035, 0.929922, 109.135)
 
 [node name="lantern8" parent="Props" instance=ExtResource("6_0qxmi")]
 transform = Transform3D(0.989979, -0.128197, -0.0592161, 0.141212, 0.898732, 0.415139, 0, -0.419341, 0.907829, 32.2219, 1.40807, -21.9984)

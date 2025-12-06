@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://d1d0u5a6wjyh0" path="res://scenes/ui/menus/scripts/menu_settings.gd" id="6_y4aia"]
 [ext_resource type="PackedScene" uid="uid://d21bo2dynh40w" path="res://scenes/ui/menus/level_slot.tscn" id="7_dhmlp"]
 [ext_resource type="Theme" uid="uid://xefwemd0japy" path="res://assets/themes/wooden_buttons.tres" id="8_jk7nv"]
+[ext_resource type="Texture2D" uid="uid://dfkc1quywc3cv" path="res://scenes/ui/menus/level_images/level_image_placeholder.tres" id="9_e7y46"]
 [ext_resource type="PackedScene" uid="uid://tvhgjh6s2skh" path="res://scenes/ui/spinner.tscn" id="9_nmbxx"]
 [ext_resource type="Script" uid="uid://dld2efnfljd86" path="res://scenes/ui/menus/scripts/end_screen_timer_label.gd" id="9_ykpw6"]
 [ext_resource type="PackedScene" uid="uid://dj58i00bv8dww" path="res://scenes/ui/menus/spinner_meshes/stopwatch_mesh.tscn" id="10_bl8wb"]
@@ -49,9 +50,6 @@ corner_radius_top_left = 4
 corner_detail = 16
 shadow_color = Color(0, 0, 0, 0.431373)
 shadow_size = 16
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h4dpu"]
-size = Vector2(256, 256)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8e1o"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -522,7 +520,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bl8wb")
 
 [node name="level_image" type="TextureRect" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/image_spinner_container/VBoxContainer/MarginContainer"]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_h4dpu")
+texture = ExtResource("9_e7y46")
 stretch_mode = 2
 
 [node name="HBoxContainer2" type="VBoxContainer" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/image_spinner_container"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxadjnbbatamx"]
+[gd_scene load_steps=13 format=4 uid="uid://bxadjnbbatamx"]
 
 [ext_resource type="PackedScene" uid="uid://b1orpirbfwbcn" path="res://assets/models/dobert/island_003.glb" id="1_hu7ub"]
+[ext_resource type="Material" uid="uid://gwk8oa6f8bli" path="res://assets/material/big_island_001.tres" id="2_bi0ky"]
 [ext_resource type="PackedScene" uid="uid://xnu4ddk4m5bo" path="res://scenes/entities/level objects/landscape/giant_rock_001.tscn" id="2_laokx"]
 [ext_resource type="PackedScene" uid="uid://b8yum05cvptuh" path="res://scenes/entities/level objects/landscape/pebbles_001.tscn" id="3_bi0ky"]
 [ext_resource type="PackedScene" uid="uid://dkdmb30n4kx30" path="res://scenes/entities/level objects/landscape/pebbles_002.tscn" id="4_wlyht"]
@@ -9,6 +10,40 @@
 [ext_resource type="PackedScene" uid="uid://b7ohh3c0eehg3" path="res://scenes/entities/level objects/landscape/palm_tree_001.tscn" id="7_7abt5"]
 [ext_resource type="PackedScene" uid="uid://byvaffts1r8dp" path="res://scenes/entities/level objects/landscape/plant_floppy.tscn" id="8_m8y8d"]
 
+[sub_resource type="ArrayMesh" id="ArrayMesh_mt5qy"]
+_surfaces = [{
+"aabb": AABB(-3.53024, -1.90374, -5.69547, 15.4956, 2.90374, 15.9138),
+"format": 34896613377,
+"index_count": 120,
+"index_data": PackedByteArray("CQAPABAABgAJABAACgAJAAYABgAQAAMACgARAAkAEQAPAAkACwARAAoAAwAQAAAAAwAAAAQADwASABAAEAASAAAACwATABEADgATAAsABAAAABQAAAASABQABAAUAAUAEwAVABEAFQAPABEADgAWABMAFgAVABMADQAWAA4AFQABAA8ADwABABIAFwAVABYAFwABABUADQAMABYADAAXABYACAAMAA0AEgABABgAGAABABcAEgAYABQAGQAXAAwACAAZAAwAGAAXABkABwAZAAgAFAAYAAIAAgAYABkABwACABkABQAUAAIABQACAAcA"),
+"lods": [1.67, PackedByteArray("AAABAAIAAwAAAAQABAAAAAUABgAAAAMABQAAAAIABQACAAcABwACAAgABgAJAAAACQABAAAACgAJAAYACgALAAkACwABAAkACAACAAwAAQAMAAIADAABAAsACAAMAA0ADgAMAAsADQAMAA4A")],
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 26,
+"vertex_data": PackedByteArray("/qZDzxLDAACelf//f5oAAGmWAvGrZQAALq+VGqP1AAD//5Ua4rkAAOPhAACxEwAAupCVGv//AABngJUaAAAAAIYZlRqoTQAATX9Dz+fRAABFeJUa+fgAAF1ZlRri1wAA5z5Dz1t4AAAAAJUar3kAAKsQlRoNsgAAzoHU8hPFAACijS/WPtAAAJdwL9bVxAAAhKbU8qWwAADnYEPPbrAAADG5Zt4XlwAADnbU8kumAAAmOi/Ws5UAAOJs1PKFcwAAPZvZ98mLAABSbC/WbVAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wlyht"]
+resource_name = "island_003_Icosphere_002"
+_surfaces = [{
+"aabb": AABB(-3.53024, -1.90374, -5.69547, 15.4956, 2.90374, 15.9138),
+"attribute_data": PackedByteArray("Fl1gr1x0EYeii2CvdFGIw7loiMP/f4jDLjqIw0WXiMOKrojDiy5gr9FFEYfoIojDoguIw0UXEYctumCv6KIRh9DFiMMW3YjDXPSIw3PREYcuOjmb0UVgr3RROZtFF2CvAABgr+giOZuiCzmbXHRgr7loOZv/fzmb6KJgr0WXOZuKrjmbc9Fgr9DFOZsW3Tmbuehgrw=="),
+"format": 34896613399,
+"index_count": 120,
+"index_data": PackedByteArray("CQAUABUAFAAKABYAFAAWABUAFQAWAAAABgAJABUABgAVAAMAAwAVAAAACwAJAAYAAwAAAAQACwAXAAkADAAXAAsADAAYABcAFwAZAAkAGAAaABcAGgAZABcAGgANABkABAAAABsAAAAcABsABAAbAAUAHAAdABsAHAABAB0AGwAdAAIABQAbAAIABQACAAcABwACAB4AAgAfAB4ABwAeAAgAHwAgAB4AHwAPACAAHgAgAA4ACAAeAA4ACAAOABAAEAAOACEADgAiACEAEAAhABEAIgAjACEAIgATACMAIQAjACQAEQAhACQAEQAkABIA"),
+"lods": [1.67, PackedByteArray("AAABAAIAAwAAAAQABAAAAAUABgAAAAMABQAAAAIABQACAAcABwACAAgABgAJAAAACQAKAAAACwAJAAYACwAMAAkADAANAAkACAACAA4ADwAOAAIACAAOABAAEAAOABEAEQAOABIADgATABIA")],
+"material": ExtResource("2_bi0ky"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 37,
+"vertex_data": PackedByteArray("/qZDzxLDPbOelf//f5pD22mWAvGrZcrsLq+VGqP1BKv//5Ua4rlowuPhAACxEzXoupCVGv//C6ZngJUaAACf/oYZlRqoTZDhTX9Dz+fRGaqelf//f5p/wkV4lRr5+G+nXVmVGuLX+6uelf//f5rgzuc+Q89beG/bnpX//3+aWvAAAJUar3mezqsQlRoNshe1XVmVGuLXoqmelf//f5rK0s6B1PITxY64oo0v1j7QgK2EptTypbCiuZdwL9bVxGO152BDz26wErbOgdTyE8UzwA521PJLphLHMblm3heXs9CEptTypbDUxj2b2ffJi3HfUmwv1m1Qivg9m9n3yYs97+Js1PKFc4T+Jjov1rOV2sHibNTyhXMb1A521PJLpgfJ52BDz26whrKW15JAzc/pIVbCdxDW2wBKIct0KiS8IA41+dZzwH9zzeGRlsaY1WidYOd6UxDGTKgCs5yzQLaYo9aa0LzexQUNQ56MvkezHLK6wa2zk7CZpuDzGllj6HRXptt5TmK0vrDot+KpIrf3ogq2gKeHyGYgG9D5J0HLvBzXgE/KhMMfDAJ+6cForravKq4YrHuy+qgjxtOm")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_mt5qy")
+
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_w5hes"]
 data = PackedVector3Array(4.1753, 0.4472, 7.353, 4.3269, 0.8506, 6.5555, 5.0429, 0.5257, 7.2498, 4.3269, 0.8506, 6.5555, 5.5262, 1, 3.9087, 6.549, 0.8506, 5.2855, 4.3269, 0.8506, 6.5555, 6.549, 0.8506, 5.2855, 5.0429, 0.5257, 7.2498, 5.0429, 0.5257, 7.2498, 6.549, 0.8506, 5.2855, 6.5779, 0.4472, 6.4309, 5.2301, -1.6022, 10.2184, 4.1753, 0.4472, 7.353, 5.0429, 0.5257, 7.2498, 5.2301, -1.6022, 10.2184, 5.0429, 0.5257, 7.2498, 7.0735, -1.6022, 9.5744, 7.0735, -1.6022, 9.5744, 5.0429, 0.5257, 7.2498, 6.5779, 0.4472, 6.4309, 3.7497, -1.6022, 9.7818, 4.1753, 0.4472, 7.353, 5.2301, -1.6022, 10.2184, 7.0735, -1.6022, 9.5744, 6.5779, 0.4472, 6.4309, 11.9653, -1.6022, 5.8598, 3.7497, -1.6022, 9.7818, 3.2849, 0.5257, 6.5405, 4.1753, 0.4472, 7.353, 1.879, -1.6022, 7.7247, 3.2849, 0.5257, 6.5405, 3.7497, -1.6022, 9.7818, 1.879, -1.6022, 7.7247, 2.3353, 0.4472, 5.2722, 3.2849, 0.5257, 6.5405, 3.2849, 0.5257, 6.5405, 4.3269, 0.8506, 6.5555, 4.1753, 0.4472, 7.353, 2.3353, 0.4472, 5.2722, 3.6157, 0.8506, 4.642, 3.2849, 0.5257, 6.5405, 3.6157, 0.8506, 4.642, 4.3269, 0.8506, 6.5555, 3.2849, 0.5257, 6.5405, 3.6157, 0.8506, 4.642, 5.5262, 1, 3.9087, 4.3269, 0.8506, 6.5555, 11.9653, -1.6022, 5.8598, 6.5779, 0.4472, 6.4309, 7.6795, 0.6189, 3.6969, 6.5779, 0.4472, 6.4309, 6.549, 0.8506, 5.2855, 7.6795, 0.6189, 3.6969, 11.9653, -1.6022, 5.8598, 7.6795, 0.6189, 3.6969, 10.1428, -1.9037, -4.4714, 6.549, 0.8506, 5.2855, 5.8664, 0.9076, 2.9942, 7.6795, 0.6189, 3.6969, 6.549, 0.8506, 5.2855, 5.5262, 1, 3.9087, 5.8664, 0.9076, 2.9942, 7.6795, 0.6189, 3.6969, 5.8664, 0.9076, 2.9942, 5.5742, 0.83, 0.6247, 10.1428, -1.9037, -4.4714, 7.6795, 0.6189, 3.6969, 5.5742, 0.83, 0.6247, 10.1428, -1.9037, -4.4714, 5.5742, 0.83, 0.6247, 4.242, -1.6022, -5.6955, 4.242, -1.6022, -5.6955, 5.5742, 0.83, 0.6247, 3.0264, 0.5257, -0.6959, 5.5742, 0.83, 0.6247, 5.8664, 0.9076, 2.9942, 3.0264, 0.5257, -0.6959, 4.242, -1.6022, -5.6955, 3.0264, 0.5257, -0.6959, -1.9853, -1.6022, -0.868, 5.8664, 0.9076, 2.9942, 3.0605, 0.8506, 1.4857, 3.0264, 0.5257, -0.6959, 5.8664, 0.9076, 2.9942, 5.5262, 1, 3.9087, 3.0605, 0.8506, 1.4857, 3.0264, 0.5257, -0.6959, 3.0605, 0.8506, 1.4857, 0.2773, 0.4472, 1.7863, -1.9853, -1.6022, -0.868, 3.0264, 0.5257, -0.6959, 0.2773, 0.4472, 1.7863, -1.9853, -1.6022, -0.868, 0.2773, 0.4472, 1.7863, -3.5302, -1.6022, 1.8689, -3.5302, -1.6022, 1.8689, 0.2773, 0.4472, 1.7863, -0.0105, 0.5257, 3.6105, 0.2773, 0.4472, 1.7863, 3.0605, 0.8506, 1.4857, -0.0105, 0.5257, 3.6105, -3.5302, -1.6022, 1.8689, -0.0105, 0.5257, 3.6105, -2.5213, -1.6022, 5.3729, 3.0605, 0.8506, 1.4857, 3.6157, 0.8506, 4.642, -0.0105, 0.5257, 3.6105, 3.0605, 0.8506, 1.4857, 5.5262, 1, 3.9087, 3.6157, 0.8506, 4.642, -0.0105, 0.5257, 3.6105, 3.6157, 0.8506, 4.642, 2.3353, 0.4472, 5.2722, -2.5213, -1.6022, 5.3729, -0.0105, 0.5257, 3.6105, 2.3353, 0.4472, 5.2722, -2.5213, -1.6022, 5.3729, 2.3353, 0.4472, 5.2722, 1.879, -1.6022, 7.7247)
 
@@ -16,6 +51,7 @@ data = PackedVector3Array(4.1753, 0.4472, 7.353, 4.3269, 0.8506, 6.5555, 5.0429,
 
 [node name="Icosphere_001" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.50946, 0, -4.34677)
+mesh = SubResource("ArrayMesh_wlyht")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Icosphere_001" index="0"]
 

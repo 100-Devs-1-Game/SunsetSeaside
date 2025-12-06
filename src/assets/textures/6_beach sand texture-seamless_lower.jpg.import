@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp80ms6mxht2e"
-path.s3tc="res://.godot/imported/barrel_barrel paint.png-cedf5ebfd520237cb9d0d3a91207c820.s3tc.ctex"
+uid="uid://hxh1gdvtpu8v"
+path.s3tc="res://.godot/imported/6_beach sand texture-seamless_lower.jpg-a1a1d8b7ec8cd322e506bc4513ccd20c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "65cdda6ef5d3a1dd638773159b1e4e99"
-}
 
 [deps]
 
-source_file="res://assets/models/dobert/barrel_barrel paint.png"
-dest_files=["res://.godot/imported/barrel_barrel paint.png-cedf5ebfd520237cb9d0d3a91207c820.s3tc.ctex"]
+source_file="res://assets/textures/6_beach sand texture-seamless_lower.jpg"
+dest_files=["res://.godot/imported/6_beach sand texture-seamless_lower.jpg-a1a1d8b7ec8cd322e506bc4513ccd20c.s3tc.ctex"]
 
 [params]
 

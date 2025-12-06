@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://gwk8oa6f8bli"]
+
+[ext_resource type="Texture2D" uid="uid://hxh1gdvtpu8v" path="res://assets/textures/6_beach sand texture-seamless_lower.jpg" id="1_qaggl"]
+
+[resource]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_color = Color(0.955192, 0.865729, 0.718187, 1)
+albedo_texture = ExtResource("1_qaggl")
+roughness = 0.690476
+uv1_scale = Vector3(0.06, 0.06, 0.06)
+uv1_triplanar = true
+uv1_world_triplanar = true
