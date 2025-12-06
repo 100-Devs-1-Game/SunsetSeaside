@@ -27,9 +27,10 @@ const LEVEL_IMAGE_PLACEHOLDER = preload("res://scenes/ui/menus/level_images/leve
 @export var level_slots_easy : HBoxContainer
 @export var level_slots_medium : HBoxContainer
 @export var level_slots_hard : HBoxContainer
+@export var level_slots_bonus : HBoxContainer
 @export var label_debug_slots : Label
 
-@onready var level_slots = [level_slots_debug, level_slots_tutorial, level_slots_easy, level_slots_medium, level_slots_hard]
+@onready var level_slots = [level_slots_debug, level_slots_tutorial, level_slots_easy, level_slots_medium, level_slots_hard, level_slots_bonus]
 @onready var spinners_list = [spinner_time, spinner_par, spinner_jug]
 
 var level_amount_debug = Gamestate.level_manager.levels_debug.size()
@@ -37,6 +38,7 @@ var level_amount_tutorial = Gamestate.level_manager.levels_tutorial.size()
 var level_amount_easy = Gamestate.level_manager.levels_easy.size()
 var level_amount_medium = Gamestate.level_manager.levels_medium.size()
 var level_amount_hard = Gamestate.level_manager.levels_hard.size()
+var level_amount_bonus = Gamestate.level_manager.levels_bonus.size()
 
 var show_debug_levels = true # intended for development only
 var all_levels_selectable = false # ^
@@ -64,6 +66,7 @@ func _on_visibility_changed() -> void:
 		_populate_level_slots(level_amount_easy, level_slots_easy, Enums.LevelGrouping.SUNSET)
 		_populate_level_slots(level_amount_medium, level_slots_medium, Enums.LevelGrouping.MIDNIGHT)
 		_populate_level_slots(level_amount_hard, level_slots_hard, Enums.LevelGrouping.SUNRISE)
+		_populate_level_slots(level_amount_bonus, level_slots_bonus, Enums.LevelGrouping.BONUS)
 		
 		_reset_level_info()
 

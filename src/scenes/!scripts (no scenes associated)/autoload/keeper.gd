@@ -20,6 +20,8 @@ func _ready():
 		establish_completion_save()
 	if !FileAccess.file_exists(savepath + settings_file):
 		establish_settings_save()
+		
+	_ensure_levels_have_saves()
 	
 #### establishments
 func establish_level_save():
@@ -28,13 +30,15 @@ func establish_level_save():
 		"daylight":{},
 		"sunset":{},
 		"midnight":{},
-		"sunrise":{}
+		"sunrise":{},
+		"bonus":{}
 	}
 	fresh_populate_section("levels_debug")
 	fresh_populate_section("levels_tutorial")
 	fresh_populate_section("levels_easy")
 	fresh_populate_section("levels_medium")
 	fresh_populate_section("levels_hard")
+	fresh_populate_section("levels_bonus")
 	
 	save_records()
 
@@ -44,13 +48,15 @@ func establish_completion_save():
 		"daylight":{},
 		"sunset":{},
 		"midnight":{},
-		"sunrise":{}
+		"sunrise":{},
+		"bonus":{}
 	}
 	fresh_populate_section_completion("levels_debug")
 	fresh_populate_section_completion("levels_tutorial")
 	fresh_populate_section_completion("levels_easy")
 	fresh_populate_section_completion("levels_medium")
 	fresh_populate_section_completion("levels_hard")
+	fresh_populate_section_completion("levels_bonus")
 	
 	save_completion()
 
@@ -84,9 +90,7 @@ func fresh_populate_section_completion(level_section):
 	var current_section = get_section_name(level_section)
 	
 	var level_array = Gamestate.level_manager.get(level_section)
-	print(level_section)
 	for i in level_array.size():
-		print(i)
 		if !completion_data[current_section].has("id" + str(i)):
 			completion_data[current_section]["id" + str(i)] = {"level_complete" : false,  "time_complete" : false, "par_complete" : false, "jug_complete" : false, "hardcore_complete" : false}
 
@@ -147,6 +151,7 @@ func _get_group_name(grouping):
 		Enums.LevelGrouping.SUNSET : group_name = "sunset"
 		Enums.LevelGrouping.MIDNIGHT : group_name = "midnight"
 		Enums.LevelGrouping.SUNRISE : group_name = "sunrise"
+		Enums.LevelGrouping.BONUS : group_name = "bonus"
 	
 	return group_name
 
@@ -158,8 +163,31 @@ func get_section_name(section):
 		"levels_easy" : section_name = "sunset"
 		"levels_medium" : section_name = "midnight"
 		"levels_hard" : section_name = "sunrise"
+		"levels_bonus" : section_name = "bonus"
 	
 	return section_name
+
+func _ensure_levels_have_saves(): # ensures on startup that levels have save data, specifically if more have been added
+	load_records()
+	load_completion()
+	
+	var sections = ["levels_debug","levels_tutorial","levels_easy","levels_medium","levels_hard","levels_bonus"]
+	
+	for level_section in sections:
+		var current_section = get_section_name(level_section)
+		if !level_data.has(current_section):
+			level_data[current_section] = {}
+		if !completion_data.has(current_section):
+			completion_data[current_section] = {}
+		
+		for i in Gamestate.level_manager.get(level_section).size():
+			if !level_data[current_section].has("id" + str(i)):
+				level_data[current_section]["id" + str(i)] = {"time_best" : null, "par_best" : null, "jug_history" : false, "hardcore_history" : false}
+			if !completion_data[current_section].has("id" + str(i)):
+				completion_data[current_section]["id" + str(i)] = {"level_complete" : false,  "time_complete" : false, "par_complete" : false, "jug_complete" : false, "hardcore_complete" : false}
+	
+	save_records()
+	save_completion()
 
 #### file access functions
 func save_records():

@@ -58,10 +58,11 @@ const BONUS_LVL3 = {
 var levels_debug = [TITLE_BACKGROUND, TEST_LEVEL]
 var levels_tutorial = [DEBUG_LVL1, DEBUG_LVL2]
 var levels_easy = [DEBUG_LVL3]
-var levels_medium = [DEBUG_LVL3]
+var levels_medium = [DEBUG_LVL3, DEBUG_LVL2]
 var levels_hard = [BONUS_LVL1, BONUS_LVL2, BONUS_LVL3]
+var levels_bonus = [BONUS_LVL1, BONUS_LVL2, BONUS_LVL3]
 
-const grouping_ammo_amount = [1, 1, 1, 1, 1] # removed ability for 2 shots
+const grouping_ammo_amount = [1, 1, 1, 1, 1, 1] # removed ability for 2 shots
 # grouping order: debug, tutorial, easy, medium, hard
 
 func fetch_level_info(grouping, id):
@@ -90,6 +91,7 @@ func fetch_group_by_enum(grouping):
 		Enums.LevelGrouping.SUNSET: return levels_easy
 		Enums.LevelGrouping.MIDNIGHT: return levels_medium
 		Enums.LevelGrouping.SUNRISE: return levels_hard
+		Enums.LevelGrouping.BONUS : return levels_bonus
 
 func fetch_ammo_amount(grouping): # now entirely irrelevent
 	match grouping:
@@ -98,6 +100,7 @@ func fetch_ammo_amount(grouping): # now entirely irrelevent
 		Enums.LevelGrouping.SUNSET: return grouping_ammo_amount[2]
 		Enums.LevelGrouping.MIDNIGHT: return grouping_ammo_amount[3]
 		Enums.LevelGrouping.SUNRISE: return grouping_ammo_amount[4]
+		Enums.LevelGrouping.BONUS: return grouping_ammo_amount[5]
 
 # these don't iterate until the actual previous or next, but mate, its fucking good enough mate
 func fetch_next_level_info(grouping, id): # returns dictionary of info about the next level

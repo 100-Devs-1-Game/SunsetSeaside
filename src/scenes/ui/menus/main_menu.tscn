@@ -102,6 +102,21 @@ corner_radius_top_left = 8
 shadow_color = Color(0.537255, 0.396078, 0, 0)
 shadow_size = 1
 
+[sub_resource type="Animation" id="Animation_e7y46"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_slots_root/MarginContainer/animation_panel:theme_override_styles/panel:shadow_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.537255, 0.396078, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_c8e1o"]
 resource_name = "new_selection"
 length = 0.2
@@ -116,21 +131,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.499999, 1),
 "update": 0,
 "values": [Color(0.545098, 0.392157, 0, 0.407843), Color(0.537255, 0.396078, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_e7y46"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("level_slots_root/MarginContainer/animation_panel:theme_override_styles/panel:shadow_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.537255, 0.396078, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e7y46"]
@@ -307,7 +307,7 @@ theme_override_font_sizes/font_size = 32
 text = "> quit <
 "
 
-[node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_info_grid", "time_record_label", "time_limit_label", "par_record_label", "par_limit_label", "jug_collected_label", "spinner_time", "spinner_par", "spinner_jug", "level_title_label", "image_spinner_container", "level_image", "button_play_level", "animation_player", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard", "label_debug_slots")]
+[node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_info_grid", "time_record_label", "time_limit_label", "par_record_label", "par_limit_label", "jug_collected_label", "spinner_time", "spinner_par", "spinner_jug", "level_title_label", "image_spinner_container", "level_image", "button_play_level", "animation_player", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard", "level_slots_bonus", "label_debug_slots")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -338,6 +338,7 @@ level_slots_tutorial = NodePath("level_slots_root/VBoxContainer/HBoxContainer/sl
 level_slots_easy = NodePath("level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_easy")
 level_slots_medium = NodePath("level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_medium")
 level_slots_hard = NodePath("level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_hard")
+level_slots_bonus = NodePath("level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_bonus")
 label_debug_slots = NodePath("level_slots_root/VBoxContainer/HBoxContainer/MarginContainer/labels/label_debug_slots")
 
 [node name="level_slots_root" type="HBoxContainer" parent="menu_root/menu_levels"]
@@ -428,12 +429,13 @@ label_settings = SubResource("LabelSettings_xs2a0")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Label6" type="Label" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/MarginContainer/labels"]
-visible = false
-custom_minimum_size = Vector2(0, 24)
+[node name="Label7" type="RichTextLabel" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/MarginContainer/labels"]
 layout_mode = 2
-text = "bonus"
-label_settings = SubResource("LabelSettings_xs2a0")
+theme_override_fonts/normal_font = ExtResource("3_p0q51")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "[wave freq=2 amp=30][rainbow freq=0.15]bonus"
+fit_content = true
 horizontal_alignment = 2
 vertical_alignment = 1
 
