@@ -1,7 +1,8 @@
 extends SubViewportContainer
 
-var rotation_speed = 0.6
-var rotation_start_offset = -100.0 # degrees
+
+@export var rotation_speed = 0.6
+@export var rotation_start_offset = -100.0 # degrees
 
 var shake_amount = 0.0
 var shake_fade = 3.0
@@ -15,6 +16,8 @@ var offset_instance_pos_x = -4.0 # amount of offset based on instance number
 @onready var debug_mesh: MeshInstance3D = $SubViewport/spinner_positioner/spinner_mesh_container/spinner_rot_offset/debug_mesh
 
 @export var spinner_mesh : PackedScene
+@export var spinner_visible_on_start = false
+@export var instance : int = 0 # for manual camera offsetting
 
 func _process(delta):
 	# process mesh shaking
@@ -32,6 +35,11 @@ func _ready():
 		debug_mesh.visible = false
 		var new_mesh = spinner_mesh.instantiate()
 		spinner_rot_offset.add_child(new_mesh)
+		if spinner_visible_on_start == true:
+			spinner_rot_offset.visible = true
+	
+	if instance != 0:
+		offset_position(5)
 
 func offset_position(spinner_instance : int):
 	spinner_positioner.global_position = offset_global_pos + Vector3(offset_instance_pos_x * spinner_instance, 0.0, 0.0)

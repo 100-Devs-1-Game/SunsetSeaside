@@ -1,10 +1,11 @@
-[gd_scene load_steps=48 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=49 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
 [ext_resource type="PackedScene" uid="uid://c21pslr81k4p4" path="res://scenes/ui/title_text.tscn" id="3_1p6kj"]
 [ext_resource type="FontFile" uid="uid://dmg3ppdo8dgqj" path="res://assets/fonts/Primitive-4yGY.ttf" id="3_p0q51"]
 [ext_resource type="Script" uid="uid://d0fcseiqo1nrk" path="res://scenes/ui/menus/scripts/menu_levels.gd" id="3_whicr"]
 [ext_resource type="Texture2D" uid="uid://by2sfu06w3w3g" path="res://assets/textures/rustic-wood-texture-free-49.png" id="4_ct055"]
+[ext_resource type="PackedScene" uid="uid://bd2lxayvixsxi" path="res://scenes/ui/menus/spinner_meshes/100devs.tscn" id="4_r1no3"]
 [ext_resource type="Shader" uid="uid://dgeo6lmgw5tnf" path="res://assets/shaders/menu_blur.gdshader" id="5_oj1oe"]
 [ext_resource type="Script" uid="uid://d1d0u5a6wjyh0" path="res://scenes/ui/menus/scripts/menu_settings.gd" id="6_y4aia"]
 [ext_resource type="PackedScene" uid="uid://d21bo2dynh40w" path="res://scenes/ui/menus/level_slot.tscn" id="7_dhmlp"]
@@ -211,7 +212,6 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="menu_title" type="MarginContainer" parent="menu_root"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -219,6 +219,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_title"]
+custom_minimum_size = Vector2(196, 196)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="spinner" parent="menu_root/menu_title/MarginContainer" instance=ExtResource("9_nmbxx")]
+layout_mode = 2
+spinner_mesh = ExtResource("4_r1no3")
+spinner_visible_on_start = true
+instance = 5
 
 [node name="Label" type="Label" parent="menu_root/menu_title"]
 layout_mode = 2
@@ -312,6 +324,7 @@ text = "> quit <
 layout_mode = 2
 
 [node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_info_grid", "time_record_label", "time_limit_label", "par_record_label", "par_limit_label", "jug_collected_label", "spinner_time", "spinner_par", "spinner_jug", "level_title_label", "image_spinner_container", "level_image", "button_play_level", "animation_player", "label_bonus_slots", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard", "level_slots_bonus", "label_debug_slots")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

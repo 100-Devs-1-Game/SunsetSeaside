@@ -45,11 +45,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_sah70")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_clnwe"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjy1m"]
 albedo_texture = ExtResource("2_bjy1m")
 
 [sub_resource type="BoxMesh" id="BoxMesh_7x4c4"]
-material = SubResource("StandardMaterial3D_clnwe")
+material = SubResource("StandardMaterial3D_bjy1m")
 size = Vector3(0.25, 0.25, 0.25)
 
 [node name="Node3D" type="Node3D"]
