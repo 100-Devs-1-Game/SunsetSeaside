@@ -15,4 +15,4 @@ func _on_damageable_damaged() -> void: _break()
 
 func _reset():
 	mesh.visible = true
-	collision_shape_3d.disabled = false
+	collision_shape_3d.set_deferred("disabled", false)

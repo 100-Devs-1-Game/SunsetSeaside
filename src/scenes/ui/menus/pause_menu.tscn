@@ -114,12 +114,25 @@ size_flags_horizontal = 5
 focus_neighbor_top = NodePath("../HBoxContainer/button_settings")
 focus_next = NodePath("../HBoxContainer/button_levels")
 focus_previous = NodePath("../HBoxContainer/button_settings")
+theme_override_colors/font_color = Color(0.701961, 0.882353, 0, 1)
 theme_override_fonts/font = ExtResource("1_5p30d")
 theme_override_font_sizes/font_size = 32
 text = "return
 "
 
-[node name="Label" type="Label" parent="menu_root/menu_selection/HBoxContainer/VBoxContainer"]
+[node name="button_restart" type="Button" parent="menu_root/menu_selection/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+focus_neighbor_top = NodePath("../HBoxContainer/button_settings")
+focus_next = NodePath("../HBoxContainer/button_levels")
+focus_previous = NodePath("../HBoxContainer/button_settings")
+theme_override_colors/font_color = Color(0.830508, 0.64811, 0, 1)
+theme_override_fonts/font = ExtResource("1_5p30d")
+theme_override_font_sizes/font_size = 32
+text = "restart
+"
+
+[node name="Label2" type="Label" parent="menu_root/menu_selection/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="button_quit" type="Button" parent="menu_root/menu_selection/HBoxContainer/VBoxContainer"]
@@ -501,6 +514,7 @@ text = "  return  "
 
 [connection signal="pressed" from="menu_root/menu_selection/HBoxContainer/VBoxContainer/button_settings_open" to="." method="_on_button_settings_open_pressed"]
 [connection signal="pressed" from="menu_root/menu_selection/HBoxContainer/VBoxContainer/button_return" to="." method="_on_button_return_pressed"]
+[connection signal="pressed" from="menu_root/menu_selection/HBoxContainer/VBoxContainer/button_restart" to="." method="_on_button_restart_pressed"]
 [connection signal="pressed" from="menu_root/menu_selection/HBoxContainer/VBoxContainer/button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_settings" to="menu_root/menu_settings" method="_on_visibility_changed"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2/slider_sens" to="menu_root/menu_settings" method="_on_slider_sens_value_changed"]

@@ -20,6 +20,7 @@ const LEVEL_IMAGE_PLACEHOLDER = preload("res://scenes/ui/menus/level_images/leve
 @export var level_image : TextureRect
 @export var button_play_level : Button
 @export var animation_player : AnimationPlayer
+@export var label_bonus_slots : RichTextLabel
 
 @export_subgroup("level slots")
 @export var level_slots_debug : HBoxContainer
@@ -41,7 +42,7 @@ var level_amount_hard = Gamestate.level_manager.levels_hard.size()
 var level_amount_bonus = Gamestate.level_manager.levels_bonus.size()
 
 var show_debug_levels = true # intended for development only
-var all_levels_selectable = false # ^
+var all_levels_selectable = true # ^
 
 var spinner_count = 0
 var current_slot_info = {"grouping" : null, "id" : null}
@@ -66,8 +67,8 @@ func _on_visibility_changed() -> void:
 		_populate_level_slots(level_amount_easy, level_slots_easy, Enums.LevelGrouping.SUNSET)
 		_populate_level_slots(level_amount_medium, level_slots_medium, Enums.LevelGrouping.MIDNIGHT)
 		_populate_level_slots(level_amount_hard, level_slots_hard, Enums.LevelGrouping.SUNRISE)
-		_populate_level_slots(level_amount_bonus, level_slots_bonus, Enums.LevelGrouping.BONUS)
-		
+		_check_bonus_availability()
+
 		_reset_level_info()
 
 func _populate_level_slots(amount, slots, grouping):
@@ -82,6 +83,7 @@ func _populate_level_slots(amount, slots, grouping):
 		var level_history = Keeper.get_level_completion(grouping, i)
 		
 		var selectable = all_levels_selectable
+		
 		if selectable == false: 
 			selectable = _check_selectablity(grouping, i)
 		slot.set_level_data(grouping, i, selectable, level_history["time_complete"], level_history["par_complete"], level_history["jug_complete"])	
@@ -170,15 +172,29 @@ func _reset_level_info():
 
 func _check_selectablity(grouping, id): # checking to see if previous level was completed, or if its the starting level
 	if grouping == Enums.LevelGrouping.DEBUG: return true
+	if grouping == Enums.LevelGrouping.BONUS: return true
 	if grouping == Enums.LevelGrouping.DAYLIGHT && id == 0: return true
-	
-	
+
 	var previous_level = Gamestate.level_manager.fetch_previous_level_info(grouping, id)
 	if previous_level["grouping"] == null || previous_level["id"] == null: 
 		return true
 	else:
 		var previous_level_completion = Keeper.get_level_completion(previous_level["grouping"], previous_level["id"])
 		return previous_level_completion["level_complete"]
+
+func _check_bonus_availability(): # these could only unlock if all time, par or jugs are grabbed
+	# for now, if the hardest level of the last section if complete
+	if Gamestate.level_manager.levels_hard.size() != 0:
+		if all_levels_selectable:
+			_populate_level_slots(level_amount_bonus, level_slots_bonus, Enums.LevelGrouping.BONUS)
+		elif Keeper.get_level_completion(Enums.LevelGrouping.SUNRISE, Gamestate.level_manager.levels_hard.size() - 1)["level_complete"] == true:
+			_populate_level_slots(level_amount_bonus, level_slots_bonus, Enums.LevelGrouping.BONUS)
+		else:
+			label_bonus_slots.text = "[wave freq=2 amp=30][rainbow freq=0.15]?"
+	else:
+		label_bonus_slots.text = "[wave freq=2 amp=30][rainbow freq=0.15]?"
+	
+	
 
 func _on_button_play_level_pressed() -> void:
 	Events.open_level.emit(current_slot_info["grouping"], current_slot_info["id"])

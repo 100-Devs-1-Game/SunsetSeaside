@@ -1,7 +1,7 @@
-[gd_scene load_steps=48 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=47 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
-[ext_resource type="Texture2D" uid="uid://d11m0it4kt8ry" path="res://assets/textures/god.webp" id="2_h1kbi"]
+[ext_resource type="PackedScene" uid="uid://c21pslr81k4p4" path="res://scenes/ui/title_text.tscn" id="3_1p6kj"]
 [ext_resource type="FontFile" uid="uid://dmg3ppdo8dgqj" path="res://assets/fonts/Primitive-4yGY.ttf" id="3_p0q51"]
 [ext_resource type="Script" uid="uid://d0fcseiqo1nrk" path="res://scenes/ui/menus/scripts/menu_levels.gd" id="3_whicr"]
 [ext_resource type="Texture2D" uid="uid://by2sfu06w3w3g" path="res://assets/textures/rustic-wood-texture-free-49.png" id="4_ct055"]
@@ -22,9 +22,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y4aia"]
 shader = ExtResource("5_oj1oe")
 shader_parameter/amount = 3.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_ryexs"]
-font_size = 64
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpnnc"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -203,7 +200,6 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="menu_title" type="MarginContainer" parent="menu_root"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,19 +218,16 @@ theme_override_constants/margin_bottom = 32
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="menu_root/menu_title/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="menu_root/menu_title/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-text = "title text motherfucker
-"
-label_settings = SubResource("LabelSettings_ryexs")
-horizontal_alignment = 1
-vertical_alignment = 1
+alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="menu_root/menu_title/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_title/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_h1kbi")
-stretch_mode = 3
+theme_override_constants/margin_top = 128
+
+[node name="title_text" parent="menu_root/menu_title/VBoxContainer/HBoxContainer/MarginContainer" instance=ExtResource("3_1p6kj")]
+layout_mode = 2
 
 [node name="vbox_buttons" type="VBoxContainer" parent="menu_root/menu_title/VBoxContainer"]
 layout_mode = 2
@@ -261,6 +254,7 @@ focus_neighbor_bottom = NodePath("../../../HBoxContainer2/MarginContainer/button
 focus_next = NodePath("../../../HBoxContainer2/MarginContainer/button_quit")
 focus_previous = NodePath("../../MarginContainer2/button_levels")
 theme = ExtResource("8_jk7nv")
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
 text = "<- settings  "
@@ -279,6 +273,7 @@ focus_neighbor_bottom = NodePath("../../MarginContainer/button_settings")
 focus_next = NodePath("../../MarginContainer/button_settings")
 focus_previous = NodePath("../../../HBoxContainer2/MarginContainer/button_quit")
 theme = ExtResource("8_jk7nv")
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
 text = "  levels ->
@@ -302,12 +297,14 @@ focus_neighbor_top = NodePath("../../../HBoxContainer/MarginContainer/button_set
 focus_next = NodePath("../../../HBoxContainer/MarginContainer2/button_levels")
 focus_previous = NodePath("../../../HBoxContainer/MarginContainer/button_settings")
 theme = ExtResource("8_jk7nv")
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
 text = "> quit <
 "
 
-[node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_info_grid", "time_record_label", "time_limit_label", "par_record_label", "par_limit_label", "jug_collected_label", "spinner_time", "spinner_par", "spinner_jug", "level_title_label", "image_spinner_container", "level_image", "button_play_level", "animation_player", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard", "level_slots_bonus", "label_debug_slots")]
+[node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_info_grid", "time_record_label", "time_limit_label", "par_record_label", "par_limit_label", "jug_collected_label", "spinner_time", "spinner_par", "spinner_jug", "level_title_label", "image_spinner_container", "level_image", "button_play_level", "animation_player", "label_bonus_slots", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard", "level_slots_bonus", "label_debug_slots")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -333,6 +330,7 @@ image_spinner_container = NodePath("level_slots_root/MarginContainer/MarginConta
 level_image = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/image_spinner_container/VBoxContainer/MarginContainer/level_image")
 button_play_level = NodePath("level_slots_root/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/button_play_level")
 animation_player = NodePath("level_slots_root/MarginContainer/AnimationPlayer")
+label_bonus_slots = NodePath("level_slots_root/VBoxContainer/HBoxContainer/MarginContainer/labels/label_bonus_slots")
 level_slots_debug = NodePath("level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_debug")
 level_slots_tutorial = NodePath("level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_tutorial")
 level_slots_easy = NodePath("level_slots_root/VBoxContainer/HBoxContainer/slots/level_slots_easy")
@@ -429,7 +427,7 @@ label_settings = SubResource("LabelSettings_xs2a0")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Label7" type="RichTextLabel" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/MarginContainer/labels"]
+[node name="label_bonus_slots" type="RichTextLabel" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/MarginContainer/labels"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_p0q51")
 theme_override_font_sizes/normal_font_size = 44
@@ -444,7 +442,7 @@ layout_mode = 2
 theme_override_constants/separation = 64
 
 [node name="level_slots_debug" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
-custom_minimum_size = Vector2(0, 42)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_override_constants/separation = 44
 
@@ -455,7 +453,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="level_slots_tutorial" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
-custom_minimum_size = Vector2(0, 42)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_override_constants/separation = 44
 
@@ -463,7 +461,7 @@ theme_override_constants/separation = 44
 layout_mode = 2
 
 [node name="level_slots_easy" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
-custom_minimum_size = Vector2(0, 42)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_override_constants/separation = 44
 
@@ -483,7 +481,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="level_slots_medium" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
-custom_minimum_size = Vector2(0, 42)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_override_constants/separation = 44
 
@@ -494,7 +492,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="level_slots_hard" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
-custom_minimum_size = Vector2(0, 42)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_override_constants/separation = 44
 
@@ -505,7 +503,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="level_slots_bonus" type="HBoxContainer" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/slots"]
-custom_minimum_size = Vector2(0, 42)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_override_constants/separation = 44
 
@@ -773,7 +771,6 @@ theme_override_font_sizes/font_size = 64
 text = "     play level!     "
 
 [node name="animation_panel" type="Panel" parent="menu_root/menu_levels/level_slots_root/MarginContainer"]
-visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_e7y46")

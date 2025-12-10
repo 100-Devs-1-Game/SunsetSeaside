@@ -19,6 +19,7 @@ texture = ExtResource("2_e4no3")
 texture = ExtResource("3_3nkay")
 
 [resource]
+Button/constants/outline_size = 0
 Button/icons/icon = null
 Button/styles/disabled = SubResource("StyleBoxTexture_lap2t")
 Button/styles/focus = SubResource("StyleBoxEmpty_lap2t")

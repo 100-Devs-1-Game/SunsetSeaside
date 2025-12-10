@@ -52,4 +52,4 @@ func _reset():
 		child.queue_free()
 	
 	mesh.visible = true
-	collision_shape_3d.disabled = false
+	collision_shape_3d.set_deferred("disabled", false)

@@ -1,0 +1,104 @@
+// created in part by using help from a video by codat, cheers
+// https://www.youtube.com/watch?v=5MfcliFqjnE
+
+shader_type spatial;
+render_mode cull_back, unshaded;
+
+uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
+uniform sampler2D water_texture;
+uniform vec2 water_uv = vec2(10.0, 10.0);
+uniform float water_texture_raise : hint_range(-10.0, 10.0) = 0.0;
+uniform vec4 water_albedo : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float water_albedo_mix_ratio : hint_range(0.0, 1.0) = 0.2;
+uniform float wave_amount : hint_range(0.2, 1.5) = 0.46;
+uniform float water_speed_multi = 0.022;
+uniform float height_offset : hint_range(-2.0, 2.0)  = -0.24;
+uniform float height_color_multi : hint_range(0.0, 10.0) = 0.7;
+
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+varying vec3 uv1_triplanar_pos;
+
+uniform float uv1_blend_sharpness : hint_range(0.0, 150.0, 0.001);
+varying vec3 uv1_power_normal;
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+//uniform bool transperancy = false;
+//uniform float beer_factor = 0.2;
+//uniform float depth_offset = -0.75;
+//uniform vec4 color_shallow : source_color;
+//uniform vec4 color_deep : source_color;
+
+// calc vars
+varying float vertex_height;
+
+//float generateOffset(float x, float z, float val1, float val2, float time, vec2 uv){
+	//float speed = 1.0;
+//
+	//float radiansX = ((mod(x + z * x * val1, wave_amount) / wave_amount) + (time * speed) * mod(x * 0.8 + z, 1.5)) * 2.0 * 3.14;
+	//float radiansZ = ((mod(val2 * (z * x + x * z), wave_amount) / wave_amount) + (time * speed) * 2.0 * mod(x,2.0)) * 2.0 * 3.14;
+//
+	////float noise_affect = texture(noise_texture, uv + vec2(TIME * water_speed_multi, TIME * water_speed_multi)).x;
+	//return wave_amount * 0.5 * (sin(radiansZ) + cos(radiansX));
+	////return noise_affect;
+//}
+
+
+//vec3 applyDistortion(vec3 vertex, float time, vec2 uv){
+	//float xd = generateOffset(vertex.x, vertex.z, 0.2, 0.1, time, uv);
+	//float yd = generateOffset(vertex.x, vertex.z, 0.2, 0.1, time, uv);
+	//float zd = generateOffset(vertex.x, vertex.z, 0.2, 0.1, time, uv);
+	//return vertex + vec3(xd, yd, zd);
+//}
+
+void vertex() {
+	//VERTEX = applyDistortion(VERTEX, TIME * 0.1, UV);
+	VERTEX.y += height_offset;
+
+	vertex_height = VERTEX.x;
+	
+	// UV1 Triplanar: Enabled
+	uv1_power_normal = pow(abs(NORMAL), vec3(uv1_blend_sharpness));
+	uv1_triplanar_pos = VERTEX * uv1_scale + uv1_offset;
+	uv1_power_normal /= dot(uv1_power_normal, vec3(1.0));
+	uv1_triplanar_pos *= vec3(1.0, -1.0, 1.0);
+}
+
+vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos) {
+	vec4 samp = vec4(0.0);
+	samp += texture(p_sampler, p_triplanar_pos.xy) * p_weights.z;
+	samp += texture(p_sampler, p_triplanar_pos.xz) * p_weights.y;
+	samp += texture(p_sampler, p_triplanar_pos.zy * vec2(-1.0, 1.0)) * p_weights.x;
+	return samp;
+}
+
+void fragment() {
+
+	//NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX) ) );
+	//NORMAL = normalize(mix(dFdx(VERTEX), dFdy(VERTEX), vec3(0.5, 1.0, 1.0)));
+	//ALBEDO = out_color.xyz * 2.0;
+	METALLIC = 0.0;
+	SPECULAR = 0.0;
+	ROUGHNESS = 1.0;
+
+	vec4 albedo_tex = triplanar_texture(texture_albedo, uv1_power_normal, uv1_triplanar_pos);
+	
+	float height_white_augment = vertex_height * height_color_multi;
+
+	vec4 texture_color = texture(water_texture, UV * vec2(water_uv.x, water_uv.y) + vec2(TIME * water_speed_multi, TIME * water_speed_multi)) + vec4(water_texture_raise, water_texture_raise, water_texture_raise, 1.0) + vec4(height_white_augment, height_white_augment, height_white_augment, 1.0);
+	ALBEDO = mix(texture_color.xyz * 1.0, water_albedo.xyz, water_albedo_mix_ratio);
+
+	//if (transperancy == true){
+		//float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
+		//
+		//depth = depth * 2.0 - 1.0;
+		//depth = PROJECTION_MATRIX[3][2] / (depth + PROJECTION_MATRIX[2][2]);
+		//depth += VERTEX.z;
+	//
+		//depth = exp(depth * beer_factor);
+		//ALPHA = clamp(1.0 - depth, 0.0, 1.0);
+	//}
+}
