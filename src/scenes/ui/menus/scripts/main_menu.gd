@@ -9,7 +9,6 @@ extends Menu
 
 enum MenuType { TITLE, LEVELS, SETTINGS, CONFIRMATION }
 
-func _ready():	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # should put this in main script in an "open menu" function. for now:
 func _on_button_levels_pressed() -> void: _open_menu(MenuType.LEVELS)
 func _on_button_settings_pressed() -> void: _open_menu(MenuType.SETTINGS); Events.set_title_position.emit(Enums.TitlePosition.SETTINGS)
 func _on_button_return_settings_pressed() -> void: _open_menu(MenuType.TITLE); Events.set_title_position.emit(Enums.TitlePosition.TITLE)
@@ -19,15 +18,28 @@ func _on_button_delete_yes_pressed() -> void: Keeper.erase_progress(); _open_men
 
 func _on_button_quit_pressed() -> void: get_tree().quit()
 
+func _ready():
+	_reopen_menu(Gamestate.last_title_menu)
+
 func _open_menu(menu): # rename this!
 	for node in menu_root.get_children(): node.visible = false
 	# come get your child bro
 	
 	match menu:
-		MenuType.TITLE: menu_title.visible = true 
-		MenuType.LEVELS: menu_levels.visible = true
-		MenuType.SETTINGS: menu_settings.visible = true
+		MenuType.TITLE: menu_title.visible = true; Gamestate.last_title_menu = Enums.TitlePosition.TITLE
+		MenuType.LEVELS: menu_levels.visible = true; Gamestate.last_title_menu = Enums.TitlePosition.LEVELS
+		MenuType.SETTINGS: menu_settings.visible = true; Gamestate.last_title_menu = Enums.TitlePosition.SETTINGS
 		MenuType.CONFIRMATION: menu_delete_confirm.visible = true
 
 func on_menu_close():
 	_open_menu(MenuType.TITLE)
+
+func _reopen_menu(last_menu):
+	if last_menu != MenuType.TITLE:
+		_open_menu(last_menu)
+		match last_menu:
+			MenuType.SETTINGS: 
+				Events.set_title_position.emit(Enums.TitlePosition.SETTINGS)
+				Events.force_title_position.emit(Enums.TitlePosition.SETTINGS)
+			MenuType.LEVELS:
+				Events.force_title_position.emit(Enums.TitlePosition.TITLE)

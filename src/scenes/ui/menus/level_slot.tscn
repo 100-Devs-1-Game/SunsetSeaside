@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d21bo2dynh40w"]
+[gd_scene load_steps=11 format=3 uid="uid://d21bo2dynh40w"]
 
 [ext_resource type="Script" uid="uid://b4gems7hjes3w" path="res://scenes/ui/menus/scripts/level_slot.gd" id="1_sgx16"]
 [ext_resource type="LabelSettings" uid="uid://cd7lkf440a3k7" path="res://scenes/ui/menus/label_settings/level_slot_selectable.tres" id="2_1k1ax"]
@@ -6,12 +6,52 @@
 [ext_resource type="Texture2D" uid="uid://1dj0hrocs07h" path="res://scenes/ui/menus/smol_icons/cannonballsmol_png.png" id="4_fmdn1"]
 [ext_resource type="Texture2D" uid="uid://ogx8qncwspur" path="res://scenes/ui/menus/smol_icons/jugsmol_png.png" id="5_v3kgf"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yer46"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 0)
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.364706)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 3
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1k1ax"]
 bg_color = Color(0.854466, 0.586633, 0, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmdn1"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 0)
+border_width_bottom = 1
+border_color = Color(0.701961, 0.882353, 0, 0.360784)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3kgf"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 0)
+border_width_bottom = 1
+border_color = Color(0.94902, 0.290196, 0, 0.435294)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8tmp"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 0)
+border_width_bottom = 1
+border_color = Color(0.854902, 0.588235, 0, 0.498039)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 3
 
 [node name="Slot" type="Control" node_paths=PackedStringArray("icon_time", "icon_par", "icon_jug", "selection_indicator", "id_label")]
 custom_minimum_size = Vector2(48, 48)
@@ -34,6 +74,7 @@ offset_bottom = 40.0
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yer46")
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -70,6 +111,7 @@ size_flags_horizontal = 4
 [node name="icon_under_time_limit" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fmdn1")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/icon_under_time_limit"]
 layout_mode = 2
@@ -86,6 +128,7 @@ expand_mode = 1
 [node name="icon_under_par" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v3kgf")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/icon_under_par"]
 layout_mode = 2
@@ -102,6 +145,7 @@ expand_mode = 1
 [node name="icon_jug_collected" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m8tmp")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/icon_jug_collected"]
 layout_mode = 2

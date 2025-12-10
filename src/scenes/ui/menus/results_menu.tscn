@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://chltm40kncitd"]
+[gd_scene load_steps=27 format=3 uid="uid://chltm40kncitd"]
 
 [ext_resource type="Script" uid="uid://cokdnajdm2aq" path="res://scenes/ui/menus/scripts/results_menu.gd" id="1_hoa8c"]
 [ext_resource type="Shader" uid="uid://dgeo6lmgw5tnf" path="res://assets/shaders/menu_blur.gdshader" id="2_8fcwq"]
@@ -44,15 +44,15 @@ corner_radius_top_left = 8
 shadow_color = Color(0, 0, 0, 0.478431)
 shadow_size = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clnwe"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8305b"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_bottom = 8
+border_width_bottom = 4
 border_color = Color(0.700774, 0.880942, 1.15514e-06, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-shadow_color = Color(0, 0, 0, 0.415686)
+shadow_color = Color(0, 0, 0, 0.435294)
 shadow_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_5yfc0"]
@@ -69,10 +69,32 @@ font = ExtResource("3_cyhki")
 font_size = 42
 font_color = Color(1, 0.521803, 0.328809, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ad3dv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 4
+border_color = Color(1, 0.521803, 0.328809, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.435294)
+shadow_size = 8
+
 [sub_resource type="LabelSettings" id="LabelSettings_8fcwq"]
 font = ExtResource("3_cyhki")
 font_size = 42
 font_color = Color(0.830508, 0.64811, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3pum"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 4
+border_color = Color(0.830508, 0.64811, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.435294)
+shadow_size = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u5u64"]
 
@@ -262,7 +284,7 @@ theme_override_constants/margin_bottom = 24
 
 [node name="Panel" type="Panel" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/time spinner"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_clnwe")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8305b")
 
 [node name="spinner" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/time spinner" instance=ExtResource("3_yf7o8")]
 layout_mode = 2
@@ -391,7 +413,7 @@ theme_override_constants/margin_bottom = 24
 
 [node name="Panel" type="Panel" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/par spinner"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_clnwe")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ad3dv")
 
 [node name="spinner" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/par spinner" instance=ExtResource("3_yf7o8")]
 layout_mode = 2
@@ -476,7 +498,7 @@ theme_override_constants/margin_bottom = 24
 
 [node name="Panel" type="Panel" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug spinner"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_clnwe")
+theme_override_styles/panel = SubResource("StyleBoxFlat_t3pum")
 
 [node name="spinner" parent="Control/MarginContainer/MarginContainer/VBoxContainer/GridContainer/jug spinner" instance=ExtResource("3_yf7o8")]
 layout_mode = 2

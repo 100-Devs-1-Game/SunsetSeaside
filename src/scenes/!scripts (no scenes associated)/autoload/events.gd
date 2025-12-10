@@ -43,6 +43,7 @@ signal ui_send_end_results(time, time_limit, shots_taken, par_limit, jug_grabbed
 signal ui_send_level_history(time_best, shots_best, jug_history, hardcore_history) # split into two methods for ease
 signal ui_update_title_state(state)
 signal set_title_position(pos : Enums.TitlePosition)
+signal force_title_position(pos : Enums.TitlePosition)
 
 ###### settings
 signal set_sens(sensitivity : float) # done

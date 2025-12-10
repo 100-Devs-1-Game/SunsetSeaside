@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=50 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
 [ext_resource type="PackedScene" uid="uid://c21pslr81k4p4" path="res://scenes/ui/title_text.tscn" id="3_1p6kj"]
@@ -45,7 +45,7 @@ font_color = Color(1, 0.521803, 0.328809, 1)
 font = ExtResource("3_p0q51")
 font_size = 44
 shadow_size = 6
-shadow_color = Color(0, 0, 0, 1)
+shadow_color = Color(0.0687983, 0.0687983, 0.0687983, 1)
 shadow_offset = Vector2(-4, 4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0q51"]
@@ -67,7 +67,7 @@ shadow_size = 16
 font = ExtResource("3_p0q51")
 font_size = 72
 shadow_size = 4
-shadow_color = Color(0, 0, 0, 1)
+shadow_color = Color(0.0687983, 0.0687983, 0.0687983, 1)
 shadow_offset = Vector2(5, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1p6kj"]
@@ -79,7 +79,7 @@ shadow_size = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8e1o"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_bottom = 8
+border_width_bottom = 4
 border_color = Color(0.700774, 0.880942, 1.15514e-06, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
@@ -88,10 +88,21 @@ corner_radius_bottom_left = 8
 shadow_color = Color(0, 0, 0, 0.435294)
 shadow_size = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmbxx"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1no3"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_bottom = 8
-border_color = Color(0.700774, 0.880942, 1.15514e-06, 1)
+border_width_bottom = 4
+border_color = Color(1, 0.521803, 0.328809, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.435294)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xs2a0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 4
+border_color = Color(0.830508, 0.64811, 0, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -449,7 +460,7 @@ vertical_alignment = 1
 
 [node name="label_bonus_slots" type="RichTextLabel" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/MarginContainer/labels"]
 layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.0687983, 0.0687983, 0.0687983, 1)
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/shadow_offset_x = -4
 theme_override_constants/shadow_outline_size = 6
@@ -630,7 +641,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="Panel" type="Panel" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/image_spinner_container/HBoxContainer2/par spinner"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nmbxx")
+theme_override_styles/panel = SubResource("StyleBoxFlat_r1no3")
 
 [node name="spinner" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/image_spinner_container/HBoxContainer2/par spinner" instance=ExtResource("9_nmbxx")]
 layout_mode = 2
@@ -646,7 +657,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="Panel" type="Panel" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/image_spinner_container/HBoxContainer2/jug spinner"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c8e1o")
+theme_override_styles/panel = SubResource("StyleBoxFlat_xs2a0")
 
 [node name="spinner" parent="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/image_spinner_container/HBoxContainer2/jug spinner" instance=ExtResource("9_nmbxx")]
 layout_mode = 2
@@ -796,6 +807,7 @@ theme_override_font_sizes/font_size = 64
 text = "     play level!     "
 
 [node name="animation_panel" type="Panel" parent="menu_root/menu_levels/level_slots_root/MarginContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_e7y46")
