@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=48 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
 [ext_resource type="PackedScene" uid="uid://c21pslr81k4p4" path="res://scenes/ui/title_text.tscn" id="3_1p6kj"]
@@ -23,6 +23,11 @@
 shader = ExtResource("5_oj1oe")
 shader_parameter/amount = 3.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_r1no3"]
+font_size = 12
+outline_size = 2
+outline_color = Color(0.99986, 0.415619, 1.92523e-07, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpnnc"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 corner_radius_top_left = 4
@@ -38,6 +43,9 @@ font_color = Color(1, 0.521803, 0.328809, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_xs2a0"]
 font = ExtResource("3_p0q51")
 font_size = 44
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0q51"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -57,6 +65,9 @@ shadow_size = 16
 [sub_resource type="LabelSettings" id="LabelSettings_r4c53"]
 font = ExtResource("3_p0q51")
 font_size = 72
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(5, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1p6kj"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -200,19 +211,21 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="menu_title" type="MarginContainer" parent="menu_root"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -4.0
-offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="menu_root/menu_title"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = " © 2025, under Creative Commons (CC-BY 4.0)"
+label_settings = SubResource("LabelSettings_r1no3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_title"]
 layout_mode = 2
@@ -224,10 +237,11 @@ alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_title/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 128
+theme_override_constants/margin_top = 196
 
 [node name="title_text" parent="menu_root/menu_title/VBoxContainer/HBoxContainer/MarginContainer" instance=ExtResource("3_1p6kj")]
 layout_mode = 2
+tilt_amount_x = 3.0
 
 [node name="vbox_buttons" type="VBoxContainer" parent="menu_root/menu_title/VBoxContainer"]
 layout_mode = 2
@@ -254,9 +268,6 @@ focus_neighbor_bottom = NodePath("../../../HBoxContainer2/MarginContainer/button
 focus_next = NodePath("../../../HBoxContainer2/MarginContainer/button_quit")
 focus_previous = NodePath("../../MarginContainer2/button_levels")
 theme = ExtResource("8_jk7nv")
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("3_p0q51")
-theme_override_font_sizes/font_size = 32
 text = "<- settings  "
 
 [node name="MarginContainer2" type="MarginContainer" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer"]
@@ -273,9 +284,6 @@ focus_neighbor_bottom = NodePath("../../MarginContainer/button_settings")
 focus_next = NodePath("../../MarginContainer/button_settings")
 focus_previous = NodePath("../../../HBoxContainer2/MarginContainer/button_quit")
 theme = ExtResource("8_jk7nv")
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("3_p0q51")
-theme_override_font_sizes/font_size = 32
 text = "  levels ->
 "
 
@@ -297,14 +305,13 @@ focus_neighbor_top = NodePath("../../../HBoxContainer/MarginContainer/button_set
 focus_next = NodePath("../../../HBoxContainer/MarginContainer2/button_levels")
 focus_previous = NodePath("../../../HBoxContainer/MarginContainer/button_settings")
 theme = ExtResource("8_jk7nv")
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("3_p0q51")
-theme_override_font_sizes/font_size = 32
 text = "> quit <
 "
 
+[node name="Label" type="Label" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
+layout_mode = 2
+
 [node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_info_grid", "time_record_label", "time_limit_label", "par_record_label", "par_limit_label", "jug_collected_label", "spinner_time", "spinner_par", "spinner_jug", "level_title_label", "image_spinner_container", "level_image", "button_play_level", "animation_player", "label_bonus_slots", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard", "level_slots_bonus", "label_debug_slots")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -429,11 +436,16 @@ vertical_alignment = 1
 
 [node name="label_bonus_slots" type="RichTextLabel" parent="menu_root/menu_levels/level_slots_root/VBoxContainer/HBoxContainer/MarginContainer/labels"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/normal_font = ExtResource("3_p0q51")
 theme_override_font_sizes/normal_font_size = 44
 bbcode_enabled = true
 text = "[wave freq=2 amp=30][rainbow freq=0.15]bonus"
 fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -816,12 +828,12 @@ checkbox_crouch_toggle = NodePath("VBoxContainer/MarginContainer/VBoxContainer/M
 
 [node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_settings"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_settings/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 640
-theme_override_constants/margin_top = 256
-theme_override_constants/margin_right = 640
+theme_override_constants/margin_top = 300
+theme_override_constants/margin_right = 512
 theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer"]
@@ -1063,45 +1075,53 @@ horizontal_alignment = 2
 layout_mode = 2
 
 [node name="Label15" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = " "
 label_settings = SubResource("LabelSettings_bl8wb")
 
 [node name="Label16" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = " "
 label_settings = SubResource("LabelSettings_bl8wb")
 
 [node name="Label4" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "retro effects:"
 label_settings = SubResource("LabelSettings_jk7nv")
 horizontal_alignment = 2
 
 [node name="Label5" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = " "
 label_settings = SubResource("LabelSettings_h4dpu")
 horizontal_alignment = 2
 
 [node name="Label3" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "4:3 ratio: "
 label_settings = SubResource("LabelSettings_p0q51")
 horizontal_alignment = 2
 
 [node name="checkbox_4by3" type="CheckBox" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label6" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "resolution scale: "
 label_settings = SubResource("LabelSettings_p0q51")
 horizontal_alignment = 2
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 
 [node name="slider_res_scale" type="HSlider" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6"]

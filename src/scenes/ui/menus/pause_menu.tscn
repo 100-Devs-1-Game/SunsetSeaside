@@ -429,39 +429,46 @@ horizontal_alignment = 2
 layout_mode = 2
 
 [node name="Label15" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = " "
 label_settings = SubResource("LabelSettings_5l4ab")
 
 [node name="Label16" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = " "
 label_settings = SubResource("LabelSettings_5l4ab")
 
 [node name="Label4" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "retro effects:"
 label_settings = SubResource("LabelSettings_1n3fv")
 horizontal_alignment = 2
 
 [node name="Label5" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = " "
 label_settings = SubResource("LabelSettings_hh46y")
 horizontal_alignment = 2
 
 [node name="Label3" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "4:3 ratio: "
 label_settings = SubResource("LabelSettings_3kafx")
 horizontal_alignment = 2
 
 [node name="checkbox_4by3" type="CheckBox" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label6" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "resolution scale: "
 label_settings = SubResource("LabelSettings_3kafx")
@@ -471,6 +478,7 @@ horizontal_alignment = 2
 layout_mode = 2
 
 [node name="slider_res_scale" type="HSlider" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6"]
+visible = false
 custom_minimum_size = Vector2(240, 38)
 layout_mode = 2
 min_value = 1.0
@@ -478,6 +486,7 @@ max_value = 4.0
 value = 1.0
 
 [node name="label_res_scale_val" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6"]
+visible = false
 layout_mode = 2
 text = " 1x"
 label_settings = SubResource("LabelSettings_sfe43")

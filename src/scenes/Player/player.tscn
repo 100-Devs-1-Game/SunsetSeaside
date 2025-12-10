@@ -235,7 +235,7 @@ metallic_texture_channel = 2
 roughness = 0.36
 roughness_texture_channel = 2
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6fudp"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ioxgp"]
 _surfaces = [{
 "aabb": AABB(-3.01821, -1.15739, -1.15739, 6.83299, 2.31477, 2.31477),
 "format": 34896613377,
@@ -267,7 +267,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_6fudp")
+shadow_mesh = SubResource("ArrayMesh_ioxgp")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d34pt"]
 resource_name = "CannonFPS_mat"
@@ -280,7 +280,7 @@ roughness = 0.0
 roughness_texture = ExtResource("16_8ydkj")
 roughness_texture_channel = 1
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_jdhje"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_cnsyf"]
 _surfaces = [{
 "aabb": AABB(-0.879972, -0.417554, 0.864839, 0.868103, 0.835109, 2.65083),
 "format": 34896613377,
@@ -312,9 +312,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("////f///JOl9L/9/AADl1OtFX7wAANPp/3+B0AAA3P8Uul+8AAB36YHQ/38AAIrV/399LwAAxML///9///94phS6n0MAAMzIgdD/fwAA4NjrRZ9DAAD9yH0v/38AADLYAAD/f///o+lW3PzfzNsz8FbcAiDM24m5AAD/f///y6aoIwIgzNttuagj/N/M2+rv/3//f///Yv//f///zNtJ//9//3///5yA/38AAMzbz7JTCikhwlUlrhtqNbfnvSgAhTeVFUgtryqXALB/jT25ElMcb0cPKdwsdDjOm49T4qnFXhqKjy3EFBAgL0cPbc280DhyoGdruK3/f/9/sMqSAP////8zA6h+")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_jdhje")
+shadow_mesh = SubResource("ArrayMesh_cnsyf")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_f02cs"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_6cv16"]
 _surfaces = [{
 "aabb": AABB(-0.749699, -0.879303, -2.13529, 0.351721, 1.75861, 1.50106),
 "format": 34896613377,
@@ -346,7 +346,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("gdpkRMrbVPUAAP9//R2W1///lzfJ6n7z/3+xSZTVPeB9JWREytv7zAAAlzfJ6ru/AABnyMnqaPV9JZq7yts68/9/TbaU1RPfgdqau8rbnsz/f30l//9SzYHayirI+Q3efSXKKsj5+sEAAJc3yepnwAAA/3/9HVPX/v9nyMnqO8CB2jTVyPmtwf9/gdr+/9rMfSU01cj5hN0AAGfIyeom8/9/AAD1lQjVgdpkRCBQl9aB2soqIjJI/gAAlzchQV3Hgdr/f8gITuuB2jTVIjLJ1v9////1lenUgdpL1PWV6cQAAGXm9ZXI/QAAlzchQXjHAABl5vWVi///f30l7Cul6YHafwf1lUzofSV/B/WVWcYAAJkZ9ZUEwH0lyioiMsXW//+ZGfWVEP7//5c3IUEX7IHasyv1lenq/38yM/WVctX/f7FJVlZ4xX0lsyv1lXvFAACZGfWVBsB9JWREIFABwH0l/38yMwHHAABnyCFBQuz/f/9/+zvVv30lmrsgUPfWgdr/fzIzTsf/f022VlbbxX0lS9T1lXfp/3/MzPWVE9SB2pq7IFDFv/7//3/9HbfX/v9nyCFBOMf+/2Xm9ZUJwP9//38AAP//gdp/+PWVXsb/f4Ha7CvI6X0l/3/ICDfrfSU01SIyav4AAGfIIUEV7H0lf/j1lRnokLXrnAJUAqweB7s7Cq4gsbGjVssmm4v3yvpqw4hIE2X9TwxQZVoxNcsk3Nt9EB/OhT5i7GqhKfQwVFus/l8SC3/BDRRd24ok3O9AMon4acR8KvjU/rTrfKomA8slYOLGtbUTSvm2bDSV1SwrmWSVNnj8NT72X4HGpfo1Pfs07Mq/F//LGUNV4N50cPfISAHL0gPywee0yGeYtmOThaq8qlOd5ZzBmabJ3nTv98l8vcBqYaqeAUsOmP9//3/8SsWCpZ6IYetiBmNBSNNtyVMaVvOC6z4TrCdUmJ+VOB+LhwdWQFXA47ydH8HKtDR6Si62K9nUNBlLOZhm6Cg0")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_f02cs")
+shadow_mesh = SubResource("ArrayMesh_6cv16")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ioxgp"]
 resource_name = "CannonFPS_mat"

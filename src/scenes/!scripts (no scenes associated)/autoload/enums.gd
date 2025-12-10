@@ -5,3 +5,5 @@ enum PlayerDeathType { ANIMATED, INSTANT }
 enum LevelGrouping { DEBUG, DAYLIGHT, SUNSET, MIDNIGHT, SUNRISE, BONUS }
 
 enum Menus { TITLE, RESULTS, PAUSE }
+
+enum TitlePosition { START, TITLE, LEVELS, SETTINGS }
