@@ -59,9 +59,9 @@ func headbob(position_last_frame, is_on_floor, input_dir, player_state, current_
 var footstep_alternate = true # flips between true and false to signify each foot
 func _footstep_calc(bobbing_vector):
 	if bobbing_vector.x > 0.99 && footstep_alternate == false:
-		#audio_stream_player_footsteps.play()
+		DJ.create_audio(SFX_Setting.SOUND_EFFECT.FOOTSTEP)
 		footstep_alternate = true
 	elif bobbing_vector.x < -0.99 && footstep_alternate == true:
-		#audio_stream_player_footsteps.play()
+		DJ.create_audio(SFX_Setting.SOUND_EFFECT.FOOTSTEP)
 		footstep_alternate = false
 	

@@ -1,21 +1,27 @@
 extends Node
-
 # manages audio busses, sfx and music playback
 # written in part with help from Aarimous, cheers!
 # https://www.youtube.com/watch?v=Egf2jgET3nQ&t=130s
+
+@onready var music_player: AudioStreamPlayer = $music_player
+@onready var ambient_player: AudioStreamPlayer = $ambient_player
 @onready var sfx_container: Node3D = $sfx_container
 
 @export var sfx_settings : Array[SFX_Setting]
+
+enum Music { MONKEYS_DOMAIN }
+enum Ambience { JUNGLE_DAY, JUNGLE_NIGHT }
 
 var sfx_dict = {}
 
 func _ready():
 	_setup_events()
 	_setup_bus_volume()
-	# setup dict
+	# setup dict 
 	for setting in sfx_settings:
 		sfx_dict[setting.name] = setting
-	
+
+#### busses
 func _setup_bus_volume():
 	Keeper.load_settings()
 	
@@ -73,6 +79,24 @@ func create_audio(effect_name : SFX_Setting.SOUND_EFFECT):
 
 		new_audio.set_bus(&"SFX")
 		new_audio.play()
+
+#### music and ambience
+func switch_music(music_name : DJ.Music):
+	ambient_player["parameters/switch_to_clip"] = _get_music_from_enum(music_name)
+	if !music_player.playing: music_player.playing = true
+
+func switch_ambience(ambience_name : DJ.Ambience):
+	ambient_player["parameters/switch_to_clip"] = _get_ambience_from_enum(ambience_name)
+	if !ambient_player.playing: ambient_player.playing = true
+
+func _get_music_from_enum(ambience_name : DJ.Music):
+	match ambience_name:
+		DJ.Music.MONKEYS_DOMAIN: return "monkey's domain"
+
+func _get_ambience_from_enum(ambience_name : DJ.Ambience):
+	match ambience_name:
+		DJ.Ambience.JUNGLE_DAY: return "jungle day"
+		DJ.Ambience.JUNGLE_NIGHT: return "jungle night"
 
 #### events
 func _setup_events():

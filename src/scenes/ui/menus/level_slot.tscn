@@ -9,7 +9,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yer46"]
 bg_color = Color(0.129412, 0.129412, 0.129412, 0)
 border_width_bottom = 1
-border_color = Color(1, 1, 1, 0.364706)
+border_color = Color(1, 1, 1, 0.32549)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -17,7 +17,7 @@ corner_radius_bottom_left = 4
 shadow_size = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1k1ax"]
-bg_color = Color(0.854466, 0.586633, 0, 1)
+bg_color = Color(0.496208, 0.730521, 1.54018e-06, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4

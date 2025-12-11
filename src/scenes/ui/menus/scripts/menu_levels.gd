@@ -94,9 +94,11 @@ func _on_slot_clicked(slot, button):
 	current_slot_info["grouping"] = slot.level_grouping
 	current_slot_info["id"] = slot.level_id
 	_show_level_info(slot, button)
+	DJ.create_audio(SFX_Setting.SOUND_EFFECT.UI_PRESSED)
 
 func _show_level_info(slot, button):
 	# animate panel
+	if animation_player.is_playing(): animation_player.stop()
 	animation_player.play("new_selection")
 	var level_info = Gamestate.level_manager.fetch_level_info(slot.level_grouping, slot.level_id)
 	

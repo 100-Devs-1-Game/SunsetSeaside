@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cf3boni5ewwkj"
+path="res://.godot/imported/monkey's domain.ogg-1bb35b651fd43afe867f1991cb32b6de.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/music/monkey's domain.ogg"
+dest_files=["res://.godot/imported/monkey's domain.ogg-1bb35b651fd43afe867f1991cb32b6de.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

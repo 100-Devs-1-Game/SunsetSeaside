@@ -151,7 +151,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(0.499999, 1),
 "update": 0,
-"values": [Color(0.545098, 0.392157, 0, 0.407843), Color(0.537255, 0.396078, 0, 0)]
+"values": [Color(0.291699, 0.766195, 7.70092e-07, 0.235294), Color(0.537255, 0.396078, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e7y46"]
@@ -224,6 +224,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="menu_title" type="MarginContainer" parent="menu_root"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -293,6 +294,7 @@ focus_next = NodePath("../../../HBoxContainer2/MarginContainer/button_quit")
 focus_previous = NodePath("../../MarginContainer2/button_levels")
 theme = ExtResource("8_jk7nv")
 text = "<- settings  "
+script = ExtResource("7_xs2a0")
 
 [node name="MarginContainer2" type="MarginContainer" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer"]
 layout_mode = 2
@@ -332,12 +334,12 @@ focus_previous = NodePath("../../../HBoxContainer/MarginContainer/button_setting
 theme = ExtResource("8_jk7nv")
 text = "> quit <
 "
+script = ExtResource("7_xs2a0")
 
 [node name="Label" type="Label" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
 layout_mode = 2
 
 [node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_info_grid", "time_record_label", "time_limit_label", "par_record_label", "par_limit_label", "jug_collected_label", "spinner_time", "spinner_par", "spinner_jug", "level_title_label", "image_spinner_container", "level_image", "button_play_level", "animation_player", "label_bonus_slots", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard", "level_slots_bonus", "label_debug_slots")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -401,6 +403,7 @@ theme = ExtResource("8_jk7nv")
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
 text = "  return  "
+script = ExtResource("7_xs2a0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_levels/level_slots_root"]
 custom_minimum_size = Vector2(900, 0)
@@ -807,6 +810,7 @@ theme = ExtResource("8_jk7nv")
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 64
 text = "     play level!     "
+script = ExtResource("7_xs2a0")
 
 [node name="animation_panel" type="Panel" parent="menu_root/menu_levels/level_slots_root/MarginContainer"]
 layout_mode = 2
@@ -1192,6 +1196,7 @@ theme = ExtResource("8_jk7nv")
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
 text = " delete save data "
+script = ExtResource("7_xs2a0")
 
 [node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
 layout_mode = 2
@@ -1215,6 +1220,7 @@ theme = ExtResource("8_jk7nv")
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
 text = "  return  "
+script = ExtResource("7_xs2a0")
 
 [node name="menu_delete_confirm" type="MarginContainer" parent="menu_root"]
 visible = false
@@ -1278,6 +1284,7 @@ theme = ExtResource("8_jk7nv")
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
 text = "> no <"
+script = ExtResource("7_xs2a0")
 
 [node name="button_delete_yes" type="Button" parent="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -1291,15 +1298,19 @@ theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
 text = "< yes >
 "
+script = ExtResource("7_xs2a0")
 
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer/button_settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer/button_settings" to="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer/button_settings" method="_on_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2/button_levels" to="." method="_on_button_levels_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2/button_levels" to="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2/button_levels" method="_on_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer/button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer/button_quit" to="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer/button_quit" method="_on_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_levels" to="menu_root/menu_levels" method="_on_visibility_changed"]
 [connection signal="pressed" from="menu_root/menu_levels/level_slots_root/VBoxContainer2/MarginContainer/button_return_levels" to="." method="_on_button_return_settings_pressed"]
+[connection signal="pressed" from="menu_root/menu_levels/level_slots_root/VBoxContainer2/MarginContainer/button_return_levels" to="menu_root/menu_levels/level_slots_root/VBoxContainer2/MarginContainer/button_return_levels" method="_on_pressed"]
 [connection signal="pressed" from="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/button_play_level" to="menu_root/menu_levels" method="_on_button_play_level_pressed"]
+[connection signal="pressed" from="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/button_play_level" to="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/button_play_level" method="_on_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_settings" to="menu_root/menu_settings" method="_on_visibility_changed"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2/slider_sens" to="menu_root/menu_settings" method="_on_slider_sens_value_changed"]
 [connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_crouch_toggle" to="menu_root/menu_settings" method="_on_checkbox_crouch_toggle_toggled"]
@@ -1313,6 +1324,10 @@ text = "< yes >
 [connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_4by3" to="menu_root/menu_settings" method="_on_checkbox_4_by_3_toggled"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6/slider_res_scale" to="menu_root/menu_settings" method="_on_slider_res_scale_value_changed"]
 [connection signal="pressed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer2/button_delete_confirm_open" to="." method="_on_button_delete_confirm_open_pressed"]
+[connection signal="pressed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer2/button_delete_confirm_open" to="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer2/button_delete_confirm_open" method="_on_pressed"]
 [connection signal="pressed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer/button_return_settings" to="." method="_on_button_return_settings_pressed"]
+[connection signal="pressed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer/button_return_settings" to="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer/button_return_settings" method="_on_pressed"]
 [connection signal="pressed" from="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_no" to="." method="_on_button_delete_no_pressed"]
+[connection signal="pressed" from="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_no" to="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_no" method="_on_pressed"]
 [connection signal="pressed" from="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_yes" to="." method="_on_button_delete_yes_pressed"]
+[connection signal="pressed" from="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_yes" to="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_yes" method="_on_pressed"]

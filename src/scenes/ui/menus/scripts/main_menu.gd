@@ -20,6 +20,8 @@ func _on_button_quit_pressed() -> void: get_tree().quit()
 
 func _ready():
 	_reopen_menu(Gamestate.last_title_menu)
+	DJ.switch_music(DJ.Music.MONKEYS_DOMAIN)
+	DJ.switch_ambience(DJ.Ambience.JUNGLE_DAY)
 
 func _open_menu(menu): # rename this!
 	for node in menu_root.get_children(): node.visible = false
