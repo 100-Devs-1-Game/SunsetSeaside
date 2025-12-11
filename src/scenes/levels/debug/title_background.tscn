@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://gwk8oa6f8bli" path="res://assets/material/big_island_001.tres" id="1_6pfuf"]
 [ext_resource type="Script" uid="uid://cvmw2ebnnsvk0" path="res://scenes/ui/menus/scripts/title_background.gd" id="1_aostd"]
 [ext_resource type="PackedScene" uid="uid://byvaffts1r8dp" path="res://scenes/entities/level objects/landscape/plant_floppy.tscn" id="2_dx5ps"]
-[ext_resource type="Environment" uid="uid://b0jigsuvxrm31" path="res://assets/skyboxes/midnight.tres" id="2_kt1x4"]
+[ext_resource type="Environment" uid="uid://7e517t3wcl3h" path="res://assets/skyboxes/sunset.tres" id="2_kt1x4"]
 [ext_resource type="PackedScene" uid="uid://b7ohh3c0eehg3" path="res://scenes/entities/level objects/landscape/palm_tree_001.tscn" id="3_yhkob"]
 [ext_resource type="PackedScene" uid="uid://dx760b7qnywhn" path="res://scenes/entities/level objects/landscape/palm_tree_002.tscn" id="4_x4lxq"]
 [ext_resource type="PackedScene" uid="uid://cb14xdso8e7ff" path="res://scenes/entities/level objects/landscape/palm_tree_003.tscn" id="5_w6mhe"]
