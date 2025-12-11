@@ -687,6 +687,9 @@ script = ExtResource("2_c4h5g")
 [node name="headbob_pivot" type="Node3D" parent="Head"]
 script = ExtResource("3_uxo23")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="Head/headbob_pivot"]
+current = true
+
 [node name="Camera3D" type="Camera3D" parent="Head/headbob_pivot"]
 cull_mask = 1048573
 fov = 85.0

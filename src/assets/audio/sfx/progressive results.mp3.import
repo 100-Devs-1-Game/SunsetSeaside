@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cp2aearq7mfey"
+path="res://.godot/imported/progressive results.mp3-523c47e9bb26b889a56bbd99559394ba.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/progressive results.mp3"
+dest_files=["res://.godot/imported/progressive results.mp3-523c47e9bb26b889a56bbd99559394ba.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b7y44640quysh"
+path="res://.godot/imported/tresure chest.mp3-84a1ab70ca7a3f20630a6c70e7be1fda.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/tresure chest.mp3"
+dest_files=["res://.godot/imported/tresure chest.mp3-84a1ab70ca7a3f20630a6c70e7be1fda.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

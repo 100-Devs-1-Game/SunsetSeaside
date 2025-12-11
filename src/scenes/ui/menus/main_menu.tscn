@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=51 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
 [ext_resource type="PackedScene" uid="uid://c21pslr81k4p4" path="res://scenes/ui/title_text.tscn" id="3_1p6kj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://dgeo6lmgw5tnf" path="res://assets/shaders/menu_blur.gdshader" id="5_oj1oe"]
 [ext_resource type="Script" uid="uid://d1d0u5a6wjyh0" path="res://scenes/ui/menus/scripts/menu_settings.gd" id="6_y4aia"]
 [ext_resource type="PackedScene" uid="uid://d21bo2dynh40w" path="res://scenes/ui/menus/level_slot.tscn" id="7_dhmlp"]
+[ext_resource type="Script" uid="uid://deiunffncaar7" path="res://scenes/ui/menus/scripts/button.gd" id="7_xs2a0"]
 [ext_resource type="Theme" uid="uid://xefwemd0japy" path="res://assets/themes/wooden_buttons.tres" id="8_jk7nv"]
 [ext_resource type="Texture2D" uid="uid://dfkc1quywc3cv" path="res://scenes/ui/menus/level_images/level_image_placeholder.tres" id="9_e7y46"]
 [ext_resource type="PackedScene" uid="uid://tvhgjh6s2skh" path="res://scenes/ui/spinner.tscn" id="9_nmbxx"]
@@ -309,6 +310,7 @@ focus_previous = NodePath("../../../HBoxContainer2/MarginContainer/button_quit")
 theme = ExtResource("8_jk7nv")
 text = "  levels ->
 "
+script = ExtResource("7_xs2a0")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
 layout_mode = 2
@@ -807,7 +809,6 @@ theme_override_font_sizes/font_size = 64
 text = "     play level!     "
 
 [node name="animation_panel" type="Panel" parent="menu_root/menu_levels/level_slots_root/MarginContainer"]
-visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_e7y46")
@@ -1293,7 +1294,9 @@ text = "< yes >
 
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer/button_settings" to="." method="_on_button_settings_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2/button_levels" to="." method="_on_button_levels_pressed"]
+[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2/button_levels" to="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2/button_levels" method="_on_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer/button_quit" to="." method="_on_button_quit_pressed"]
+[connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer/button_quit" to="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2/MarginContainer/button_quit" method="_on_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_levels" to="menu_root/menu_levels" method="_on_visibility_changed"]
 [connection signal="pressed" from="menu_root/menu_levels/level_slots_root/VBoxContainer2/MarginContainer/button_return_levels" to="." method="_on_button_return_settings_pressed"]
 [connection signal="pressed" from="menu_root/menu_levels/level_slots_root/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/button_play_level" to="menu_root/menu_levels" method="_on_button_play_level_pressed"]

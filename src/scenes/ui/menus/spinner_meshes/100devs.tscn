@@ -149,6 +149,7 @@ shadow_mesh = SubResource("ArrayMesh_riowa")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pw4h"]
 shading_mode = 0
+albedo_color = Color(0.162066, 0.162066, 0.162066, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5r0nj"]
 
@@ -220,6 +221,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_jrlxy")
 
 [node name="cone_center_edgfe" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0858723, 0, 0, 0, 0.0858723, 0, 0, 0, 0.0858723, 0, -0.0222752, 0)
+visible = false
 layers = 4
 mesh = SubResource("ArrayMesh_rumkp")
 skeleton = NodePath("")

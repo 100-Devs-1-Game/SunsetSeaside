@@ -43,6 +43,7 @@ func _blaow():
 	cannon_decal_ray.create_decal()
 	shot_delay_timer.start()
 	cannon_damager.damage()
+	DJ.create_audio(SFX_Setting.SOUND_EFFECT.CANNON_SHOT)
 	ammo -= 1
 	Events.ui_ammo_update.emit(ammo)
 	Events.weapon_fired.emit()

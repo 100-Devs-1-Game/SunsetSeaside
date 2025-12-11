@@ -398,13 +398,11 @@ pos_settings = NodePath("camera_system/pos_settings")
 pos_levels = NodePath("camera_system/pos_levels")
 
 [node name="camera_system" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="camera_mount" type="Node3D" parent="camera_system"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.792727, 0.966481, 4.63432)
 
 [node name="Camera3D" type="Camera3D" parent="camera_system/camera_mount"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 cull_mask = 1048551
 fov = 48.5
 
