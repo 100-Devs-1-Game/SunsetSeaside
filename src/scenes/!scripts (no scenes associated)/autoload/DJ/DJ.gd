@@ -82,15 +82,15 @@ func create_audio(effect_name : SFX_Setting.SOUND_EFFECT):
 
 #### music and ambience
 func switch_music(music_name : DJ.Music):
-	ambient_player["parameters/switch_to_clip"] = _get_music_from_enum(music_name)
+	music_player["parameters/switch_to_clip"] = _get_music_from_enum(music_name)
 	if !music_player.playing: music_player.playing = true
 
 func switch_ambience(ambience_name : DJ.Ambience):
 	ambient_player["parameters/switch_to_clip"] = _get_ambience_from_enum(ambience_name)
 	if !ambient_player.playing: ambient_player.playing = true
 
-func _get_music_from_enum(ambience_name : DJ.Music):
-	match ambience_name:
+func _get_music_from_enum(music_name : DJ.Music):
+	match music_name:
 		DJ.Music.MONKEYS_DOMAIN: return "monkey's domain"
 
 func _get_ambience_from_enum(ambience_name : DJ.Ambience):

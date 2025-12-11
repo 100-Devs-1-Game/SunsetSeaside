@@ -1,6 +1,8 @@
-[gd_scene load_steps=100 format=4 uid="uid://bxyf53ifrvvwv"]
+[gd_scene load_steps=97 format=4 uid="uid://bxyf53ifrvvwv"]
 
 [ext_resource type="Script" uid="uid://c35qacpu8na2l" path="res://scenes/levels/scripts/level.gd" id="1_dgmee"]
+[ext_resource type="PackedScene" uid="uid://m8sg2lc4iycr" path="res://assets/skyboxes/daylight.tscn" id="2_06g45"]
+[ext_resource type="Environment" uid="uid://7e517t3wcl3h" path="res://assets/skyboxes/sunset.tres" id="2_lhbfg"]
 [ext_resource type="Texture2D" uid="uid://bc1l3yxle0b8x" path="res://assets/devblocks/textures/light/texture_09.png" id="2_rafi0"]
 [ext_resource type="PackedScene" uid="uid://cwcaf4mcpsaqc" path="res://scenes/entities/level objects/floating_label.tscn" id="3_lhbfg"]
 [ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/level objects/explosive_barrel.tscn" id="4_06g45"]
@@ -29,39 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://b7r2y5s2yjonr" path="res://scenes/entities/level objects/skull.tscn" id="27_7bwl8"]
 [ext_resource type="PackedScene" uid="uid://0tahmp7igbtj" path="res://scenes/entities/level objects/net.tscn" id="28_phct6"]
 [ext_resource type="PackedScene" uid="uid://slqymgnmj1tp" path="res://scenes/entities/level objects/speed_ring.tscn" id="29_fsj2r"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_c7nhy"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0nxvq"]
-invert = true
-seamless = true
-as_normal_map = true
-noise = SubResource("FastNoiseLite_c7nhy")
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2vj2h"]
-sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0.982617, 0.462894, 0, 1)
-sky_curve = 0.0512267
-sky_energy_multiplier = 2.92
-sky_cover = SubResource("NoiseTexture2D_0nxvq")
-sky_cover_modulate = Color(0.824183, 0.365859, 1, 0.0117647)
-ground_bottom_color = Color(3.36915e-07, 0.20289, 0.218528, 1)
-ground_horizon_color = Color(0.0480435, 1.84942e-05, 0.215115, 1)
-ground_curve = 0.0336358
-sun_angle_max = 3.25
-sun_curve = 3.63773
-
-[sub_resource type="Sky" id="Sky_1u7m5"]
-sky_material = SubResource("ProceduralSkyMaterial_2vj2h")
-radiance_size = 0
-
-[sub_resource type="Environment" id="Environment_2sq1o"]
-background_mode = 2
-background_energy_multiplier = 0.72
-sky = SubResource("Sky_1u7m5")
-ambient_light_source = 3
-ambient_light_color = Color(0.726588, 0.554418, 3.85046e-07, 1)
-reflected_light_source = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_saq0o"]
 size = Vector3(1.5, 1.5, 1.5)
@@ -667,8 +636,13 @@ ammo_max = 420
 par_limit = 7
 time_limit = 4.2
 
+[node name="DirectionalLight3D" parent="." instance=ExtResource("2_06g45")]
+transform = Transform3D(-0.866025, -0.25, -0.433013, 0, -0.866025, 0.5, -0.5, 0.433013, 0.75, 0, 0, 0)
+visible = false
+light_color = Color(0.374044, 0.225161, 0, 1)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_2sq1o")
+environment = ExtResource("2_lhbfg")
 
 [node name="areas" type="Node" parent="."]
 

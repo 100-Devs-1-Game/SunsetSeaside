@@ -1,8 +1,9 @@
-[gd_scene load_steps=69 format=4 uid="uid://coj5ywltdfnig"]
+[gd_scene load_steps=65 format=4 uid="uid://coj5ywltdfnig"]
 
 [ext_resource type="Material" uid="uid://gwk8oa6f8bli" path="res://assets/material/big_island_001.tres" id="1_6pfuf"]
 [ext_resource type="Script" uid="uid://cvmw2ebnnsvk0" path="res://scenes/ui/menus/scripts/title_background.gd" id="1_aostd"]
 [ext_resource type="PackedScene" uid="uid://byvaffts1r8dp" path="res://scenes/entities/level objects/landscape/plant_floppy.tscn" id="2_dx5ps"]
+[ext_resource type="Environment" uid="uid://b0jigsuvxrm31" path="res://assets/skyboxes/midnight.tres" id="2_kt1x4"]
 [ext_resource type="PackedScene" uid="uid://b7ohh3c0eehg3" path="res://scenes/entities/level objects/landscape/palm_tree_001.tscn" id="3_yhkob"]
 [ext_resource type="PackedScene" uid="uid://dx760b7qnywhn" path="res://scenes/entities/level objects/landscape/palm_tree_002.tscn" id="4_x4lxq"]
 [ext_resource type="PackedScene" uid="uid://cb14xdso8e7ff" path="res://scenes/entities/level objects/landscape/palm_tree_003.tscn" id="5_w6mhe"]
@@ -354,39 +355,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f02cs")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_q13nw"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lxl1u"]
-invert = true
-seamless = true
-as_normal_map = true
-noise = SubResource("FastNoiseLite_q13nw")
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o763n"]
-sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0.982617, 0.462894, 0, 1)
-sky_curve = 0.0512267
-sky_energy_multiplier = 2.92
-sky_cover = SubResource("NoiseTexture2D_lxl1u")
-sky_cover_modulate = Color(0.824183, 0.365859, 1, 0.0117647)
-ground_bottom_color = Color(3.36915e-07, 0.20289, 0.218528, 1)
-ground_horizon_color = Color(0.0480435, 1.84942e-05, 0.215115, 1)
-ground_curve = 0.0336358
-sun_angle_max = 3.25
-sun_curve = 3.63773
-
-[sub_resource type="Sky" id="Sky_y0acb"]
-sky_material = SubResource("ProceduralSkyMaterial_o763n")
-radiance_size = 0
-
-[sub_resource type="Environment" id="Environment_0o6ne"]
-background_mode = 2
-background_energy_multiplier = 0.72
-sky = SubResource("Sky_y0acb")
-ambient_light_source = 3
-ambient_light_color = Color(0.726588, 0.554418, 3.85046e-07, 1)
-reflected_light_source = 2
-
 [node name="Title" type="Node3D" node_paths=PackedStringArray("camera", "camera_mount", "pos_start", "pos_title", "pos_settings", "pos_levels")]
 transform = Transform3D(1, 0, 0, 0, 0.975623, -0.219455, 0, 0.219455, 0.975623, 0, 0, 0)
 script = ExtResource("1_aostd")
@@ -397,12 +365,16 @@ pos_title = NodePath("camera_system/pos_title")
 pos_settings = NodePath("camera_system/pos_settings")
 pos_levels = NodePath("camera_system/pos_levels")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_kt1x4")
+
 [node name="camera_system" type="Node3D" parent="."]
 
 [node name="camera_mount" type="Node3D" parent="camera_system"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.792727, 0.966481, 4.63432)
 
 [node name="Camera3D" type="Camera3D" parent="camera_system/camera_mount"]
+visible = false
 cull_mask = 1048551
 fov = 48.5
 
@@ -813,17 +785,14 @@ layers = 2
 mesh = SubResource("ArrayMesh_kt1x4")
 skeleton = NodePath("")
 
-[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_0o6ne")
-
-[node name="Node3D" parent="." instance=ExtResource("33_i1kfu")]
+[node name="Node3D" parent="mesh" instance=ExtResource("33_i1kfu")]
 transform = Transform3D(1.32176, 0, 0, 0, 1.31656, -0.117106, 0, 0.117106, 1.31656, 0.66274, -1.51898, -2.97349)
 
-[node name="coconut" parent="." instance=ExtResource("34_csgey")]
+[node name="coconut" parent="mesh" instance=ExtResource("34_csgey")]
 transform = Transform3D(0.547262, 0, 0, 0, 0.533921, 0.120099, 0, -0.120099, 0.533921, -6.00488, -1.62043, -2.10669)
 
-[node name="dubloon" parent="." instance=ExtResource("35_kt1x4")]
-transform = Transform3D(0.0198586, -0.147381, 0, 0.147365, 0.0198565, -0.00218795, 0.00216836, 0.000292169, 0.148697, -8.45228, -1.26124, -0.629079)
+[node name="dubloon" parent="mesh" instance=ExtResource("35_kt1x4")]
+transform = Transform3D(0.0198586, -0.147381, 0, 0.147365, 0.0198565, -0.00218795, 0.00216836, 0.000292168, 0.148697, -8.45228, -1.26124, -0.629079)
 
-[node name="skull_nolowerjaw" parent="." instance=ExtResource("36_csgey")]
+[node name="skull_nolowerjaw" parent="mesh" instance=ExtResource("36_csgey")]
 transform = Transform3D(0.160207, 0, 0, 0, 0.156302, 0.0351583, 0, -0.0351583, 0.156302, 8.37465, -2.64092, -14.2421)

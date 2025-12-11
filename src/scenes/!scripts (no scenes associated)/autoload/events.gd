@@ -42,8 +42,10 @@ signal ui_set_level_vars(max_ammo, par_limit, time_limit) # emitted by gamestate
 signal ui_send_end_results(time, time_limit, shots_taken, par_limit, jug_grabbed) # sends these values to the ending screen to be displayed after calc
 signal ui_send_level_history(time_best, shots_best, jug_history, hardcore_history) # split into two methods for ease
 signal ui_update_title_state(state)
+# title level
 signal set_title_position(pos : Enums.TitlePosition)
 signal force_title_position(pos : Enums.TitlePosition)
+signal skybox_switch(skybox : Enums.Skybox)
 
 ###### settings
 signal set_sens(sensitivity : float) # done

@@ -185,6 +185,7 @@ func update_time_best_label(value):
 func restart_level():
 	Events.player_death.emit(Enums.PlayerDeathType.INSTANT)
 	Events.close_menu.emit()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 # signal functions

@@ -76,7 +76,6 @@ func _ready():
 	set_meta(&"Player", self) # for recognition of body type by areas
 	Gamestate.player = self
 	
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	# setting viewmodel viewport to be the same size as the window
 	$Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport.size = DisplayServer.window_get_size()
 
@@ -85,7 +84,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	# setting viewmodel camera to default camera position
 	viewmodel_camera.global_transform = camera.global_transform
 	
@@ -126,6 +124,7 @@ func _move(delta):
 	var f_input : float = Input.get_axis("move_up", "move_down")
 	var h_input : float = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	direction = Vector3(h_input, 0, f_input).rotated(Vector3.UP, h_rot).normalized()	
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: direction = Vector3.ZERO # lock movement input in menus
 	if direction != Vector3.ZERO:
 		_first_input_check()
 	
@@ -176,6 +175,7 @@ func _ring_boost():
 	Events.add_camera_shake.emit(0.2)
 
 func _input_calc():
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return  # lock movement input in menus
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_velocity

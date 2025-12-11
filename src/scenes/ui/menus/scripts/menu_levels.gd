@@ -95,6 +95,7 @@ func _on_slot_clicked(slot, button):
 	current_slot_info["id"] = slot.level_id
 	_show_level_info(slot, button)
 	DJ.create_audio(SFX_Setting.SOUND_EFFECT.UI_PRESSED)
+	_update_skybox(slot.level_grouping)
 
 func _show_level_info(slot, button):
 	# animate panel
@@ -196,7 +197,13 @@ func _check_bonus_availability(): # these could only unlock if all time, par or 
 	else:
 		label_bonus_slots.text = "[wave freq=2 amp=30][rainbow freq=0.15]?"
 	
-	
+func _update_skybox(level_grouping):
+	match level_grouping:
+		Enums.LevelGrouping.DAYLIGHT: Events.skybox_switch.emit(Enums.Skybox.SUNSET)
+		Enums.LevelGrouping.SUNSET: Events.skybox_switch.emit(Enums.Skybox.SUNSET)
+		Enums.LevelGrouping.MIDNIGHT: Events.skybox_switch.emit(Enums.Skybox.MIDNIGHT)
+		Enums.LevelGrouping.SUNRISE: Events.skybox_switch.emit(Enums.Skybox.SUNSET)
+		Enums.LevelGrouping.BONUS: Events.skybox_switch.emit(Enums.Skybox.BONUS)
 
 func _on_button_play_level_pressed() -> void:
 	Events.open_level.emit(current_slot_info["grouping"], current_slot_info["id"])

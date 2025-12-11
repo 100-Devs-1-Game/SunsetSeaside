@@ -1,0 +1,46 @@
+[gd_resource type="Environment" load_steps=7 format=3 uid="uid://d35lw7vgekny"]
+
+[sub_resource type="Curve" id="Curve_t14da"]
+_data = [Vector2(0.15444, 0), 0.0, 0.0, 0, 0, Vector2(0.370656, 1), 0.0, 0.0, 0, 0, Vector2(0.509652, 0.0186688), 0.0, 0.0, 0, 0, Vector2(0.656371, 1), 1.15072, 1.15072, 0, 0, Vector2(0.891892, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_bhsxe"]
+_data = [Vector2(0.281853, 0), 0.0, 0.0, 0, 0, Vector2(0.432432, 1), 0.0, 0.0, 0, 0, Vector2(0.552123, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_pwd6w"]
+_data = [Vector2(0.409266, 0), 0.0, 0.0, 0, 0, Vector2(0.594595, 1), 0.0, 0.0, 0, 0, Vector2(0.760618, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_b00ap"]
+curve_x = SubResource("Curve_t14da")
+curve_y = SubResource("Curve_bhsxe")
+curve_z = SubResource("Curve_pwd6w")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o763n"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.156591, 0.475965, 0, 1)
+sky_curve = 0.0955926
+sky_energy_multiplier = 2.92
+sky_cover = SubResource("CurveXYZTexture_b00ap")
+sky_cover_modulate = Color(1, 1, 1, 0.258824)
+ground_bottom_color = Color(3.36915e-07, 0.20289, 0.218528, 1)
+ground_horizon_color = Color(0.0480435, 1.84942e-05, 0.215115, 1)
+ground_curve = 0.0336358
+sun_angle_max = 3.25
+sun_curve = 3.63773
+
+[sub_resource type="Sky" id="Sky_y0acb"]
+sky_material = SubResource("ProceduralSkyMaterial_o763n")
+radiance_size = 0
+
+[resource]
+background_mode = 2
+background_energy_multiplier = 0.72
+sky = SubResource("Sky_y0acb")
+sky_rotation = Vector3(0, 3.14159, 0)
+ambient_light_source = 3
+ambient_light_color = Color(0, 0, 0, 0)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 1.72
+reflected_light_source = 2

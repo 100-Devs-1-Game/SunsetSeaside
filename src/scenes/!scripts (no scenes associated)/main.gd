@@ -22,6 +22,7 @@ func _ready():
 func _open_level(grouping, id):
 	_load_scene(load(Gamestate.level_manager.fetch_level_path(grouping, id)))
 	Events.close_menu.emit()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _load_scene(scene : PackedScene):
 	if scene_container.get_children().size() != 0:
