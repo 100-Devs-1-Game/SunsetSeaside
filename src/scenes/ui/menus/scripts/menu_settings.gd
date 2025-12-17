@@ -25,7 +25,7 @@ extends MarginContainer
 @export var checkbox_fullscreen : CheckBox
 @export var checkbox_4by3 : CheckBox
 @export var checkbox_labels_hidden : CheckBox
-@export var checkbox_crouch_toggle : CheckBox
+#@export var checkbox_crouch_toggle : CheckBox
 
 var current_settings_data : Dictionary = {}
 
@@ -57,9 +57,9 @@ func _on_visibility_changed() -> void:
 		label_ambient_vol.text = " " + str(snapped(current_settings_data["ambient vol"], 1)) 		
 		
 		checkbox_fullscreen.button_pressed = current_settings_data["fullscreen"]
-		checkbox_4by3.button_pressed = current_settings_data["4by3"]
+		#checkbox_4by3.button_pressed = current_settings_data["4by3"]
 		checkbox_labels_hidden.button_pressed = current_settings_data["hidden labels"]
-		checkbox_crouch_toggle.button_pressed = current_settings_data["crouch toggle"]
+		#checkbox_crouch_toggle.button_pressed = current_settings_data["crouch toggle"]
 
 	if self.visible == false:
 		Keeper.write_settings_data(current_settings_data)
@@ -77,10 +77,10 @@ func _on_slider_fov_value_changed(value: float) -> void:
 	Events.set_fov.emit(snapped(value, 1))
 	current_settings_data["fov"] = value
 	
-func _on_slider_res_scale_value_changed(value: float) -> void:
-	label_res_scale_val.text = " " + str(snapped(value, 1)) + "x"
-	Events.set_reso_scale.emit(snapped(value, 1))
-	current_settings_data["resolution scale"] = value
+#func _on_slider_res_scale_value_changed(value: float) -> void:
+	#label_res_scale_val.text = " " + str(snapped(value, 1)) + "x"
+	#Events.set_reso_scale.emit(snapped(value, 1))
+	#current_settings_data["resolution scale"] = value
 
 
 
@@ -110,14 +110,14 @@ func _on_checkbox_fullscreen_toggled(toggled_on: bool) -> void:
 	Events.set_fullscreen.emit(toggled_on)
 	current_settings_data["fullscreen"] = toggled_on
 
-func _on_checkbox_4_by_3_toggled(toggled_on: bool) -> void:
-	Events.set_4by3.emit(toggled_on)
-	current_settings_data["4by3"] = toggled_on
+#func _on_checkbox_4_by_3_toggled(toggled_on: bool) -> void:
+	#Events.set_4by3.emit(toggled_on)
+	#current_settings_data["4by3"] = toggled_on
 	
 func _on_checkbox_hide_labels_toggled(toggled_on: bool) -> void:
 	Events.set_labels_hidden.emit(toggled_on)
 	current_settings_data["hidden labels"] = toggled_on
 	
-func _on_checkbox_crouch_toggle_toggled(toggled_on: bool) -> void:
-	Events.set_crouch_toggle.emit(toggled_on)
-	current_settings_data["crouch toggle"] = toggled_on
+#func _on_checkbox_crouch_toggle_toggled(toggled_on: bool) -> void:
+	#Events.set_crouch_toggle.emit(toggled_on)
+	#current_settings_data["crouch toggle"] = toggled_on

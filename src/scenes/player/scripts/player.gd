@@ -14,7 +14,6 @@ extends CharacterBody3D
 @onready var standing_collision_shape = $standing_collision_shape
 @onready var crouching_collision_shape = $crouching_collision_shape
 
-@onready var edge_detectors: Node3D = $edge_detectors
 @onready var explosion_trail_spawner: Node3D = $explosion_trail_spawner
 
 @export var console_ui: Control
@@ -42,7 +41,8 @@ const gravity = 16.0
 
 # crouch vars
 var crouch_headspeed = 10.0 # how fast a crouch is completed
-var crouching_depth = -0.5
+var crouch_height_difference = 0.7 # difference in height between shapes
+var crouch_jump_offset = -0.1 # the offset of height change when crouch jumping
 #var crouch_toggle = false
 
 # jump vars / const
@@ -70,6 +70,7 @@ var landing_buffer = 48 # decreases the length of the sin wave on both ends to m
 
 # states
 var state = Enums.PlayerState.WALKING
+var crouching_last_frame = false
 
 # reminder: type safety is for pussies
 func _ready():
@@ -182,10 +183,10 @@ func _input_calc():
 		_first_input_check()
 
 	# handle movement augmentations (crouching, sliding, sprinting)
+	crouching_last_frame = (state == Enums.PlayerState.CROUCHING) # for crouch jumping calc
 	if Input.is_action_pressed("crouch"):
 		state = Enums.PlayerState.CROUCHING
-		
-	elif !edge_detectors.up.is_colliding():
+	elif !test_move(self.global_transform, Vector3(0, crouch_height_difference, 0)):
 		# handle sprinting
 		if Input.is_action_pressed("sprint"):
 			state = Enums.PlayerState.SPRINTING
@@ -194,7 +195,7 @@ func _input_calc():
 
 	if Input.is_action_just_pressed("attack"):
 		Events.fire_weapon.emit()
-		_first_input_check()
+		_first_input_check() 
 
 	if Input.is_action_just_pressed("toggle_console"):
 		if console_ui.visible: console_ui.close()
@@ -207,9 +208,17 @@ func _input_calc():
 
 func _handle_crouch(delta):
 	if state == Enums.PlayerState.CROUCHING:
-		head.position.y =  lerp(head.position.y, original_head_pos.y + crouching_depth, delta * crouch_headspeed)
+		if !is_on_floor() && crouching_last_frame == false: # crouch jump 'teleport
+			self.global_position += Vector3(0.0, crouch_height_difference + crouch_jump_offset, 0.0)
+			head.position.y = original_head_pos.y + -crouch_height_difference
+
+		head.position.y =  lerp(head.position.y, original_head_pos.y - crouch_height_difference, delta * crouch_headspeed)
 		standing_collision_shape.disabled = true; crouching_collision_shape.disabled = false
 	else:
+		if !is_on_floor() && crouching_last_frame == true && !test_move(self.global_transform, Vector3(0, -crouch_height_difference, 0)):
+			self.global_position += Vector3(0.0, -crouch_height_difference - crouch_jump_offset, 0.0)
+			head.position.y = original_head_pos.y
+		
 		head.position.y =  lerp(head.position.y, original_head_pos.y, delta * crouch_headspeed)
 		standing_collision_shape.disabled = false; crouching_collision_shape.disabled = true
 

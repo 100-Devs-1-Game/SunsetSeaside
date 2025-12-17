@@ -42,8 +42,8 @@ func _spawn_decal():
 
 func _spawn_particles():
 	var new_particles = SMOKE_SPREAD.instantiate()
-	new_particles.global_position = self.global_position
 	child_container.add_child(new_particles)
+	new_particles.global_position = self.global_position
 	# create custom particles for explosive barrels
 	#new_particles.scale = explosion_particles_scale
 

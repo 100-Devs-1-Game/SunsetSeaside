@@ -21,7 +21,6 @@ extends Label3D
 @export var fade_out_pretime = 1.0 ## time before text fades out
 @export var macaw_text : bool = false
 
-##
 func _ready():
 	if Engine.is_editor_hint(): return 
 

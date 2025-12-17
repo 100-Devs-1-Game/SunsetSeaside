@@ -147,8 +147,7 @@ theme_override_font_sizes/font_size = 32
 text = "quit
 "
 
-[node name="menu_settings" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("label_sens_val", "label_fov_val", "label_res_scale_val", "label_master_vol", "label_sfx_vol", "label_music_vol", "label_ambient_vol", "slider_sens", "slider_fov", "slider_res_scale", "slider_master_vol", "slider_sfx_vol", "slider_music_vol", "slider_ambient_vol", "checkbox_fullscreen", "checkbox_4by3", "checkbox_labels_hidden", "checkbox_crouch_toggle")]
-visible = false
+[node name="menu_settings" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("label_sens_val", "label_fov_val", "label_res_scale_val", "label_master_vol", "label_sfx_vol", "label_music_vol", "label_ambient_vol", "slider_sens", "slider_fov", "slider_res_scale", "slider_master_vol", "slider_sfx_vol", "slider_music_vol", "slider_ambient_vol", "checkbox_fullscreen", "checkbox_4by3", "checkbox_labels_hidden")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -178,7 +177,6 @@ slider_ambient_vol = NodePath("VBoxContainer/MarginContainer/VBoxContainer/Margi
 checkbox_fullscreen = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_fullscreen")
 checkbox_4by3 = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_4by3")
 checkbox_labels_hidden = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_hide_labels")
-checkbox_crouch_toggle = NodePath("VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_crouch_toggle")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_settings"]
 layout_mode = 2
@@ -277,25 +275,6 @@ value = 0.2
 layout_mode = 2
 text = " 0.4"
 label_settings = SubResource("LabelSettings_sfe43")
-
-[node name="Label" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-text = "toggle crouch: "
-label_settings = SubResource("LabelSettings_3kafx")
-horizontal_alignment = 2
-
-[node name="checkbox_crouch_toggle" type="CheckBox" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-
-[node name="Label7" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-text = "hide macaw labels: "
-label_settings = SubResource("LabelSettings_3kafx")
-horizontal_alignment = 2
-
-[node name="checkbox_hide_labels" type="CheckBox" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 34)
-layout_mode = 2
 
 [node name="HSeparator5" type="HSeparator" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -428,6 +407,16 @@ horizontal_alignment = 2
 [node name="checkbox_fullscreen" type="CheckBox" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
+[node name="Label7" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "hide macaw speech: "
+label_settings = SubResource("LabelSettings_3kafx")
+horizontal_alignment = 2
+
+[node name="checkbox_hide_labels" type="CheckBox" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
 [node name="Label15" type="Label" parent="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer"]
 visible = false
 custom_minimum_size = Vector2(200, 0)
@@ -527,14 +516,13 @@ text = "  return  "
 [connection signal="pressed" from="menu_root/menu_selection/HBoxContainer/VBoxContainer/button_quit" to="." method="_on_button_quit_pressed"]
 [connection signal="visibility_changed" from="menu_root/menu_settings" to="menu_root/menu_settings" method="_on_visibility_changed"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer2/slider_sens" to="menu_root/menu_settings" method="_on_slider_sens_value_changed"]
-[connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_crouch_toggle" to="menu_root/menu_settings" method="_on_checkbox_crouch_toggle_toggled"]
-[connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_hide_labels" to="menu_root/menu_settings" method="_on_checkbox_hide_labels_toggled"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer4/slider_master_vol" to="menu_root/menu_settings" method="_on_slider_master_vol_value_changed"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer9/slider_sfx_vol" to="menu_root/menu_settings" method="_on_slider_sfx_vol_value_changed"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer8/slider_music_vol" to="menu_root/menu_settings" method="_on_slider_music_vol_value_changed"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer7/slider_ambient_vol" to="menu_root/menu_settings" method="_on_slider_ambient_vol_value_changed"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer5/slider_fov" to="menu_root/menu_settings" method="_on_slider_fov_value_changed"]
 [connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_fullscreen" to="menu_root/menu_settings" method="_on_checkbox_fullscreen_toggled"]
+[connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_hide_labels" to="menu_root/menu_settings" method="_on_checkbox_hide_labels_toggled"]
 [connection signal="toggled" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/checkbox_4by3" to="menu_root/menu_settings" method="_on_checkbox_4_by_3_toggled"]
 [connection signal="value_changed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/HBoxContainer6/slider_res_scale" to="menu_root/menu_settings" method="_on_slider_res_scale_value_changed"]
 [connection signal="pressed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer/button_return_settings" to="." method="_on_button_return_settings_pressed"]
