@@ -21,6 +21,8 @@ extends Label3D
 @export var fade_out_pretime = 1.0 ## time before text fades out
 @export var macaw_text : bool = false
 
+signal label_has_faded()
+
 func _ready():
 	if Engine.is_editor_hint(): return 
 
@@ -38,6 +40,7 @@ func _on_timer_timeout() -> void:
 	animation_player.play("fade_out")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	label_has_faded.emit()
 	queue_free()
 
 func _hide_macaw_text(hidden):

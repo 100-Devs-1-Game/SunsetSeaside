@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b4u7c8nb0m5df" path="res://scenes/!scripts (no scenes associated)/autoload/DJ/DJ.gd" id="1_f6ed7"]
 [ext_resource type="Script" uid="uid://bp61hy8n4cd1y" path="res://scenes/!scripts (no scenes associated)/autoload/DJ/resources/sfx_setting.gd" id="2_hfe37"]
 [ext_resource type="AudioStream" uid="uid://cqwwgkttyeoty" path="res://assets/audio/sfx/jug_collect.mp3" id="3_iqw7o"]
-[ext_resource type="AudioStream" uid="uid://bnvkrjvem4ec5" path="res://assets/audio/sfx/cannon.mp3" id="4_eycj4"]
+[ext_resource type="AudioStream" uid="uid://c7jgkc36fgwjj" path="res://assets/audio/sfx/cannon_edit.mp3" id="3_rdi1t"]
 [ext_resource type="AudioStream" uid="uid://bsin6jhobrgvr" path="res://assets/audio/sfx/barrel_explosion.mp3" id="4_rdi1t"]
 [ext_resource type="AudioStream" uid="uid://ddkhhqmousxhm" path="res://assets/audio/sfx/menu select.mp3" id="5_rdi1t"]
 [ext_resource type="AudioStream" uid="uid://d2oyvuya83e4m" path="res://assets/audio/sfx/footstep_1.mp3" id="6_ghetq"]
@@ -17,7 +17,7 @@
 [sub_resource type="Resource" id="Resource_calmg"]
 script = ExtResource("2_hfe37")
 name = 0
-audio_file = ExtResource("4_eycj4")
+audio_file = ExtResource("3_rdi1t")
 volume = 0
 pitch_scale = 1.0
 pitch_randomness = 0.0
@@ -134,9 +134,9 @@ metadata/_custom_type_script = "uid://bp61hy8n4cd1y"
 script = ExtResource("2_hfe37")
 name = 12
 audio_file = ExtResource("11_c3sfa")
-volume = 0
+volume = -16
 pitch_scale = 1.0
-pitch_randomness = 0.0
+pitch_randomness = 0.12
 limit = 5
 metadata/_custom_type_script = "uid://bp61hy8n4cd1y"
 

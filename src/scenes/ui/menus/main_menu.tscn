@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=53 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
 [ext_resource type="PackedScene" uid="uid://c21pslr81k4p4" path="res://scenes/ui/title_text.tscn" id="3_1p6kj"]
@@ -203,6 +203,11 @@ font_color = Color(1, 0.291825, 0.300667, 1)
 font = ExtResource("3_p0q51")
 font_size = 40
 
+[sub_resource type="LabelSettings" id="LabelSettings_51wkr"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_vk2m5"]
+
 [node name="main_menu" type="CanvasLayer"]
 script = ExtResource("1_flhq8")
 
@@ -237,9 +242,12 @@ custom_minimum_size = Vector2(196, 196)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+mouse_filter = 2
 
 [node name="spinner" parent="menu_root/menu_title/MarginContainer" instance=ExtResource("9_nmbxx")]
+custom_minimum_size = Vector2(196, 196)
 layout_mode = 2
+mouse_filter = 0
 spinner_mesh = ExtResource("4_r1no3")
 spinner_visible_on_start = true
 instance = 5
@@ -253,10 +261,12 @@ label_settings = SubResource("LabelSettings_r1no3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_title"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="menu_root/menu_title/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_title/VBoxContainer/HBoxContainer"]
@@ -270,10 +280,12 @@ tilt_amount_x = 3.0
 [node name="vbox_buttons" type="VBoxContainer" parent="menu_root/menu_title/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
+mouse_filter = 2
 theme_override_constants/separation = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 32
 alignment = 1
 
@@ -315,6 +327,7 @@ script = ExtResource("7_xs2a0")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer2"]
@@ -1290,6 +1303,33 @@ text = "< yes >
 "
 script = ExtResource("7_xs2a0")
 
+[node name="menu_credits" type="MarginContainer" parent="menu_root"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu_root/menu_credits"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="menu_root/menu_credits/VBoxContainer"]
+layout_mode = 2
+text = "juve2"
+label_settings = SubResource("LabelSettings_51wkr")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="menu_root/menu_credits/VBoxContainer"]
+layout_mode = 2
+text = "design, programming, "
+label_settings = SubResource("LabelSettings_vk2m5")
+horizontal_alignment = 1
+
+[connection signal="gui_input" from="menu_root/menu_title/MarginContainer/spinner" to="." method="_on_spinner_gui_input"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer/button_settings" to="." method="_on_button_settings_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer/button_settings" to="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer/button_settings" method="_on_pressed"]
 [connection signal="pressed" from="menu_root/menu_title/VBoxContainer/vbox_buttons/HBoxContainer/MarginContainer2/button_levels" to="." method="_on_button_levels_pressed"]

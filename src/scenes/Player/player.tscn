@@ -1,9 +1,9 @@
-[gd_scene load_steps=78 format=4 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=87 format=4 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" uid="uid://f76fggl2uyob" path="res://scenes/player/scripts/player.gd" id="1_twte0"]
 [ext_resource type="Script" uid="uid://bw1c3unoeydxt" path="res://scenes/player/scripts/head.gd" id="2_c4h5g"]
 [ext_resource type="Script" uid="uid://bwyvdfclwdvt8" path="res://scenes/player/scripts/console_ui.gd" id="3_uiqp4"]
-[ext_resource type="AudioStream" uid="uid://dhcbr0641oraf" path="res://assets/sounds/player/footstep_3.wav" id="3_umd5a"]
+[ext_resource type="AudioStream" path="res://assets/sounds/player/footstep_3.wav" id="3_umd5a"]
 [ext_resource type="Script" uid="uid://cw30x4wy5quuw" path="res://scenes/player/scripts/headbob_pivot.gd" id="3_uxo23"]
 [ext_resource type="Script" uid="uid://r46iblp0dqej" path="res://scenes/player/scripts/ui.gd" id="4_jxtnq"]
 [ext_resource type="Script" uid="uid://djlu56q6npdxd" path="res://scenes/player/scripts/viewmodel_camera.gd" id="4_wwtew"]
@@ -65,6 +65,9 @@ font_color = Color(0.454902, 0.882353, 0.890196, 1)
 font = ExtResource("5_3j4b4")
 font_size = 24
 font_color = Color(1, 0.622923, 0.192928, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ydkj"]
 font = ExtResource("5_3j4b4")
@@ -111,6 +114,77 @@ height = 0.4
 transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("8_jxtnq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sc020"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_v48ws"]
+_surfaces = [{
+"aabb": AABB(-2.68327, -3, -2.55192, 5.36655, 6, 5.10384),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgAEAAAAAgADAAUAAgAFAAQAAwAGAAUABAAFAAcABQAGAAcAAAAEAAgABAAHAAgAAAAJAAEAAAAIAAkAAQAKAAMACgAGAAMACQAKAAEABwAGAAsACAAHAAsACwAGAAoACAALAAkACQALAAoA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("/38AAP9/AAByWMFG//8AAIznwUYazwAAjKc9uf//AACM58FG5DAAAP//Pbn/fwAA/3////9/AACMpz25AAAAAHJYwUYAAAAAAADBRv9/AAByGD25Gs8AAHIYPbnkMAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_je6jj"]
+resource_name = "sphere_low_poly_Icosphere_001"
+_surfaces = [{
+"aabb": AABB(-2.68327, -3, -2.55192, 5.36655, 6, 5.10384),
+"attribute_data": PackedByteArray("iy7//0UXr9fRRa/Xiy5grwAAYK9FFxGHFl1gr9FFEYdcdK/XFl3//6KLYK9cdBGH6KKv16KL//8tumCv6KIRh3PRr9ctuv//uehgr3PREYf//6/Xuej//w=="),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAQAEAAMABAAFAAMAAgADAAYAAwAHAAYAAgAGAAgAAgAIAAkACAAGAAoABgALAAoACAAKAAwADQAIAAwADAAKAA4ACgAPAA4ADAAOABAAEQAMABAAEAAOABIADgATABIAEAASABQAFQAQABQA"),
+"material": SubResource("StandardMaterial3D_sc020"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 22,
+"vertex_data": PackedByteArray("/38AAP9//sByWMFG//8yl4znwUYaz3qqjKc9uf//wJZyGD25Gs+Lqf9/////f/7A//89uf9/JsL/f////390yIznwUbkMLPa/38AAP9/VNWMpz25AACK8/9/////f13lcljBRgAAivP/fwAA/3/29nIYPbnkMLPa/3////9/9vYAAMFG/38mwv9/AAD/f13lchg9uRrP+qz/f////39U1XJYwUb//3Gb/38AAP9/dMjKHppwxTihpRldrTQM0fhF7Lb4zjThZI8MqYYUsd9lP6V0oCFUVVRVe5vCA/3M/BmDZDz8mnayRFmLXt5kiUy78lZ46wEzAubGmJTIqqqqqpYpLdNNIJnA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_v48ws")
+
+[sub_resource type="Curve" id="Curve_12by8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.497959, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_gfkia"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.502041, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_g4q6x"]
+curve_x = SubResource("Curve_12by8")
+curve_y = SubResource("Curve_gfkia")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yj68g"]
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.94902, 0.929412, 0, 1)
+albedo_texture = SubResource("CurveXYZTexture_g4q6x")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_007i1"]
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.94902, 0.929412, 0, 0.509804)
+albedo_texture = SubResource("CurveXYZTexture_g4q6x")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6cv16"]
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.94902, 0.929412, 0, 0.364706)
+albedo_texture = SubResource("CurveXYZTexture_g4q6x")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kle5k"]
 resource_name = "CannonFPS_mat"
@@ -789,7 +863,6 @@ theme_override_constants/separation = 0
 [node name="timer_label" type="HBoxContainer" parent="Head/headbob_pivot/Camera3D/SubViewportContainer2/SubViewport/ui/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
-alignment = 2
 script = ExtResource("5_fcs02")
 
 [node name="label_min" type="Label" parent="Head/headbob_pivot/Camera3D/SubViewportContainer2/SubViewport/ui/VBoxContainer/MarginContainer2/VBoxContainer/timer_label"]
@@ -950,7 +1023,7 @@ scale_variance = 0.04
 flash_lifespan = 0.04
 
 [node name="flash_sprite" type="Sprite3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun/mesh_mover/mesh/muzzle"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, -0.0103334)
 layers = 2
 material_override = SubResource("StandardMaterial3D_u0xi3")
 texture = ExtResource("8_jxtnq")
@@ -967,6 +1040,30 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.
 [node name="trail_timer" type="Timer" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun/mesh_mover/mesh/muzzle"]
 wait_time = 0.08
 one_shot = true
+
+[node name="flash_mesh" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun/mesh_mover/mesh/muzzle"]
+transform = Transform3D(0.012321, 0, 0, 0, 0.012321, 0, 0, 0, 0.012321, 0, 0, -0.0351518)
+
+[node name="Icosphere" type="MeshInstance3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun/mesh_mover/mesh/muzzle/flash_mesh"]
+transform = Transform3D(0.526318, 0.850287, -1.17609e-08, -0.71663, 0.443585, 0.538212, 0.457635, -0.28327, 0.842809, 0.00221148, 0.0161214, 4.76868)
+layers = 2
+mesh = SubResource("ArrayMesh_je6jj")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_yj68g")
+
+[node name="Icosphere2" type="MeshInstance3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun/mesh_mover/mesh/muzzle/flash_mesh"]
+transform = Transform3D(0.112967, 1.24947, 0.358612, -1.15465, -0.0689047, 0.603803, 0.59713, -0.369616, 1.09971, 0.00221798, 0.01613, 2.94458)
+layers = 2
+mesh = SubResource("ArrayMesh_je6jj")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_007i1")
+
+[node name="Icosphere3" type="MeshInstance3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun/mesh_mover/mesh/muzzle/flash_mesh"]
+transform = Transform3D(0.859931, 1.41653, 0.00916848, -1.19646, 0.720561, 0.891847, 0.758368, -0.46942, 1.39666, 0.00221798, -0.184436, 0.573811)
+layers = 2
+mesh = SubResource("ArrayMesh_je6jj")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_6cv16")
 
 [node name="cannon" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun/mesh_mover/mesh"]
 transform = Transform3D(-1.33714e-09, 0, -0.0305903, 0, 0.0305903, 0, 0.0305903, 0, -1.33714e-09, 0, 0.0323167, 0.15628)

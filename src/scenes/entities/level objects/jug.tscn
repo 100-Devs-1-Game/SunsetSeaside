@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dlo72yn7rkg4u"]
+[gd_scene load_steps=27 format=4 uid="uid://dlo72yn7rkg4u"]
 
 [ext_resource type="Script" uid="uid://ddnqe18jvlv83" path="res://scenes/entities/level objects/scripts/jug.gd" id="1_ydxnq"]
 [ext_resource type="Shader" uid="uid://hwu37npmqd16" path="res://assets/shaders/outline.gdshader" id="2_pl2tn"]
@@ -11,7 +11,7 @@ shader = ExtResource("2_pl2tn")
 shader_parameter/normal_threshold = 12.0
 shader_parameter/depth_threshold = 1.0
 shader_parameter/depth_artifact_correction_coef = 0.5
-shader_parameter/outline_color = Color(0.837677, 0.424009, 3.85046e-07, 1)
+shader_parameter/outline_color = Color(0.913176, 0.711239, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n48tg"]
 resource_name = "Material.001"
@@ -56,17 +56,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pwasj")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bebki"]
-render_priority = 0
-shader = ExtResource("2_pl2tn")
-shader_parameter/normal_threshold = 12.0
-shader_parameter/depth_threshold = 1.0
-shader_parameter/depth_artifact_correction_coef = 12.0
-shader_parameter/outline_color = Color(0.837677, 0.424009, 3.85046e-07, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rpfvo"]
 resource_name = "Material"
-next_pass = SubResource("ShaderMaterial_bebki")
+next_pass = SubResource("StandardMaterial3D_n48tg")
 cull_mode = 2
 albedo_color = Color(0.807444, 0.722044, 0.503852, 1)
 albedo_texture = ExtResource("3_v2qbh")
@@ -137,6 +129,51 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pl2tn")
 
+[sub_resource type="Curve" id="Curve_a3x41"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.502041, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_akpbg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.502041, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_qrsp7"]
+_data = [Vector2(0, 0.123596), 0.0, 0.0, 0, 0, Vector2(0.502041, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.123596), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_o7o72"]
+curve_x = SubResource("Curve_a3x41")
+curve_y = SubResource("Curve_akpbg")
+curve_z = SubResource("Curve_qrsp7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwasj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwasj"]
+next_pass = SubResource("ShaderMaterial_pwasj")
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.533333)
+albedo_texture = SubResource("CurveXYZTexture_o7o72")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a3x41"]
+next_pass = SubResource("ShaderMaterial_pwasj")
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.901764, 0.264359, 0, 0.0941176)
+albedo_texture = SubResource("CurveXYZTexture_o7o72")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_pwasj"]
+inner_radius = 1.2
+outer_radius = 1.7
+rings = 8
+ring_segments = 4
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pl2tn"]
 frequency = 0.003
 fractal_type = 2
@@ -150,32 +187,17 @@ seamless = true
 seamless_blend_skirt = 0.0
 noise = SubResource("FastNoiseLite_pl2tn")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwasj"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwasj"]
-next_pass = SubResource("ShaderMaterial_pwasj")
-transparency = 1
-cull_mode = 1
-shading_mode = 0
-albedo_color = Color(0.917647, 0.462745, 0, 0.435294)
-albedo_texture = SubResource("NoiseTexture2D_m1pmm")
-
-[sub_resource type="TorusMesh" id="TorusMesh_pwasj"]
-inner_radius = 1.2
-outer_radius = 1.7
-rings = 8
-ring_segments = 4
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2qbh"]
 next_pass = SubResource("ShaderMaterial_pwasj")
 transparency = 1
 blend_mode = 1
 cull_mode = 1
 shading_mode = 0
-albedo_color = Color(0.278431, 0.470588, 0, 1)
+albedo_color = Color(0.576153, 0.0026726, 0.845089, 1)
 albedo_texture = SubResource("NoiseTexture2D_m1pmm")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e52dn"]
+radius = 0.55
 
 [node name="jug" type="Node3D"]
 script = ExtResource("1_ydxnq")
@@ -188,20 +210,32 @@ script = ExtResource("1_ydxnq")
 transform = Transform3D(0.268456, -0.154993, 0, 0.154993, 0.268456, 0, 0, 0, 0.309987, 0.031064, -0.0930981, 0)
 
 [node name="2_handle" type="MeshInstance3D" parent="mesh_container/mesh_spinner/rum_jug_brown2"]
+transform = Transform3D(1, 5.96046e-08, 0, -5.96046e-08, 1, 0, 0, 0, 1, -0.0424139, 0.0693626, 0)
+layers = 8
 mesh = SubResource("ArrayMesh_m7roi")
 skeleton = NodePath("")
 
 [node name="3_cork" type="MeshInstance3D" parent="mesh_container/mesh_spinner/rum_jug_brown2"]
+transform = Transform3D(1, 5.96046e-08, 0, -5.96046e-08, 1, 0, 0, 0, 1, -0.0424139, 0.0693626, 0)
+layers = 8
 mesh = SubResource("ArrayMesh_pi620")
 skeleton = NodePath("")
 
 [node name="Icosphere" type="MeshInstance3D" parent="mesh_container/mesh_spinner"]
-transform = Transform3D(0.124928, 0.0874753, 0, -0.0874753, 0.124928, 0, 0, 0, 0.152508, -0.000555776, 0.00214651, 0.00113448)
+transform = Transform3D(0.124928, 0.0874753, 0, -0.0874753, 0.124928, 0, 0, 0, 0.152508, -0.0400156, 0, 0.0106079)
 mesh = SubResource("ArrayMesh_je6jj")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_pwasj")
 
+[node name="Icosphere2" type="MeshInstance3D" parent="mesh_container/mesh_spinner"]
+transform = Transform3D(0.157436, 0.110238, 0, -0.110238, 0.157436, 0, 0, 0, 0.192193, -0.0400156, 0, 0.0106079)
+mesh = SubResource("ArrayMesh_je6jj")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_a3x41")
+
 [node name="mesh_spinner_outer" type="Node3D" parent="mesh_container"]
+transform = Transform3D(0.786405, 0.0529549, -0.0168495, -0.0528609, 0.786577, 0.00492469, 0.017142, -0.00378267, 0.788171, -0.0397441, 0, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_container/mesh_spinner_outer"]
 transform = Transform3D(0.154993, -0.268456, 0, 0.268456, 0.154993, 0, 0, 0, 0.309987, 0, 0, 0)
@@ -216,5 +250,13 @@ monitorable = false
 transform = Transform3D(1.00078, 0, 0, 0, 1.00078, 0, 0, 0, 1.00078, 0, 0, 0)
 shape = SubResource("SphereShape3D_e52dn")
 debug_color = Color(1.54018e-06, 0.635778, 0.413067, 0.42)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.947401, 0)
+light_color = Color(0.982404, 0.699968, 5.77569e-06, 1)
+light_energy = 4.0
+light_cull_mask = 4293918728
+spot_range = 1.68538
+spot_angle = 15.0
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

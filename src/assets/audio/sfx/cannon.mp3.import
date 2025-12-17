@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/cannon.mp3-1d506050ae6b1b74b4a67bdeb7dd70a1.m
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

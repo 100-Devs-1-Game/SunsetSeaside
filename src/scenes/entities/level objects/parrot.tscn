@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bg5ak2esj2ry5"]
+[gd_scene load_steps=13 format=4 uid="uid://bg5ak2esj2ry5"]
 
 [ext_resource type="Texture2D" uid="uid://cmpvo7pq4kss1" path="res://assets/models/blue_scarlet_macaw_blue_scarlet_paint.png" id="1_4mlgx"]
 [ext_resource type="Script" uid="uid://k5n35kq65fi2" path="res://scenes/entities/level objects/scripts/parrot.gd" id="1_7ulfp"]
@@ -108,6 +108,9 @@ _data = {
 &"head_loop": SubResource("Animation_4mlgx")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_7ulfp"]
+radius = 0.1
+
 [node name="parrot" type="Node3D"]
 script = ExtResource("1_7ulfp")
 
@@ -150,5 +153,13 @@ libraries = {
 autostart = true
 
 [node name="speech_positioner" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="speech_positioner"]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="speech_positioner/Area3D"]
+shape = SubResource("SphereShape3D_7ulfp")
+debug_color = Color(0.879646, 0.000370799, 0.82406, 0.42)
 
 [connection signal="timeout" from="mesh/reversal_timer" to="." method="_on_reversal_timer_timeout"]

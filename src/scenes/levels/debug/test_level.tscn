@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=4 uid="uid://bxyf53ifrvvwv"]
+[gd_scene load_steps=102 format=4 uid="uid://bxyf53ifrvvwv"]
 
 [ext_resource type="Script" uid="uid://c35qacpu8na2l" path="res://scenes/levels/scripts/level.gd" id="1_dgmee"]
 [ext_resource type="PackedScene" uid="uid://m8sg2lc4iycr" path="res://assets/skyboxes/daylight.tscn" id="2_06g45"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://c8cgo4x2tdocl" path="res://scenes/entities/level objects/fragile_platform.tscn" id="5_dumr4"]
 [ext_resource type="PackedScene" uid="uid://cgfjxk20su37m" path="res://scenes/entities/level objects/destructable_platform.tscn" id="6_nv3la"]
 [ext_resource type="PackedScene" uid="uid://dtd51ahita8ja" path="res://scenes/entities/level objects/spawnpoint.tscn" id="7_pafix"]
-[ext_resource type="PackedScene" uid="uid://dbfmqi2iru3d0" path="res://scenes/entities/level objects/standing_torch.tscn" id="8_6nxfv"]
 [ext_resource type="PackedScene" uid="uid://dxqcyy72hv785" path="res://scenes/entities/areas/area_ending.tscn" id="9_nov45"]
 [ext_resource type="Texture2D" uid="uid://c16qerqj1k5sm" path="res://assets/models/cannon_sunset_assets_DefaultMaterial_BaseColor.png" id="10_boa7q"]
 [ext_resource type="Texture2D" uid="uid://c86hng33y8bhu" path="res://assets/models/cannon_sunset_assets_DefaultMaterial_Metallic-sunset_assets_DefaultMaterial_Roughness.png" id="11_hou5k"]
@@ -32,6 +31,8 @@
 [ext_resource type="PackedScene" uid="uid://0tahmp7igbtj" path="res://scenes/entities/level objects/net.tscn" id="28_phct6"]
 [ext_resource type="PackedScene" uid="uid://slqymgnmj1tp" path="res://scenes/entities/level objects/speed_ring.tscn" id="29_fsj2r"]
 [ext_resource type="PackedScene" uid="uid://bg5ak2esj2ry5" path="res://scenes/entities/level objects/parrot.tscn" id="32_06g45"]
+[ext_resource type="Script" uid="uid://gkq1ecnwpnnt" path="res://scenes/entities/level objects/scripts/parrot_speech.gd" id="33_dumr4"]
+[ext_resource type="PackedScene" uid="uid://ge78gxo560lg" path="res://scenes/entities/level objects/wooden_torch.tscn" id="33_nv3la"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_saq0o"]
 size = Vector3(1.5, 1.5, 1.5)
@@ -631,6 +632,24 @@ shadow_mesh = SubResource("ArrayMesh_lhbfg")
 albedo_texture = ExtResource("23_t434b")
 uv1_scale = Vector3(10, 10, 10)
 
+[sub_resource type="Resource" id="Resource_nv3la"]
+script = ExtResource("33_dumr4")
+text = "bruh"
+fade_out_pretime = 1.0
+metadata/_custom_type_script = "uid://gkq1ecnwpnnt"
+
+[sub_resource type="Resource" id="Resource_pafix"]
+script = ExtResource("33_dumr4")
+text = "jahseh"
+fade_out_pretime = 1.0
+metadata/_custom_type_script = "uid://gkq1ecnwpnnt"
+
+[sub_resource type="Resource" id="Resource_6nxfv"]
+script = ExtResource("33_dumr4")
+text = "onfroy"
+fade_out_pretime = 1.0
+metadata/_custom_type_script = "uid://gkq1ecnwpnnt"
+
 [node name="test_level" type="Node3D"]
 script = ExtResource("1_dgmee")
 ammo_max = 420
@@ -823,13 +842,6 @@ light_color = Color(0.586423, 0.761659, 0, 1)
 shadow_enabled = true
 omni_range = 14.524
 
-[node name="lightbulb9" type="OmniLight3D" parent="lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5901, 1.72705, 2.29928)
-layers = 3
-light_color = Color(0.586423, 0.761659, 0, 1)
-shadow_enabled = true
-omni_range = 2.887
-
 [node name="Node3D2" parent="." instance=ExtResource("3_lhbfg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6939, 1.79326, 10.3804)
 text = "test end zone"
@@ -891,12 +903,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.25, 4.37133)
 
 [node name="player_spawnpoint" parent="." instance=ExtResource("7_pafix")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.431464, 1.70804, 12.3036)
-
-[node name="standing_torch" parent="." instance=ExtResource("8_6nxfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6421, 1.35, -2.29177)
-
-[node name="standing_torch2" parent="." instance=ExtResource("8_6nxfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27634, 8.31438, -14.4898)
 
 [node name="area_ending" parent="." instance=ExtResource("9_nov45")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.465, 29.1068, 1.6564)
@@ -1258,6 +1264,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_owgeq")
 transform = Transform3D(-0.978466, 0, 0.206409, 0, 1, 0, -0.206409, 0, -0.978466, 74.7633, 43.6653, -28.8648)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="treetops1/beach_test"]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="treetops1/beach_test/StaticBody3D"]
 transform = Transform3D(1.49535, 0, 0, 0, 1.49535, 0, 0, 0, 1.49535, -5.27463, 0, -15.5049)
@@ -1301,6 +1308,18 @@ transform = Transform3D(0.998114, 0.0182851, -0.0585996, -0.026671, 0.988971, -0
 
 [node name="parrot" parent="." instance=ExtResource("32_06g45")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -4.07433, 2.05444, -0.261118)
+parrot_speech = Array[ExtResource("33_dumr4")]([SubResource("Resource_nv3la"), SubResource("Resource_pafix"), SubResource("Resource_6nxfv")])
+speech_start_time = 3.0
+
+[node name="speech_positioner" parent="parrot" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34821, 0.135709, 0.603118)
+
+[node name="wooden_torch" parent="." instance=ExtResource("33_nv3la")]
+transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 13.6393, 0.384905, -5.04548)
+
+[node name="wooden_torch2" parent="." instance=ExtResource("33_nv3la")]
+transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 15.4003, 12.5023, -24.1696)
 
 [editable path="area_ending"]
 [editable path="area_ending2"]
+[editable path="parrot"]

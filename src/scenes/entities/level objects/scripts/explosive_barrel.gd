@@ -7,17 +7,20 @@ const SMOKE_SPREAD = preload("res://scenes/player/smoke_spread.tscn")
 @onready var mesh: Node3D = $mesh
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var child_container: Node3D = $child_container
+@onready var animation_player: AnimationPlayer = $mesh/AnimationPlayer
 
 var explosion_decal_size = 5.0
 
 func _ready():
 	Events.entity_reset.connect(_reset)
+	animation_player.play("mesh_breathing")
 
 func _on_damageable_damaged() -> void:
 	_spawn_explosion()
 	_spawn_decal()
 	_spawn_particles()
 	
+	DJ.create_audio_3D(SFX_Setting.SOUND_EFFECT.EXPLOSION, self.global_position)
 	mesh.visible = false
 	collision_shape_3d.disabled = true
 	

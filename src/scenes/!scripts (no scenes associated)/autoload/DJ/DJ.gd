@@ -60,7 +60,7 @@ func create_audio_3D(effect_name : SFX_Setting.SOUND_EFFECT, position : Vector3)
 		new_audio.global_position = position
 		
 		new_audio.play()
-		
+		 
 func create_audio(effect_name : SFX_Setting.SOUND_EFFECT):
 	if !sfx_dict.has(effect_name): push_error("Unable to find " + str(effect_name) + "in sfx settings!")
 	else:

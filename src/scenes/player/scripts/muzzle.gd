@@ -10,6 +10,7 @@ extends Node3D
 
 @onready var flash_sprite = $flash_sprite
 @onready var flash_light = $flash_light
+@onready var flash_mesh: Node3D = $flash_mesh
 
 @export var flash_container : Node3D
 
@@ -33,13 +34,16 @@ func flash():
 	var scale_random = randf_range(sprite_scale_default.x - scale_variance, sprite_scale_default.x + scale_variance)
 	flash_sprite.scale = Vector3(scale_random, scale_random, scale_random)
 	flash_sprite.rotation.z = randf_range(0.0, 2 * PI)
+	flash_mesh.rotation.z = randf_range(0.0, 2 * PI)
 	
-	flash_sprite.visible = true
+	#flash_sprite.visible = true
 	flash_light.visible = true
+	flash_mesh.visible = true
 	
 	await get_tree().create_timer(flash_lifespan).timeout
 	flash_sprite.visible = false
 	flash_light.visible = false
+	flash_mesh.visible = false
 		
 	var new_smoke_spread = SMOKE_SPREAD_EMITTER.instantiate()
 	get_parent().get_parent().add_sibling(new_smoke_spread)

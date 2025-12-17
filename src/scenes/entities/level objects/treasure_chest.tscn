@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://cxc7h8fscjiwl"]
+[gd_scene load_steps=41 format=4 uid="uid://cxc7h8fscjiwl"]
 
 [ext_resource type="Texture2D" uid="uid://c8c5qoikqurtt" path="res://assets/models/dobert/treasure_chest_barrel paint.png" id="1_am7mm"]
 [ext_resource type="Script" uid="uid://davv7clb3mpoe" path="res://scenes/entities/level objects/scripts/treasure_chest.gd" id="1_kmmxh"]
@@ -292,7 +292,7 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xcifl"]
-radius = 4.5
+radius = 5.04692
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sc020"]
 
@@ -326,28 +326,39 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_v48ws")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_kmmxh"]
-frequency = 0.003
-fractal_type = 2
-fractal_gain = 0.3
-fractal_weighted_strength = 1.0
+[sub_resource type="Curve" id="Curve_cyugx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.518367, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m1pmm"]
-width = 128
-height = 128
-seamless = true
-seamless_blend_skirt = 0.0
-noise = SubResource("FastNoiseLite_kmmxh")
+[sub_resource type="Curve" id="Curve_vbn7v"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.497959, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_4llm4"]
+curve_y = SubResource("Curve_cyugx")
+curve_z = SubResource("Curve_vbn7v")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m1pmm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cyugx"]
+next_pass = SubResource("ShaderMaterial_m1pmm")
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.34902)
+albedo_texture = SubResource("CurveXYZTexture_4llm4")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqm2l"]
 next_pass = SubResource("ShaderMaterial_m1pmm")
 transparency = 1
 cull_mode = 1
 shading_mode = 0
-albedo_color = Color(0.439216, 0.690196, 0, 0.443137)
-albedo_texture = SubResource("NoiseTexture2D_m1pmm")
+albedo_color = Color(1, 1, 1, 0.101961)
+albedo_texture = SubResource("CurveXYZTexture_4llm4")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
 
 [node name="treasure_chest" type="Node3D"]
 transform = Transform3D(1.00534, 0, 0, 0, 1.00534, 0, 0, 0, 1.00534, 0, 0.39785, 0)
@@ -357,6 +368,7 @@ script = ExtResource("1_kmmxh")
 transform = Transform3D(0.675542, 0, 0, 0, 0.675542, 0, 0, 0, 0.675542, 0, 0.0781063, 0)
 
 [node name="bottom" type="MeshInstance3D" parent="mesh"]
+layers = 8
 mesh = SubResource("ArrayMesh_kmmxh")
 skeleton = NodePath("")
 
@@ -370,11 +382,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.861465, 0.356349, 0)
 
 [node name="clasp" type="MeshInstance3D" parent="mesh/clasp_hinge"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.861465, -0.356349, 0)
+layers = 8
 mesh = SubResource("ArrayMesh_os6qa")
 skeleton = NodePath("")
 
 [node name="gold_pile" type="MeshInstance3D" parent="mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.210115, 0)
+layers = 8
 mesh = SubResource("ArrayMesh_vqm2l")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_r2da8")
@@ -390,11 +404,13 @@ shape = SubResource("ConcavePolygonShape3D_xcifl")
 
 [node name="top" type="MeshInstance3D" parent="mesh/top_hinge"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.926759, -0.470222, 0)
+layers = 8
 mesh = SubResource("ArrayMesh_n60i6")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="mesh/top_hinge"]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0.92174, 0.357194, 0)
+layers = 8
 mesh = SubResource("PlaneMesh_os6qa")
 
 [node name="mesh_shape" type="Node3D" parent="."]
@@ -418,6 +434,21 @@ transform = Transform3D(-0.13843, 0, -0.990372, 0, 1, 0, 0.990372, 0, -0.13843, 
 transform = Transform3D(1.06396, -0.664839, 0.783962, 0.783963, 1.25461, 0, -0.664839, 0.415437, 1.2546, 0, 0, 0)
 mesh = SubResource("ArrayMesh_xcifl")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_cyugx")
+
+[node name="Icosphere2" type="MeshInstance3D" parent="Area3D/sphere_container"]
+transform = Transform3D(1.21711, -0.762623, 0.866997, 0.89681, 1.43914, 0, -0.760539, 0.476539, 1.38748, 0, 0, 0)
+mesh = SubResource("ArrayMesh_xcifl")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_vqm2l")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.994688, 0, 0, 0, -4.34792e-08, 0.994688, 0, -0.994688, -4.34792e-08, 0, 4.58921, 0)
+layers = 8
+light_color = Color(0.533634, 0.916412, 3.08037e-06, 1)
+light_energy = 6.0
+spot_range = 4.50518
+spot_angle = 19.6875
+spot_angle_attenuation = 2.73208
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
