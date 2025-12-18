@@ -1,6 +1,5 @@
 extends Node3D
 	# head bob
-@onready var audio_stream_player_footsteps: AudioStreamPlayer = $AudioStreamPlayer_footstps
 @onready var viewmodel_pivot: Node3D = $Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot
 
 ### bobbing_intensity

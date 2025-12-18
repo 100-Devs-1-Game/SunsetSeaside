@@ -80,6 +80,16 @@ bind/1/name = &"Bone.001"
 bind/1/bone = -1
 bind/1/pose = Transform3D(1, 1.81635e-07, -4.40888e-07, 4.26326e-14, 0.924609, 0.380917, 4.76837e-07, -0.380917, 0.924609, -1.74033e-07, -1.32506, 0.364974)
 
+[sub_resource type="Animation" id="Animation_7ulfp"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D:Bone.001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.116514, 0.138985, 0.111581, 0.977066)
+
 [sub_resource type="Animation" id="Animation_4mlgx"]
 resource_name = "head_loop"
 length = 9.5
@@ -91,16 +101,6 @@ tracks/0/path = NodePath("Armature/Skeleton3D:Bone.001")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(-0.0333333, 1, 0.116514, 0.138985, 0.111581, 0.977066, 1.03333, 1, 0.116514, 0.138985, 0.111581, 0.977066, 1.16667, 1, -0.0401381, 0.0189243, -0.130312, 0.990479, 3.2, 1, -0.0401381, 0.0189243, -0.130312, 0.990479, 3.3, 1, -0.0358142, 0.0477224, 0.146013, 0.987482, 3.83333, 1, -0.0358142, 0.0477224, 0.146013, 0.987482, 3.94333, 1, 0.166118, -0.0376609, 0.0565556, 0.983762, 4.03333, 1, 0.166118, -0.0376609, 0.0565556, 0.983762, 4.13333, 1, -0.00414888, -0.153229, -0.0414022, 0.987314, 6.76667, 1, -0.00414888, -0.153229, -0.0414022, 0.987314, 6.86667, 1, -0.0095644, 0.127348, -0.0342698, 0.99122, 8.13333, 1, -0.0095644, 0.127348, -0.0342698, 0.99122, 8.2, 1, 0.082711, 0.108267, -0.106573, 0.984926, 8.33333, 1, 0.082711, 0.108267, -0.106573, 0.984926, 8.43333, 1, 0.116514, 0.138985, 0.111581, 0.977066, 9.46667, 1, 0.116514, 0.138985, 0.111581, 0.977066)
-
-[sub_resource type="Animation" id="Animation_7ulfp"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Armature/Skeleton3D:Bone.001")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.116514, 0.138985, 0.111581, 0.977066)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3g6e"]
 _data = {

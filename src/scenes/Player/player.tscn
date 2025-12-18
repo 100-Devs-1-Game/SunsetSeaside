@@ -1,9 +1,8 @@
-[gd_scene load_steps=87 format=4 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=86 format=4 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" uid="uid://f76fggl2uyob" path="res://scenes/player/scripts/player.gd" id="1_twte0"]
 [ext_resource type="Script" uid="uid://bw1c3unoeydxt" path="res://scenes/player/scripts/head.gd" id="2_c4h5g"]
 [ext_resource type="Script" uid="uid://bwyvdfclwdvt8" path="res://scenes/player/scripts/console_ui.gd" id="3_uiqp4"]
-[ext_resource type="AudioStream" path="res://assets/sounds/player/footstep_3.wav" id="3_umd5a"]
 [ext_resource type="Script" uid="uid://cw30x4wy5quuw" path="res://scenes/player/scripts/headbob_pivot.gd" id="3_uxo23"]
 [ext_resource type="Script" uid="uid://r46iblp0dqej" path="res://scenes/player/scripts/ui.gd" id="4_jxtnq"]
 [ext_resource type="Script" uid="uid://djlu56q6npdxd" path="res://scenes/player/scripts/viewmodel_camera.gd" id="4_wwtew"]
@@ -1032,7 +1031,7 @@ texture = ExtResource("8_jxtnq")
 light_color = Color(0.95236, 0.703389, 3.85046e-07, 1)
 light_energy = 0.7
 omni_range = 3.0
-omni_attenuation = 0.4
+omni_attenuation = 5.0
 
 [node name="emitter_position" type="Node3D" parent="Head/headbob_pivot/Camera3D/SubViewportContainer/SubViewport/viewmodel_camera/viewmodel_pivot/fps_rig/shotgun/mesh_mover/mesh/muzzle"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.135539, 0)
@@ -1208,7 +1207,6 @@ enabled = false
 target_position = Vector3(0, 0, -1)
 
 [node name="AudioStreamPlayer_footstps" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_umd5a")
 volume_db = 14.0
 max_polyphony = 2
 
