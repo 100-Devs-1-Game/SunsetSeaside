@@ -21,7 +21,7 @@ var hide_macaw_text = false
 # current values for the level being played
 var current_ammo_amount : int = 1 # amount of shots before touching the ground
 var current_max_ammo : int = 999
-var current_par_limit : int = 999
+var current_par : int = 999
 var current_time_limit : float = 999.0
 
 var current_level_grouping : Enums.LevelGrouping
@@ -37,7 +37,6 @@ func _ready():
 	Events.first_movement.connect(_first_player_movement)
 	Events.weapon_fired.connect(_count_shots)
 	Events.open_level.connect(_setup_level_id)
-	Events.establish_level_vars.connect(_setup_level_vars)
 	Events.jug_collected.connect(_jug_collected)
 	Events.set_labels_hidden.connect(_set_macaw_text)
 	Events.open_next_level.connect(_open_next_level)
@@ -68,11 +67,13 @@ func _setup_level_id(grouping, id):
 	current_level_grouping = grouping
 	current_level_id = id
 	current_ammo_amount = level_manager.fetch_ammo_amount(grouping)
-
-func _setup_level_vars(max_ammo, par_limit, time_limit):
-	current_max_ammo = max_ammo
-	current_par_limit = par_limit
-	current_time_limit = time_limit
+	
+	var level_info = level_manager.fetch_level_info(grouping, id)
+	#current_max_ammo = max_ammo
+	current_par = level_info.par
+	current_time_limit = level_info.time_limit
+	print(current_par)
+	print(current_time_limit)
 
 func _open_next_level():
 	var next_level = level_manager.fetch_next_level_info(current_level_grouping, current_level_id)
@@ -119,7 +120,7 @@ func _level_end_reached():
 	# send values to results screen
 	Events.open_menu.emit(Enums.Menus.RESULTS)
 	Events.ui_send_level_history.emit(level_history["time_best"], level_history["par_best"], level_history["jug_history"], level_history["hardcore_history"])
-	Events.ui_send_end_results.emit(stopwatch.time, current_time_limit, shots_taken, current_par_limit, jug_grabbed) # replace nulls once these are implemented
+	Events.ui_send_end_results.emit(stopwatch.time, current_time_limit, shots_taken, current_par, jug_grabbed) # replace nulls once these are implemented
 										#(time, time_limit, time_best, shots_taken, par_limit, shots_best, jug_grabbed, jug_history)
 	# save new progress and completion
 	
@@ -143,7 +144,7 @@ func _level_end_reached():
 		
 	# if vals are still null then nothing is written to the respective slot
 	Keeper.write_level_history(current_level_grouping, current_level_id, new_time, new_par, new_jug, new_hardcore)
-	Keeper.write_level_completion(current_level_grouping, current_level_id, true, stopwatch.time < current_time_limit, shots_taken <= current_par_limit, jug_grabbed, hardcore_enabled)
+	Keeper.write_level_completion(current_level_grouping, current_level_id, true, stopwatch.time < current_time_limit, shots_taken <= current_par, jug_grabbed, hardcore_enabled)
 	
 	Keeper.save_records()
 	Keeper.save_completion()

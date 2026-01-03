@@ -19,7 +19,6 @@ signal fps_mouse_movement(event)
 ###### gamestate signals
 # level setup
 signal establish_spawnpoint(node) # establish spawnpoint with the gamestate
-signal establish_level_vars(max_ammo, par_limit, time_limit)
 signal entity_reset() # called by the gamestate on respawn
 
 # player actions

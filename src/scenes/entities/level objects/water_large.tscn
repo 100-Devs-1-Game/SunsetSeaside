@@ -45,10 +45,12 @@ script = ExtResource("1_j71fk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145056, -0.188966, 0.562124)
+visible = false
 mesh = SubResource("PlaneMesh_8pi60")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145056, -0.731288, 0.562124)
+visible = false
 mesh = SubResource("PlaneMesh_j71fk")
 
 [node name="death_area" type="Area3D" parent="."]

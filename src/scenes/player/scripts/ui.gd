@@ -9,7 +9,7 @@ func _ready():
 	Events.ui_ammo_update.connect(_update_ammo_label)
 	Events.ui_shots_taken_update.connect(_update_shot_label)
 	Events.ui_set_level_vars.connect(_update_level_vars)
-	_update_level_vars(Gamestate.current_max_ammo, Gamestate.current_par_limit, Gamestate.current_time_limit)
+	_update_level_vars(Gamestate.current_max_ammo, Gamestate.current_par, Gamestate.current_time_limit)
 
 func _update_ammo_label(ammo):
 	ammo_label.text = str(ammo)

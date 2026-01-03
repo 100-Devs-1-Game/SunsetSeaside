@@ -30,8 +30,6 @@ func _load_scene(scene : PackedScene):
 	
 	var level = scene.instantiate()
 	scene_container.add_child(level)
-	if level.has_meta(&"Level"):
-		Events.establish_level_vars.emit(level.ammo_max, level.par_limit, level.time_limit)
 	
 	await get_tree().process_frame
 	if scene_container.get_children().size() > 1:
