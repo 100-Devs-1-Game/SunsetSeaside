@@ -26,7 +26,7 @@ func _ready():
 	sprite_scale_default = flash_sprite.scale
 	
 	flash_sprite.visible = false
-	flash_light.visible = true
+	flash_light.visible = false
 	flash_mesh.visible = false
 
 func flash():

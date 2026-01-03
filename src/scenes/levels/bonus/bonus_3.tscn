@@ -1,6 +1,5 @@
-[gd_scene load_steps=43 format=3 uid="uid://cof6vo7ecceq"]
+[gd_scene load_steps=42 format=3 uid="uid://cof6vo7ecceq"]
 
-[ext_resource type="Script" uid="uid://c35qacpu8na2l" path="res://scenes/levels/scripts/level.gd" id="1_s4nmt"]
 [ext_resource type="PackedScene" uid="uid://n30qaxd36ea0" path="res://scenes/entities/level objects/explosive_barrel.tscn" id="2_ai1xi"]
 [ext_resource type="PackedScene" uid="uid://dtd51ahita8ja" path="res://scenes/entities/level objects/spawnpoint.tscn" id="3_apu3e"]
 [ext_resource type="PackedScene" uid="uid://dlo72yn7rkg4u" path="res://scenes/entities/level objects/jug.tscn" id="4_mjrq2"]
@@ -72,10 +71,6 @@ ambient_light_color = Color(0.726588, 0.554418, 3.85046e-07, 1)
 reflected_light_source = 2
 
 [node name="DebugLevel" type="Node3D"]
-script = ExtResource("1_s4nmt")
-ammo_max = 1
-par_limit = 12
-time_limit = 23.5
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81114, 0.610745, -2.2359)

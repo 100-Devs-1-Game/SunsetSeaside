@@ -1,7 +1,7 @@
-[gd_scene load_steps=53 format=3 uid="uid://b5cuy53a6pi64"]
+[gd_scene load_steps=55 format=3 uid="uid://b5cuy53a6pi64"]
 
 [ext_resource type="Script" uid="uid://jc8jq82rtook" path="res://scenes/ui/menus/scripts/main_menu.gd" id="1_flhq8"]
-[ext_resource type="PackedScene" uid="uid://c21pslr81k4p4" path="res://scenes/ui/title_text.tscn" id="3_1p6kj"]
+[ext_resource type="PackedScene" uid="uid://c21pslr81k4p4" path="res://scenes/ui/menus/title_text.tscn" id="3_1p6kj"]
 [ext_resource type="FontFile" uid="uid://dmg3ppdo8dgqj" path="res://assets/fonts/Primitive-4yGY.ttf" id="3_p0q51"]
 [ext_resource type="Script" uid="uid://d0fcseiqo1nrk" path="res://scenes/ui/menus/scripts/menu_levels.gd" id="3_whicr"]
 [ext_resource type="Texture2D" uid="uid://by2sfu06w3w3g" path="res://assets/textures/rustic-wood-texture-free-49.png" id="4_ct055"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://deiunffncaar7" path="res://scenes/ui/menus/scripts/button.gd" id="7_xs2a0"]
 [ext_resource type="Theme" uid="uid://xefwemd0japy" path="res://assets/themes/wooden_buttons.tres" id="8_jk7nv"]
 [ext_resource type="Texture2D" uid="uid://dfkc1quywc3cv" path="res://scenes/ui/menus/level_images/level_image_placeholder.tres" id="9_e7y46"]
-[ext_resource type="PackedScene" uid="uid://tvhgjh6s2skh" path="res://scenes/ui/spinner.tscn" id="9_nmbxx"]
+[ext_resource type="PackedScene" uid="uid://tvhgjh6s2skh" path="res://scenes/ui/menus/spinner.tscn" id="9_nmbxx"]
 [ext_resource type="Script" uid="uid://dld2efnfljd86" path="res://scenes/ui/menus/scripts/end_screen_timer_label.gd" id="9_ykpw6"]
 [ext_resource type="PackedScene" uid="uid://dj58i00bv8dww" path="res://scenes/ui/menus/spinner_meshes/stopwatch_mesh.tscn" id="10_bl8wb"]
 [ext_resource type="PackedScene" uid="uid://bngk38h3a4rld" path="res://scenes/ui/menus/spinner_meshes/cannonball_mesh.tscn" id="11_c8e1o"]
@@ -20,6 +20,7 @@
 [ext_resource type="LabelSettings" uid="uid://42eqrdf8vmh5" path="res://scenes/ui/menus/label_settings/time_text_color.tres" id="14_1p6kj"]
 [ext_resource type="LabelSettings" uid="uid://dbpcscbsp4nm2" path="res://scenes/ui/menus/label_settings/par_text_color.tres" id="16_r1no3"]
 [ext_resource type="LabelSettings" uid="uid://d0sc8tap3uldg" path="res://scenes/ui/menus/label_settings/jug_text_color.tres" id="17_xs2a0"]
+[ext_resource type="Script" uid="uid://dcln8nxa1fxxm" path="res://scenes/ui/menus/scripts/menu_delete_confirm.gd" id="21_r4c53"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y4aia"]
 shader = ExtResource("5_oj1oe")
@@ -203,6 +204,11 @@ font_color = Color(1, 0.291825, 0.300667, 1)
 font = ExtResource("3_p0q51")
 font_size = 40
 
+[sub_resource type="LabelSettings" id="LabelSettings_d48uj"]
+font = ExtResource("3_p0q51")
+font_size = 24
+font_color = Color(1, 0.622923, 0.192928, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_51wkr"]
 font_size = 32
 
@@ -350,6 +356,7 @@ script = ExtResource("7_xs2a0")
 
 [node name="Label" type="Label" parent="menu_root/menu_title/VBoxContainer/vbox_buttons"]
 layout_mode = 2
+size_flags_vertical = 8
 
 [node name="menu_levels" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("level_info_grid", "time_record_label", "time_limit_label", "par_record_label", "par_limit_label", "jug_collected_label", "spinner_time", "spinner_par", "spinner_jug", "level_title_label", "image_spinner_container", "level_image", "button_play_level", "animation_player", "label_bonus_slots", "level_slots_debug", "level_slots_tutorial", "level_slots_easy", "level_slots_medium", "level_slots_hard", "level_slots_bonus", "label_debug_slots")]
 visible = false
@@ -1225,7 +1232,7 @@ theme_override_font_sizes/font_size = 32
 text = "  return  "
 script = ExtResource("7_xs2a0")
 
-[node name="menu_delete_confirm" type="MarginContainer" parent="menu_root"]
+[node name="menu_delete_confirm" type="MarginContainer" parent="menu_root" node_paths=PackedStringArray("line_edit", "button_delete_yes")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1235,6 +1242,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("21_r4c53")
+line_edit = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/LineEdit")
+button_delete_yes = NodePath("MarginContainer/VBoxContainer/HBoxContainer/button_delete_yes")
 
 [node name="Panel" type="Panel" parent="menu_root/menu_delete_confirm"]
 layout_mode = 2
@@ -1299,9 +1309,29 @@ focus_previous = NodePath("../button_levels")
 theme = ExtResource("8_jk7nv")
 theme_override_fonts/font = ExtResource("3_p0q51")
 theme_override_font_sizes/font_size = 32
+disabled = true
 text = "< yes >
 "
 script = ExtResource("7_xs2a0")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Label" type="Label" parent="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "enter 424:"
+label_settings = SubResource("LabelSettings_d48uj")
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/minimum_character_width = 2
+theme_override_fonts/font = ExtResource("3_p0q51")
+theme_override_font_sizes/font_size = 24
+alignment = 1
+max_length = 3
 
 [node name="menu_credits" type="MarginContainer" parent="menu_root"]
 visible = false
@@ -1356,7 +1386,9 @@ horizontal_alignment = 1
 [connection signal="pressed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer2/button_delete_confirm_open" to="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer2/button_delete_confirm_open" method="_on_pressed"]
 [connection signal="pressed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer/button_return_settings" to="." method="_on_button_return_settings_pressed"]
 [connection signal="pressed" from="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer/button_return_settings" to="menu_root/menu_settings/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer10/MarginContainer/button_return_settings" method="_on_pressed"]
+[connection signal="visibility_changed" from="menu_root/menu_delete_confirm" to="menu_root/menu_delete_confirm" method="_on_visibility_changed"]
 [connection signal="pressed" from="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_no" to="." method="_on_button_delete_no_pressed"]
 [connection signal="pressed" from="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_no" to="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_no" method="_on_pressed"]
 [connection signal="pressed" from="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_yes" to="." method="_on_button_delete_yes_pressed"]
 [connection signal="pressed" from="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_yes" to="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer/button_delete_yes" method="_on_pressed"]
+[connection signal="text_changed" from="menu_root/menu_delete_confirm/MarginContainer/VBoxContainer/HBoxContainer2/LineEdit" to="menu_root/menu_delete_confirm" method="_on_line_edit_text_changed"]

@@ -104,16 +104,16 @@ func _show_level_info(slot, button):
 	var level_info = Gamestate.level_manager.fetch_level_info(slot.level_grouping, slot.level_id)
 	
 	# level title
-	level_title_label.text = level_info["name"]
+	level_title_label.text = level_info.name
 	level_title_label.label_settings.font_color = Color.WHITE
 	
 	# level image and spinners
 	image_spinner_container.visible = true
-	var level_image_path = level_info["level_image_path"]
-	if level_image_path != null: level_image.texture = load(level_image_path)
+	var level_image_path = level_info.image_path
+	if level_image_path != "": level_image.texture = load(level_image_path)
 	else: level_image.texture = LEVEL_IMAGE_PLACEHOLDER
 	var level_history = Keeper.get_level_completion(slot.level_grouping, slot.level_id)
-	
+
 	spinner_time.shake_amount = 0.0; spinner_par.shake_amount = 0.0; spinner_jug.shake_amount = 0.0
 	if level_history["time_complete"]: spinner_time.mesh_visibility(true); spinner_time.shake_amount += 0.1
 	else: spinner_time.mesh_visibility(false)
@@ -125,14 +125,14 @@ func _show_level_info(slot, button):
 	# level records and info
 	level_info_grid.visible = true
 	# limits
-	if level_info["time_limit"] == null:
+	if level_info.time_limit == -1.0:
 		time_limit_label.label_msec.text = "n/a"; time_limit_label.set_process(false)
 		time_limit_label.hide_min_and_sec()
 	else:
 		time_limit_label.time = level_info["time_limit"]; time_limit_label.set_process(true)
 		time_limit_label.display_time = level_info["time_limit"]
 	
-	if level_info["par"] == null:
+	if level_info.par == -1:
 		par_limit_label.text = "n/a"
 	else: par_limit_label.text = str(snapped(level_info["par"], 0))
 	
@@ -187,10 +187,12 @@ func _check_selectablity(grouping, id): # checking to see if previous level was 
 
 func _check_bonus_availability(): # these could only unlock if all time, par or jugs are grabbed
 	# for now, if the hardest level of the last section if complete
+	if all_levels_selectable:
+		_populate_level_slots(level_amount_bonus, level_slots_bonus, Enums.LevelGrouping.BONUS)
+		return
+	
 	if Gamestate.level_manager.levels_hard.size() != 0:
-		if all_levels_selectable:
-			_populate_level_slots(level_amount_bonus, level_slots_bonus, Enums.LevelGrouping.BONUS)
-		elif Keeper.get_level_completion(Enums.LevelGrouping.SUNRISE, Gamestate.level_manager.levels_hard.size() - 1)["level_complete"] == true:
+		if Keeper.get_level_completion(Enums.LevelGrouping.SUNRISE, Gamestate.level_manager.levels_hard.size() - 1)["level_complete"] == true:
 			_populate_level_slots(level_amount_bonus, level_slots_bonus, Enums.LevelGrouping.BONUS)
 		else:
 			label_bonus_slots.text = "[wave freq=2 amp=30][rainbow freq=0.15]?"

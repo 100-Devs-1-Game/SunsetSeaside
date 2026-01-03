@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var animation_player: AnimationPlayer = $mesh/AnimationPlayer
+@onready var animation_player_outline: AnimationPlayer = $mesh/AnimationPlayer_outline
 @onready var reversal_timer: Timer = $mesh/reversal_timer
 @onready var speech_positioner: Node3D = $speech_positioner
 
@@ -39,6 +40,8 @@ func _next_parrot_speak():
 
 	speech_index += 1
 	if !Gamestate.hide_macaw_text: DJ.create_audio_3D(SFX_Setting.SOUND_EFFECT.SQUAWK, self.global_position)
+	animation_player_outline.stop() # reset just in case
+	animation_player_outline.play("outline_pulse")
 
 func _restart_speech():
 	for node in speech_positioner.get_children():

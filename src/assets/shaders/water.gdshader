@@ -26,7 +26,7 @@ varying float vertex_height;
 
 float generateOffset(float x, float z, float val1, float val2, float time, vec2 uv){
 	float speed = 1.0;
-	
+
 	float radiansX = ((mod(x + z * x * val1, wave_amount) / wave_amount) + (time * speed) * mod(x * 0.8 + z, 1.5)) * 2.0 * 3.14;
 	float radiansZ = ((mod(val2 * (z * x + x * z), wave_amount) / wave_amount) + (time * speed) * 2.0 * mod(x,2.0)) * 2.0 * 3.14;
 
@@ -46,7 +46,7 @@ vec3 applyDistortion(vec3 vertex, float time, vec2 uv){
 void vertex() {
 	VERTEX = applyDistortion(VERTEX, TIME * 0.1, UV);
 	VERTEX.y += height_offset;
-	
+
 	vertex_height = VERTEX.y;
 }
 
@@ -58,12 +58,12 @@ void fragment() {
 	METALLIC = 0.0;
 	SPECULAR = 0.0;
 	ROUGHNESS = 1.0;
-	
+
 	float height_white_augment = vertex_height * height_color_multi;
-	
-	vec4 texture_color = texture(water_texture, UV * vec2(water_uv.x, water_uv.y) + vec2(TIME * water_speed_multi, TIME * water_speed_multi)) + vec4(water_texture_raise, water_texture_raise, water_texture_raise, 1.0) + vec4(height_white_augment, height_white_augment, height_white_augment, 1.0); 
+
+	vec4 texture_color = texture(water_texture, UV * vec2(water_uv.x, water_uv.y) + vec2(TIME * water_speed_multi, TIME * water_speed_multi)) + vec4(water_texture_raise, water_texture_raise, water_texture_raise, 1.0) + vec4(height_white_augment, height_white_augment, height_white_augment, 1.0);
 	ALBEDO = mix(texture_color.xyz * 1.0, water_albedo.xyz, water_albedo_mix_ratio);
-	
+
 	//if (transperancy == true){
 		//float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
 		//
@@ -75,6 +75,3 @@ void fragment() {
 		//ALPHA = clamp(1.0 - depth, 0.0, 1.0);
 	//}
 }
-
-
-

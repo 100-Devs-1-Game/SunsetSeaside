@@ -6,10 +6,8 @@ extends Node
 ####### ^^^ could prlly move this somewhere else
 
 const PLAYER_TSCN = preload("res://scenes/player/player.tscn")
-
 ### ui vars
 var last_title_menu : Enums.TitlePosition
-
 ### player vars
 var player_global_position := Vector3.ZERO
 var player_spawnpoint : Node3D = null

@@ -1,6 +1,5 @@
-[gd_scene load_steps=102 format=4 uid="uid://bxyf53ifrvvwv"]
+[gd_scene load_steps=101 format=4 uid="uid://bxyf53ifrvvwv"]
 
-[ext_resource type="Script" uid="uid://c35qacpu8na2l" path="res://scenes/levels/scripts/level.gd" id="1_dgmee"]
 [ext_resource type="PackedScene" uid="uid://m8sg2lc4iycr" path="res://assets/skyboxes/daylight.tscn" id="2_06g45"]
 [ext_resource type="Environment" uid="uid://7e517t3wcl3h" path="res://assets/skyboxes/sunset.tres" id="2_lhbfg"]
 [ext_resource type="Texture2D" uid="uid://bc1l3yxle0b8x" path="res://assets/devblocks/textures/light/texture_09.png" id="2_rafi0"]
@@ -651,10 +650,6 @@ fade_out_pretime = 1.0
 metadata/_custom_type_script = "uid://gkq1ecnwpnnt"
 
 [node name="test_level" type="Node3D"]
-script = ExtResource("1_dgmee")
-ammo_max = 420
-par_limit = 7
-time_limit = 4.2
 
 [node name="DirectionalLight3D" parent="." instance=ExtResource("2_06g45")]
 transform = Transform3D(-0.866025, -0.25, -0.433013, 0, -0.866025, 0.5, -0.5, 0.433013, 0.75, 0, 0, 0)
@@ -735,9 +730,9 @@ size = Vector3(4.32996, 1.17773, 6.05322)
 material = SubResource("StandardMaterial3D_2wbxk")
 
 [node name="test_wall10" type="CSGBox3D" parent="geometry"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.79224, 2.95945, -3.54009)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.79224, 2.1113, -3.54009)
 use_collision = true
-size = Vector3(4.32996, 1.17773, 3.48804)
+size = Vector3(4.32996, 0.947385, 3.48804)
 material = SubResource("StandardMaterial3D_2wbxk")
 
 [node name="test_wall4" type="CSGBox3D" parent="geometry"]
@@ -852,7 +847,7 @@ fade_out = false
 fade_out_pretime = 10.0
 
 [node name="Node3D6" parent="." instance=ExtResource("3_lhbfg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9789, 1.79326, -2.18758)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9789, 1.28594, -2.18758)
 text = "squawk"
 font_size = 64
 label_text = "squawk"
@@ -1312,7 +1307,10 @@ parrot_speech = Array[ExtResource("33_dumr4")]([SubResource("Resource_nv3la"), S
 speech_start_time = 3.0
 
 [node name="Skeleton3D" parent="parrot/mesh/Armature" index="0"]
-bones/1/rotation = Quaternion(0.116514, 0.138985, 0.111581, 0.977066)
+bones/1/rotation = Quaternion(0.133983, 1.18135e-07, 4.7916e-08, 0.990984)
+
+[node name="body_outline" parent="parrot/mesh/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = null
 
 [node name="speech_positioner" parent="parrot" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34821, 0.135709, 0.603118)

@@ -1,0 +1,29 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://itahkxxc0w48"]
+
+[sub_resource type="VisualShaderNodeLinearSceneDepth" id="VisualShaderNodeLinearSceneDepth_576ux"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_838is"]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2vml1"]
+output_port_for_preview = 0
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_55iuh"]
+operator = 1
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeLinearSceneDepth_576ux")
+nodes/fragment/2/position = Vector2(-40, 140)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_838is")
+nodes/fragment/5/position = Vector2(378, 208.573)
+nodes/fragment/6/node = SubResource("VisualShaderNodeInput_2vml1")
+nodes/fragment/6/position = Vector2(-180, 260)
+nodes/fragment/7/node = SubResource("VisualShaderNodeFloatOp_55iuh")
+nodes/fragment/7/position = Vector2(180, 180)

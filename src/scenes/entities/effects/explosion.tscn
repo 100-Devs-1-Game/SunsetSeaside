@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cifoxjsd8db8n"]
+[gd_scene load_steps=21 format=4 uid="uid://cifoxjsd8db8n"]
 
 [ext_resource type="Script" uid="uid://3qpdodhrjty2" path="res://scenes/entities/level objects/scripts/explosion.gd" id="1_12by8"]
 [ext_resource type="Script" uid="uid://cqjlir3h8d581" path="res://scenes/entities/level objects/scripts/explosion_area.gd" id="2_gfkia"]
@@ -81,28 +81,30 @@ point_count = 3
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.502041, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Curve" id="Curve_g4q6x"]
+_data = [Vector2(0.502041, 0.595082), 0.0, 0.0, 0, 0]
+point_count = 1
+
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_g4q6x"]
 curve_x = SubResource("Curve_12by8")
 curve_y = SubResource("Curve_gfkia")
+curve_z = SubResource("Curve_g4q6x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7my5p"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.947296, 0.929277, 0, 0.941176)
+albedo_texture = SubResource("CurveXYZTexture_g4q6x")
+uv1_scale = Vector3(0.3, 0.3, 0.3)
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1vcx"]
 transparency = 1
-cull_mode = 1
 shading_mode = 0
 albedo_color = Color(0.980392, 0.580392, 0, 0.717647)
 albedo_texture = SubResource("CurveXYZTexture_g4q6x")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7my5p"]
-transparency = 1
-blend_mode = 1
-shading_mode = 0
-albedo_color = Color(0.947296, 0.929277, 0, 0.941176)
-albedo_texture = SubResource("CurveXYZTexture_g4q6x")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
-uv1_world_triplanar = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bkl10"]
 radius = 3.5
@@ -266,7 +268,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0.12, 0.36, 2),
-"transitions": PackedFloat32Array(0.406126, 3.03143, 0.732043),
+"transitions": PackedFloat32Array(0.406126, 2.37841, 0.732043),
 "update": 0,
 "values": [Vector3(0.4, 0.4, 0.4), Vector3(1.3, 1.3, 1.3), Vector3(0.4, 0.4, 0.4)]
 }
@@ -280,7 +282,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.12, 0.26, 1.8),
 "transitions": PackedFloat32Array(1, 2.54912, 1),
 "update": 0,
-"values": [Color(0.94902, 0.929412, 0, 0.196078), Color(0.980392, 0.580392, 0, 0.196078), Color(0.988235, 0, 0.192157, 0)]
+"values": [Color(0.94902, 0.929412, 0, 0.164706), Color(1, 0.545098, 0.431373, 0.164706), Color(0.988235, 0, 0.192157, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -366,7 +368,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0.1, 0.26, 1.8),
 "transitions": PackedFloat32Array(1, 2.54912, 1),
 "update": 0,
-"values": [Color(0.94902, 0.929412, 0, 0.784314), Color(0.980392, 0.580392, 0, 0.784314), Color(0.988235, 0, 0.192157, 0)]
+"values": [Color(0.94902, 0.929412, 0, 1), Color(0.980392, 0.580392, 0, 1), Color(0.988235, 0, 0.192157, 0)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -407,15 +409,16 @@ transform = Transform3D(-0.57, 0, 8.60676e-08, 0, 0.57, 0, -8.60676e-08, 0, -0.5
 mesh = SubResource("ArrayMesh_j1vcx")
 surface_material_override/0 = SubResource("StandardMaterial3D_dndvl")
 
-[node name="explosion_mesh_outer" type="MeshInstance3D" parent="."]
-mesh = SubResource("ArrayMesh_je6jj")
-surface_material_override/0 = SubResource("StandardMaterial3D_j1vcx")
-
 [node name="explosion_mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_je6jj")
 surface_material_override/0 = SubResource("StandardMaterial3D_7my5p")
 
+[node name="explosion_mesh_outer" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_je6jj")
+surface_material_override/0 = SubResource("StandardMaterial3D_j1vcx")
+
 [node name="explosion_area" type="Area3D" parent="."]
+visible = false
 collision_layer = 3
 script = ExtResource("2_gfkia")
 

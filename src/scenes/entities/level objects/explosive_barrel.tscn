@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://n30qaxd36ea0"]
+[gd_scene load_steps=27 format=4 uid="uid://n30qaxd36ea0"]
 
 [ext_resource type="Script" uid="uid://jjewae0np01y" path="res://scenes/entities/level objects/scripts/explosive_barrel.gd" id="1_kl45m"]
 [ext_resource type="Script" uid="uid://bn8cpygo0uaix" path="res://scenes/!scripts (no scenes associated)/components/damageable_component.gd" id="2_h5a3t"]
@@ -134,7 +134,15 @@ curve_y = SubResource("Curve_8nrv5")
 transparency = 1
 cull_mode = 1
 shading_mode = 0
-albedo_color = Color(1, 1, 1, 0.545098)
+albedo_color = Color(1, 1, 1, 0.882353)
+albedo_texture = SubResource("CurveXYZTexture_nvqsv")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8nrv5"]
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.164706)
 albedo_texture = SubResource("CurveXYZTexture_nvqsv")
 uv1_triplanar = true
 
@@ -152,6 +160,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(1.0944, 1.0944, 1.0944)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Cylinder3:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.25, 1.25, 1.25)]
+}
 
 [sub_resource type="Animation" id="Animation_7mon3"]
 resource_name = "mesh_breathing"
@@ -167,7 +187,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1, 1.5, 2.03333),
 "transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 1),
 "update": 0,
-"values": [Vector3(1.125, 1.125, 1.125), Vector3(1.15, 1.15, 1.15), Vector3(1.125, 1.125, 1.125), Vector3(1.1, 1.1, 1.1), Vector3(1.125, 1.125, 1.125)]
+"values": [Vector3(1.1, 1.1, 1.1), Vector3(1.125, 1.125, 1.125), Vector3(1.1, 1.1, 1.1), Vector3(1.075, 1.075, 1.075), Vector3(1.1, 1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Cylinder3:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2.03333),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 1),
+"update": 0,
+"values": [Vector3(1.2, 1.2, 1.2), Vector3(1.25, 1.25, 1.25), Vector3(1.2, 1.2, 1.2), Vector3(1.15, 1.15, 1.15), Vector3(1.2, 1.2, 1.2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nvqsv"]
@@ -204,6 +236,12 @@ transform = Transform3D(1.0944, 0, 0, 0, 1.0944, 0, 0, 0, 1.0944, 0, 0, 0)
 mesh = SubResource("ArrayMesh_e1v0g")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_7mon3")
+
+[node name="Cylinder3" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+mesh = SubResource("ArrayMesh_e1v0g")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_8nrv5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="mesh"]
 root_node = NodePath("../Cylinder2")

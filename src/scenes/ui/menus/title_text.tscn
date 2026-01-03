@@ -389,7 +389,7 @@ render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="back"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0422956, 0.208574, 7.15737)
-cull_mask = 16
+cull_mask = 64
 current = true
 fov = 25.0
 
@@ -401,14 +401,14 @@ transform = Transform3D(-0.00502467, 0.000349166, -1.0411, -0.124927, 1.00357, 0
 
 [node name="sunset" type="MeshInstance3D" parent="back/mesh_container/title2"]
 transform = Transform3D(0.100171, 0.99497, 9.31323e-10, -0.994971, 0.100171, -4.5402e-09, -4.43833e-09, 0, 1, 0.199008, 0.013274, -0.522077)
-layers = 16
+layers = 64
 mesh = SubResource("ArrayMesh_u7ssq")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_0hatk")
 
 [node name="seaside" type="MeshInstance3D" parent="back/mesh_container/title2"]
 transform = Transform3D(0.100171, 0.99497, 4.65661e-10, -0.99497, 0.100171, -4.48199e-09, -4.35466e-09, 0, 1, 0.159486, 0.331829, 0.581251)
-layers = 16
+layers = 64
 mesh = SubResource("ArrayMesh_v1j6i")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_0hatk")
@@ -421,7 +421,7 @@ render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="front"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0422956, 0.208574, 7.15737)
-cull_mask = 8
+cull_mask = 32
 current = true
 fov = 25.0
 
@@ -433,7 +433,7 @@ transform = Transform3D(-0.00449971, 0.000345745, -0.99999, -0.111876, 0.993722,
 
 [node name="sunset" type="MeshInstance3D" parent="front/mesh_container/title"]
 transform = Transform3D(0.100171, 0.99497, 2.19861e-10, -0.99497, 0.100171, -4.3786e-09, -4.3786e-09, 2.19853e-10, 1, 0.0165781, -0.00726527, -0.521263)
-layers = 8
+layers = 32
 mesh = SubResource("ArrayMesh_u7ssq")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_xdmlh")
@@ -454,86 +454,86 @@ transform = Transform3D(0, 1, 0, 0, 0, -1, -1, 0, 0, -1.11836, 0, 0.996179)
 
 [node name="seaside" type="MeshInstance3D" parent="front/mesh_container/title/seaside2"]
 transform = Transform3D(3.72529e-09, 1, -4.65661e-10, -1, 0, 4.36557e-11, 4.36557e-11, 0, 1, 0.18222, 0.327378, 1.10367)
-layers = 8
+layers = 32
 mesh = SubResource("ArrayMesh_654hw")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_4etdw")
 
 [node name="seaside_001" type="MeshInstance3D" parent="front/mesh_container/title/seaside2"]
 transform = Transform3D(3.72529e-09, 1, -4.65661e-10, -1, 0, 4.36557e-11, 4.36557e-11, 0, 1, 0.18222, 0.327378, 1.10367)
-layers = 8
+layers = 32
 mesh = SubResource("ArrayMesh_cbxou")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_4etdw")
 
 [node name="seaside_002" type="MeshInstance3D" parent="front/mesh_container/title/seaside2"]
 transform = Transform3D(3.72529e-09, 1, -4.65661e-10, -1, 0, 4.36557e-11, 4.36557e-11, 0, 1, 0.18222, 0.327378, 1.10367)
-layers = 8
+layers = 32
 mesh = SubResource("ArrayMesh_775hh")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_4etdw")
 
 [node name="seaside_003" type="MeshInstance3D" parent="front/mesh_container/title/seaside2"]
 transform = Transform3D(3.72529e-09, 1, -4.65661e-10, -1, 0, 4.36557e-11, 4.36557e-11, 0, 1, 0.18222, 0.327378, 1.10367)
-layers = 8
+layers = 32
 mesh = SubResource("ArrayMesh_1o4mn")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_4etdw")
 
 [node name="seaside_004" type="MeshInstance3D" parent="front/mesh_container/title/seaside2"]
 transform = Transform3D(3.72529e-09, 1, -4.65661e-10, -1, 0, 4.36557e-11, 4.36557e-11, 0, 1, 0.18222, 0.327378, 1.10367)
-layers = 8
+layers = 32
 mesh = SubResource("ArrayMesh_f5mqn")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_4etdw")
 
 [node name="seaside_005" type="MeshInstance3D" parent="front/mesh_container/title/seaside2"]
 transform = Transform3D(3.72529e-09, 1, -4.65661e-10, -1, 0, 4.36557e-11, 4.36557e-11, 0, 1, 0.18222, 0.327378, 1.10367)
-layers = 8
+layers = 32
 mesh = SubResource("ArrayMesh_st5jr")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_4etdw")
 
 [node name="seaside_006" type="MeshInstance3D" parent="front/mesh_container/title/seaside2"]
 transform = Transform3D(3.72529e-09, 1, -4.65661e-10, -1, 0, 4.36557e-11, 4.36557e-11, 0, 1, 0.18222, 0.327378, 1.10367)
-layers = 8
+layers = 32
 mesh = SubResource("ArrayMesh_w7ahv")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_4etdw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="front/mesh_container/title"]
 transform = Transform3D(0.111608, 0.993742, 0.00434113, -0.993746, 0.11159, 0.00416445, 0.00365396, -0.00477876, 0.999982, -0.0244212, -0.368614, 0.577948)
-layers = 8
+layers = 32
 mesh = SubResource("PlaneMesh_jhf3u")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="front/mesh_container/title"]
 transform = Transform3D(0.111608, 0.993742, 0.00434113, -0.993746, 0.11159, 0.00416445, 0.00365396, -0.00477876, 0.999982, -0.0339781, -0.36788, -1.54593)
-layers = 8
+layers = 32
 mesh = SubResource("PlaneMesh_jhf3u")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="front/mesh_container/title"]
 transform = Transform3D(0.111714, 0.986958, -0.0208216, -0.81493, 0.134524, 0.189218, 0.141758, -0.00444148, 1.10417, -0.18102, 0.562268, -1.41442)
-layers = 8
+layers = 32
 mesh = SubResource("PlaneMesh_jhf3u")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="front/mesh_container/title"]
 transform = Transform3D(0.0912672, 0.993759, -0.0641095, -0.789155, 0.111441, 0.603999, 0.607375, -0.00453304, 0.794402, -0.0364792, -0.382433, -2.4739)
-layers = 8
+layers = 32
 mesh = SubResource("PlaneMesh_jhf3u")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="front/mesh_container/title"]
 transform = Transform3D(0.0504697, 0.993584, 0.00435183, -0.449375, 0.111573, 0.00417471, 0.00165233, -0.004778, 1.00245, -0.0108906, -0.284746, 1.36659)
-layers = 8
+layers = 32
 mesh = SubResource("PlaneMesh_jhf3u")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="front/mesh_container/title"]
 transform = Transform3D(0.0504697, 0.993584, 0.00435183, -0.449375, 0.111573, 0.00417471, 0.00165233, -0.004778, 1.00245, -0.0276315, -0.28346, -2.35382)
-layers = 8
+layers = 32
 mesh = SubResource("PlaneMesh_jhf3u")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="front/mesh_container/title"]
 transform = Transform3D(0.045227, 0.993565, 0.0502289, -0.4102, 0.11174, -0.406778, -0.184875, -0.00486681, 0.914847, -0.00916327, -0.472891, 1.36652)
-layers = 8
+layers = 32
 mesh = SubResource("PlaneMesh_jhf3u")
 
 [node name="title_uvtest" type="Node3D" parent="front/mesh_container"]

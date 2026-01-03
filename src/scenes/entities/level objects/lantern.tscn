@@ -179,9 +179,15 @@ draw_pass_1 = SubResource("QuadMesh_grvae")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03316, 0)
 layers = 3
-light_color = Color(0.86838, 0.687943, 0, 1)
+light_color = Color(0.890327, 0.58522, 0, 1)
 light_energy = 2.492
 shadow_enabled = true
-omni_range = 8.8
+omni_range = 24.0
+omni_attenuation = 1.4
 
 [node name="lantern" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.93462, -0.376221, -6.01192)
+visible = false
+size = Vector3(22.3545, 0.247559, 32.4478)

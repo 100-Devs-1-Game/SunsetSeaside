@@ -1,8 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://boaaxnk7m7k4o"]
+[gd_scene load_steps=11 format=3 uid="uid://boaaxnk7m7k4o"]
 
 [ext_resource type="Script" uid="uid://dbw8nkeos4jjr" path="res://scenes/!scripts (no scenes associated)/autoload/gamestate/gamestate.gd" id="1_jtrcs"]
 [ext_resource type="Script" uid="uid://cvtb7rjl2543l" path="res://scenes/!scripts (no scenes associated)/autoload/gamestate/stopwatch.gd" id="2_kdf0l"]
 [ext_resource type="Script" uid="uid://vrwtpwsift42" path="res://scenes/!scripts (no scenes associated)/autoload/gamestate/level_manager.gd" id="3_t7wu1"]
+[ext_resource type="Script" uid="uid://d1ucgy0jnqu8w" path="res://scenes/!scripts (no scenes associated)/autoload/gamestate/resources/level_info.gd" id="4_kdf0l"]
+
+[sub_resource type="Resource" id="Resource_kdf0l"]
+script = ExtResource("4_kdf0l")
+name = "TITLE"
+time_limit = -1.0
+par = -1
+level_path = "res://scenes/levels/debug/title_background.tscn"
+image_path = ""
+metadata/_custom_type_script = "uid://d1ucgy0jnqu8w"
+
+[sub_resource type="Resource" id="Resource_t7wu1"]
+script = ExtResource("4_kdf0l")
+name = "Test Level"
+time_limit = 4.2
+par = 5
+level_path = "res://scenes/levels/debug/test_level.tscn"
+image_path = ""
+metadata/_custom_type_script = "uid://d1ucgy0jnqu8w"
+
+[sub_resource type="Resource" id="Resource_mt3ra"]
+script = ExtResource("4_kdf0l")
+name = "midnight base"
+time_limit = -1.0
+par = -1
+level_path = "res://scenes/levels/medium/midnight_base.tscn"
+image_path = ""
+metadata/_custom_type_script = "uid://d1ucgy0jnqu8w"
+
+[sub_resource type="Resource" id="Resource_wjt67"]
+script = ExtResource("4_kdf0l")
+name = "Bonus 1!"
+time_limit = -1.0
+par = -1
+level_path = "res://scenes/levels/bonus/bonus_1.tscn"
+image_path = ""
+metadata/_custom_type_script = "uid://d1ucgy0jnqu8w"
+
+[sub_resource type="Resource" id="Resource_atcms"]
+script = ExtResource("4_kdf0l")
+name = "Bonus 2!"
+time_limit = -1.0
+par = -1
+level_path = "res://scenes/levels/bonus/bonus_2.tscn"
+image_path = ""
+metadata/_custom_type_script = "uid://d1ucgy0jnqu8w"
+
+[sub_resource type="Resource" id="Resource_f5ch3"]
+script = ExtResource("4_kdf0l")
+name = "Bonus 3!"
+time_limit = -1.0
+par = -1
+level_path = "res://scenes/levels/bonus/bonus_3.tscn"
+image_path = "res://scenes/ui/menus/level_images/bonus_3.PNG"
+metadata/_custom_type_script = "uid://d1ucgy0jnqu8w"
 
 [node name="Gamestate" type="Node"]
 script = ExtResource("1_jtrcs")
@@ -12,3 +67,6 @@ script = ExtResource("2_kdf0l")
 
 [node name="level_manager" type="Node" parent="."]
 script = ExtResource("3_t7wu1")
+levels_debug = Array[ExtResource("4_kdf0l")]([SubResource("Resource_kdf0l"), SubResource("Resource_t7wu1")])
+levels_medium = Array[ExtResource("4_kdf0l")]([SubResource("Resource_mt3ra")])
+levels_bonus = Array[ExtResource("4_kdf0l")]([SubResource("Resource_wjt67"), SubResource("Resource_atcms"), SubResource("Resource_f5ch3")])

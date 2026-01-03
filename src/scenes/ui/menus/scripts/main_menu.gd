@@ -15,7 +15,7 @@ func _on_button_settings_pressed() -> void: _open_menu(MenuType.SETTINGS);
 func _on_button_return_settings_pressed() -> void: _open_menu(MenuType.TITLE);
 func _on_button_delete_confirm_open_pressed() -> void: _open_menu(MenuType.CONFIRMATION)
 func _on_button_delete_no_pressed() -> void: _open_menu(MenuType.SETTINGS)
-func _on_button_delete_yes_pressed() -> void: Keeper.erase_progress(); _open_menu(MenuType.TITLE)
+func _on_button_delete_yes_pressed() -> void: Keeper.erase_progress(); _open_menu(MenuType.TITLE); Events.explode_title_barrel.emit()
 func _on_spinner_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
 			and (event.button_index == MOUSE_BUTTON_LEFT \

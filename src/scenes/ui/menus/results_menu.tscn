@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://by2sfu06w3w3g" path="res://assets/textures/rustic-wood-texture-free-49.png" id="2_clnwe"]
 [ext_resource type="Script" uid="uid://dld2efnfljd86" path="res://scenes/ui/menus/scripts/end_screen_timer_label.gd" id="2_yf7o8"]
 [ext_resource type="FontFile" uid="uid://dmg3ppdo8dgqj" path="res://assets/fonts/Primitive-4yGY.ttf" id="3_cyhki"]
-[ext_resource type="PackedScene" uid="uid://tvhgjh6s2skh" path="res://scenes/ui/spinner.tscn" id="3_yf7o8"]
+[ext_resource type="PackedScene" uid="uid://tvhgjh6s2skh" path="res://scenes/ui/menus/spinner.tscn" id="3_yf7o8"]
 [ext_resource type="PackedScene" uid="uid://dj58i00bv8dww" path="res://scenes/ui/menus/spinner_meshes/stopwatch_mesh.tscn" id="6_5yfc0"]
 [ext_resource type="PackedScene" uid="uid://bngk38h3a4rld" path="res://scenes/ui/menus/spinner_meshes/cannonball_mesh.tscn" id="8_jcwtr"]
 [ext_resource type="PackedScene" uid="uid://ckr8tt1vcqklu" path="res://scenes/ui/menus/spinner_meshes/jug_mesh.tscn" id="9_qpnnc"]

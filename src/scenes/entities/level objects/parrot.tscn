@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bg5ak2esj2ry5"]
+[gd_scene load_steps=17 format=4 uid="uid://bg5ak2esj2ry5"]
 
 [ext_resource type="Texture2D" uid="uid://cmpvo7pq4kss1" path="res://assets/models/blue_scarlet_macaw_blue_scarlet_paint.png" id="1_4mlgx"]
 [ext_resource type="Script" uid="uid://k5n35kq65fi2" path="res://scenes/entities/level objects/scripts/parrot.gd" id="1_7ulfp"]
@@ -80,6 +80,12 @@ bind/1/name = &"Bone.001"
 bind/1/bone = -1
 bind/1/pose = Transform3D(1, 1.81635e-07, -4.40888e-07, 4.26326e-14, 0.924609, 0.380917, 4.76837e-07, -0.380917, 0.924609, -1.74033e-07, -1.32506, 0.364974)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ulfp"]
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.533333, 0.00392157, 0.996078, 0)
+
 [sub_resource type="Animation" id="Animation_7ulfp"]
 length = 0.001
 tracks/0/type = "rotation_3d"
@@ -88,7 +94,7 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Armature/Skeleton3D:Bone.001")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.116514, 0.138985, 0.111581, 0.977066)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.977)
 
 [sub_resource type="Animation" id="Animation_4mlgx"]
 resource_name = "head_loop"
@@ -100,12 +106,48 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Armature/Skeleton3D:Bone.001")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(-0.0333333, 1, 0.116514, 0.138985, 0.111581, 0.977066, 1.03333, 1, 0.116514, 0.138985, 0.111581, 0.977066, 1.16667, 1, -0.0401381, 0.0189243, -0.130312, 0.990479, 3.2, 1, -0.0401381, 0.0189243, -0.130312, 0.990479, 3.3, 1, -0.0358142, 0.0477224, 0.146013, 0.987482, 3.83333, 1, -0.0358142, 0.0477224, 0.146013, 0.987482, 3.94333, 1, 0.166118, -0.0376609, 0.0565556, 0.983762, 4.03333, 1, 0.166118, -0.0376609, 0.0565556, 0.983762, 4.13333, 1, -0.00414888, -0.153229, -0.0414022, 0.987314, 6.76667, 1, -0.00414888, -0.153229, -0.0414022, 0.987314, 6.86667, 1, -0.0095644, 0.127348, -0.0342698, 0.99122, 8.13333, 1, -0.0095644, 0.127348, -0.0342698, 0.99122, 8.2, 1, 0.082711, 0.108267, -0.106573, 0.984926, 8.33333, 1, 0.082711, 0.108267, -0.106573, 0.984926, 8.43333, 1, 0.116514, 0.138985, 0.111581, 0.977066, 9.46667, 1, 0.116514, 0.138985, 0.111581, 0.977066)
+tracks/0/keys = PackedFloat32Array(-0.0333333, 1, 0.116514, 0.138985, 0.111581, 0.977066, 1.06667, 1, 0.116514, 0.138985, 0.111581, 0.977066, 1.16667, 1, -0.0401381, 0.0189243, -0.130312, 0.990479, 3.2, 1, -0.0401381, 0.0189243, -0.130312, 0.990479, 3.3, 1, -0.0358142, 0.0477224, 0.146013, 0.987482, 3.83333, 1, -0.0358142, 0.0477224, 0.146013, 0.987482, 3.94333, 1, 0.166118, -0.0376609, 0.0565556, 0.983762, 4.03333, 1, 0.166118, -0.0376609, 0.0565556, 0.983762, 4.13333, 1, -0.00414888, -0.153229, -0.0414022, 0.987314, 6.76667, 1, -0.00414888, -0.153229, -0.0414022, 0.987314, 6.86667, 1, -0.0095644, 0.127348, -0.0342698, 0.99122, 8.13333, 1, -0.0095644, 0.127348, -0.0342698, 0.99122, 8.2, 1, 0.082711, 0.108267, -0.106573, 0.984926, 8.33333, 1, 0.082711, 0.108267, -0.106573, 0.984926, 8.43333, 1, 0.116514, 0.138985, 0.111581, 0.977066, 9.46667, 1, 0.116514, 0.138985, 0.111581, 0.977066)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3g6e"]
 _data = {
 &"RESET": SubResource("Animation_7ulfp"),
 &"head_loop": SubResource("Animation_4mlgx")
+}
+
+[sub_resource type="Animation" id="Animation_ggr4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D/body_outline:surface_material_override/0:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.533333, 0.00392157, 0.996078, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y3g6e"]
+resource_name = "outline_pulse"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D/body_outline:surface_material_override/0:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.56917, 1),
+"update": 0,
+"values": [Color(0.741106, 7.39288e-05, 0.600338, 0.866667), Color(0.533333, 0.00392157, 0.996078, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5ujx"]
+_data = {
+&"RESET": SubResource("Animation_ggr4e"),
+&"outline_pulse": SubResource("Animation_y3g6e")
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7ulfp"]
@@ -137,8 +179,14 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, -6.3312e-08, 2.46979e-07, 1.26624e-07, 0.964097, -0.26555, -2.21299e-07, 0.26555, 0.964097, 0, 1.37441, 0)
 bones/1/enabled = true
 bones/1/position = Vector3(0, 1.37441, 0)
-bones/1/rotation = Quaternion(0.116514, 0.138985, 0.111581, 0.977066)
+bones/1/rotation = Quaternion(0.133983, 1.18135e-07, 4.7916e-08, 0.990984)
 bones/1/scale = Vector3(1, 1, 1)
+
+[node name="body_outline" type="MeshInstance3D" parent="mesh/Armature/Skeleton3D"]
+transform = Transform3D(1.2708, 0, 0, 0, 1.10709, 0, 0, 0, 1.20817, 0, 0, -0.0255653)
+mesh = SubResource("ArrayMesh_45dmf")
+skin = SubResource("Skin_yjxfm")
+surface_material_override/0 = SubResource("StandardMaterial3D_7ulfp")
 
 [node name="body" type="MeshInstance3D" parent="mesh/Armature/Skeleton3D"]
 mesh = SubResource("ArrayMesh_45dmf")
@@ -147,6 +195,12 @@ skin = SubResource("Skin_yjxfm")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="mesh"]
 libraries = {
 &"": SubResource("AnimationLibrary_y3g6e")
+}
+
+[node name="AnimationPlayer_outline" type="AnimationPlayer" parent="mesh"]
+root_node = NodePath("../Armature")
+libraries = {
+&"": SubResource("AnimationLibrary_r5ujx")
 }
 
 [node name="reversal_timer" type="Timer" parent="mesh"]
